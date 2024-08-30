@@ -22,24 +22,12 @@
                                         <label class="form-label">Tahun Ajaran</label>
                                         <select class="form-control form-select" name="tahun_ajaran">
                                             <option value="">Pilih Tahun Ajaran</option>
-                                            <option value="2024-2025"
-                                                {{ $perpustakaan->tahun_ajaran == '2024-2025' ? 'selected' : '' }}>
-                                                2024-2025</option>
-                                            <option value="2025-2026"
-                                                {{ $perpustakaan->tahun_ajaran == '2025-2026' ? 'selected' : '' }}>
-                                                2025-2026</option>
-                                            <option value="2026-2027"
-                                                {{ $perpustakaan->tahun_ajaran == '2026-2027' ? 'selected' : '' }}>
-                                                2026-2027</option>
-                                            <option value="2027-2028"
-                                                {{ $perpustakaan->tahun_ajaran == '2027-2028' ? 'selected' : '' }}>
-                                                2027-2028</option>
-                                            <option value="2028-2029"
-                                                {{ $perpustakaan->tahun_ajaran == '2028-2029' ? 'selected' : '' }}>
-                                                2028-2029</option>
-                                            <option value="2029-2030"
-                                                {{ $perpustakaan->tahun_ajaran == '2029-2030' ? 'selected' : '' }}>
-                                                2029-2030</option>
+                                            @foreach (generateTahunAjaran() as $tahun)
+                                                <option value="{{ $tahun }}"
+                                                    {{ $perpustakaan->tahun_ajaran == $tahun ? 'selected' : '' }}>
+                                                    {{ $tahun }}</option>
+                                            @endforeach
+
                                         </select>
                                         @error('tahun_ajaran')
                                             <div class="text-danger mt-2"> {{ $message }} </div>
@@ -72,8 +60,8 @@
                                             <div class="text-danger mt-2"> {{ $message }} </div>
                                         @enderror
                                         @if ($perpustakaan->daftar_buku)
-                                        <p>{{ basename($perpustakaan->daftar_buku) }}</p>
-                                    @endif
+                                            <p>{{ basename($perpustakaan->daftar_buku) }}</p>
+                                        @endif
                                     </div>
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label">Proker</label>
@@ -82,8 +70,8 @@
                                             <div class="text-danger mt-2"> {{ $message }} </div>
                                         @enderror
                                         @if ($perpustakaan->proker_perpus)
-                                        <p>{{ basename($perpustakaan->proker_perpus) }}</p>
-                                    @endif
+                                            <p>{{ basename($perpustakaan->proker_perpus) }}</p>
+                                        @endif
                                     </div>
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label">Struktur</label>
@@ -92,8 +80,8 @@
                                             <div class="text-danger mt-2"> {{ $message }} </div>
                                         @enderror
                                         @if ($perpustakaan->struktur)
-                                        <p>{{ basename($perpustakaan->struktur) }}</p>
-                                    @endif
+                                            <p>{{ basename($perpustakaan->struktur) }}</p>
+                                        @endif
                                     </div>
                                     <div class="col-sm-6 mb-3">
                                         <label class="form-label">Surat Keputusan</label>
@@ -102,8 +90,8 @@
                                             <div class="text-danger mt-2"> {{ $message }} </div>
                                         @enderror
                                         @if ($perpustakaan->sk)
-                                        <p>{{ basename($perpustakaan->sk) }}</p>
-                                    @endif
+                                            <p>{{ basename($perpustakaan->sk) }}</p>
+                                        @endif
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Daftar pengunjung</label>
@@ -112,8 +100,8 @@
                                             <div class="text-danger mt-2"> {{ $message }} </div>
                                         @enderror
                                         @if ($perpustakaan->daftar_pengunjung)
-                                        <p>{{ basename($perpustakaan->daftar_pengunjung) }}</p>
-                                    @endif
+                                            <p>{{ basename($perpustakaan->daftar_pengunjung) }}</p>
+                                        @endif
                                     </div>
                                     <button type="submit" class="btn btn-primary">Update</button>
                                 </div>

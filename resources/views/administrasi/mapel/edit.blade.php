@@ -24,24 +24,11 @@
                                                 <label class="form-label">Tahun Ajaran</label>
                                                 <select class="form-control form-select" name="tahun_ajaran">
                                                     <option value="">Pilih Tahun Ajaran</option>
-                                                    <option value="2024-2025"
-                                                        {{ $mapel->tahun_ajaran == '2024-2025' ? 'selected' : '' }}>
-                                                        2024-2025</option>
-                                                    <option value="2025-2026"
-                                                        {{ $mapel->tahun_ajaran == '2025-2026' ? 'selected' : '' }}>
-                                                        2025-2026</option>
-                                                    <option value="2026-2027"
-                                                        {{ $mapel->tahun_ajaran == '2026-2027' ? 'selected' : '' }}>
-                                                        2026-2027</option>
-                                                    <option value="2027-2028"
-                                                        {{ $mapel->tahun_ajaran == '2027-2028' ? 'selected' : '' }}>
-                                                        2027-2028</option>
-                                                    <option value="2028-2029"
-                                                        {{ $mapel->tahun_ajaran == '2028-2029' ? 'selected' : '' }}>
-                                                        2028-2029</option>
-                                                    <option value="2029-2030"
-                                                        {{ $mapel->tahun_ajaran == '2029-2030' ? 'selected' : '' }}>
-                                                        2029-2030</option>
+                                                    @foreach (generateTahunAjaran() as $tahun)
+                                                        <option value="{{ $tahun->tahun_ajaran }}"
+                                                            {{ $mapel->tahun_ajaran == $tahun->tahun_ajaran ? 'selected' : '' }}>
+                                                            {{ $tahun->tahun_ajaran }}></option>
+                                                    @endforeach
                                                 </select>
                                                 @error('tahun_ajaran')
                                                     <div class="text-danger mt-2"> {{ $message }} </div>
@@ -53,14 +40,14 @@
                                                 <label class="form-label">Kelas</label>
                                                 <select class="form-control form-select" name="kelas">
                                                     <option value="">Pilih Kelas</option>
-                                                    <option value="X"
-                                                        {{ $mapel->kelas == 'X' ? 'selected' : '' }}>X</option>
-                                                    <option value="XI"
-                                                        {{ $mapel->kelas == 'XI' ? 'selected' : '' }}>XI</option>
-                                                    <option value="XII"
-                                                        {{ $mapel->kelas == 'XII' ? 'selected' : '' }}>XII</option>
-                                                    <option value="XIII"
-                                                        {{ $mapel->kelas == 'XIII' ? 'selected' : '' }}>XIII</option>
+                                                    <option value="X" {{ $mapel->kelas == 'X' ? 'selected' : '' }}>X
+                                                    </option>
+                                                    <option value="XI" {{ $mapel->kelas == 'XI' ? 'selected' : '' }}>XI
+                                                    </option>
+                                                    <option value="XII" {{ $mapel->kelas == 'XII' ? 'selected' : '' }}>
+                                                        XII</option>
+                                                    <option value="XIII" {{ $mapel->kelas == 'XIII' ? 'selected' : '' }}>
+                                                        XIII</option>
                                                 </select>
                                                 @error('kelas')
                                                     <div class="text-danger mt-2"> {{ $message }} </div>
@@ -250,7 +237,7 @@
                                                 @error('rpp_1')
                                                     <div class="text-danger mt-2">{{ $message }}</div>
                                                 @enderror
-                                                 @if ($mapel->rpp_1)
+                                                @if ($mapel->rpp_1)
                                                     <p>{{ basename($mapel->rpp_1) }}</p>
                                                 @endif
                                             </div>
@@ -260,7 +247,7 @@
                                                 @error('pendukung_rpp_1')
                                                     <div class="text-danger mt-2">{{ $message }}</div>
                                                 @enderror
-                                                 @if ($mapel->pendukung_rpp_1)
+                                                @if ($mapel->pendukung_rpp_1)
                                                     <p>{{ basename($mapel->pendukung_rpp_1) }}</p>
                                                 @endif
                                             </div>
@@ -272,7 +259,7 @@
                                                 @error('rpp_2')
                                                     <div class="text-danger mt-2">{{ $message }}</div>
                                                 @enderror
-                                                 @if ($mapel->rpp_2)
+                                                @if ($mapel->rpp_2)
                                                     <p>{{ basename($mapel->rpp_2) }}</p>
                                                 @endif
                                             </div>
@@ -282,7 +269,7 @@
                                                 @error('pendukung_rpp_2')
                                                     <div class="text-danger mt-2">{{ $message }}</div>
                                                 @enderror
-                                                 @if ($mapel->pendukung_rpp_2)
+                                                @if ($mapel->pendukung_rpp_2)
                                                     <p>{{ basename($mapel->pendukung_rpp_2) }}</p>
                                                 @endif
                                             </div>
@@ -294,7 +281,7 @@
                                                 @error('rpp_3')
                                                     <div class="text-danger mt-2">{{ $message }}</div>
                                                 @enderror
-                                                 @if ($mapel->rpp_3)
+                                                @if ($mapel->rpp_3)
                                                     <p>{{ basename($mapel->rpp_3) }}</p>
                                                 @endif
                                             </div>
@@ -304,7 +291,7 @@
                                                 @error('pendukung_rpp_3')
                                                     <div class="text-danger mt-2">{{ $message }}</div>
                                                 @enderror
-                                                 @if ($mapel->pendukung_rpp_3)
+                                                @if ($mapel->pendukung_rpp_3)
                                                     <p>{{ basename($mapel->pendukung_rpp_3) }}</p>
                                                 @endif
                                             </div>
@@ -316,7 +303,7 @@
                                                 @error('rpp_4')
                                                     <div class="text-danger mt-2">{{ $message }}</div>
                                                 @enderror
-                                                 @if ($mapel->rpp_4)
+                                                @if ($mapel->rpp_4)
                                                     <p>{{ basename($mapel->rpp_4) }}</p>
                                                 @endif
                                             </div>
@@ -326,7 +313,7 @@
                                                 @error('pendukung_rpp_4')
                                                     <div class="text-danger mt-2">{{ $message }}</div>
                                                 @enderror
-                                                 @if ($mapel->pendukung_rpp_4)
+                                                @if ($mapel->pendukung_rpp_4)
                                                     <p>{{ basename($mapel->pendukung_rpp_4) }}</p>
                                                 @endif
                                             </div>
@@ -338,7 +325,7 @@
                                                 @error('rpp_5')
                                                     <div class="text-danger mt-2">{{ $message }}</div>
                                                 @enderror
-                                                 @if ($mapel->rpp_5)
+                                                @if ($mapel->rpp_5)
                                                     <p>{{ basename($mapel->rpp_5) }}</p>
                                                 @endif
                                             </div>
@@ -348,7 +335,7 @@
                                                 @error('pendukung_rpp_5')
                                                     <div class="text-danger mt-2">{{ $message }}</div>
                                                 @enderror
-                                                 @if ($mapel->pendukung_rpp_5)
+                                                @if ($mapel->pendukung_rpp_5)
                                                     <p>{{ basename($mapel->pendukung_rpp_5) }}</p>
                                                 @endif
                                             </div>
@@ -360,7 +347,7 @@
                                                 @error('rpp_6')
                                                     <div class="text-danger mt-2">{{ $message }}</div>
                                                 @enderror
-                                                 @if ($mapel->rpp_6)
+                                                @if ($mapel->rpp_6)
                                                     <p>{{ basename($mapel->rpp_6) }}</p>
                                                 @endif
                                             </div>
@@ -370,7 +357,7 @@
                                                 @error('pendukung_rpp_6')
                                                     <div class="text-danger mt-2">{{ $message }}</div>
                                                 @enderror
-                                                 @if ($mapel->pendukung_rpp_6)
+                                                @if ($mapel->pendukung_rpp_6)
                                                     <p>{{ basename($mapel->pendukung_rpp_6) }}</p>
                                                 @endif
                                             </div>
@@ -382,7 +369,7 @@
                                                 @error('rpp_1')
                                                     <div class="text-danger mt-2">{{ $message }}</div>
                                                 @enderror
-                                                 @if ($mapel->rpp_7)
+                                                @if ($mapel->rpp_7)
                                                     <p>{{ basename($mapel->rpp_7) }}</p>
                                                 @endif
                                             </div>
@@ -392,7 +379,7 @@
                                                 @error('pendukung_rpp_7')
                                                     <div class="text-danger mt-2">{{ $message }}</div>
                                                 @enderror
-                                                 @if ($mapel->pendukung_rpp_7)
+                                                @if ($mapel->pendukung_rpp_7)
                                                     <p>{{ basename($mapel->pendukung_rpp_7) }}</p>
                                                 @endif
                                             </div>
@@ -404,7 +391,7 @@
                                                 @error('rpp_8')
                                                     <div class="text-danger mt-2">{{ $message }}</div>
                                                 @enderror
-                                                 @if ($mapel->rpp_8)
+                                                @if ($mapel->rpp_8)
                                                     <p>{{ basename($mapel->rpp_8) }}</p>
                                                 @endif
                                             </div>
@@ -414,7 +401,7 @@
                                                 @error('pendukung_rpp_8')
                                                     <div class="text-danger mt-2">{{ $message }}</div>
                                                 @enderror
-                                                 @if ($mapel->pendukung_rpp_8)
+                                                @if ($mapel->pendukung_rpp_8)
                                                     <p>{{ basename($mapel->pendukung_rpp_8) }}</p>
                                                 @endif
                                             </div>
@@ -426,7 +413,7 @@
                                                 @error('rpp_9')
                                                     <div class="text-danger mt-2">{{ $message }}</div>
                                                 @enderror
-                                                 @if ($mapel->rpp_9)
+                                                @if ($mapel->rpp_9)
                                                     <p>{{ basename($mapel->rpp_9) }}</p>
                                                 @endif
                                             </div>
@@ -436,7 +423,7 @@
                                                 @error('pendukung_rpp_9')
                                                     <div class="text-danger mt-2">{{ $message }}</div>
                                                 @enderror
-                                                 @if ($mapel->pendukung_rpp_9)
+                                                @if ($mapel->pendukung_rpp_9)
                                                     <p>{{ basename($mapel->pendukung_rpp_9) }}</p>
                                                 @endif
                                             </div>
@@ -448,7 +435,7 @@
                                                 @error('rpp_10')
                                                     <div class="text-danger mt-2">{{ $message }}</div>
                                                 @enderror
-                                                 @if ($mapel->rpp_10)
+                                                @if ($mapel->rpp_10)
                                                     <p>{{ basename($mapel->rpp_10) }}</p>
                                                 @endif
                                             </div>
@@ -458,7 +445,7 @@
                                                 @error('pendukung_rpp_10')
                                                     <div class="text-danger mt-2">{{ $message }}</div>
                                                 @enderror
-                                                 @if ($mapel->pendukung_rpp_10)
+                                                @if ($mapel->pendukung_rpp_10)
                                                     <p>{{ basename($mapel->pendukung_rpp_10) }}</p>
                                                 @endif
                                             </div>
@@ -470,7 +457,7 @@
                                                 @error('rpp_11')
                                                     <div class="text-danger mt-2">{{ $message }}</div>
                                                 @enderror
-                                                 @if ($mapel->rpp_11)
+                                                @if ($mapel->rpp_11)
                                                     <p>{{ basename($mapel->rpp_11) }}</p>
                                                 @endif
                                             </div>
@@ -480,7 +467,7 @@
                                                 @error('pendukung_rpp_11')
                                                     <div class="text-danger mt-2">{{ $message }}</div>
                                                 @enderror
-                                                 @if ($mapel->pendukung_rpp_11)
+                                                @if ($mapel->pendukung_rpp_11)
                                                     <p>{{ basename($mapel->pendukung_rpp_11) }}</p>
                                                 @endif
                                             </div>
@@ -492,7 +479,7 @@
                                                 @error('rpp_12')
                                                     <div class="text-danger mt-2">{{ $message }}</div>
                                                 @enderror
-                                                 @if ($mapel->rpp_12)
+                                                @if ($mapel->rpp_12)
                                                     <p>{{ basename($mapel->rpp_12) }}</p>
                                                 @endif
                                             </div>
@@ -502,7 +489,7 @@
                                                 @error('pendukung_rpp_12')
                                                     <div class="text-danger mt-2">{{ $message }}</div>
                                                 @enderror
-                                                 @if ($mapel->pendukung_rpp_12)
+                                                @if ($mapel->pendukung_rpp_12)
                                                     <p>{{ basename($mapel->pendukung_rpp_12) }}</p>
                                                 @endif
                                             </div>
@@ -514,7 +501,7 @@
                                                 @error('rpp_13')
                                                     <div class="text-danger mt-2">{{ $message }}</div>
                                                 @enderror
-                                                 @if ($mapel->rpp_13)
+                                                @if ($mapel->rpp_13)
                                                     <p>{{ basename($mapel->rpp_13) }}</p>
                                                 @endif
                                             </div>
@@ -524,7 +511,7 @@
                                                 @error('pendukung_rpp_13')
                                                     <div class="text-danger mt-2">{{ $message }}</div>
                                                 @enderror
-                                                 @if ($mapel->pendukung_rpp_13)
+                                                @if ($mapel->pendukung_rpp_13)
                                                     <p>{{ basename($mapel->pendukung_rpp_13) }}</p>
                                                 @endif
                                             </div>
@@ -536,8 +523,7 @@
                                 <button type="button" class="btn btn-secondary" id="prevButton"
                                     style="display: none;">Previous</button>
                                 <button type="button" class="btn btn-primary" id="nextButton">Next</button>
-                                <button type="submit" class="btn btn-success d-none"
-                                    id="submitButton">Update</button>
+                                <button type="submit" class="btn btn-success d-none" id="submitButton">Update</button>
                             </div>
                         </form>
                     </div>

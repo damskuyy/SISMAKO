@@ -83,7 +83,10 @@ class KepalaLabkomController extends Controller
         $validateData = $request->validated();
 
         $fileFields = [
-            'tatib_lab', 'denah_lab', 'data_lab', 'data_pengguna'
+            'tatib_lab',
+            'denah_lab',
+            'data_lab',
+            'data_pengguna'
         ];
 
         foreach ($fileFields as $fileField) {
@@ -120,7 +123,10 @@ class KepalaLabkomController extends Controller
         $kepalaLabKom = KepalaLabkom::findOrFail($id);
 
         $fileFields = [
-            'tatib_lab', 'denah_lab', 'data_lab', 'data_pengguna'
+            'tatib_lab',
+            'denah_lab',
+            'data_lab',
+            'data_pengguna'
         ];
 
         foreach ($fileFields as $fileField) {
@@ -139,7 +145,10 @@ class KepalaLabkomController extends Controller
         $kepalaLabKom = KepalaLabkom::findOrFail($id);
 
         $directories = [
-            'tatib_lab', 'denah_lab', 'data_lab', 'data_pengguna'
+            'tatib_lab',
+            'denah_lab',
+            'data_lab',
+            'data_pengguna'
         ];
 
         // Create a temporary file to store the zip

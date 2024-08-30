@@ -24,24 +24,11 @@
                                                 <label class="form-label">Tahun Ajaran</label>
                                                 <select class="form-control form-select" name="tahun_ajaran">
                                                     <option value="">Pilih Tahun Ajaran</option>
-                                                    <option value="2024-2025"
-                                                        {{ $kepsek->tahun_ajaran == '2024-2025' ? 'selected' : '' }}>
-                                                        2024-2025</option>
-                                                    <option value="2025-2026"
-                                                        {{ $kepsek->tahun_ajaran == '2025-2026' ? 'selected' : '' }}>
-                                                        2025-2026</option>
-                                                    <option value="2026-2027"
-                                                        {{ $kepsek->tahun_ajaran == '2026-2027' ? 'selected' : '' }}>
-                                                        2026-2027</option>
-                                                    <option value="2027-2028"
-                                                        {{ $kepsek->tahun_ajaran == '2027-2028' ? 'selected' : '' }}>
-                                                        2027-2028</option>
-                                                    <option value="2028-2029"
-                                                        {{ $kepsek->tahun_ajaran == '2028-2029' ? 'selected' : '' }}>
-                                                        2028-2029</option>
-                                                    <option value="2029-2030"
-                                                        {{ $kepsek->tahun_ajaran == '2029-2030' ? 'selected' : '' }}>
-                                                        2029-2030</option>
+                                                    @foreach (generateTahunAjaran() as $tahun)
+                                                        <option value="{{ $tahun }}"
+                                                            {{ $kepsek->tahun_ajaran == $tahun ? 'selected' : '' }}>
+                                                            {{ $tahun }}</option>
+                                                    @endforeach
                                                 </select>
                                                 @error('tahun_ajaran')
                                                     <div class="text-danger mt-2"> {{ $message }} </div>
@@ -125,8 +112,8 @@
                                         <div class="col-sm-6 col-md-4">
                                             <div class="mb-3">
                                                 <label for="nama_guru">Nama Guru</label>
-                                                <input type="text" class="form-control" id="nama_guru"
-                                                    name="nama_guru" value="{{ $kepsek->nama_guru }}">
+                                                <input type="text" class="form-control" id="nama_guru" name="nama_guru"
+                                                    value="{{ $kepsek->nama_guru }}">
                                                 @error('nama_guru')
                                                     <div class="text-danger mt-2"> {{ $message }} </div>
                                                 @enderror
@@ -136,8 +123,7 @@
                                             <div class="mb-3">
                                                 <label for="nilai_tepat_waktu">Nilai Tepat Waktu</label>
                                                 <input type="text" class="form-control" id="nilai_tepat_waktu"
-                                                    name="nilai_tepat_waktu"
-                                                    value="{{ $kepsek->nilai_tepat_waktu }}">
+                                                    name="nilai_tepat_waktu" value="{{ $kepsek->nilai_tepat_waktu }}">
                                                 @error('nilai_tepat_waktu')
                                                     <div class="text-danger mt-2"> {{ $message }} </div>
                                                 @enderror
@@ -147,8 +133,8 @@
                                             <div class="mb-3">
                                                 <label for="penilaian_kumulatif_siswa">Penilaian Kumulatif
                                                     Siswa</label>
-                                                <input type="text" class="form-control"
-                                                    id="penilaian_kumulatif_siswa" name="penilaian_kumulatif_siswa"
+                                                <input type="text" class="form-control" id="penilaian_kumulatif_siswa"
+                                                    name="penilaian_kumulatif_siswa"
                                                     value="{{ $kepsek->penilaian_kumulatif_siswa }}">
                                                 @error('penilaian_kumulatif_siswa')
                                                     <div class="text-danger mt-2"> {{ $message }} </div>
@@ -178,8 +164,8 @@
                                         <div class="col-sm-6 col-md-4">
                                             <div class="mb-3">
                                                 <label for="bulan">Bulan</label>
-                                                <input type="text" class="form-control" id="bulan"
-                                                    name="bulan" value="{{ $kepsek->bulan }}">
+                                                <input type="text" class="form-control" id="bulan" name="bulan"
+                                                    value="{{ $kepsek->bulan }}">
                                                 @error('bulan')
                                                     <div class="text-danger mt-2"> {{ $message }} </div>
                                                 @enderror
@@ -189,8 +175,7 @@
                                             <div class="mb-3">
                                                 <label for="keterangan_penilaian_bulanan">Keterangan</label>
                                                 <input type="text" class="form-control"
-                                                    id="keterangan_penilaian_bulanan"
-                                                    name="keterangan_penilaian_bulanan"
+                                                    id="keterangan_penilaian_bulanan" name="keterangan_penilaian_bulanan"
                                                     value="{{ $kepsek->keterangan_penilaian_bulanan }}">
                                                 @error('keterangan_penilaian_bulanan')
                                                     <div class="text-danger mt-2"> {{ $message }} </div>
@@ -229,8 +214,8 @@
                                         <div class="col-sm-6 col-md-4">
                                             <div class="mb-3">
                                                 <label for="kelas">kelas</label>
-                                                <input type="text" class="form-control" id="kelas"
-                                                    name="kelas" value="{{ $kepsek->kelas }}">
+                                                <input type="text" class="form-control" id="kelas" name="kelas"
+                                                    value="{{ $kepsek->kelas }}">
                                                 @error('kelas')
                                                     <div class="text-danger mt-2"> {{ $message }} </div>
                                                 @enderror
@@ -239,8 +224,8 @@
                                         <div class="col-sm-6 col-md-4">
                                             <div class="mb-3">
                                                 <label for="jabatan">Jabatan</label>
-                                                <input type="text" class="form-control" id="jabatan"
-                                                    name="jabatan" value="{{ $kepsek->jabatan }}">
+                                                <input type="text" class="form-control" id="jabatan" name="jabatan"
+                                                    value="{{ $kepsek->jabatan }}">
                                                 @error('jabatan')
                                                     <div class="text-danger mt-2"> {{ $message }} </div>
                                                 @enderror
@@ -249,8 +234,8 @@
                                         <div class="col-sm-6 col-md-4">
                                             <div class="mb-3">
                                                 <label for="mapel">Mapel</label>
-                                                <input type="text" class="form-control" id="mapel"
-                                                    name="mapel" value="{{ $kepsek->mapel }}">
+                                                <input type="text" class="form-control" id="mapel" name="mapel"
+                                                    value="{{ $kepsek->mapel }}">
                                                 @error('mapel')
                                                     <div class="text-danger mt-2"> {{ $message }} </div>
                                                 @enderror

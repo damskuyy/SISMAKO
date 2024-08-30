@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\administrasi\Mapel;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Log;
+// use App\Http\Helpers\TahunAjaranHelper;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\administrasi\MapelRequest;
 
@@ -45,7 +46,16 @@ class MapelController extends Controller
 
     public function create()
     {
-        // return view('page.administrasi.mapel.create');
+        // $startYear = 2024;
+        // $endYear = $startYear + 6;
+        // $tahunAjaran = [];
+
+        // for ($year = $startYear; $year < $endYear; $year++) {
+        //     $tahunAjaran[] = $year . '-' . ($year + 1);
+        // }
+
+        // $tahunAjaran = TahunAjaranHelper::generateTahunAjaran();
+
         return view('administrasi.mapel.create');
     }
 
@@ -102,8 +112,6 @@ class MapelController extends Controller
                 $validateData[$fileField] = $file->storeAs($fileField, $originalName);
             }
         }
-
-        // Simpan data ke database
         Mapel::create($validateData);
 
         return redirect()->route('mapel.index')->with('success', 'Mapel created successfully.');
@@ -111,10 +119,8 @@ class MapelController extends Controller
 
     public function edit($id)
     {
+        // $tahunAjaran = TahunAjaranHelper::generateTahunAjaran();
         $mapel = Mapel::findOrFail($id);
-        // $rppFiles = Storage::files('rpp');
-
-        // return view('page.administrasi.mapel.edit', compact('mapel', 'rppFiles'));
         return view('administrasi.mapel.edit', compact('mapel'));
     }
 
@@ -244,7 +250,7 @@ class MapelController extends Controller
         $directories = [
             'pkg',
             'silabus',
-            'ki_kd_skl',    
+            'ki_kd_skl',
             'kode_etik',
             'program_semester',
             'program_tahunan',

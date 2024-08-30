@@ -1,697 +1,1227 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- CSRF Token -->
+        <meta
+            name="csrf-token"
+            content="ldIksOUu930WNkxHvKw8ibIeMkxIooAfJ9kmrq0H"
+        />
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="ldIksOUu930WNkxHvKw8ibIeMkxIooAfJ9kmrq0H">
+        <title>Laravel</title>
 
-    <title>Laravel</title>
+        <!-- Fonts -->
+        <link rel="dns-prefetch" href="//fonts.bunny.net" />
+        <link
+            href="https://fonts.bunny.net/css?family=Nunito"
+            rel="stylesheet"
+        />
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+        <link
+            rel="stylesheet"
+            href="http://127.0.0.1:8000/dist/css/tabler.min.css"
+        />
+        <link
+            rel="stylesheet"
+            href="http://127.0.0.1:8000/dist/css/demo.min.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+        />
 
-    <link rel="stylesheet" href="http://127.0.0.1:8000/dist/css/tabler.min.css">
-    <link rel="stylesheet" href="http://127.0.0.1:8000/dist/css/demo.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-    <style>
-        .step {
-            display: none;
-        }
-
-        .step.active {
-            display: block;
-        }
-
-        .shadow-sm,
-        .shadow {
-            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-        }
-    </style>
-    <!-- Scripts -->
-    
-</head>
-
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-    <div class="container">
-        <div class="shrink-0 flex items-center">
-            <a href="/">
-                <img src="https://res.cloudinary.com/dhyq9uts4/image/upload/v1676360444/logo_v09np1.png" alt="Logo"
-                    class="img-fluid h-6 w-auto text-dark"> <!-- Mengganti h-9 menjadi h-6 -->
-            </a>
-        </div>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- Left Side Of Navbar -->
-            <ul class="navbar-nav me-auto">
-
-            </ul>
-
-            <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ms-auto">
-                <!-- Authentication Links -->
-                                    
-                                                </ul>
-        </div>
-    </div>
-</nav>
-
-        <main class="">
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <div class="container mt-6">
-        <a href="http://127.0.0.1:8000/siswa" class="btn btn-secondary mb-4">Back</a>
-        <form method="post" action="http://127.0.0.1:8000/siswa/create/data" id="multiStepForm" enctype="multipart/form-data">
-            <input type="hidden" name="_token" value="ldIksOUu930WNkxHvKw8ibIeMkxIooAfJ9kmrq0H" autocomplete="off">            <div id="step-1" class="border p-3 rounded-3">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="mb-3">
-                            <label class="form-label">Nama lengkap</label>
-                            <input type="text" class="form-control" name="nama" placeholder="Fadhil Rabbani" value="">
-                                                    </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="mb-3">
-                            <label class="form-label">Tempat lahir</label>
-                            <input type="text" class="form-control" name="tempat_tanggal_lahir" placeholder="Jakarta" value="">
-                                                    </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="mb-3">
-                            <label class="form-label">Tanggal lahir</label>
-                            <input type="date" class="form-control" name="tanggal_lahir" value="">
-                                                    </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="mb-3">
-                            <label class="form-label">Tahun Pelajaran</label>
-                            <input type="text" class="form-control" autocomplete="off" placeholder="2024-2025" name="tahun_pelajaran" value="">
-                                                    </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="mb-3">
-                            <label class="form-label">Jenis Kelamin</label>
-                            <select class="form-select" name="jenis_kelamin" value="">
-                                <option value="Laki-laki" selected>Laki-laki</option>
-                                <option value="Perempuan">Perempuan</option>
-                            </select>
-                                                    </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="mb-3">
-                            <label class="form-label">Agama</label>
-                            <select class="form-control" name="agama" value="">
-                                <option value="Islam" selected>Islam</option>
-                                <option value="Kristen">Kristen</option>
-                            </select>
-                                                    </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="mb-3">
-                            <label class="form-label">Alamat</label>
-                            <textarea class="form-control" rows="4" name="alamat"></textarea>
-                                                    </div>
-                    </div>
-                </div>
-            </div>
-            <div id="step-2" class="d-none border p-3 rounded-3">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="mb-3">
-                            <label class="form-label">Nama Ayah</label>
-                            <input type="text" class="form-control" name="nama_ayah" placeholder="" value="">
-                                                    </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="mb-3">
-                            <label class="form-label">Pekerjaan Ayah</label>
-                            <input type="text" class="form-control" name="pekerjaan_ayah" placeholder="Karyawan swasta" value="">
-                                                    </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="mb-3">
-                            <label class="form-label">Nama Ibu</label>
-                            <input type="text" class="form-control" name="nama_ibu" placeholder="" value="">
-                                                    </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="mb-3">
-                            <label class="form-label">Pekerjaan Ibu</label>
-                            <input type="text" class="form-control" name="pekerjaan_ibu" placeholder="Ibu Rumah Tangga" value="">
-                                                    </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 mb-3">
-                        <div>
-                            <label class="form-label">No. Handphone Wali Siswa</label>
-                            <input type="number" class="form-control" name="no_hp_wali" value="">
-                                                    </div>
-                    </div>
-                    <div class="col-lg-6 mb-3">
-                        <div>
-                            <label class="form-label">No. Nisn</label>
-                            <input type="number" class="form-control" name="nisn" value="">
-                                                    </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="mb-3">
-                            <label class="form-label">No. Nis</label>
-                            <input type="number" class="form-control" name="nis" value="">
-                                                    </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="step-3" class="d-none border p-3 rounded-3">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <div class="mb-3">
-                            <label class="form-label">Diterima Di kelas</label>
-                            <select class="form-control" name="diterima_di_kelas" value="">
-                                <option value="X" selected>X</option>
-                                <option value="XI">XI</option>
-                                <option value="XI">XII</option>
-                            </select>
-                                                    </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="mb-3">
-                            <label class="form-label">Angkatan</label>
-                            <input type="number" class="form-control" name="angkatan" value="" placeholder="2">
-                                                    </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="mb-3">
-                            <label class="form-label">Tanggal Masuk</label>
-                            <input type="date" class="form-control" name="tanggal_masuk" value="">
-                                                    </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="mb-3">
-                            <label class="form-label">Status Siswa</label>
-                            <select class="form-control" name="status_siswa" value="">
-                                <option value="Aktif" selected>Aktif</option>
-                                <option value="Tidak Aktif">Tidak Aktif</option>
-                            </select>
-                                                    </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="mb-3">
-                            <label class="form-label">Asal Sekolah</label>
-                            <input type="text" class="form-control" name="asal_sekolah" placeholder="" value="">
-                                                    </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="mb-3">
-                            <label class="form-label">Alamat Asal Sekolah</label>
-                            <input type="text" class="form-control" name="alamat_asal_sekolah" value="">
-                                                    </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div id="step-4" class="d-none border p-3 rounded-3">
-                <h1 class="text-center mb-6">Foto Siswa</h1>
-                <div class="row">
-                    <div class="col-lg-6 mb-3">
-                        <label class="form-label fw-bold">Kelas X</label>
-                        <div class="input-group">
-                            <input type="file" class="form-control" name="foto_kelas10" accept=".png">
-                            <div class="input-group-append">
-                                <button type="button" class="btn" style="height: 100%" id="btn-remove-foto_kelas10" onclick="removeFile('foto_kelas10')"><i class="fa-solid fa-x"></i></button>
-                            </div>
-                        </div>
-                                            </div>
-                    <div class="col-lg-6 mb-3">
-                        <label class="form-label fw-bold">Kelas XI</label>
-                        <div class="input-group">
-                            <input type="file" class="form-control" name="foto_kelas11" accept=".png">
-                            <div class="input-group-append">
-                                <button type="button" class="btn" style="height: 100%" id="btn-remove-foto_kelas11" onclick="removeFile('foto_kelas11')"><i class="fa-solid fa-x"></i></button>
-                            </div>
-                        </div>
-                                            </div>
-                    <div class="col-lg-12 mb-3">
-                        <label class="form-label fw-bold">Kelas XII</label>
-                        <div class="input-group">
-                            <input type="file" class="form-control" name="foto_kelas12" accept=".png">
-                            <div class="input-group-append">
-                                <button type="button" class="btn" style="height: 100%" id="btn-remove-foto_kelas12" onclick="removeFile('foto_kelas12')"><i class="fa-solid fa-x"></i></button>
-                            </div>
-                        </div>
-                                            </div>
-                </div>
-            </div>
-
-            <div id="step-5" class="d-none border p-3 rounded-3">
-                <h1 class="text-center mb-6">Rapot Siswa</h1>
-                <div class="row">
-                    <div class="col-lg-6 mb-3">
-                        <label class="form-label fw-bold">Kelas VII</label>
-                        <div class="input-group">
-                            <input type="file" class="form-control" name="rapot_kelas7" accept=".png">
-                            <div class="input-group-append">
-                                <button type="button" class="btn" style="height: 100%" id="btn-remove-rapot_kelas7" onclick="removeFile('rapot_kelas7')"><i class="fa-solid fa-x"></i></button>
-                            </div>
-                        </div>
-                                            </div>
-                    <div class="col-lg-6 mb-3">
-                        <label class="form-label fw-bold">Kelas VIII</label>
-                        <div class="input-group">
-                            <input type="file" class="form-control" name="rapot_kelas8" accept=".png">
-                            <div class="input-group-append">
-                                <button type="button" class="btn" style="height: 100%" id="btn-remove-rapot_kelas8" onclick="removeFile('rapot_kelas8')"><i class="fa-solid fa-x"></i></button>
-                            </div>
-                        </div>
-                                            </div>
-                    <div class="col-lg-12 mb-3">
-                        <label class="form-label fw-bold">Kelas IX</label>
-                        <div class="input-group">
-                            <input type="file" class="form-control" name="rapot_kelas9" accept=".png">
-                            <div class="input-group-append">
-                                <button type="button" class="btn" style="height: 100%" id="btn-remove-rapot_kelas9" onclick="removeFile('rapot_kelas9')"><i class="fa-solid fa-x"></i></button>
-                            </div>
-                        </div>
-                                            </div>
-                </div>
-            </div>
-
-            <div id="step-6" class="d-none border p-3 rounded-3">
-                <div class="row">
-                    <div class="col-lg-6 mb-3">
-                        <label class="form-label fw-bold">Foto Ijazah</label>
-                        <div class="input-group">
-                            <input type="file" class="form-control" name="ijazah" accept=".png" onchange="handleFileUpload(event, 'ijazah')">
-                            <div class="input-group-append">
-                                <button type="button" class="btn" style="height: 100%;" id="btn-remove-ijazah" onclick="removeFile('ijazah')"><i class="fa-solid fa-x"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 mb-3">
-                        <label class="form-label fw-bold">FOTO Surat Kelulusan</label>
-                        <div class="input-group">
-                            <input type="file" class="form-control" name="surat_Kelulusan" accept=".png" onchange="handleFileUpload(event, 'surat_Kelulusan')">
-                            <div class="input-group-append">
-                                <button type="button" class="btn" style="height: 100%;" id="btn-remove-surat_Kelulusan" onclick="removeFile('surat_Kelulusan')"><i class="fa-solid fa-x"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 mb-3">
-                        <label class="form-label fw-bold">FOTO Kartu keluarga</label>
-                        <div class="input-group">
-                            <input type="file" class="form-control" name="kk" accept=".png" onchange="handleFileUpload(event, 'kk')">
-                            <div class="input-group-append">
-                                <button type="button" class="btn" style="height: 100%;" id="btn-remove-kk" onclick="removeFile('kk')"><i class="fa-solid fa-x"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 mb-3">
-                        <label class="form-label fw-bold">FOTO Akta kelahiran</label>
-                        <div class="input-group">
-                            <input type="file" class="form-control" name="akta_kelahiran" accept=".png" onchange="handleFileUpload(event, 'akta_kelahiran')">
-                            <div class="input-group-append">
-                                <button type="button" class="btn" style="height: 100%;" id="btn-remove-akta_kelahiran" onclick="removeFile('akta_kelahiran')"><i class="fa-solid fa-x"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12 mb-3">
-                        <label class="form-label fw-bold">Surat Pernyataan Siswa</label>
-                        <div class="input-group">
-                            <input type="file" class="form-control" name="surat_pernyataan_calonPesertaDidik" accept=".png" onchange="handleFileUpload(event, 'surat_pernyataan_calonPesertaDidik')">
-                            <div class="input-group-append">
-                                <button type="button" class="btn" style="height: 100%;" id="btn-remove-surat_pernyataan_calonPesertaDidik" onclick="removeFile('surat_pernyataan_calonPesertaDidik')"><i class="fa-solid fa-x"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12 mb-3">
-                        <label class="form-label fw-bold">Surat Pernyataan Wali</label>
-                        <div class="input-group">
-                            <input type="file" class="form-control" name="surat_pernyataan_wali" accept=".png" onchange="handleFileUpload(event, 'surat_pernyataan_wali')">
-                            <div class="input-group-append">
-                                <button type="button" class="btn" style="height: 100%;" id="btn-remove-surat_pernyataan_wali" onclick="removeFile('surat_pernyataan_wali')"><i class="fa-solid fa-x"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12 mb-3">
-                        <label class="form-label fw-bold">Surat Pernyataan Tidak Merokok</label>
-                        <div class="input-group">
-                            <input type="file" class="form-control" name="surat_pernyataan_tidak_merokok" accept=".png" onchange="handleFileUpload(event, 'surat_pernyataan_tidak_merokok')">
-                            <div class="input-group-append">
-                                <button type="button" class="btn" style="height: 100%;" id="btn-remove-surat_pernyataan_tidak_merokok" onclick="removeFile('surat_pernyataan_tidak_merokok')"><i class="fa-solid fa-x"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mt-4">
-                <button type="button" class="btn btn-secondary" id="prevButton" style="display: none;">Previous</button>
-                <button type="button" class="btn btn-primary" id="nextButton">Next</button>
-                <button type="submit" class="btn btn-success d-none" id="submitButton">Submit</button>
-            </div>
-        </form>
-    </div>
-    <script>
-      function handleFileUpload(event, inputName) {
-    const fileInput = event.target;
-    const files = fileInput.files;
-    const removeButton = document.getElementById(`btn-remove-${inputName}`);
-    if (files.length > 0) {
-        removeButton.classList.remove('d-none');
-    } else {
-        removeButton.classList.add('d-none');
-    }
-}
-
-function removeFile(inputName) {
-    const fileInput = document.querySelector(`input[name="${inputName}"]`);
-    fileInput.value = '';
-    const removeButton = document.getElementById(`btn-remove-${inputName}`);
-    removeButton.classList.add('d-none');
-    console.log(`File removed: ${inputName}`);
-    // Additional logic can be added here
-}
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const steps = ['step-1', 'step-2', 'step-3', 'step-4', 'step-5', 'step-6'];
-            let currentStep = 0;
-
-            const nextButton = document.getElementById('nextButton');
-            const prevButton = document.getElementById('prevButton');
-            const submitButton = document.getElementById('submitButton');
-
-            const toggleVisibility = (element, condition) => {
-                element.style.display = condition ? 'none' : 'inline-block';
-            };
-
-            const showStep = (step) => {
-                steps.forEach((id, index) => {
-                    document.getElementById(id).classList.toggle('d-none', index !== step);
-                });
-                toggleVisibility(prevButton, step === 0);
-                toggleVisibility(nextButton, step === steps.length - 1);
-                submitButton.classList.toggle('d-none', step !== steps.length - 1);
-            };
-
-            nextButton.addEventListener('click', function () {
-                if (currentStep < steps.length - 1) {
-                    currentStep++;
-                    showStep(currentStep);
-                }
-            });
-
-            prevButton.addEventListener('click', function () {
-                if (currentStep > 0) {
-                    currentStep--;
-                    showStep(currentStep);
-                }
-            });
-
-            showStep(currentStep);
-        });
-    </script>
-        </main>
-    </div>
-
-    <script src="http://127.0.0.1:8000/dist/js/tabler.min.js"></script>
-<script src="http://127.0.0.1:8000/dist/js/demo.min.js"></script>
-<script src="https://kit.fontawesome.com/82f9bbc013.js" crossorigin="anonymous"></script>
-<script src="http://127.0.0.1:8000/dist/libs/apexcharts/dist/apexcharts.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Include Chart.js CDN -->
-<script src="http://127.0.0.1:8000/dist/libs/litepicker/dist/litepicker.js" defer></script>
-<script src="https://kit.fontawesome.com/82f9bbc013.js" crossorigin="anonymous"></script>   
-<script src="https://cdn.tailwindcss.com"></script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        let correctPassword = localStorage.getItem('password') || '12345';
-        const submitButton = document.getElementById('submitPassword');
-        const passwordInput = document.getElementById('passwordInput');
-        const passwordError = document.getElementById('passwordError');
-        const changePasswordButton = document.getElementById('changePasswordButton');
-        let targetUrl = '';
-
-        const changePasswordModalElement = document.getElementById('changePasswordModal');
-        const successModalElement = document.getElementById('modal-success');
-        const submitChangePasswordButton = document.getElementById('submitChangePassword');
-        const currentPasswordInput = document.getElementById('currentPasswordInput');
-        const newPasswordInput = document.getElementById('newPasswordInput');
-        const changePasswordError = document.getElementById('changePasswordError');
-
-        function showModal(modalElement, backdropOption = true) {
-            const modalInstance = new bootstrap.Modal(modalElement, {
-                backdrop: backdropOption
-            });
-            modalInstance.show();
-
-            // Focus on specific fields based on the modal
-            modalElement.addEventListener('shown.bs.modal', function() {
-                if (modalElement === document.getElementById('passwordModal')) {
-                    passwordInput.focus();
-                } else if (modalElement === changePasswordModalElement) {
-                    currentPasswordInput.focus();
-                }
-            });
-        }
-
-        function hideModal(modalElement) {
-            const modalInstance = bootstrap.Modal.getInstance(modalElement);
-            if (modalInstance) {
-                modalInstance.hide();
-                // Ensure the backdrop is also removed if necessary
-                document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
-                    backdrop.parentNode.removeChild(backdrop);
-                });
+        <style>
+            .step {
+                display: none;
             }
-        }
 
-        function resetAllModals() {
-            const modals = [
-                document.getElementById('passwordModal'),
-                changePasswordModalElement,
-                successModalElement
-            ];
-            modals.forEach(modal => {
-                const modalInstance = bootstrap.Modal.getInstance(modal);
-                if (modalInstance) {
-                    modalInstance.hide();
-                    // Ensure the backdrop is also removed if necessary
-                    document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
-                        backdrop.parentNode.removeChild(backdrop);
-                    });
-                }
-            });
-        }
-
-        document.querySelectorAll('.modals a').forEach(link => {
-            link.addEventListener('click', function(event) {
-                event.preventDefault();
-                targetUrl = this.getAttribute('data-url');
-                passwordInput.value = '';
-                passwordError.classList.add('d-none');
-                showModal(document.getElementById('passwordModal'));
-            });
-        });
-
-        passwordInput.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                event.preventDefault();
-                submitButton.click();
+            .step.active {
+                display: block;
             }
-        });
 
-        submitButton.addEventListener('click', function(event) {
-            event.preventDefault();
-            const enteredPassword = passwordInput.value.trim();
-
-            if (enteredPassword === correctPassword) {
-                hideModal(document.getElementById('passwordModal'));
-                window.location.href = targetUrl;
-            } else {
-                passwordError.classList.remove('d-none');
+            .shadow-sm,
+            .shadow {
+                box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
             }
-        });
+        </style>
+        <!-- Scripts -->
+    </head>
 
-        changePasswordButton.addEventListener('click', function() {
-            hideModal(document.getElementById('passwordModal'));
-            currentPasswordInput.value = '';
-            newPasswordInput.value = '';
-            changePasswordError.classList.add('d-none');
-            showModal(changePasswordModalElement);
-        });
+    <body>
+        <div id="app">
+            <nav
+                class="navbar navbar-expand-md navbar-light bg-white shadow-sm"
+            >
+                <div class="container">
+                    <div class="shrink-0 flex items-center">
+                        <a href="/">
+                            <img
+                                src="https://res.cloudinary.com/dhyq9uts4/image/upload/v1676360444/logo_v09np1.png"
+                                alt="Logo"
+                                class="img-fluid h-6 w-auto text-dark"
+                            />
+                            <!-- Mengganti h-9 menjadi h-6 -->
+                        </a>
+                    </div>
+                    <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                    >
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-        submitChangePasswordButton.addEventListener('click', function(event) {
-            event.preventDefault();
-            const enteredCurrentPassword = currentPasswordInput.value.trim();
-            const newPassword = newPasswordInput.value.trim();
+                    <div
+                        class="collapse navbar-collapse"
+                        id="navbarSupportedContent"
+                    >
+                        <!-- Left Side Of Navbar -->
+                        <ul class="navbar-nav me-auto"></ul>
 
-            if (enteredCurrentPassword === correctPassword && newPassword) {
-                correctPassword = newPassword;
-                localStorage.setItem('password', correctPassword);
-                resetAllModals();
+                        <!-- Right Side Of Navbar -->
+                        <ul class="navbar-nav ms-auto">
+                            <!-- Authentication Links -->
+                        </ul>
+                    </div>
+                </div>
+            </nav>
 
-                showModal(successModalElement, false); // No backdrop for success modal
-            } else {
-                changePasswordError.classList.remove('d-none');
-            }
-        });
+            <main class="">
+                <link
+                    rel="stylesheet"
+                    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+                />
+                <div class="container mt-6">
+                    <a
+                        href="http://127.0.0.1:8000/siswa"
+                        class="btn btn-secondary mb-4"
+                        >Back</a
+                    >
+                    <form
+                        method="post"
+                        action="http://127.0.0.1:8000/siswa/create/data"
+                        id="multiStepForm"
+                        enctype="multipart/form-data"
+                    >
+                        <input
+                            type="hidden"
+                            name="_token"
+                            value="ldIksOUu930WNkxHvKw8ibIeMkxIooAfJ9kmrq0H"
+                            autocomplete="off"
+                        />
+                        <div id="step-1" class="border p-3 rounded-3">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        <label class="form-label"
+                                            >Nama lengkap</label
+                                        >
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            name="nama"
+                                            placeholder="Fadhil Rabbani"
+                                            value=""
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label"
+                                            >Tempat lahir</label
+                                        >
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            name="tempat_tanggal_lahir"
+                                            placeholder="Jakarta"
+                                            value=""
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label"
+                                            >Tanggal lahir</label
+                                        >
+                                        <input
+                                            type="date"
+                                            class="form-control"
+                                            name="tanggal_lahir"
+                                            value=""
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="mb-3">
+                                        <label class="form-label"
+                                            >Tahun Pelajaran</label
+                                        >
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            autocomplete="off"
+                                            placeholder="2024-2025"
+                                            name="tahun_pelajaran"
+                                            value=""
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="mb-3">
+                                        <label class="form-label"
+                                            >Jenis Kelamin</label
+                                        >
+                                        <select
+                                            class="form-select"
+                                            name="jenis_kelamin"
+                                            value=""
+                                        >
+                                            <option value="Laki-laki" selected>
+                                                Laki-laki
+                                            </option>
+                                            <option value="Perempuan">
+                                                Perempuan
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="mb-3">
+                                        <label class="form-label">Agama</label>
+                                        <select
+                                            class="form-control"
+                                            name="agama"
+                                            value=""
+                                        >
+                                            <option value="Islam" selected>
+                                                Islam
+                                            </option>
+                                            <option value="Kristen">
+                                                Kristen
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Alamat</label>
+                                        <textarea
+                                            class="form-control"
+                                            rows="4"
+                                            name="alamat"
+                                        ></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="step-2" class="d-none border p-3 rounded-3">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label"
+                                            >Nama Ayah</label
+                                        >
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            name="nama_ayah"
+                                            placeholder=""
+                                            value=""
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label"
+                                            >Pekerjaan Ayah</label
+                                        >
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            name="pekerjaan_ayah"
+                                            placeholder="Karyawan swasta"
+                                            value=""
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label"
+                                            >Nama Ibu</label
+                                        >
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            name="nama_ibu"
+                                            placeholder=""
+                                            value=""
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label"
+                                            >Pekerjaan Ibu</label
+                                        >
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            name="pekerjaan_ibu"
+                                            placeholder="Ibu Rumah Tangga"
+                                            value=""
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 mb-3">
+                                    <div>
+                                        <label class="form-label"
+                                            >No. Handphone Wali Siswa</label
+                                        >
+                                        <input
+                                            type="number"
+                                            class="form-control"
+                                            name="no_hp_wali"
+                                            value=""
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-3">
+                                    <div>
+                                        <label class="form-label"
+                                            >No. Nisn</label
+                                        >
+                                        <input
+                                            type="number"
+                                            class="form-control"
+                                            name="nisn"
+                                            value=""
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label"
+                                            >No. Nis</label
+                                        >
+                                        <input
+                                            type="number"
+                                            class="form-control"
+                                            name="nis"
+                                            value=""
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-        // Add event listener for Enter key in Change Password Modal
-        newPasswordInput.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                event.preventDefault();
-                submitChangePasswordButton.click();
-            }
-        });
+                        <div id="step-3" class="d-none border p-3 rounded-3">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <div class="mb-3">
+                                        <label class="form-label"
+                                            >Diterima Di kelas</label
+                                        >
+                                        <select
+                                            class="form-control"
+                                            name="diterima_di_kelas"
+                                            value=""
+                                        >
+                                            <option value="X" selected>
+                                                X
+                                            </option>
+                                            <option value="XI">XI</option>
+                                            <option value="XI">XII</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="mb-3">
+                                        <label class="form-label"
+                                            >Angkatan</label
+                                        >
+                                        <input
+                                            type="number"
+                                            class="form-control"
+                                            name="angkatan"
+                                            value=""
+                                            placeholder="2"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="mb-3">
+                                        <label class="form-label"
+                                            >Tanggal Masuk</label
+                                        >
+                                        <input
+                                            type="date"
+                                            class="form-control"
+                                            name="tanggal_masuk"
+                                            value=""
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="mb-3">
+                                        <label class="form-label"
+                                            >Status Siswa</label
+                                        >
+                                        <select
+                                            class="form-control"
+                                            name="status_siswa"
+                                            value=""
+                                        >
+                                            <option value="Aktif" selected>
+                                                Aktif
+                                            </option>
+                                            <option value="Tidak Aktif">
+                                                Tidak Aktif
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        <label class="form-label"
+                                            >Asal Sekolah</label
+                                        >
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            name="asal_sekolah"
+                                            placeholder=""
+                                            value=""
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        <label class="form-label"
+                                            >Alamat Asal Sekolah</label
+                                        >
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            name="alamat_asal_sekolah"
+                                            value=""
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-        // Remove disabled attribute
-        document.querySelectorAll('button, a, input').forEach(element => {
-            element.removeAttribute('disabled');
-        });
-    });
+                        <div id="step-4" class="d-none border p-3 rounded-3">
+                            <h1 class="text-center mb-6">Foto Siswa</h1>
+                            <div class="row">
+                                <div class="col-lg-6 mb-3">
+                                    <label class="form-label fw-bold"
+                                        >Kelas X</label
+                                    >
+                                    <div class="input-group">
+                                        <input
+                                            type="file"
+                                            class="form-control"
+                                            name="foto_kelas10"
+                                            accept=".png"
+                                        />
+                                        <div class="input-group-append">
+                                            <button
+                                                type="button"
+                                                class="btn"
+                                                style="height: 100%"
+                                                id="btn-remove-foto_kelas10"
+                                                onclick="removeFile('foto_kelas10')"
+                                            >
+                                                <i class="fa-solid fa-x"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-3">
+                                    <label class="form-label fw-bold"
+                                        >Kelas XI</label
+                                    >
+                                    <div class="input-group">
+                                        <input
+                                            type="file"
+                                            class="form-control"
+                                            name="foto_kelas11"
+                                            accept=".png"
+                                        />
+                                        <div class="input-group-append">
+                                            <button
+                                                type="button"
+                                                class="btn"
+                                                style="height: 100%"
+                                                id="btn-remove-foto_kelas11"
+                                                onclick="removeFile('foto_kelas11')"
+                                            >
+                                                <i class="fa-solid fa-x"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 mb-3">
+                                    <label class="form-label fw-bold"
+                                        >Kelas XII</label
+                                    >
+                                    <div class="input-group">
+                                        <input
+                                            type="file"
+                                            class="form-control"
+                                            name="foto_kelas12"
+                                            accept=".png"
+                                        />
+                                        <div class="input-group-append">
+                                            <button
+                                                type="button"
+                                                class="btn"
+                                                style="height: 100%"
+                                                id="btn-remove-foto_kelas12"
+                                                onclick="removeFile('foto_kelas12')"
+                                            >
+                                                <i class="fa-solid fa-x"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-        function updateChart(chart, data) {
-            const ctx = document.getElementById('modalAverageChart').getContext('2d');
-            if (chart) {
-                chart.destroy(); // Destroy existing chart if it exists
-            }
-            return new Chart(ctx, {
-                type: 'bar',
-                data: data,
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: {
-                            beginAtZero: true
+                        <div id="step-5" class="d-none border p-3 rounded-3">
+                            <h1 class="text-center mb-6">Rapot Siswa</h1>
+                            <div class="row">
+                                <div class="col-lg-6 mb-3">
+                                    <label class="form-label fw-bold"
+                                        >Kelas VII</label
+                                    >
+                                    <div class="input-group">
+                                        <input
+                                            type="file"
+                                            class="form-control"
+                                            name="rapot_kelas7"
+                                            accept=".png"
+                                        />
+                                        <div class="input-group-append">
+                                            <button
+                                                type="button"
+                                                class="btn"
+                                                style="height: 100%"
+                                                id="btn-remove-rapot_kelas7"
+                                                onclick="removeFile('rapot_kelas7')"
+                                            >
+                                                <i class="fa-solid fa-x"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-3">
+                                    <label class="form-label fw-bold"
+                                        >Kelas VIII</label
+                                    >
+                                    <div class="input-group">
+                                        <input
+                                            type="file"
+                                            class="form-control"
+                                            name="rapot_kelas8"
+                                            accept=".png"
+                                        />
+                                        <div class="input-group-append">
+                                            <button
+                                                type="button"
+                                                class="btn"
+                                                style="height: 100%"
+                                                id="btn-remove-rapot_kelas8"
+                                                onclick="removeFile('rapot_kelas8')"
+                                            >
+                                                <i class="fa-solid fa-x"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 mb-3">
+                                    <label class="form-label fw-bold"
+                                        >Kelas IX</label
+                                    >
+                                    <div class="input-group">
+                                        <input
+                                            type="file"
+                                            class="form-control"
+                                            name="rapot_kelas9"
+                                            accept=".png"
+                                        />
+                                        <div class="input-group-append">
+                                            <button
+                                                type="button"
+                                                class="btn"
+                                                style="height: 100%"
+                                                id="btn-remove-rapot_kelas9"
+                                                onclick="removeFile('rapot_kelas9')"
+                                            >
+                                                <i class="fa-solid fa-x"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="step-6" class="d-none border p-3 rounded-3">
+                            <div class="row">
+                                <div class="col-lg-6 mb-3">
+                                    <label class="form-label fw-bold"
+                                        >Foto Ijazah</label
+                                    >
+                                    <div class="input-group">
+                                        <input
+                                            type="file"
+                                            class="form-control"
+                                            name="ijazah"
+                                            accept=".png"
+                                            onchange="handleFileUpload(event, 'ijazah')"
+                                        />
+                                        <div class="input-group-append">
+                                            <button
+                                                type="button"
+                                                class="btn"
+                                                style="height: 100%"
+                                                id="btn-remove-ijazah"
+                                                onclick="removeFile('ijazah')"
+                                            >
+                                                <i class="fa-solid fa-x"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-3">
+                                    <label class="form-label fw-bold"
+                                        >FOTO Surat Kelulusan</label
+                                    >
+                                    <div class="input-group">
+                                        <input
+                                            type="file"
+                                            class="form-control"
+                                            name="surat_Kelulusan"
+                                            accept=".png"
+                                            onchange="handleFileUpload(event, 'surat_Kelulusan')"
+                                        />
+                                        <div class="input-group-append">
+                                            <button
+                                                type="button"
+                                                class="btn"
+                                                style="height: 100%"
+                                                id="btn-remove-surat_Kelulusan"
+                                                onclick="removeFile('surat_Kelulusan')"
+                                            >
+                                                <i class="fa-solid fa-x"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-3">
+                                    <label class="form-label fw-bold"
+                                        >FOTO Kartu keluarga</label
+                                    >
+                                    <div class="input-group">
+                                        <input
+                                            type="file"
+                                            class="form-control"
+                                            name="kk"
+                                            accept=".png"
+                                            onchange="handleFileUpload(event, 'kk')"
+                                        />
+                                        <div class="input-group-append">
+                                            <button
+                                                type="button"
+                                                class="btn"
+                                                style="height: 100%"
+                                                id="btn-remove-kk"
+                                                onclick="removeFile('kk')"
+                                            >
+                                                <i class="fa-solid fa-x"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-3">
+                                    <label class="form-label fw-bold"
+                                        >FOTO Akta kelahiran</label
+                                    >
+                                    <div class="input-group">
+                                        <input
+                                            type="file"
+                                            class="form-control"
+                                            name="akta_kelahiran"
+                                            accept=".png"
+                                            onchange="handleFileUpload(event, 'akta_kelahiran')"
+                                        />
+                                        <div class="input-group-append">
+                                            <button
+                                                type="button"
+                                                class="btn"
+                                                style="height: 100%"
+                                                id="btn-remove-akta_kelahiran"
+                                                onclick="removeFile('akta_kelahiran')"
+                                            >
+                                                <i class="fa-solid fa-x"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 mb-3">
+                                    <label class="form-label fw-bold"
+                                        >Surat Pernyataan Siswa</label
+                                    >
+                                    <div class="input-group">
+                                        <input
+                                            type="file"
+                                            class="form-control"
+                                            name="surat_pernyataan_calonPesertaDidik"
+                                            accept=".png"
+                                            onchange="handleFileUpload(event, 'surat_pernyataan_calonPesertaDidik')"
+                                        />
+                                        <div class="input-group-append">
+                                            <button
+                                                type="button"
+                                                class="btn"
+                                                style="height: 100%"
+                                                id="btn-remove-surat_pernyataan_calonPesertaDidik"
+                                                onclick="removeFile('surat_pernyataan_calonPesertaDidik')"
+                                            >
+                                                <i class="fa-solid fa-x"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 mb-3">
+                                    <label class="form-label fw-bold"
+                                        >Surat Pernyataan Wali</label
+                                    >
+                                    <div class="input-group">
+                                        <input
+                                            type="file"
+                                            class="form-control"
+                                            name="surat_pernyataan_wali"
+                                            accept=".png"
+                                            onchange="handleFileUpload(event, 'surat_pernyataan_wali')"
+                                        />
+                                        <div class="input-group-append">
+                                            <button
+                                                type="button"
+                                                class="btn"
+                                                style="height: 100%"
+                                                id="btn-remove-surat_pernyataan_wali"
+                                                onclick="removeFile('surat_pernyataan_wali')"
+                                            >
+                                                <i class="fa-solid fa-x"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 mb-3">
+                                    <label class="form-label fw-bold"
+                                        >Surat Pernyataan Tidak Merokok</label
+                                    >
+                                    <div class="input-group">
+                                        <input
+                                            type="file"
+                                            class="form-control"
+                                            name="surat_pernyataan_tidak_merokok"
+                                            accept=".png"
+                                            onchange="handleFileUpload(event, 'surat_pernyataan_tidak_merokok')"
+                                        />
+                                        <div class="input-group-append">
+                                            <button
+                                                type="button"
+                                                class="btn"
+                                                style="height: 100%"
+                                                id="btn-remove-surat_pernyataan_tidak_merokok"
+                                                onclick="removeFile('surat_pernyataan_tidak_merokok')"
+                                            >
+                                                <i class="fa-solid fa-x"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                id="prevButton"
+                                style="display: none"
+                            >
+                                Previous
+                            </button>
+                            <button
+                                type="button"
+                                class="btn btn-primary"
+                                id="nextButton"
+                            >
+                                Next
+                            </button>
+                            <button
+                                type="submit"
+                                class="btn btn-success d-none"
+                                id="submitButton"
+                            >
+                                Submit
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <script>
+                    function handleFileUpload(event, inputName) {
+                        const fileInput = event.target;
+                        const files = fileInput.files;
+                        const removeButton = document.getElementById(
+                            `btn-remove-${inputName}`
+                        );
+                        if (files.length > 0) {
+                            removeButton.classList.remove("d-none");
+                        } else {
+                            removeButton.classList.add("d-none");
                         }
                     }
+
+                    function removeFile(inputName) {
+                        const fileInput = document.querySelector(
+                            `input[name="${inputName}"]`
+                        );
+                        fileInput.value = "";
+                        const removeButton = document.getElementById(
+                            `btn-remove-${inputName}`
+                        );
+                        removeButton.classList.add("d-none");
+                        console.log(`File removed: ${inputName}`);
+                        // Additional logic can be added here
+                    }
+                </script>
+
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const steps = [
+                            "step-1",
+                            "step-2",
+                            "step-3",
+                            "step-4",
+                            "step-5",
+                            "step-6",
+                        ];
+                        let currentStep = 0;
+
+                        const nextButton =
+                            document.getElementById("nextButton");
+                        const prevButton =
+                            document.getElementById("prevButton");
+                        const submitButton =
+                            document.getElementById("submitButton");
+
+                        const toggleVisibility = (element, condition) => {
+                            element.style.display = condition
+                                ? "none"
+                                : "inline-block";
+                        };
+
+                        const showStep = (step) => {
+                            steps.forEach((id, index) => {
+                                document
+                                    .getElementById(id)
+                                    .classList.toggle("d-none", index !== step);
+                            });
+                            toggleVisibility(prevButton, step === 0);
+                            toggleVisibility(
+                                nextButton,
+                                step === steps.length - 1
+                            );
+                            submitButton.classList.toggle(
+                                "d-none",
+                                step !== steps.length - 1
+                            );
+                        };
+
+                        nextButton.addEventListener("click", function () {
+                            if (currentStep < steps.length - 1) {
+                                currentStep++;
+                                showStep(currentStep);
+                            }
+                        });
+
+                        prevButton.addEventListener("click", function () {
+                            if (currentStep > 0) {
+                                currentStep--;
+                                showStep(currentStep);
+                            }
+                        });
+
+                        showStep(currentStep);
+                    });
+                </script>
+            </main>
+        </div>
+
+        <script src="http://127.0.0.1:8000/dist/js/tabler.min.js"></script>
+        <script src="http://127.0.0.1:8000/dist/js/demo.min.js"></script>
+        <script
+            src="https://kit.fontawesome.com/82f9bbc013.js"
+            crossorigin="anonymous"
+        ></script>
+        <script src="http://127.0.0.1:8000/dist/libs/apexcharts/dist/apexcharts.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <!-- Include Chart.js CDN -->
+        <script
+            src="http://127.0.0.1:8000/dist/libs/litepicker/dist/litepicker.js"
+            defer
+        ></script>
+        <script
+            src="https://kit.fontawesome.com/82f9bbc013.js"
+            crossorigin="anonymous"
+        ></script>
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                let correctPassword =
+                    localStorage.getItem("password") || "12345";
+                const submitButton = document.getElementById("submitPassword");
+                const passwordInput = document.getElementById("passwordInput");
+                const passwordError = document.getElementById("passwordError");
+                const changePasswordButton = document.getElementById(
+                    "changePasswordButton"
+                );
+                let targetUrl = "";
+
+                const changePasswordModalElement = document.getElementById(
+                    "changePasswordModal"
+                );
+                const successModalElement =
+                    document.getElementById("modal-success");
+                const submitChangePasswordButton = document.getElementById(
+                    "submitChangePassword"
+                );
+                const currentPasswordInput = document.getElementById(
+                    "currentPasswordInput"
+                );
+                const newPasswordInput =
+                    document.getElementById("newPasswordInput");
+                const changePasswordError = document.getElementById(
+                    "changePasswordError"
+                );
+
+                function showModal(modalElement, backdropOption = true) {
+                    const modalInstance = new bootstrap.Modal(modalElement, {
+                        backdrop: backdropOption,
+                    });
+                    modalInstance.show();
+
+                    // Focus on specific fields based on the modal
+                    modalElement.addEventListener(
+                        "shown.bs.modal",
+                        function () {
+                            if (
+                                modalElement ===
+                                document.getElementById("passwordModal")
+                            ) {
+                                passwordInput.focus();
+                            } else if (
+                                modalElement === changePasswordModalElement
+                            ) {
+                                currentPasswordInput.focus();
+                            }
+                        }
+                    );
                 }
-            });
-        }
 
-        // Populate filter dropdowns with unique values from the table
-        function populateFilters() {
-            const tableRows = document.querySelectorAll('#dataTable tbody tr');
-            const tahunAjaranSet = new Set();
-            const kelasSet = new Set();
-            const semesterSet = new Set();
+                function hideModal(modalElement) {
+                    const modalInstance =
+                        bootstrap.Modal.getInstance(modalElement);
+                    if (modalInstance) {
+                        modalInstance.hide();
+                        // Ensure the backdrop is also removed if necessary
+                        document
+                            .querySelectorAll(".modal-backdrop")
+                            .forEach((backdrop) => {
+                                backdrop.parentNode.removeChild(backdrop);
+                            });
+                    }
+                }
 
-            tableRows.forEach(row => {
-                tahunAjaranSet.add(row.cells[0].textContent.trim());
-                kelasSet.add(row.cells[1].textContent.trim());
-                semesterSet.add(row.cells[2].textContent.trim());
-            });
+                function resetAllModals() {
+                    const modals = [
+                        document.getElementById("passwordModal"),
+                        changePasswordModalElement,
+                        successModalElement,
+                    ];
+                    modals.forEach((modal) => {
+                        const modalInstance =
+                            bootstrap.Modal.getInstance(modal);
+                        if (modalInstance) {
+                            modalInstance.hide();
+                            // Ensure the backdrop is also removed if necessary
+                            document
+                                .querySelectorAll(".modal-backdrop")
+                                .forEach((backdrop) => {
+                                    backdrop.parentNode.removeChild(backdrop);
+                                });
+                        }
+                    });
+                }
 
-            const populateDropdown = (id, values) => {
-                const dropdown = document.getElementById(id);
-                dropdown.innerHTML = '<option value="all">All</option>'; // Add "All" option
-                values.forEach(value => {
-                    dropdown.innerHTML += `<option value="${value}">${value}</option>`;
+                document.querySelectorAll(".modals a").forEach((link) => {
+                    link.addEventListener("click", function (event) {
+                        event.preventDefault();
+                        targetUrl = this.getAttribute("data-url");
+                        passwordInput.value = "";
+                        passwordError.classList.add("d-none");
+                        showModal(document.getElementById("passwordModal"));
+                    });
                 });
-            };
 
-            // Populate Tahun Ajaran dropdown with unique values
-            const tahunAjaranDropdownStart = document.getElementById('filterTahunAjaranStart');
-            const tahunAjaranDropdownEnd = document.getElementById('filterTahunAjaranEnd');
-            tahunAjaranDropdownStart.innerHTML = '<option value="all">All</option>';
-            tahunAjaranDropdownEnd.innerHTML = '<option value="all">All</option>';
+                passwordInput.addEventListener("keydown", function (event) {
+                    if (event.key === "Enter") {
+                        event.preventDefault();
+                        submitButton.click();
+                    }
+                });
 
-            [...tahunAjaranSet].forEach(value => {
-                tahunAjaranDropdownStart.innerHTML += `<option value="${value}">${value}</option>`;
-                tahunAjaranDropdownEnd.innerHTML += `<option value="${value}">${value}</option>`;
+                submitButton.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    const enteredPassword = passwordInput.value.trim();
+
+                    if (enteredPassword === correctPassword) {
+                        hideModal(document.getElementById("passwordModal"));
+                        window.location.href = targetUrl;
+                    } else {
+                        passwordError.classList.remove("d-none");
+                    }
+                });
+
+                changePasswordButton.addEventListener("click", function () {
+                    hideModal(document.getElementById("passwordModal"));
+                    currentPasswordInput.value = "";
+                    newPasswordInput.value = "";
+                    changePasswordError.classList.add("d-none");
+                    showModal(changePasswordModalElement);
+                });
+
+                submitChangePasswordButton.addEventListener(
+                    "click",
+                    function (event) {
+                        event.preventDefault();
+                        const enteredCurrentPassword =
+                            currentPasswordInput.value.trim();
+                        const newPassword = newPasswordInput.value.trim();
+
+                        if (
+                            enteredCurrentPassword === correctPassword &&
+                            newPassword
+                        ) {
+                            correctPassword = newPassword;
+                            localStorage.setItem("password", correctPassword);
+                            resetAllModals();
+
+                            showModal(successModalElement, false); // No backdrop for success modal
+                        } else {
+                            changePasswordError.classList.remove("d-none");
+                        }
+                    }
+                );
+
+                // Add event listener for Enter key in Change Password Modal
+                newPasswordInput.addEventListener("keydown", function (event) {
+                    if (event.key === "Enter") {
+                        event.preventDefault();
+                        submitChangePasswordButton.click();
+                    }
+                });
+
+                // Remove disabled attribute
+                document
+                    .querySelectorAll("button, a, input")
+                    .forEach((element) => {
+                        element.removeAttribute("disabled");
+                    });
             });
 
-            populateDropdown('filterKelas', [...kelasSet]);
-            populateDropdown('filterSemester', [...semesterSet]);
-        }
+            function updateChart(chart, data) {
+                const ctx = document
+                    .getElementById("modalAverageChart")
+                    .getContext("2d");
+                if (chart) {
+                    chart.destroy(); // Destroy existing chart if it exists
+                }
+                return new Chart(ctx, {
+                    type: "bar",
+                    data: data,
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                            },
+                        },
+                    },
+                });
+            }
 
-        document.addEventListener('DOMContentLoaded', populateFilters);
+            // Populate filter dropdowns with unique values from the table
+            function populateFilters() {
+                const tableRows = document.querySelectorAll(
+                    "#dataTable tbody tr"
+                );
+                const tahunAjaranSet = new Set();
+                const kelasSet = new Set();
+                const semesterSet = new Set();
 
-        // Apply filters and update the chart
-        document.getElementById('applyFilterBtn').addEventListener('click', function() {
-            // Get selected filter values
-            const tahunAjaranStart = parseInt(document.getElementById('filterTahunAjaranStart').value, 10);
-            const tahunAjaranEnd = parseInt(document.getElementById('filterTahunAjaranEnd').value, 10);
-            const kelas = document.getElementById('filterKelas').value;
-            const semester = document.getElementById('filterSemester').value;
+                tableRows.forEach((row) => {
+                    tahunAjaranSet.add(row.cells[0].textContent.trim());
+                    kelasSet.add(row.cells[1].textContent.trim());
+                    semesterSet.add(row.cells[2].textContent.trim());
+                });
 
-            // Extract table data
-            const tableRows = document.querySelectorAll('#dataTable tbody tr');
-            const chartData = {
-                labels: [],
-                datasets: [{
-                    label: 'Average Total Scores',
-                    data: [],
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
-                }]
-            };
-
-            // Filter table data based on selected filters
-            tableRows.forEach(row => {
-                const tahunAjaran = parseInt(row.cells[0].textContent.trim(), 10);
-                const rowData = {
-                    tahunAjaran: tahunAjaran,
-                    kelas: row.cells[1].textContent.trim(),
-                    semester: row.cells[2].textContent.trim(),
-                    average: parseFloat(row.cells[24].textContent.trim()) // Rerata Total
+                const populateDropdown = (id, values) => {
+                    const dropdown = document.getElementById(id);
+                    dropdown.innerHTML = '<option value="all">All</option>'; // Add "All" option
+                    values.forEach((value) => {
+                        dropdown.innerHTML += `<option value="${value}">${value}</option>`;
+                    });
                 };
 
-                const isMatch = (isNaN(tahunAjaranStart) || tahunAjaran >= tahunAjaranStart) &&
-                                (isNaN(tahunAjaranEnd) || tahunAjaran <= tahunAjaranEnd) &&
-                                (kelas === 'all' || rowData.kelas === kelas) &&
-                                (semester === 'all' || rowData.semester === semester);
+                // Populate Tahun Ajaran dropdown with unique values
+                const tahunAjaranDropdownStart = document.getElementById(
+                    "filterTahunAjaranStart"
+                );
+                const tahunAjaranDropdownEnd = document.getElementById(
+                    "filterTahunAjaranEnd"
+                );
+                tahunAjaranDropdownStart.innerHTML =
+                    '<option value="all">All</option>';
+                tahunAjaranDropdownEnd.innerHTML =
+                    '<option value="all">All</option>';
 
-                if (isMatch) {
-                    chartData.labels.push(`${rowData.tahunAjaran} - ${rowData.kelas} - ${rowData.semester}`);
-                    chartData.datasets[0].data.push(rowData.average);
-                }
-            });
+                [...tahunAjaranSet].forEach((value) => {
+                    tahunAjaranDropdownStart.innerHTML += `<option value="${value}">${value}</option>`;
+                    tahunAjaranDropdownEnd.innerHTML += `<option value="${value}">${value}</option>`;
+                });
 
-            // Update the chart with the filtered data
-            averageChart = updateChart(averageChart, chartData);
-            document.getElementById('modalAverageChart').style.display = 'block';
-        });
-
-        // Reset filters and hide the chart when the modal is closed
-        document.getElementById('chartModal').addEventListener('hidden.bs.modal', function() {
-            // Reset filter inputs
-            document.getElementById('filterTahunAjaranStart').value = 'all';
-            document.getElementById('filterTahunAjaranEnd').value = 'all';
-            document.getElementById('filterKelas').value = 'all';
-            document.getElementById('filterSemester').value = 'all';
-
-            // Clear and hide the chart
-            const chartCanvas = document.getElementById('modalAverageChart');
-            chartCanvas.style.display = 'none';
-
-            // Destroy the chart instance
-            if (averageChart) {
-                averageChart.destroy();
-                averageChart = null;
+                populateDropdown("filterKelas", [...kelasSet]);
+                populateDropdown("filterSemester", [...semesterSet]);
             }
-        });
-</script>
-</body>
 
+            document.addEventListener("DOMContentLoaded", populateFilters);
+
+            // Apply filters and update the chart
+            document
+                .getElementById("applyFilterBtn")
+                .addEventListener("click", function () {
+                    // Get selected filter values
+                    const tahunAjaranStart = parseInt(
+                        document.getElementById("filterTahunAjaranStart").value,
+                        10
+                    );
+                    const tahunAjaranEnd = parseInt(
+                        document.getElementById("filterTahunAjaranEnd").value,
+                        10
+                    );
+                    const kelas = document.getElementById("filterKelas").value;
+                    const semester =
+                        document.getElementById("filterSemester").value;
+
+                    // Extract table data
+                    const tableRows = document.querySelectorAll(
+                        "#dataTable tbody tr"
+                    );
+                    const chartData = {
+                        labels: [],
+                        datasets: [
+                            {
+                                label: "Average Total Scores",
+                                data: [],
+                                backgroundColor: "rgba(54, 162, 235, 0.2)",
+                                borderColor: "rgba(54, 162, 235, 1)",
+                                borderWidth: 1,
+                            },
+                        ],
+                    };
+
+                    // Filter table data based on selected filters
+                    tableRows.forEach((row) => {
+                        const tahunAjaran = parseInt(
+                            row.cells[0].textContent.trim(),
+                            10
+                        );
+                        const rowData = {
+                            tahunAjaran: tahunAjaran,
+                            kelas: row.cells[1].textContent.trim(),
+                            semester: row.cells[2].textContent.trim(),
+                            average: parseFloat(
+                                row.cells[24].textContent.trim()
+                            ), // Rerata Total
+                        };
+
+                        const isMatch =
+                            (isNaN(tahunAjaranStart) ||
+                                tahunAjaran >= tahunAjaranStart) &&
+                            (isNaN(tahunAjaranEnd) ||
+                                tahunAjaran <= tahunAjaranEnd) &&
+                            (kelas === "all" || rowData.kelas === kelas) &&
+                            (semester === "all" ||
+                                rowData.semester === semester);
+
+                        if (isMatch) {
+                            chartData.labels.push(
+                                `${rowData.tahunAjaran} - ${rowData.kelas} - ${rowData.semester}`
+                            );
+                            chartData.datasets[0].data.push(rowData.average);
+                        }
+                    });
+
+                    // Update the chart with the filtered data
+                    averageChart = updateChart(averageChart, chartData);
+                    document.getElementById("modalAverageChart").style.display =
+                        "block";
+                });
+
+            // Reset filters and hide the chart when the modal is closed
+            document
+                .getElementById("chartModal")
+                .addEventListener("hidden.bs.modal", function () {
+                    // Reset filter inputs
+                    document.getElementById("filterTahunAjaranStart").value =
+                        "all";
+                    document.getElementById("filterTahunAjaranEnd").value =
+                        "all";
+                    document.getElementById("filterKelas").value = "all";
+                    document.getElementById("filterSemester").value = "all";
+
+                    // Clear and hide the chart
+                    const chartCanvas =
+                        document.getElementById("modalAverageChart");
+                    chartCanvas.style.display = "none";
+
+                    // Destroy the chart instance
+                    if (averageChart) {
+                        averageChart.destroy();
+                        averageChart = null;
+                    }
+                });
+        </script>
+    </body>
 </html>

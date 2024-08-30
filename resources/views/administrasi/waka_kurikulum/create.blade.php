@@ -23,12 +23,9 @@
                                                 <label class="form-label">Tahun Ajaran</label>
                                                 <select class="form-control form-select" name="tahun_ajaran">
                                                     <option value="">Pilih Tahun Ajaran</option>
-                                                    <option value="2024-2025">2024-2025</option>
-                                                    <option value="2025-2026">2025-2026</option>
-                                                    <option value="2026-2027">2026-2027</option>
-                                                    <option value="2027-2028">2027-2028</option>
-                                                    <option value="2028-2029">2028-2029</option>
-                                                    <option value="2029-2030">2029-2030</option>
+                                                    @foreach (generateTahunAjaran() as $tahun)
+                                                        <option value="{{ $tahun }}">{{ $tahun }}</option>
+                                                    @endforeach
                                                 </select>
                                                 @error('tahun_ajaran')
                                                     <div class="text-danger mt-2"> {{ $message }} </div>
@@ -151,8 +148,8 @@
                                         <div class="col-sm-6 col-md-4">
                                             <div class="mb-3">
                                                 <label for="target_pencapaian_materi">Target Materi</label>
-                                                <input type="text" class="form-control"
-                                                    id="target_pencapaian_materi" name="target_pencapaian_materi">
+                                                <input type="text" class="form-control" id="target_pencapaian_materi"
+                                                    name="target_pencapaian_materi">
                                                 @error('target_pencapaian_materi')
                                                     <div class="text-danger mt-2"> {{ $message }} </div>
                                                 @enderror
@@ -238,8 +235,7 @@
                                 <button type="button" class="btn btn-secondary" id="prevButton"
                                     style="display: none;">Previous</button>
                                 <button type="button" class="btn btn-primary" id="nextButton">Next</button>
-                                <button type="submit" class="btn btn-success d-none"
-                                    id="submitButton">Submit</button>
+                                <button type="submit" class="btn btn-success d-none" id="submitButton">Submit</button>
                             </div>
                         </form>
                     </div>

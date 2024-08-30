@@ -23,12 +23,9 @@
                                                 <label class="form-label">Tahun Ajaran</label>
                                                 <select class="form-control form-select" name="tahun_ajaran">
                                                     <option value="">Pilih Tahun Ajaran</option>
-                                                    <option value="2024-2025">2024-2025</option>
-                                                    <option value="2025-2026">2025-2026</option>
-                                                    <option value="2026-2027">2026-2027</option>
-                                                    <option value="2027-2028">2027-2028</option>
-                                                    <option value="2028-2029">2028-2029</option>
-                                                    <option value="2029-2030">2029-2030</option>
+                                                    @foreach (generateTahunAjaran() as $tahun)
+                                                        <option value="{{ $tahun }}">{{ $tahun }}</option>
+                                                    @endforeach
                                                 </select>
                                                 @error('tahun_ajaran')
                                                     <div class="text-danger mt-2"> {{ $message }} </div>
@@ -223,8 +220,8 @@
                                         <div class="col-sm-6 col-md-4">
                                             <div class="mb-3">
                                                 <label for="materi_pelatihan_siswa">Materi</label>
-                                                <input type="text" class="form-control"
-                                                    id="materi_pelatihan_siswa" name="materi_pelatihan_siswa">
+                                                <input type="text" class="form-control" id="materi_pelatihan_siswa"
+                                                    name="materi_pelatihan_siswa">
                                                 @error('materi_pelatihan_siswa')
                                                     <div class="text-danger mt-2"> {{ $message }} </div>
                                                 @enderror
@@ -233,8 +230,8 @@
                                         <div class="col-sm-6 col-md-4">
                                             <div class="mb-3">
                                                 <label for="tempat_pelatihan_siswa">Tempat</label>
-                                                <input type="text" class="form-control"
-                                                    id="tempat_pelatihan_siswa" name="tempat_pelatihan_siswa">
+                                                <input type="text" class="form-control" id="tempat_pelatihan_siswa"
+                                                    name="tempat_pelatihan_siswa">
                                                 @error('tempat_pelatihan_siswa')
                                                     <div class="text-danger mt-2"> {{ $message }} </div>
                                                 @enderror
@@ -243,8 +240,8 @@
                                         <div class="col-sm-6 col-md-4">
                                             <div class="mb-3">
                                                 <label for="tanggal_pelatihan_siswa">Tanggal</label>
-                                                <input type="text" class="form-control"
-                                                    id="tanggal_pelatihan_siswa" name="tanggal_pelatihan_siswa">
+                                                <input type="text" class="form-control" id="tanggal_pelatihan_siswa"
+                                                    name="tanggal_pelatihan_siswa">
                                                 @error('tanggal_pelatihan_siswa')
                                                     <div class="text-danger mt-2"> {{ $message }} </div>
                                                 @enderror
@@ -263,8 +260,8 @@
                                         <div class="col-sm-6 col-md-4">
                                             <div class="mb-3">
                                                 <label for="tingkat_pelatihan_siswa">Tingkat</label>
-                                                <input type="text" class="form-control"
-                                                    id="tingkat_pelatihan_siswa" name="tingkat_pelatihan_siswa">
+                                                <input type="text" class="form-control" id="tingkat_pelatihan_siswa"
+                                                    name="tingkat_pelatihan_siswa">
                                                 @error('tingkat_pelatihan_siswa')
                                                     <div class="text-danger mt-2"> {{ $message }} </div>
                                                 @enderror
@@ -273,8 +270,8 @@
                                         <div class="col-sm-6 col-md-4">
                                             <div class="mb-3">
                                                 <label for="lama_jam_pelatihan_siswa">Lama dalam Jam</label>
-                                                <input type="text" class="form-control"
-                                                    id="lama_jam_pelatihan_siswa" name="lama_jam_pelatihan_siswa">
+                                                <input type="text" class="form-control" id="lama_jam_pelatihan_siswa"
+                                                    name="lama_jam_pelatihan_siswa">
                                                 @error('lama_jam_pelatihan_siswa')
                                                     <div class="text-danger mt-2"> {{ $message }} </div>
                                                 @enderror
@@ -389,8 +386,7 @@
                                 <button type="button" class="btn btn-secondary" id="prevButton"
                                     style="display: none;">Previous</button>
                                 <button type="button" class="btn btn-primary" id="nextButton">Next</button>
-                                <button type="submit" class="btn btn-success d-none"
-                                    id="submitButton">Submit</button>
+                                <button type="submit" class="btn btn-success d-none" id="submitButton">Submit</button>
                             </div>
                         </form>
                     </div>

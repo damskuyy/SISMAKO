@@ -12,8 +12,7 @@
                             </a>
                         </div>
                         <h1>Edit Wali Kelas</h1>
-                        <form action="{{ route('walas.update', $walas->id) }}" method="POST"
-                            enctype="multipart/form-data">
+                        <form action="{{ route('walas.update', $walas->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="card p-3">
@@ -22,18 +21,12 @@
                                         <label class="form-label">Tahun Ajaran</label>
                                         <select class="form-control form-select" name="tahun_ajaran">
                                             <option value="">Pilih Tahun Ajaran</option>
-                                            <option value="2024-2025"
-                                                {{ $walas->tahun_ajaran == '2024-2025' ? 'selected' : '' }}>2024-2025</option>
-                                            <option value="2025-2026"
-                                                {{ $walas->tahun_ajaran == '2025-2026' ? 'selected' : '' }}>2025-2026</option>
-                                            <option value="2026-2027"
-                                                {{ $walas->tahun_ajaran == '2026-2027' ? 'selected' : '' }}>2026-2027</option>
-                                            <option value="2027-2028"
-                                                {{ $walas->tahun_ajaran == '2027-2028' ? 'selected' : '' }}>2027-2028</option>
-                                            <option value="2028-2029"
-                                                {{ $walas->tahun_ajaran == '2028-2029' ? 'selected' : '' }}>2028-2029</option>
-                                            <option value="2029-2030"
-                                                {{ $walas->tahun_ajaran == '2029-2030' ? 'selected' : '' }}>2029-2030</option>
+                                            @foreach (generateTahunAjaran() as $tahun)
+                                                <option value="{{ $tahun }}"
+                                                    {{ $walas->tahun_ajaran == $tahun ? 'selected' : '' }}>
+                                                    {{ $tahun }}</option>
+                                            @endforeach
+
                                         </select>
                                         @error('tahun_ajaran')
                                             <div class="text-danger mt-2"> {{ $message }} </div>
