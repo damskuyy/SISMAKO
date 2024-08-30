@@ -2,45 +2,40 @@
 
 namespace App\Http\Controllers\keasramaan;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\database\Siswa;
 use App\Models\keasramaan\pelatihan;
-use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\keasramaan\LombaRequest;
+use Illuminate\Support\Facades\Storage;
 
 class lombaController extends Controller
 {
     public function index()
     {
-        $lomba = pelatihan::where('type', 'lomba')->get();
-        return view('page.keasramaan.akademik.lomba.lomba', compact('lomba'));
+        $lomba = pelatihan::where('type', 'lomba')->with(['siswa:id,nama,nisn'])->get();
+        return view('keasramaan.akademik.lomba.lomba', compact('lomba'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        return view('page.keasramaan.akademik.lomba.create');
+        $mutasiFilter = $request->query('angkatan', ''); // Default empty filter
+
+        // Fetch distinct angkatan values from Siswa model
+        $angkatan = Siswa::distinct()->pluck('angkatan');
+
+        // Get the selected angkatan from the request or default to an empty string
+        $defaultAngkatan = $request->angkatan;
+
+        // Fetch names for the selected angkatan if available
+        $names = $defaultAngkatan ? Siswa::where('angkatan', $defaultAngkatan)->get(['id', 'nama', 'angkatan']) : collect();
+        return view('keasramaan.akademik.lomba.create', compact('angkatan', 'names'));
     }
 
-    public function store(Request $request)
+    public function store(LombaRequest $request)
     {
-        $validateData = $request->validate([
-            'tanggal' => 'required',
-            'kelas' => 'required',
-            'nama' => 'required',
-            'nisn' => 'required',
-            'kegiatan' => 'required',
-            'keterangan' => 'required',
-            'dokumentasi.' => 'file|max:10240',
-            'undangan.' => 'file|max:10240',
-        ],[
-            'dokumentasi.*.file' => 'Dokumen Dokumentasi harus berformat file (.pdf,.docx,.jpg,.png)',
-            'undangan.*.file' => 'Dokumen Undangan harus berformat file (.pdf,.docx,.jpg,.png)',
-            'tanggal.required' => 'Tanggal harus diisi',
-            'kelas.required' => 'Kelas harus diisi',
-            'nama.required' => 'Nama harus diisi',
-            'nisn.required' => 'NISN harus diisi',
-            'kegiatan.required' => 'Kegiatan harus diisi',
-            'keterangan.required' => 'Keterangan harus diisi',
-        ]);
+        $validateData = $request->validated();
 
         $fileFields = ['dokumentasi', 'undangan'];
 
@@ -51,10 +46,14 @@ class lombaController extends Controller
 
                 foreach ($files as $index => $file) {
                     if ($index < 3) { // Batas maksimal 3 file
-                        $originalName = $file->getClientOriginalName();
-                        $storedFiles[] = $file->storeAs($fileField, $originalName);
+                        $originalName = Str::random(30) . '.' . $file->getClientOriginalExtension();
+                        $filePath = $file->storeAs('akademik/pelatihan', $originalName, 'public');
+
+                        // Store each file path in the $storedFiles array
+                        $storedFiles[] =  $filePath;
                     }
                 }
+                // Convert $storedFiles to JSON and store it in $validateData
                 $validateData[$fileField] = json_encode($storedFiles);
             }
         }
@@ -67,16 +66,13 @@ class lombaController extends Controller
     public function edit($id)
     {
         $lomba = pelatihan::findOrFail($id);
-        return view('page.keasramaan.akademik.lomba.edit', compact('lomba'));
+        return view('keasramaan.akademik.lomba.edit', compact('lomba'));
     }
 
     public function update(Request $request, $id)
     {
         $validateData = $request->validate([
             'tanggal' => 'required',
-            'kelas' => 'required',
-            'nama' => 'required',
-            'nisn' => 'required',
             'kegiatan' => 'required',
             'keterangan' => 'required',
             'dokumentasi.' => 'file|max:10240',
@@ -85,9 +81,6 @@ class lombaController extends Controller
             'dokumentasi.*.file' => 'Dokumen Dokumentasi harus berformat file (.pdf,.docx,.jpg,.png)',
             'undangan.*.file' => 'Dokumen Undangan harus berformat file (.pdf,.docx,.jpg,.png)',
             'tanggal.required' => 'Tanggal harus diisi',
-            'kelas.required' => 'Kelas harus diisi',
-            'nama.required' => 'Nama harus diisi',
-            'nisn.required' => 'NISN harus diisi',
             'kegiatan.required' => 'Kegiatan harus diisi',
             'keterangan.required' => 'Keterangan harus diisi',
         ]);

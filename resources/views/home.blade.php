@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<livewire:layout.header/>
+    <livewire:layout.header />
     <div class="card">
-        <div class="img-fluid py-5" style="background-image: url('dist/img/gif/bg.png'); padding-bottom:30px;">
+        <div class="img-fluid py-6" style="background-image: url('dist/img/gif/bg.png');">
 
             <div class="container">
                 <div class="row">
@@ -132,7 +132,7 @@
                         </a>
                     </div>
                     <div class="col-md-4">
-                        <a href="{{route('created-by')}}" class="text-decoration-none">
+                        <a href="{{ route('created-by') }}" class="text-decoration-none">
                             <div class="card shadow-sm mb-4 hover-shadow"
                                 style="background-color: rgba(0, 128, 0, 0.25);">
                                 <div class="card-body d-flex align-items-center">
@@ -237,4 +237,6 @@
             </div>
         </div>
     </div>
+
+    {{-- modalKorepondensi --}}
 @endsection

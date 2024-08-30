@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    @include('database.inc.form')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <div class="container mt-3">

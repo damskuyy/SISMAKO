@@ -1,9 +1,15 @@
 <?php
 
 namespace App\Models\database;
+
+use App\Models\keasramaan\akhlak;
+use App\Models\keasramaan\tahsin;
 use App\Models\database\DataKelas;
 use App\Models\database\FotoSiswa;
+use App\Models\keasramaan\tahfidz;
 use App\Models\database\RapotSiswa;
+use App\Models\keasramaan\pelatihan;
+use App\Models\keasramaan\sertifikat;
 use App\Models\keasramaan\JamaahSiswa;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -72,5 +78,30 @@ class Siswa extends Model
     public function dataKelas()
     {
         return $this->hasMany(DataKelas::class, 'id_siswa', 'id');
+    }
+
+    public function tahfidzSiswa()
+    {
+        return $this->hasMany(tahfidz::class, 'siswa_id', 'id');
+    }
+
+    public function tahsinSiswa()
+    {
+        return $this->hasMany(tahsin::class, 'siswa_id', 'id');
+    }
+
+    public function sertifikatSiswa()
+    {
+        return $this->hasMany(sertifikat::class, 'siswa_id', 'id');
+    }
+
+    public function pelatihanSiswa()
+    {
+        return $this->hasMany(pelatihan::class, 'siswa_id', 'id');
+    }
+
+    public function jurnalAsramaSiswa()
+    {
+        return $this->hasMany(akhlak::class, 'siswa_id', 'id');
     }
 }

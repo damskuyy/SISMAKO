@@ -1,12 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-
+    @include('database.inc.form')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <div class="container mt-4">
         <div class="card">
-            <form id="jamaahForm" method="POST" action="{{ route('jamaah.update', ['tanggal' => $tanggal, 'kelas' => $kelas, 'sholat' => $sholat, 'id' => $id]) }}" enctype="multipart/form-data">
+            <form id="jamaahForm" method="POST"
+                action="{{ route('jamaah.update', ['tanggal' => $tanggal, 'kelas' => $kelas, 'sholat' => $sholat, 'id' => $id]) }}"
+                enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -37,20 +39,25 @@
                             </tr>
                         </thead>
                         <tbody id="studentTable">
-                            @foreach($dataJamaah as $student)
-                            <tr>
-                                <td>{{ $student->siswa->nama }}</td>
-                                <td>{{ $student->kelas }}</td>
-                                <td>
-                                    <input type="hidden" name="siswa_ids[]" value="{{ $student->id }}">
-                                    <input type="hidden" name="nama_siswa[{{ $student->siswa->id }}]" value="{{ $student->siswa->nama }}">
-                                    <select class="form-select" name="status[{{ $student->id }}]" style="width: 100px;">
-                                        <option value="Hadir" {{ $student->status_jamaah == 'Hadir' ? 'selected' : '' }}>Hadir</option>
-                                        <option value="Sakit" {{ $student->status_jamaah == 'Sakit' ? 'selected' : '' }}>Sakit</option>
-                                        <option value="Alpha" {{ $student->status_jamaah == 'Alpha' ? 'selected' : '' }}>Alpha</option>
-                                    </select>
-                                </td>
-                            </tr>
+                            @foreach ($dataJamaah as $student)
+                                <tr>
+                                    <td>{{ $student->siswa->nama }}</td>
+                                    <td>{{ $student->kelas }}</td>
+                                    <td>
+                                        <input type="hidden" name="siswa_ids[]" value="{{ $student->id }}">
+                                        <input type="hidden" name="nama_siswa[{{ $student->siswa->id }}]"
+                                            value="{{ $student->siswa->nama }}">
+                                        <select class="form-select" name="status[{{ $student->id }}]"
+                                            style="width: 100px;">
+                                            <option value="Hadir"
+                                                {{ $student->status_jamaah == 'Hadir' ? 'selected' : '' }}>Hadir</option>
+                                            <option value="Sakit"
+                                                {{ $student->status_jamaah == 'Sakit' ? 'selected' : '' }}>Sakit</option>
+                                            <option value="Alpha"
+                                                {{ $student->status_jamaah == 'Alpha' ? 'selected' : '' }}>Alpha</option>
+                                        </select>
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
@@ -101,4 +108,4 @@
 
         });
     </script>
-@endsection
+    @endsection

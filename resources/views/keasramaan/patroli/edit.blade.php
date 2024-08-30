@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+    @include('database.inc.form')
     <div class="container mt-5">
         <a href="{{ route('patroli.asrama.index') }}" class="btn btn-secondary mb-4">Back</a>
         <form method="post" action="{{ route('patroli.asrama.update', $patroliAsrama->id) }}" enctype="multipart/form-data">
@@ -24,7 +24,7 @@
                         @enderror
                     </div>
                 </div>
-
+                
                 <div class="col-lg-4">
                     <div class="mb-3">
                         <label class="form-label">Area Tempat</label>
@@ -34,7 +34,7 @@
                         @enderror
                     </div>
                 </div>
-
+                
                 <div class="col-lg-4">
                     <div class="mb-3">
                         <label class="form-label">Tanggal</label>
@@ -44,7 +44,7 @@
                         @enderror
                     </div>
                 </div>
-
+                
                 <div class="col-lg-12">
                     <div class="mb-3">
                         <label class="form-label">Dokumentasi</label>

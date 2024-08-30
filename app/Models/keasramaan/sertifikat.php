@@ -2,13 +2,14 @@
 
 namespace App\Models\keasramaan;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\database\Siswa;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class sertifikat extends Model
 {
     use HasFactory;
-    protected $table = 'sertifikat';
+    protected $table = 'sertifikat_progres';
     protected $fillable = [
         'tanggal',
         'kelas',
@@ -18,5 +19,16 @@ class sertifikat extends Model
         'juz_29',
         'juz_28',
         'juz_umum',
+        'siswa_id'
     ];
+    
+    public function siswa()
+    {
+        return $this->belongsTo(Siswa::class);
+    }
+
+    public function scopeBetweenDates($query, $startDate, $endDate)
+    {
+        return $query->whereBetween('tanggal', [$startDate, $endDate]);
+    }
 }

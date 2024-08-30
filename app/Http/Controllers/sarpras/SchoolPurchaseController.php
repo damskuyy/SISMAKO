@@ -10,9 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\sarpras\SchoolPurchaseRequest;
 use App\Models\sarpras\SchoolPurchase;
 use Illuminate\Support\Facades\Log;
-// use Illuminate\Support\Facades\File;
-// use Illuminate\Support\Facades\Storage;
-// use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
 
 class SchoolPurchaseController extends Controller
 {
@@ -24,9 +22,9 @@ class SchoolPurchaseController extends Controller
             $query->whereYear('tanggal_pembelian', $request->tahun_pembelian);
         }
 
-        // if ($request->filled('nama_barang')) {
-        //     $query->where('nama_barang', 'like', '%' . $request->nama_barang . '%');
-        // }
+        if ($request->filled('bulan_pembelian')) {
+            $query->whereMonth('tanggal_pembelian', $request->bulan_pembelian);
+        }
 
         $schoolPurchases = $query->paginate(10); // Menggunakan paginate alih-alih get
 
@@ -43,26 +41,6 @@ class SchoolPurchaseController extends Controller
     {
         $schoolPurchases = SchoolPurchase::all();
         return view("sarpras.sekolah.damagedItems", compact("schoolPurchases"));
-    }
-
-    public function filterByYear(Request $request)
-    {
-        $query = SchoolPurchase::query();
-
-        // Get the list of years
-        $years = SchoolPurchase::selectRaw('YEAR(tanggal_pembelian) as year')
-            ->distinct()
-            ->orderBy('year', 'desc')
-            ->pluck('year');
-
-        // Filter by year if selected
-        if ($request->has('year') && !empty($request->year)) {
-            $query->whereYear('tanggal_pembelian', $request->year);
-        }
-
-        $schoolPurchases = $query->get();
-
-        return view('sarpras.sekolah.index', compact('schoolPurchases', 'years'));
     }
 
     public function store(SchoolPurchaseRequest $request)
@@ -84,12 +62,6 @@ class SchoolPurchaseController extends Controller
         return redirect("/school-purchase")->with("success", "Berhasil menambahkan data Pembelian Sekolah.");
     }
 
-    // public function edit($id)
-    // {
-    //     $schoolPurchase = SchoolPurchase::findOrFail($id);
-    //     return view("admin.sekolah.edit", compact("schoolPurchase"));
-    // }
-
     public function update(SchoolPurchaseRequest $request, $id)
     {
         $request->validated();
@@ -98,6 +70,14 @@ class SchoolPurchaseController extends Controller
         $data = $request->except('gambar');
 
         if ($request->hasFile('gambar')) {
+            // Hapus gambar lama dari database dan storage
+            $oldImages = $schoolPurchase->images;
+            foreach ($oldImages as $image) {
+                Storage::disk('public')->delete('school_purchases/' . $image->path); // Sesuaikan jalur penyimpanan gambar
+                $image->delete();
+            }
+
+            // Simpan gambar baru
             foreach ($request->file('gambar') as $file) {
                 $path = $file->storeAs('school_purchases', $file->getClientOriginalName(), 'public');
                 $schoolPurchase->images()->create(['path' => $path]);

@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+    @include('database.inc.form')
+
     <div class="py-12">
         <div class="container">
             <div class="row">
@@ -21,8 +23,8 @@
                     </a>
                 </div>
                 <div class="col-md-4 modals">
-                    <a href="#" class="text-decoration-none" data-bs-toggle="modal"
-                        data-bs-target="#passwordModal" data-url="/patroli/asrama">
+                    <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#passwordModal"
+                        data-url="/patroli/asrama">
                         <div class="card shadow-sm mb-4 hover-shadow" style="background-color:rgba(0, 123, 255, 0.25);">
                             <div class="card-body d-flex align-items-center">
                                 <img src="{{ asset('dist/img/gif/search.gif') }}" alt=""
@@ -144,8 +146,7 @@
     </div>
 
     <!-- Modal for successful password change -->
-    <div class="modal modal-blur fade show" id="modal-success" tabindex="-1" role="dialog"
-        style="display: none;">
+    <div class="modal modal-blur fade show" id="modal-success" tabindex="-1" role="dialog" style="display: none;">
         <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
             <div class="modal-content">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

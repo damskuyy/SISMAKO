@@ -10,28 +10,21 @@ use App\Http\Requests\korespondensi\NomorSuratRequest;
 
 class NomorSuratController extends Controller
 {
-        /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        // Menampilkan daftar nomor surat
+        $nomorSurats = NomorSurat::all();
+        return view('nomor_surat.index', compact('nomorSurats'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-
+        // Menampilkan form untuk membuat nomor surat baru
+        return view('nomor_surat.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(NomorSuratRequest $request)
     {
-        // dd($request->all());
         $validated = $request->validated();
 
         $validated['file_surat'] = $request->file('file_surat')->store('nomor-surat');
@@ -40,57 +33,42 @@ class NomorSuratController extends Controller
         return redirect()->route('inbox.index')->with('success', 'Data nomor surat berhasil ditambahkan');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
-        //
+        // Menampilkan form untuk mengedit nomor surat
+        $nomorSurat = NomorSurat::findOrFail($id);
+        return view('nomor_surat.edit', compact('nomorSurat'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(NomorSuratRequest $request, $id)
-{
-    // Validasi input
-    $validated = $request->validated();
+    {
+        $validated = $request->validated();
 
-    // Cari nomor surat berdasarkan ID
-    $nomorSurat = NomorSurat::findOrFail($id);
+        $nomorSurat = NomorSurat::findOrFail($id);
 
-    // Update file jika diupload
-    if ($request->hasFile('file_surat')) {
-        // Hapus file lama jika ada
+        if ($request->hasFile('file_surat')) {
+            if ($nomorSurat->file_surat) {
+                Storage::delete($nomorSurat->file_surat);
+            }
+            $validated['file_surat'] = $request->file('file_surat')->store('nomor-surat');
+        }
+
+        $nomorSurat->update($validated);
+
+        return redirect()->route('inbox.index')->with('success', 'Data nomor surat berhasil diupdate');
+    }
+
+    public function destroy(string $id)
+    {
+        $nomorSurat = NomorSurat::findOrFail($id);
+
         if ($nomorSurat->file_surat) {
             Storage::delete($nomorSurat->file_surat);
         }
-        // Simpan file baru
-        $validated['file_surat'] = $request->file('file_surat')->store('nomor-surat');
-    }
 
-    // Update data
-    $nomorSurat->update($validated);
+        $nomorSurat->delete();
 
-    // Redirect dengan pesan sukses
-    return redirect()->route('inbox.index')->with('success', 'Data nomor surat berhasil diupdate');
-}
-
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        NomorSurat::findOrFail($id)->delete();
-        return redirect()->route('inbox.edit')->with('success', 'Data nomor surat berhasil dihapus');
+        return redirect()->route('inbox.index')->with('success', 'Data nomor surat berhasil dihapus');
     }
 }
+

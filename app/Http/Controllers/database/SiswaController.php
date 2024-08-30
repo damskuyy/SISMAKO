@@ -47,6 +47,7 @@ class SiswaController extends Controller
     }
     public function store(SiswaRequest $request)
     {
+        // dd($request->all());
         // Validate the request data
         $validatedData = $request->validated();
 

@@ -2,36 +2,44 @@
 
 namespace App\Http\Controllers\keasramaan;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\keasramaan\AkhlakRequest;
+use Illuminate\Http\Request;
+use App\Models\database\Siswa;
 use App\Models\keasramaan\akhlak;
 
 class akhlakController extends Controller
 {
     public function index()
     {
-        $akhlak = akhlak::where('type', 'akhlak')->get();
+        $akhlak = akhlak::where('type', 'akhlak')
+        ->with([
+            'siswa:id,nama,nisn',
+            'siswa.dataKelas:id,id_siswa,kelas' // 'id_siswa' is the correct foreign key
+        ])
+        ->get();
+
+
         return view('keasramaan.jurnal.akhlak.akhlak', compact('akhlak'));
     }
-    public function create()
+    public function create(Request $request)
     {
-        return view('keasramaan.jurnal.akhlak.create');
+        $mutasiFilter = $request->query('angkatan', ''); // Default empty filter
+
+        // Fetch distinct angkatan values from Siswa model
+        $angkatan = Siswa::distinct()->pluck('angkatan');
+
+        // Get the selected angkatan from the request or default to an empty string
+        $defaultAngkatan = $request->angkatan;
+
+        // Fetch names for the selected angkatan if available
+        $names = $defaultAngkatan ? Siswa::where('angkatan', $defaultAngkatan)->get(['id', 'nama', 'angkatan']) : collect();
+        return view('keasramaan.jurnal.akhlak.create', compact('angkatan', 'names'));
     }
 
-    public function store(Request $request)
+    public function store(AkhlakRequest $request)
     {
-        $validateData = $request->validate([
-            'tanggal' => 'required',
-            'kelas' => 'required',
-            'materi' => 'required',
-            'nisn' => 'required',
-        ], [
-            'tanggal.required' => 'Tahun ajaran harus diisi',
-            'kelas.required' => 'Kelas harus diisi',
-            'materi.required' => 'Materi harus diisi',
-            'nisn.required' => 'NISN harus diisi',
-        ]);
-
+        $validateData = $request->validated();
         akhlak::create(array_merge($validateData, ['type' => 'akhlak']));
         return redirect("/sekolah-keasramaan/jurnal-asrama/akhlak")->with("success", "Berhasil disimpan");
     }
@@ -44,24 +52,15 @@ class akhlakController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'tanggal' => 'required',
-            'kelas' => 'required',
             'materi' => 'required',
-            'nisn' => 'required',
         ], [
             'tanggal.required' => 'Tahun ajaran harus diisi',
-            'kelas.required' => 'Kelas harus diisi',
             'materi.required' => 'Materi harus diisi',
-            'nisn.required' => 'NISN harus diisi',
         ]);
 
-        akhlak::find($id)->update([
-            'tanggal' => $request->tanggal,
-            'kelas' => $request->kelas,
-            'materi' => $request->materi,
-            'nisn' => $request->nisn,
-        ]);
+        akhlak::find($id)->update($validatedData);
 
         return redirect("/sekolah-keasramaan/jurnal-asrama/akhlak")->with("success", "Berhasil diPerbaharui");
     }

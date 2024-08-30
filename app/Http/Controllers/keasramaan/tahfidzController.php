@@ -2,55 +2,40 @@
 
 namespace App\Http\Controllers\keasramaan;
 
-
 use Illuminate\Http\Request;
+use App\Models\database\Siswa;
 use App\Models\keasramaan\tahfidz;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\keasramaan\TahfidzRequest;
+
 class tahfidzController extends Controller
 {
     public function index()
     {
-        $tahfidz = tahfidz::get();
-        return view('page.keasramaan.quran.tahfidz.tahfidz', compact('tahfidz'));
+        $tahfidz = tahfidz::with(['siswa:id,nama,nisn'])->get();;
+        return view('keasramaan.quran.tahfidz.tahfidz', compact('tahfidz'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        return view('page.keasramaan.quran.tahfidz.create');
+        $mutasiFilter = $request->query('angkatan', ''); // Default empty filter
+
+        // Fetch distinct angkatan values from Siswa model
+        $angkatan = Siswa::distinct()->pluck('angkatan');
+
+        // Get the selected angkatan from the request or default to an empty string
+        $defaultAngkatan = $request->angkatan;
+
+        // Fetch names for the selected angkatan if available
+        $names = $defaultAngkatan ? Siswa::where('angkatan', $defaultAngkatan)->get(['id', 'nama', 'angkatan']) : collect();
+        return view('keasramaan.quran.tahfidz.create', compact('angkatan', 'names'));
     }
 
-    public function store(Request $request)
+    public function store(TahfidzRequest $request)
     {
-        $request->validate([
-            'tanggal' => 'required',
-            'kelas' => 'required',
-            'nama' => 'required',
-            'nisn' => 'required',
-            'surat' => 'required',
-            'ayat' => 'required',
-            'predikat' => 'required',
-            'pengajar' => 'required',
-        ], [
-            'tanggal.required' => 'Tahun ajaran harus diisi',
-            'kelas.required' => 'Kelas harus diisi',
-            'nama.required' => 'Nama harus diisi',
-            'nisn.required' => 'NISN harus diisi',
-            'surat.required' => 'Surat harus diisi',
-            'ayat.required' => 'Ayat harus diisi',
-            'predikat.required' => 'Predikat harus diisi',
-            'pengajar.required' => 'Pengajar harus diisi',
-        ]);
+        $validatedData = $request->validated();
 
-        tahfidz::create([
-            'tanggal' => $request->tanggal,
-            'kelas' => $request->kelas,
-            'nama' => $request->nama,
-            'nisn' => $request->nisn,
-            'surat' => $request->surat,
-            'ayat' => $request->ayat,
-            'predikat' => $request->predikat,
-            'pengajar' => $request->pengajar,
-        ]);
+        tahfidz::create($validatedData);
 
         return redirect("/sekolah-keasramaan/al-quran/tahfidz")->with("success", "Berhasil disimpan");
     }
@@ -58,41 +43,26 @@ class tahfidzController extends Controller
     public function edit($id)
     {
         $tahfidz = tahfidz::find($id);
-        return view('page.keasramaan.quran.tahfidz.edit', compact('tahfidz'));
+        return view('keasramaan.quran.tahfidz.edit', compact('tahfidz'));
     }
 
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'tanggal' => 'required',
-            'kelas' => 'required',
-            'nama' => 'required',
-            'nisn' => 'required',
             'surat' => 'required',
             'ayat' => 'required',
             'predikat' => 'required',
             'pengajar' => 'required',
         ], [
             'tanggal.required' => 'Tahun ajaran harus diisi',
-            'kelas.required' => 'Kelas harus diisi',
-            'nama.required' => 'Nama harus diisi',
-            'nisn.required' => 'NISN harus diisi',
             'surat.required' => 'Surat harus diisi',
             'ayat.required' => 'Ayat harus diisi',
             'predikat.required' => 'Predikat harus diisi',
             'pengajar.required' => 'Pengajar harus diisi',
         ]);
 
-        tahfidz::find($id)->update([
-            'tanggal' => $request->tanggal,
-            'kelas' => $request->kelas,
-            'nama' => $request->nama,
-            'nisn' => $request->nisn,
-            'surat' => $request->surat,
-            'ayat' => $request->ayat,
-            'predikat' => $request->predikat,
-            'pengajar' => $request->pengajar,
-        ]);
+        tahfidz::find($id)->update($validatedData);
 
         return redirect("/sekolah-keasramaan/al-quran/tahfidz")->with("success", "Berhasil diPerbaharui");
     }

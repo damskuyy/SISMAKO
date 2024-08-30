@@ -7,8 +7,8 @@
         <div class="row row-cards">
             <div class="col-12">
                 <div class="mb-2">
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addItemModal">Tambah
-                    </button>
+                    {{-- <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addItemModal">Tambah
+                    </button> --}}
                 </div>
             </div>
 

@@ -9,65 +9,71 @@
 
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        let correctPassword = localStorage.getItem('password') || '12345';
-        const submitButton = document.getElementById('submitPassword');
-        const passwordInput = document.getElementById('passwordInput');
-        const passwordError = document.getElementById('passwordError');
-        const changePasswordButton = document.getElementById('changePasswordButton');
-        let targetUrl = '';
+   document.addEventListener('DOMContentLoaded', function() {
+    let correctPassword = localStorage.getItem('password') || '12345';
+    const submitButton = document.getElementById('submitPassword');
+    const passwordInput = document.getElementById('passwordInput');
+    const passwordError = document.getElementById('passwordError');
+    const changePasswordButton = document.getElementById('changePasswordButton');
+    let targetUrl = '';
 
-        const changePasswordModalElement = document.getElementById('changePasswordModal');
-        const successModalElement = document.getElementById('modal-success');
-        const submitChangePasswordButton = document.getElementById('submitChangePassword');
-        const currentPasswordInput = document.getElementById('currentPasswordInput');
-        const newPasswordInput = document.getElementById('newPasswordInput');
-        const changePasswordError = document.getElementById('changePasswordError');
+    const changePasswordModalElement = document.getElementById('changePasswordModal');
+    const successModalElement = document.getElementById('modal-success');
+    const submitChangePasswordButton = document.getElementById('submitChangePassword');
+    const currentPasswordInput = document.getElementById('currentPasswordInput');
+    const newPasswordInput = document.getElementById('newPasswordInput');
+    const changePasswordError = document.getElementById('changePasswordError');
 
-        function showModal(modalElement, backdropOption = true) {
-            const modalInstance = new bootstrap.Modal(modalElement, {
-                backdrop: backdropOption
-            });
-            modalInstance.show();
+    function showModal(modalElement, backdropOption = true) {
+        const modalInstance = new bootstrap.Modal(modalElement, {
+            backdrop: backdropOption
+        });
+        modalInstance.show();
 
-            // Focus on specific fields based on the modal
-            modalElement.addEventListener('shown.bs.modal', function() {
-                if (modalElement === document.getElementById('passwordModal')) {
-                    passwordInput.focus();
-                } else if (modalElement === changePasswordModalElement) {
-                    currentPasswordInput.focus();
-                }
-            });
-        }
-
-        function hideModal(modalElement) {
-            const modalInstance = bootstrap.Modal.getInstance(modalElement);
-            if (modalInstance) {
-                modalInstance.hide();
-                // Ensure the backdrop is also removed if necessary
-                document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
-                    backdrop.parentNode.removeChild(backdrop);
-                });
+        // Focus on specific fields based on the modal
+        modalElement.addEventListener('shown.bs.modal', function() {
+            if (modalElement === document.getElementById('passwordModal')) {
+                passwordInput.focus();
+            } else if (modalElement === changePasswordModalElement) {
+                currentPasswordInput.focus();
             }
-        }
+        });
+    }
 
-        function resetAllModals() {
-            const modals = [
-                document.getElementById('passwordModal'),
-                changePasswordModalElement,
-                successModalElement
-            ];
-            modals.forEach(modal => {
-                const modalInstance = bootstrap.Modal.getInstance(modal);
-                if (modalInstance) {
-                    modalInstance.hide();
-                    // Ensure the backdrop is also removed if necessary
-                    document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
-                        backdrop.parentNode.removeChild(backdrop);
-                    });
-                }
+    function hideModal(modalElement) {
+        const modalInstance = bootstrap.Modal.getInstance(modalElement);
+        if (modalInstance) {
+            modalInstance.hide();
+            // Ensure the backdrop is also removed if necessary
+            document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+                backdrop.parentNode.removeChild(backdrop);
             });
         }
+    }
+
+    function resetAllModals() {
+        const modals = [
+            document.getElementById('passwordModal'),
+            changePasswordModalElement,
+            successModalElement,
+            // Add all your modal elements here
+            document.getElementById('modalUpdate1'),
+            document.getElementById('modalUpdate2'),
+            document.getElementById('modalUpdate3'),
+            document.getElementById('modalUpdate4'),
+            document.getElementById('modalUpdate5'),
+            document.getElementById('modalUpdate6'),
+            document.getElementById('modalView1'),
+            document.getElementById('modalView2'),
+            document.getElementById('modalView3'),
+            document.getElementById('modalView4'),
+            document.getElementById('modalView5'),
+            document.getElementById('modalView6')
+        ];
+        modals.forEach(modal => {
+            hideModal(modal);
+        });
+    }
 
         document.querySelectorAll('.modals a').forEach(link => {
             link.addEventListener('click', function(event) {
@@ -258,4 +264,190 @@
                 averageChart = null;
             }
         });
+
+        $(document).ready(function() {
+        // Initialize input mask
+        $("#time-input").inputmask("99:99");
+
+        // Initialize DataTable (apply this to your table element if needed)
+        // $('#your-table-id').DataTable();
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var radioButtons = document.querySelectorAll('.radio-inbox');
+        var submitButton = document.getElementById('submitButton');
+        var btnView = document.getElementById('btnView');
+        var submitTp = document.getElementById('tp');
+        var submitJs = document.getElementById('js');
+
+
+
+        function checkSelection() {
+            var tpValue = submitTp.value;
+            var jsValue = submitJs.value;
+            var radioChecked = Array.from(radioButtons).some(function(radio) {
+                return radio.checked;
+            });
+
+            submitButton.disabled = !(tpValue !== "" && jsValue !== "" && radioChecked);
+
+            if (radioChecked && (document.getElementById('radioInbox1').checked || document.getElementById(
+                    'radioInbox2').checked)) {
+                submitJs.disabled = false;
+            } else {
+                submitJs.disabled = true;
+            }
+        }
+
+        submitTp.addEventListener('change', checkSelection);
+        submitJs.addEventListener('change', checkSelection);
+
+        radioButtons.forEach(function(radioButton) {
+
+            radioButton.addEventListener('change', function() {
+                if (this.checked) {
+                    // Ambil data-target-view dan data-target-report dari radio button yang dipilih
+                    var dataTargetView = this.getAttribute('data-target-view');
+                    var dataTargetReport = this.getAttribute('data-target-report');
+
+                    // Set data-bs-target untuk btnView dan submitButton
+                    btnView.setAttribute('data-bs-target', dataTargetView);
+                    submitButton.setAttribute('data-bs-target', dataTargetReport);
+                }
+            });
+        });
+    });
+
+    // suratlainnya
+    function handleSelectChange(selectId, inputId) {
+        const selectElement = document.getElementById(selectId);
+        const inputElement = document.getElementById(inputId);
+
+        selectElement.addEventListener('change', () => {
+            inputElement.disabled = selectElement.value !== 'Lainnya';
+            selectElement.disabled = selectElement.value === 'Lainnya';
+        });
+    }
+
+    handleSelectChange('js-modal-1', 'lainnya-field-1');
+    handleSelectChange('js-modal-2', 'lainnya-field-2');
+
+    // datepicker
+    document.addEventListener("DOMContentLoaded", function() {
+        var datepickers = document.querySelectorAll('[id^="datepicker"]');
+        datepickers.forEach(function(datepicker) {
+            new Litepicker({
+                element: datepicker,
+                buttonText: {
+                    previousMonth: `<svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M15 6l-6 6l6 6" /></svg>`,
+                    nextMonth: `<svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M9 6l6 6l-6 6" /></svg>`,
+                },
+            });
+        });
+    });
+
+    // tp&js value set
+    var mainTp = document.getElementById('tp');
+
+    mainTp.addEventListener('change', function() {
+        var modalTps = document.querySelectorAll('[id^="tp-modal-"]');
+        modalTps.forEach(function(modalTp) {
+            modalTp.value = mainTp.value;
+        });
+    });
+
+    var mainJs = document.getElementById('js');
+
+    mainJs.addEventListener('change', function() {
+        var modalJs = document.querySelectorAll('[id^="js-modal-"]');
+        modalJs.forEach(function(modalJs) {
+            modalJs.value = mainJs.value;
+        });
+    });
+
+    // modal radio set
+    document.addEventListener('DOMContentLoaded', function() {
+        function setupRadioButtons() {
+            var radioButtons = document.querySelectorAll('.radio-inbox');
+            var siswaInput = document.querySelector('input[name="siswa"]');
+            var guruInput = document.querySelector('input[name="guru"]');
+
+            radioButtons.forEach(function(radioButton) {
+                radioButton.addEventListener('change', function() {
+                    if (this.value === 'siswa' && this.checked) {
+                        siswaInput.removeAttribute('disabled');
+                        guruInput.setAttribute('disabled', 'true');
+                    } else if (this.value === 'guru' && this.checked) {
+                        guruInput.removeAttribute('disabled');
+                        siswaInput.setAttribute('disabled', 'true');
+                    }
+                });
+            });
+        }
+
+        // Panggil fungsi untuk pertama kali
+        setupRadioButtons();
+
+        // Jalankan script setelah modal ditampilkan
+        var modal = document.getElementById('modalUpdate'); // Ganti dengan ID modal Anda
+        if (modal) {
+            modal.addEventListener('shown.bs.modal', function() {
+                setupRadioButtons();
+            });
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const radioSiswa = document.querySelector('.radio-inbox7');
+        const radioGuru = document.querySelector('.radio-inbox8');
+        const inputSiswa = document.querySelector('input[name="siswa"]');
+        const inputGuru = document.querySelector('input[name="guru"]');
+
+        function toggleInputs() {
+            if (radioSiswa.checked) {
+                inputSiswa.disabled = false;
+                inputGuru.disabled = true;
+            } else if (radioGuru.checked) {
+                inputSiswa.disabled = true;
+                inputGuru.disabled = false;
+            } else {
+                inputSiswa.disabled = true;
+                inputGuru.disabled = true;
+            }
+        }
+
+        radioSiswa.addEventListener('change', toggleInputs);
+        radioGuru.addEventListener('change', toggleInputs);
+
+        // Run on page load
+        toggleInputs();
+    });
+
+
+    $(function() {
+        $("#datepicker-icon-1").datepicker({
+            dateFormat: 'yy-mm-dd' // Format tanggal sesuai kebutuhan
+        });
+        $("#datepicker-icon-2").datepicker({
+            dateFormat: 'yy-mm-dd' // Format tanggal sesuai kebutuhan
+        });
+    });
+
+    // datepickerfilter
+    // document.getElementById('pdfForm').addEventListener('submit', function() {
+    //     document.getElementById('hiddenStartDate').value = document.getElementById('datepicker-icon-1').value;
+    //     document.getElementById('hiddenEndDate').value = document.getElementById('datepicker-icon-2').value;
+    // });
+
+    document.getElementById('filterButton').addEventListener('click', function() {
+        // Menyalin nilai dari input tanggal ke input tersembunyi
+        document.getElementById('hiddenStartDate').value = document.getElementById('datepicker-icon-1').value;
+        document.getElementById('hiddenEndDate').value = document.getElementById('datepicker-icon-2').value;
+    });
 </script>

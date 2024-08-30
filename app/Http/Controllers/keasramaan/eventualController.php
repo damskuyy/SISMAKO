@@ -3,44 +3,38 @@
 namespace App\Http\Controllers\keasramaan;
 
 use Illuminate\Http\Request;
+use App\Models\database\Siswa;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\keasramaan\EventualRequest;
 use App\Models\keasramaan\pelatihan;
 use Illuminate\Support\Facades\Storage;
-use App\Http\Controllers\Controller;
 
 class eventualController extends Controller
 {
     public function index()
     {
-        $eventual = pelatihan::where('type', 'eventual')->get();
-        return view('page.keasramaan.akademik.volentir.volentir', compact('eventual'));
+        $eventual = pelatihan::where('type', 'eventual')->with(['siswa:id,nama,nisn'])->get();
+        return view('keasramaan.akademik.volentir.volentir', compact('eventual'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        return view('page.keasramaan.akademik.volentir.create');
+        $mutasiFilter = $request->query('angkatan', ''); // Default empty filter
+
+        // Fetch distinct angkatan values from Siswa model
+        $angkatan = Siswa::distinct()->pluck('angkatan');
+
+        // Get the selected angkatan from the request or default to an empty string
+        $defaultAngkatan = $request->angkatan;
+
+        // Fetch names for the selected angkatan if available
+        $names = $defaultAngkatan ? Siswa::where('angkatan', $defaultAngkatan)->get(['id', 'nama', 'angkatan']) : collect();
+        return view('keasramaan.akademik.volentir.create', compact('angkatan', 'names'));
     }
 
-    public function store(Request $request)
+    public function store(EventualRequest $request)
     {
-        $validateData = $request->validate([
-            'tanggal' => 'required',
-            'kelas' => 'required',
-            'nama' => 'required',
-            'nisn' => 'required',
-            'kegiatan' => 'required',
-            'keterangan' => 'required',
-            'dokumentasi.' => 'file|max:10240',
-            'undangan.' => 'file|max:10240',
-        ], [
-            'tanggal.required' => 'Tanggal tidak boleh kosong',
-            'kelas.required' => 'Kelas tidak boleh kosong',
-            'nama.required' => 'Nama tidak boleh kosong',
-            'nisn.required' => 'NISN (Nomor Induk Siswa Nasional) tidak boleh kosong',
-            'kegiatan.required' => 'Nama kegiatan yang dilaksanakan tidak boleh kosong',
-            'keterangan.required' => 'Keterangan Tidak boleh kosong',
-            'dokumentasi.*.max' => 'Ukuran file yang diupload maksimal 10MB',
-            'undangan.*.max' => 'Ukuran file yang diupload maksimal 10MB',
-        ]);
+        $validateData = $request->validated();
 
         $fileFields = ['dokumentasi', 'undangan'];
 
@@ -52,7 +46,7 @@ class eventualController extends Controller
                 foreach ($files as $index => $file) {
                     if ($index < 3) { // Batas maksimal 3 file
                         $originalName = $file->getClientOriginalName();
-                        $storedFiles[] = $file->storeAs($fileField, $originalName);
+                        $storedFiles[] = $file->storeAs($fileField, $originalName, 'public');
                     }
                 }
                 $validateData[$fileField] = json_encode($storedFiles);
@@ -67,30 +61,12 @@ class eventualController extends Controller
     public function edit($id)
     {
         $eventual = pelatihan::findOrFail($id);
-        return view('page.keasramaan.akademik.volentir.edit', compact('eventual'));
+        return view('keasramaan.akademik.volentir.edit', compact('eventual'));
     }
 
-    public function update(Request $request, $id)
+    public function update(EventualRequest $request, $id)
     {
-        $validateData = $request->validate([
-            'tanggal' => 'required',
-            'kelas' => 'required',
-            'nama' => 'required',
-            'nisn' => 'required',
-            'kegiatan' => 'required',
-            'keterangan' => 'required',
-            'dokumentasi.' => 'file|max:10240',
-            'undangan.' => 'file|max:10240',
-        ],[
-            'tanggal.required' => 'Tanggal tidak boleh kosong',
-            'kelas.required' => 'Kelas tidak boleh kosong',
-            'nama.required' => 'Nama tidak boleh kosong',
-            'nisn.required' => 'NISN (Nomor Induk Siswa Nasional) tidak boleh kosong',
-            'kegiatan.required' => 'Nama kegiatan yang dilaksanakan tidak boleh kosong',
-            'keterangan.required' => 'Keterangan Tidak boleh kosong',
-            'dokumentasi.*.max' => 'Ukuran file yang diupload maksimal 10MB',
-            'undangan.*.max' => 'Ukuran file yang diupload maksimal 10MB',
-        ]);
+        $validateData = $request->validated();
 
         $eventual = pelatihan::findOrFail($id);
 

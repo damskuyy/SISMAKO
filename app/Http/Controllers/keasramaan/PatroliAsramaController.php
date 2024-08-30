@@ -7,7 +7,6 @@ use App\Models\keasramaan\PatroliAsrama;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\keasramaan\PatroliRequest;
 
-
 class PatroliAsramaController extends Controller
 {
     // Display a listing of the resource

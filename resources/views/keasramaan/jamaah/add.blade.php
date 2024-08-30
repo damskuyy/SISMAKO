@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+    @include('database.inc.form')
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <div class="container mt-4">
@@ -47,20 +49,23 @@
                             </tr>
                         </thead>
                         <tbody id="studentTable">
-                            @foreach($dataKelas as $student)
-                            <tr data-kelas="{{ $student->kelas }}" style="{{ $student->kelas === 'X' ? '' : 'display: none;' }}">
-                                <td>{{ $student->siswa->nama }}</td>
-                                <td>{{ $student->kelas }}</td>
-                                <td>
-                                    <input type="hidden" name="siswa_ids[]" value="{{ $student->siswa->id }}">
-                                    <input type="hidden" name="nama_siswa[{{ $student->siswa->id }}]" value="{{ $student->siswa->nama }}">
-                                    <select class="form-select" name="status[{{ $student->siswa->id }}]" style="width: 100px;">
-                                        <option value="Hadir">Hadir</option>
-                                        <option value="Sakit">Sakit</option>
-                                        <option value="Alpha">Alpha</option>
-                                    </select>
-                                </td>
-                            </tr>
+                            @foreach ($dataKelas as $student)
+                                <tr data-kelas="{{ $student->kelas }}"
+                                    style="{{ $student->kelas === 'X' ? '' : 'display: none;' }}">
+                                    <td>{{ $student->siswa->nama }}</td>
+                                    <td>{{ $student->kelas }}</td>
+                                    <td>
+                                        <input type="hidden" name="siswa_ids[]" value="{{ $student->siswa->id }}">
+                                        <input type="hidden" name="nama_siswa[{{ $student->siswa->id }}]"
+                                            value="{{ $student->siswa->nama }}">
+                                        <select class="form-select" name="status[{{ $student->siswa->id }}]"
+                                            style="width: 100px;">
+                                            <option value="Hadir">Hadir</option>
+                                            <option value="Sakit">Sakit</option>
+                                            <option value="Alpha">Alpha</option>
+                                        </select>
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
@@ -84,39 +89,38 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-    const kelasFilter = document.getElementById('kelasFilter');
-    const studentTable = document.getElementById('studentTable').children;
-    const kelasInput = document.getElementById('kelasInput');
-    const jamaahForm = document.getElementById('jamaahForm');
+            const kelasFilter = document.getElementById('kelasFilter');
+            const studentTable = document.getElementById('studentTable').children;
+            const kelasInput = document.getElementById('kelasInput');
+            const jamaahForm = document.getElementById('jamaahForm');
 
-    kelasFilter.addEventListener('change', function() {
-        const filterValue = kelasFilter.value;
+            kelasFilter.addEventListener('change', function() {
+                const filterValue = kelasFilter.value;
 
-        Array.from(studentTable).forEach(row => {
-            const kelas = row.getAttribute('data-kelas');
+                Array.from(studentTable).forEach(row => {
+                    const kelas = row.getAttribute('data-kelas');
 
-            if (kelas === filterValue) {
-                row.style.display = '';
-            } else {
-                row.style.display = 'none';
-            }
+                    if (kelas === filterValue) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+
+                kelasInput.value = filterValue; // Set nilai kelas yang dipilih
+            });
+
+            jamaahForm.addEventListener('submit', function(event) {
+                const filterValue = kelasFilter.value;
+
+                // Hapus siswa yang tidak sesuai dengan filter dari DOM sebelum submit
+                Array.from(studentTable).forEach(row => {
+                    const kelas = row.getAttribute('data-kelas');
+                    if (kelas !== filterValue) {
+                        row.remove();
+                    }
+                });
+            });
         });
-
-        kelasInput.value = filterValue; // Set nilai kelas yang dipilih
-    });
-
-    jamaahForm.addEventListener('submit', function(event) {
-        const filterValue = kelasFilter.value;
-
-        // Hapus siswa yang tidak sesuai dengan filter dari DOM sebelum submit
-        Array.from(studentTable).forEach(row => {
-            const kelas = row.getAttribute('data-kelas');
-            if (kelas !== filterValue) {
-                row.remove();
-            }
-        });
-    });
-});
-
     </script>
-@endsection
+    @endsection

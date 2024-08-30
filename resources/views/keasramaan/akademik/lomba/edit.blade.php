@@ -85,7 +85,7 @@
             </div>
         </div>
     </div>
-    @include('js.setFilePelatihanAkademik')
+    @include('database.js.setFilePelatihanAkademik')
     <script>
         const data = @json($lomba);
         getData(data);

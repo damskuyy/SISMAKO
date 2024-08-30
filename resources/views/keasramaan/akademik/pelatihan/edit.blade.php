@@ -84,7 +84,7 @@
             </div>
         </div>
     </div>
-    @include('js.setFilePelatihanAkademik')
+    @include('database.js.setFilePelatihanAkademik')
     <script>
             const pelatihanData = @json($pelatihan);
 

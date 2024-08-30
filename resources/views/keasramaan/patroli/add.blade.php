@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+    @include('database.inc.form')
     <div class="container mt-5">
         <a href="{{route('mutasi.index')}}" class="btn btn-secondary mb-4">Back</a>
         <form method="post" action="{{route('patroli.asrama.store')}}" enctype="multipart/form-data">

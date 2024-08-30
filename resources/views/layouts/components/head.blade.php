@@ -28,6 +28,11 @@
         .shadow {
             box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
         }
+
+        html,
+        body {
+            overflow-y: hidden;
+        }
     </style>
     <!-- Scripts -->
     {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    @include('database.inc.form')
     <style>
         .bg-red {
             background-color: rgba(255, 0, 0, 0.5);

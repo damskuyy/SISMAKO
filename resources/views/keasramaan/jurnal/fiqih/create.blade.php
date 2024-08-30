@@ -69,5 +69,5 @@
                 </div>
             </div>
         </div>
-        @include('js.getNameByAngkatan')
+        @include('database.js.getNameByAngkatan')
 @endsection

@@ -2,8 +2,9 @@
 
 namespace App\Models\keasramaan;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\database\Siswa;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class pelatihan extends Model
 {
@@ -23,6 +24,11 @@ class pelatihan extends Model
 
     public function siswa()
     {
-        // return $this->belongsTo(Siswa::class);
+        return $this->belongsTo(Siswa::class);
+    }
+
+    public function scopeBetweenDates($query, $startDate, $endDate)
+    {
+        return $query->whereBetween('tanggal', [$startDate, $endDate]);
     }
 }

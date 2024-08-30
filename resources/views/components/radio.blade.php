@@ -27,8 +27,8 @@
                         <div class="col-6">
 
                             <div class="input-icon mb-2">
-                                <input class="form-control " placeholder="Select a date" id="datepicker-icon-1"
-                                    name="tanggal">
+                                <input class="form-control " placeholder="Select a date" id="datepicker"
+                                    autocomplete="false" name="tanggal">
                                 @error('tanggal')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -246,8 +246,8 @@
                         <div class="col-6">
 
                             <div class="input-icon mb-2">
-                                <input class="form-control " placeholder="Select a date" id="datepicker-icon-2"
-                                    name="tanggal">
+                                <input class="form-control " placeholder="Select a date" id="datepicker"
+                                    autocomplete="false" name="tanggal">
                                 @error('tanggal')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -378,7 +378,7 @@
                         <div class="col-6">
                             <div class="input-icon mb-2">
                                 <input class="form-control " placeholder="Select a date" name="tanggal"
-                                    id="datepicker-icon-3">
+                                    id="datepicker" autocomplete="false">
                                 @error('tanggal')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -517,7 +517,8 @@
 
 <div class="modal modal-blur fade" id="modalReport4" tabindex="-1" aria-hidden="true" style="display: none;">
     <form action="{{ route('no_surat.store') }}" method="post" enctype="multipart/form-data">
-        @csrf
+        @csrf   
+        @method('POST')
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -542,7 +543,7 @@
                         <div class="col-6">
                             <div class="input-icon mb-2">
                                 <input class="form-control " placeholder="Select a date" name="tanggal"
-                                    id="datepicker-icon-3">
+                                    id="datepicker" autocomplete="false">
                                 @error('tanggal')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -633,8 +634,8 @@
                         @enderror
                         <div class="col-6">
                             <div class="input-icon mb-2">
-                                <input class="form-control " placeholder="Select a date" id="datepicker-icon-4"
-                                    name="tanggal">
+                                <input class="form-control " placeholder="Select a date" id="datepicker"
+                                    autocomplete="false" name="tanggal">
                                 @error('tanggal')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -778,8 +779,8 @@
                         </div>
                         <div class="col-6">
                             <div class="input-icon mb-2">
-                                <input class="form-control " placeholder="Select a date" id="datepicker-icon-5"
-                                    name="tanggal">
+                                <input class="form-control " placeholder="Select a date" id="datepicker"
+                                    autocomplete="false" name="tanggal">
                                 @error('tanggal')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -981,8 +982,8 @@
                         <div class="col-8 d-flex g-2">
                             <div class="col-4 me-2">
                                 <div class="input-icon mb-2">
-                                    <input class="form-control" placeholder="Select a start date"
-                                        id="datepicker-icon-1" name="start_date">
+                                    <input class="form-control" placeholder="Select a start date" id="datepicker-1"
+                                        name="start_date">
                                     @error('start_date')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -1006,8 +1007,8 @@
                             </div>
                             <div class="col-4">
                                 <div class="input-icon mb-2 me-2">
-                                    <input class="form-control" placeholder="Select an end date"
-                                        id="datepicker-icon-2" name="end_date">
+                                    <input class="form-control" placeholder="Select an end date" id="datepicker-2"
+                                        name="end_date">
                                     @error('end_date')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -1161,8 +1162,8 @@
                         <div class="col-8 d-flex g-2">
                             <div class="col-4 me-2">
                                 <div class="input-icon mb-2">
-                                    <input class="form-control" placeholder="Select a start date"
-                                        id="datepicker-icon-1" name="start_date">
+                                    <input class="form-control" placeholder="Select a start date" id="datepicker-1"
+                                        name="start_date">
                                     @error('start_date')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -1186,8 +1187,8 @@
                             </div>
                             <div class="col-4">
                                 <div class="input-icon mb-2 me-2">
-                                    <input class="form-control" placeholder="Select an end date"
-                                        id="datepicker-icon-2" name="end_date">
+                                    <input class="form-control" placeholder="Select an end date" id="datepicker-2"
+                                        name="end_date">
                                     @error('end_date')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -1345,8 +1346,8 @@
                         <div class="col-8 d-flex g-2">
                             <div class="col-4 me-2">
                                 <div class="input-icon mb-2">
-                                    <input class="form-control" placeholder="Select a start date"
-                                        id="datepicker-icon-1" name="start_date">
+                                    <input class="form-control" placeholder="Select a start date" id="datepicker-1"
+                                        name="start_date">
                                     @error('start_date')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -1370,8 +1371,8 @@
                             </div>
                             <div class="col-4">
                                 <div class="input-icon mb-2 me-2">
-                                    <input class="form-control" placeholder="Select an end date"
-                                        id="datepicker-icon-2" name="end_date">
+                                    <input class="form-control" placeholder="Select an end date" id="datepicker-2"
+                                        name="end_date">
                                     @error('end_date')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -1531,7 +1532,7 @@
                             <div class="col-4 me-2">
                                 <div class="input-icon mb-2">
                                     <input class="form-control" placeholder="Select a start date"
-                                        id="datepicker-icon-1" name="start_date">
+                                        id="datepicker-1" name="start_date">
                                     @error('start_date')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -1555,8 +1556,8 @@
                             </div>
                             <div class="col-4">
                                 <div class="input-icon mb-2 me-2">
-                                    <input class="form-control" placeholder="Select an end date"
-                                        id="datepicker-icon-2" name="end_date">
+                                    <input class="form-control" placeholder="Select an end date" id="datepicker-2"
+                                        name="end_date">
                                     @error('end_date')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -1676,7 +1677,8 @@
                                                             class="btn btn-icon btn-sm btn-outline-success"
                                                             role="button"
                                                             data-bs-target="#modalUpdate5{{ $item->id }}"
-                                                            data-bs-toggle="modal" data-bs-dismiss="modal">
+                                                            data-bs-toggle="modal" 
+                                                            data-bs-dismiss="modal">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                                 height="24" viewBox="0 0 24 24" fill="none"
                                                                 stroke="currentColor" stroke-width="2"
@@ -1734,7 +1736,7 @@
                             <div class="col-4 me-2">
                                 <div class="input-icon mb-2">
                                     <input class="form-control" placeholder="Select a start date"
-                                        id="datepicker-icon-1" name="start_date">
+                                        id="datepicker-1" name="start_date">
                                     @error('start_date')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -1758,8 +1760,8 @@
                             </div>
                             <div class="col-4">
                                 <div class="input-icon mb-2 me-2">
-                                    <input class="form-control" placeholder="Select an end date"
-                                        id="datepicker-icon-2" name="end_date">
+                                    <input class="form-control" placeholder="Select an end date" id="datepicker-2"
+                                        name="end_date">
                                     @error('end_date')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -1916,7 +1918,7 @@
                             <div class="col-4 me-2">
                                 <div class="input-icon mb-2">
                                     <input class="form-control" placeholder="Select a start date"
-                                        id="datepicker-icon-1" name="start_date">
+                                        id="datepicker-1" name="start_date">
                                     @error('start_date')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -1940,8 +1942,8 @@
                             </div>
                             <div class="col-4">
                                 <div class="input-icon mb-2 me-2">
-                                    <input class="form-control" placeholder="Select an end date"
-                                        id="datepicker-icon-2" name="end_date">
+                                    <input class="form-control" placeholder="Select an end date" id="datepicker-2"
+                                        name="end_date">
                                     @error('end_date')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -2008,8 +2010,8 @@
                             <div class="col-6">
 
                                 <div class="input-icon mb-2">
-                                    <input class="form-control " placeholder="Select a date"
-                                        id="datepicker-icon-1" name="tanggal"
+                                    <input class="form-control " placeholder="Select a date" id="datepicker"
+                                        name="tanggal" autocomplete="false"
                                         value="{{ old('tanggal', $item->tanggal) }}">
 
                                     <span
@@ -2138,8 +2140,8 @@
                             <div class="col-6">
 
                                 <div class="input-icon mb-2">
-                                    <input class="form-control " placeholder="Select a date"
-                                        id="datepicker-icon-2" name="tanggal"
+                                    <input class="form-control " placeholder="Select a date" id="datepicker-2"
+                                        name="tanggal" autocomplete="false"
                                         value="{{ old('tanggal', $item->tanggal) }}">
                                     <span
                                         class="input-icon-addon"><!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
@@ -2261,7 +2263,8 @@
                             <div class="col-6">
                                 <div class="input-icon mb-2">
                                     <input class="form-control" placeholder="Select a date" name="tanggal"
-                                        id="datepicker-icon-3" value="{{ old('tanggal', $item->tanggal) }}">
+                                        id="datepicker" autocomplete="false"
+                                        value="{{ old('tanggal', $item->tanggal) }}">
                                     <span class="input-icon-addon">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
                                             height="24" viewBox="0 0 24 24" stroke-width="2"
@@ -2426,8 +2429,8 @@
                             </div>
                             <div class="col-6">
                                 <div class="input-icon mb-2">
-                                    <input class="form-control " placeholder="Select a date"
-                                        id="datepicker-icon-4" name="tanggal"
+                                    <input class="form-control " placeholder="Select a date" id="datepicker"
+                                        autocomplete="false" name="tanggal"
                                         value="{{ old('tanggal', $item->tanggal) }}">
                                     <span
                                         class="input-icon-addon"><!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
@@ -2521,8 +2524,8 @@
 
                             <div class="col-6">
                                 <div class="input-icon mb-2">
-                                    <input class="form-control " placeholder="Select a date"
-                                        id="datepicker-icon-4" name="tanggal"
+                                    <input class="form-control " placeholder="Select a date" id="datepicker"
+                                        autocomplete="false" name="tanggal"
                                         value="{{ old('tanggal', $item->tanggal) }}">
                                     <span
                                         class="input-icon-addon"><!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
@@ -2625,8 +2628,7 @@
 @endforeach
 
 @foreach ($suratpengajuan as $item)
-    <div class="modal modal-blur fade" id="modalUpdate6{{ $item->id }}" tabindex="-1" aria-hidden="true"
-        style="display: none;">
+    <div class="modal modal-blur fade" id="modalUpdate6{{ $item->id }}" tabindex="-1" aria-hidden="true">
         <form action="{{ route('pengajuan.update', $item->id) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('put')
@@ -2651,8 +2653,8 @@
                             </div>
                             <div class="col-6">
                                 <div class="input-icon mb-2">
-                                    <input class="form-control " placeholder="Select a date"
-                                        id="datepicker-icon-5" name="tanggal">
+                                    <input class="form-control " placeholder="Select a date" id="datepicker"
+                                        autocomplete="false" name="tanggal">
                                     <span
                                         class="input-icon-addon"><!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
@@ -2735,32 +2737,48 @@
 </script>
 
 <script>
-    // backdrop
-    $('#modalView1').on('shown.bs.modal', function() {
-        $('#modalUpdate1').modal({
-            backdrop: 'static',
-            keyboard: false
+    document.addEventListener('DOMContentLoaded', function() {
+    // Cari semua modal dengan ID yang mengikuti pola "modalUpdate"
+    const modals = document.querySelectorAll('[id^="modalUpdate"], [id^="modalView"]');
+
+    function hideModal(modal) {
+        const modalInstance = bootstrap.Modal.getInstance(modal);
+        if (modalInstance) {
+            modalInstance.hide();
+            modal.addEventListener('hidden.bs.modal', function() {
+                removeBackdrop();
+            }, { once: true });
+        }
+    }
+
+    function removeBackdrop() {
+        const backdrops = document.querySelectorAll('.modal-backdrop');
+        backdrops.forEach(backdrop => {
+            backdrop.remove();
         });
-    });
+        document.body.classList.remove('modal-open'); // memastikan body tidak terkunci
+        document.body.style.paddingRight = ''; // menghapus padding yang ditambahkan Bootstrap
+    }
 
-    $(document).ready(function() {
-        // Loop untuk setiap modal view dan modal update
-        for (let i = 1; i <= 6; i++) {
-            let modalViewId = `#modalView${i}`;
-            let modalUpdateId = `#modalUpdate${i}`;
+    function resetAllModals() {
+        modals.forEach(modal => {
+            if (modal) hideModal(modal);
+        });
+    }
 
-            // Event ketika modal update ditutup
-            $(modalUpdateId).on('hidden.bs.modal', function() {
-                // Menghapus backdrop yang tertinggal
-                $('.modal-backdrop').remove();
-
-                // Jika modal view masih ada, tambahkan kembali kelas modal-open ke body
-                if ($(modalViewId).hasClass('show')) {
-                    $('body').addClass('modal-open');
-                }
+    // Menambahkan event listener ke setiap modal untuk menghapus backdrop yang tidak terpakai
+    modals.forEach(modal => {
+        if (modal) {
+            modal.addEventListener('show.bs.modal', function() {
+                removeBackdrop(); // Hapus backdrop yang mungkin tersisa dari modal sebelumnya
+            });
+            modal.addEventListener('hidden.bs.modal', function() {
+                removeBackdrop(); // Pastikan backdrop juga dihapus saat modal ditutup
             });
         }
     });
+});
+
 
     document.addEventListener('DOMContentLoaded', function() {
         var radioButtons = document.querySelectorAll('.radio-inbox');
@@ -2823,7 +2841,7 @@
 
     // datepicker
     document.addEventListener("DOMContentLoaded", function() {
-        var datepickers = document.querySelectorAll('[id^="datepicker-icon-"]');
+        var datepickers = document.querySelectorAll('[id^="datepicker"]');
         datepickers.forEach(function(datepicker) {
             new Litepicker({
                 element: datepicker,

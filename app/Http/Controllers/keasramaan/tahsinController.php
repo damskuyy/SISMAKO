@@ -2,55 +2,40 @@
 
 namespace App\Http\Controllers\keasramaan;
 
-
 use Illuminate\Http\Request;
+use App\Models\database\Siswa;
 use App\Models\keasramaan\tahsin;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\keasramaan\TahsinRequest;
 
 class tahsinController extends Controller
 {
     public function index()
     {
-        $tahsin = tahsin::get();
-        return view('page.keasramaan.quran.tahsin.tahsin', compact('tahsin'));
+        $tahsin = tahsin::with(['siswa:id,nama,nisn'])->get();
+        return view('keasramaan.quran.tahsin.tahsin', compact('tahsin'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        return view('page.keasramaan.quran.tahsin.create');
+        $mutasiFilter = $request->query('angkatan', ''); // Default empty filter
+
+        // Fetch distinct angkatan values from Siswa model
+        $angkatan = Siswa::distinct()->pluck('angkatan');
+
+        // Get the selected angkatan from the request or default to an empty string
+        $defaultAngkatan = $request->angkatan;
+
+        // Fetch names for the selected angkatan if available
+        $names = $defaultAngkatan ? Siswa::where('angkatan', $defaultAngkatan)->get(['id', 'nama', 'angkatan']) : collect();
+        return view('keasramaan.quran.tahsin.create', compact('angkatan', 'names'));
     }
 
-    public function store(Request $request)
+    public function store(TahsinRequest $request)
     {
-        $request->validate([
-            'tanggal' => 'required',
-            'kelas' => 'required',
-            'nama' => 'required',
-            'nisn' => 'required',
-            'surat' => 'required',
-            'ayat' => 'required',
-            'predikat' => 'required',
-            'pengajar' => 'required',
-        ], [
-            'tanggal.required' => 'Tanggal tidak boleh kosong',
-            'kelas.required' => 'Kelas tidak boleh kosong',
-            'nama.required' => 'Nama tidak boleh kosong',
-            'nisn.required' => 'NISN tidak boleh kosong',
-            'surat.required' => 'Surat tahfidz harus diisi',
-            'ayat.required' => 'Ayat tahfidz harus diisi',
-            'predikat.required' => 'Predikat tahfidz harus diisi',
-        ]);
+        $validatedData = $request->validated();
 
-        tahsin::create([
-            'tanggal' => $request->tanggal,
-            'kelas' => $request->kelas,
-            'nama' => $request->nama,
-            'nisn' => $request->nisn,
-            'surat' => $request->surat,
-            'ayat' => $request->ayat,
-            'predikat' => $request->predikat,
-            'pengajar' => $request->pengajar,
-        ]);
+        tahsin::create($validatedData);
 
         return redirect("/sekolah-keasramaan/al-quran/tahsin")->with("success", "Berhasil disimpan");
     }
@@ -58,25 +43,19 @@ class tahsinController extends Controller
     public function edit($id)
     {
         $tahsin = tahsin::find($id);
-        return view('page.keasramaan.quran.tahsin.edit', compact('tahsin'));
+        return view('keasramaan.quran.tahsin.edit', compact('tahsin'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
             'tanggal' => 'required',
-            'kelas' => 'required',
-            'nama' => 'required',
-            'nisn' => 'required',
             'surat' => 'required',
             'ayat' => 'required',
             'predikat' => 'required',
             'pengajar' => 'required',
         ], [
             'tanggal.required' => 'Tanggal harus diisi',
-            'kelas.required' => 'Kelas harus diisi',
-            'nama.required' => 'Nama harus diisi',
-            'nisn.required' => 'NISN harus diisi',
             'surat.required' => 'Surat tahfidz harus diisi',
             'ayat.required' => 'Ayat tahfidz harus diisi',
             'predikat.required' => 'Predikat tahfidz harus diisi',
@@ -85,9 +64,6 @@ class tahsinController extends Controller
 
         tahsin::find($id)->update([
             'tanggal' => $request->tanggal,
-            'kelas' => $request->kelas,
-            'nama' => $request->nama,
-            'nisn' => $request->nisn,
             'surat' => $request->surat,
             'ayat' => $request->ayat,
             'predikat' => $request->predikat,

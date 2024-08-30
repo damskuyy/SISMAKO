@@ -10,6 +10,7 @@ use App\Http\Requests\sarpras\DormPurchaseRequest;
 use App\Models\sarpras\DormPurchase;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class DormPurchaseController extends Controller
 {
@@ -21,9 +22,9 @@ class DormPurchaseController extends Controller
             $query->whereYear('tanggal_pembelian', $request->tahun_pembelian);
         }
 
-        // if ($request->filled('nama_barang')) {
-        //     $query->where('nama_barang', 'like', '%' . $request->nama_barang . '%');
-        // }
+        if ($request->filled('bulan_pembelian')) {
+            $query->whereMonth('tanggal_pembelian', $request->bulan_pembelian);
+        }
 
         $dormPurchases = $query->paginate(10); // Menggunakan paginate alih-alih get
 
@@ -58,11 +59,11 @@ class DormPurchaseController extends Controller
         return redirect("/dorm-purchase")->with("success", "Berhasil menambahkan data Pembelian Asrama.");
     }
 
-    // public function edit($id)
-    // {
-    //     $dormPurchase = DormPurchase::findOrFail($id);
-    //     return view("admin.asrama.edit", compact("dormPurchase"));
-    // }
+    public function edited($id)
+    {
+        $dormPurchase = DormPurchase::findOrFail($id);
+        return view("admin.asrama.edit", compact("dormPurchase"));
+    }
 
     public function update(DormPurchaseRequest $request, $id)
     {
@@ -72,6 +73,14 @@ class DormPurchaseController extends Controller
         $data = $request->except('gambar');
 
         if ($request->hasFile('gambar')) {
+            // Hapus gambar lama dari database dan storage
+            $oldImages = $dormPurchase->images;
+            foreach ($oldImages as $image) {
+                Storage::disk('public')->delete('dorm_purchases/' . $image->path);
+                $image->delete();
+            }
+
+            // Simpan gambar baru
             foreach ($request->file('gambar') as $file) {
                 $path = $file->storeAs('dorm_purchases', $file->getClientOriginalName(), 'public');
                 $dormPurchase->images()->create(['path' => $path]);

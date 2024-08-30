@@ -81,8 +81,18 @@
                                     <div class="col-sm-3 col-md-3">
                                         <div class="mb-3">
                                             <label class="form-label">Predikat</label>
-                                            <input type='text' class="form-control" placeholder="Masukan Predikat"
-                                                name="predikat">
+                                            <select class="form-control form-select" name="predikat" required>
+                                                <option value="">Pilih Tahun Ajaran</option>
+                                                <option value="Sempurna"
+                                                    {{ old('predikat') == 'Sempurna' ? 'selected' : '' }}>Sempurna
+                                                </option>
+                                                <option value="Baik"
+                                                    {{ old('predikat') == 'Baik' ? 'selected' : '' }}>Baik
+                                                </option>
+                                                <option value="Cukup"
+                                                    {{ old('predikat') == 'Cukup' ? 'selected' : '' }}>Cukup
+                                                </option>
+                                            </select>
                                             @error('predikat')
                                                 <div class="text-danger mt-2"> {{ $message }} </div>
                                             @enderror
@@ -91,8 +101,18 @@
                                     <div class="col-sm-3 col-md-3">
                                         <div class="mb-3">
                                             <label class="form-label">Pengajar</label>
-                                            <input type='text' class="form-control" placeholder="Masukan Pengajar"
-                                                name="pengajar">
+                                            <select class="form-control form-select" name="pengajar" required>
+                                                <option value="">Pilih Tahun Ajaran</option>
+                                                <option value="Ahmad Dahlan"
+                                                    {{ old('pengajar') == 'Ahmad Dahlan' ? 'selected' : '' }}>Ahmad Dahlan
+                                                </option>
+                                                <option value="Ahmad Rifai"
+                                                    {{ old('pengajar') == 'Ahmad Rifai' ? 'selected' : '' }}>Ahmad Rifai
+                                                </option>
+                                                <option value="Ratno Wijaya"
+                                                    {{ old('pengajar') == 'Ratno Wijaya' ? 'selected' : '' }}>Ratno Wijaya
+                                                </option>
+                                            </select>
                                             @error('pengajar')
                                                 <div class="text-danger mt-2"> {{ $message }} </div>
                                             @enderror
@@ -109,5 +129,5 @@
             </div>
         </div>
     </div>
-    @include('js.getNameByAngkatan')
+    @include('database.js.getNameByAngkatan')
 @endsection

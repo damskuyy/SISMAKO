@@ -78,7 +78,7 @@
             </div>
         </div>
     </div>
-    @include('js.setFilePelatihanAkademik')
+    @include('database.js.setFilePelatihanAkademik')
     <script>
         const data = @json($sertifikat);
         getDataSingle(data);

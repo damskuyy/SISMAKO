@@ -24,32 +24,32 @@ class GeneratePdfController extends Controller
         $models = [
             'suratmasuk' => [
                 'model' => SuratMasuk::class,
-                'view' => 'pdf.suratmasukpdf',
+                'view' => 'korespondensi.pdf.suratmasukpdf',
                 'default_filename' => 'suratmasuk.pdf',
             ],
             'suratkeluar' => [
                 'model' => SuratKeluar::class,
-                'view' => 'pdf.suratkeluarpdf',
+                'view' => 'korespondensi.pdf.suratkeluarpdf',
                 'default_filename' => 'suratkeluar.pdf',
             ],
             'suratperingatan' => [
                 'model' => SuratPeringatan::class,
-                'view' => 'pdf.suratperingatanpdf',
+                'view' => 'korespondensi.pdf.suratperingatanpdf',
                 'default_filename' => 'suratperingatan.pdf',
             ],
             'nomorsurat' => [
                 'model' => NomorSurat::class,
-                'view' => 'pdf.nomorsuratpdf',
-                'default_filename' => 'nomorsurat.pdf',
+                'view' => 'korespondensi.pdf.nomorsuratpdf',
+                'default_filename' => 'nomorsurat.pdf', 
             ],
             'notulensi' => [
                 'model' => Notulensi::class,
-                'view' => 'pdf.notulensipdf',
+                'view' => 'korespondensi.pdf.notulensipdf',
                 'default_filename' => 'notulensi.pdf',
             ],
             'suratpengajuan' => [
                 'model' => SuratPengajuan::class,
-                'view' => 'pdf.suratpengajuanpdf',
+                'view' => 'korespondensi.pdf.suratpengajuanpdf',
                 'default_filename' => 'suratpengajuan.pdf',
             ],
 

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\keasramaan;
 
+use Illuminate\Support\Str;
 
 use Illuminate\Http\Request;
+use App\Models\database\Siswa;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\keasramaan\SertifikatRequest;
 use App\Models\keasramaan\sertifikat;
 use Illuminate\Support\Facades\Storage;
 
@@ -12,33 +15,29 @@ class sertifikatController extends Controller
 {
     public function index()
     {
-        $sertifikat = sertifikat::get();
-        return view('page.keasramaan.quran.sertifikat.sertif', compact('sertifikat'));
+        $sertifikat = sertifikat::with(['siswa:id,nama,nisn'])->get();
+        return view('keasramaan.quran.sertifikat.sertif', compact('sertifikat'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        return view('page.keasramaan.quran.sertifikat.create');
+        $mutasiFilter = $request->query('angkatan', ''); // Default empty filter
+
+        // Fetch distinct angkatan values from Siswa model
+        $angkatan = Siswa::distinct()->pluck('angkatan');
+
+        // Get the selected angkatan from the request or default to an empty string
+        $defaultAngkatan = $request->angkatan;
+
+        // Fetch names for the selected angkatan if available
+        $names = $defaultAngkatan ? Siswa::where('angkatan', $defaultAngkatan)->get(['id', 'nama', 'angkatan']) : collect();
+
+        return view('keasramaan.quran.sertifikat.create', compact('angkatan', 'names'));
     }
 
-    public function store(Request $request)
+    public function store(SertifikatRequest $request)
     {
-        $validateData = $request->validate([
-            'tanggal' => 'required',
-            'kelas' => 'required',
-            'nama' => 'required',
-            'nisn' => 'required',
-            'juz_30' => 'file|max:10240',
-            'juz_29' => 'file|max:10240',
-            'juz_28' => 'file|max:10240',
-            'juz_umum' => 'file|max:10240',
-
-        ], [
-            'tanggal.required' => 'Tahun ajaran harus diisi',
-            'kelas.required' => 'Kelas harus diisi',
-            'nama.required' => 'nama harus diisi',
-            'nisn.required' => 'NISN harus diisi',
-        ]);
+        $validateData = $request->validated();
 
         // Menyimpan file-file yang di-upload dengan nama asli
         $fileFields = [
@@ -51,8 +50,8 @@ class sertifikatController extends Controller
         foreach ($fileFields as $fileField) {
             if ($request->file($fileField)) {
                 $file = $request->file($fileField);
-                $originalName = $file->getClientOriginalName();
-                $validateData[$fileField] = $file->storeAs($fileField, $originalName);
+                $originalName = Str::random(30) . '.' . $file->getClientOriginalExtension();
+                $validateData[$fileField] = $file->storeAs('al-quran/sertifikat', $originalName, 'public');
             }
         }
 
@@ -64,25 +63,19 @@ class sertifikatController extends Controller
     public function edit($id)
     {
         $sertifikat = sertifikat::find($id);
-        return view('page.keasramaan.quran.sertifikat.edit', compact('sertifikat'));
+        return view('keasramaan.quran.sertifikat.edit', compact('sertifikat'));
     }
 
-    public function update(Request $request, $id)
+    public function update(SertifikatRequest $request, $id)
     {
-        $validateData = $request->validate([
+        $validateData = $request->validated([
             'tanggal' => 'required',
-            'kelas' => 'required',
-            'nama' => 'required',
-            'nisn' => 'required',
             'juz_30' => 'file|max:10240',
             'juz_29' => 'file|max:10240',
             'juz_28' => 'file|max:10240',
             'juz_umum' => 'file|max:10240',
         ], [
             'tanggal.required' => 'Tahun ajaran harus diisi',
-            'kelas.required' => 'Kelas harus diisi',
-            'nama.required' => 'nama harus diisi',
-            'nisn.required' => 'NISN harus diisi',
         ]);
 
         $sertifikat = sertifikat::findOrFail($id);
@@ -103,7 +96,7 @@ class sertifikatController extends Controller
                 // Simpan file baru
                 $file = $request->file($fileField);
                 $originalName = $file->getClientOriginalName();
-                $validateData[$fileField] = $file->storeAs($fileField, $originalName);
+                $validateData[$fileField] = $file->storeAs($fileField, $originalName, 'public');
             } else {
                 // Set the field to the old value if no file was uploaded
                 $validateData[$fileField] = $sertifikat->$fileField;
