@@ -5,10 +5,10 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="flex justify-between p-4">
                 <a href="/administrasi" class="btn btn-primary">
-                    Back
+                    Kembali
                 </a>
                 <a href="{{ route('mapel.create') }}" class="btn btn-primary">
-                    Add Data Mata Pelajaran
+                    Tambah
                 </a>
             </div>
             <div class="col flex flex-wrap justify-center">

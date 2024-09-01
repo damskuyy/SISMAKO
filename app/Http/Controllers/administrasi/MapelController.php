@@ -173,9 +173,7 @@ class MapelController extends Controller
                 $validateData[$fileField] = $file->storeAs($fileField, $originalName);
             } else {
                 // Jika tidak ada file baru, pertahankan data lama
-                if (isset($validateData[$fileField])) {
-                    $validateData[$fileField] = $validateData[$fileField];
-                }
+               $validateData[$fileField] = $mapel->$fileField;
             }
         }
 

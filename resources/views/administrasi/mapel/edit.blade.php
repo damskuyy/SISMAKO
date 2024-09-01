@@ -25,9 +25,10 @@
                                                 <select class="form-control form-select" name="tahun_ajaran">
                                                     <option value="">Pilih Tahun Ajaran</option>
                                                     @foreach (generateTahunAjaran() as $tahun)
-                                                        <option value="{{ $tahun->tahun_ajaran }}"
-                                                            {{ $mapel->tahun_ajaran == $tahun->tahun_ajaran ? 'selected' : '' }}>
-                                                            {{ $tahun->tahun_ajaran }}></option>
+                                                        <option value="{{ $tahun }}"
+                                                            {{ $mapel->tahun_ajaran == $tahun ? 'selected' : '' }}>
+                                                            {{ $tahun }}
+                                                        </option>
                                                     @endforeach
                                                 </select>
                                                 @error('tahun_ajaran')
