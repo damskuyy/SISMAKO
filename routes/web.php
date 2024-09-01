@@ -58,6 +58,10 @@ Route::get('/smktibazma.sch.id', function () {
     return view('progres');
 });
 
+Route::get('/change-password-sismako', function() {
+    return view('change-password');
+});
+
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('database', [DatabaseDashboard::class, 'index'])->name('dashboard');

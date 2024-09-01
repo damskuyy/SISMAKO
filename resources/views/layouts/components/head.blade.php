@@ -13,7 +13,6 @@
 
     <link rel="stylesheet" href="{{ asset('dist/css/tabler.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dist/css/demo.min.css') }}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <style>
         .step {
@@ -27,11 +26,6 @@
         .shadow-sm,
         .shadow {
             box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-        }
-
-        html,
-        body {
-            overflow-y: hidden;
         }
     </style>
     <!-- Scripts -->

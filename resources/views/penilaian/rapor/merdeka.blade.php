@@ -327,7 +327,7 @@
                     <td style="text-align: center;">{{ $i++ }}</td>
                     <td>Bahasa Indonesia</td>
                     <td style="text-align: center;">{{ $rapor->muatan_nasional['bindo']['nilai'] }}</td>
-                    <td>{{ $rapor->muatan_nasional['bind']['deskripsi'] }}</td>
+                    <td>{{ $rapor->muatan_nasional['bindo']['deskripsi'] }}</td>
                 @endif
             </tr>
             <tr>
