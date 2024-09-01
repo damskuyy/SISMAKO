@@ -13,12 +13,13 @@
                     <div class="row">
 
                         <div class="col-6">
-
                             <select id="tp-modal-1" class="form-select" name="tp">
-                                <option selected>Pilih Tahun Ajaran</option>
-                                <option value="2022/2023">2022/2023</option>
-                                <option value="2023/2024">2023/2024</option>
-                                <option value="2024/2025">2024/2025</option>
+                                <option value="Selected">Pilih Tahun Ajaran</option>
+                                    <option value="2022/2023">2022/2023</option>
+                                    <option value="2023/2024">2023/2024</option>
+                                    <option value="2024/2025">2024/2025</option>
+                                    <option value="2025/2026">2025/2026</option>
+                                    <option value="2026/2027">2026/2027</option>
                             </select>
                         </div>
                         @error('tp')
@@ -234,10 +235,12 @@
                         <div class="col-6">
 
                             <select id="tp-modal-2" class="form-select" name="tp">
-                                <option selected>Pilih Tahun Ajaran</option>
-                                <option value="2022/2023">2022/2023</option>
-                                <option value="2023/2024">2023/2024</option>
-                                <option value="2024/2025">2024/2025</option>
+                                <option value="Selected">Pilih Tahun Ajaran</option>
+                                    <option value="2022/2023">2022/2023</option>
+                                    <option value="2023/2024">2023/2024</option>
+                                    <option value="2024/2025">2024/2025</option>
+                                    <option value="2025/2026">2025/2026</option>
+                                    <option value="2026/2027">2026/2027</option>
                             </select>
                             @error('tp')
                                 <div class="text-danger">{{ $message }}</div>
@@ -366,10 +369,12 @@
                     <div class="row">
                         <div class="col-6">
                             <select id="tp-modal-3" class="form-select" name="tp">
-                                <option selected>Pilih Tahun Ajaran</option>
-                                <option value="2022/2023">2022/2023</option>
-                                <option value="2023/2024">2023/2024</option>
-                                <option value="2024/2025">2024/2025</option>
+                                <option value="Selected">Pilih Tahun Ajaran</option>
+                                    <option value="2022/2023">2022/2023</option>
+                                    <option value="2023/2024">2023/2024</option>
+                                    <option value="2024/2025">2024/2025</option>
+                                    <option value="2025/2026">2025/2026</option>
+                                    <option value="2026/2027">2026/2027</option>
                             </select>
                             @error('tp')
                                 <div class="text-danger mt-2"> {{ $message }}</div>
@@ -531,10 +536,12 @@
                         <div class="col-6">
 
                             <select id="tp-modal-4" class="form-select" name="tp">
-                                <option selected>Pilih Tahun Ajaran</option>
-                                <option value="2022/2023">2022/2023</option>
-                                <option value="2023/2024">2023/2024</option>
-                                <option value="2024/2025">2024/2025</option>
+                                <option value="Selected">Pilih Tahun Ajaran</option>
+                                    <option value="2022/2023">2022/2023</option>
+                                    <option value="2023/2024">2023/2024</option>
+                                    <option value="2024/2025">2024/2025</option>
+                                    <option value="2025/2026">2025/2026</option>
+                                    <option value="2026/2027">2026/2027</option>
                             </select>
                             @error('tp')
                                 <div class="text-danger">{{ $message }}</div>
@@ -623,10 +630,12 @@
                     <div class="row ">
                         <div class="col-6">
                             <select id="tp-modal-4" class="form-select" name="tp">
-                                <option selected>Pilih Tahun Ajaran</option>
-                                <option value="2022/2023">2022/2023</option>
-                                <option value="2023/2024">2023/2024</option>
-                                <option value="2024/2025">2024/2025</option>
+                                <option value="Selected">Pilih Tahun Ajaran</option>
+                                    <option value="2022/2023">2022/2023</option>
+                                    <option value="2023/2024">2023/2024</option>
+                                    <option value="2024/2025">2024/2025</option>
+                                    <option value="2025/2026">2025/2026</option>
+                                    <option value="2026/2027">2026/2027</option>
                             </select>
                         </div>
                         @error('tp')
@@ -768,10 +777,12 @@
                         <div class="col-6">
 
                             <select id="tp-modal-6" class="form-select" name="tp">
-                                <option selected>Pilih Tahun Ajaran</option>
-                                <option value="2022/2023">2022/2023</option>
-                                <option value="2023/2024">2023/2024</option>
-                                <option value="2024/2025">2024/2025</option>
+                                <option value="Selected">Pilih Tahun Ajaran</option>
+                                    <option value="2022/2023">2022/2023</option>
+                                    <option value="2023/2024">2023/2024</option>
+                                    <option value="2024/2025">2024/2025</option>
+                                    <option value="2025/2026">2025/2026</option>
+                                    <option value="2026/2027">2026/2027</option>
                             </select>
                             @error('tp')
                                 <div class="text-danger">{{ $message }}</div>
@@ -2826,18 +2837,27 @@
     });
 
     // suratlainnya
-    function handleSelectChange(selectId, inputId) {
-        const selectElement = document.getElementById(selectId);
-        const inputElement = document.getElementById(inputId);
+    function handleSelectChange(indexId, selectId, inputId) {
+    const selectIndexElement = document.getElementById(indexId);
+    const selectElement = document.getElementById(selectId);
+    const inputElement = document.getElementById(inputId);
 
-        selectElement.addEventListener('change', () => {
-            inputElement.disabled = selectElement.value !== 'Lainnya';
-            // selectElement.disabled = selectElement.value === 'Lainnya'; 
-        });
+    function updateInputState() {
+        if (selectElement.value === 'Lainnya' || selectIndexElement.value === 'Lainnya') {
+            inputElement.disabled = false;
+        } else {
+            inputElement.disabled = true;
+        }
     }
 
-    handleSelectChange('js-modal-1', 'lainnya-field-1');
-    handleSelectChange('js-modal-2', 'lainnya-field-2');
+    selectElement.addEventListener('change', updateInputState);
+    selectIndexElement.addEventListener('change', updateInputState);
+}
+
+// Menggunakan fungsi untuk elemen-elemen dengan ID yang berbeda
+handleSelectChange('js','js-modal-1', 'lainnya-field-1');
+handleSelectChange('js', 'js-modal-2', 'lainnya-field-2');
+
 
     // datepicker
     document.addEventListener("DOMContentLoaded", function() {
