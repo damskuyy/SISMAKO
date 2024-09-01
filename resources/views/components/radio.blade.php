@@ -2785,18 +2785,18 @@
         var submitButton = document.getElementById('submitButton');
         var btnView = document.getElementById('btnView');
         var submitTp = document.getElementById('tp');
-        var submitJs = document.getElementById('js');
+        // var submitJs = document.getElementById('js
 
 
 
         function checkSelection() {
             var tpValue = submitTp.value;
-            var jsValue = submitJs.value;
+            // var jsValue = submitJs.value;
             var radioChecked = Array.from(radioButtons).some(function(radio) {
                 return radio.checked;
             });
 
-            submitButton.disabled = !(tpValue !== "" && jsValue !== "" && radioChecked);
+            submitButton.disabled = !(tpValue !== "" &&  radioChecked);
 
             if (radioChecked && (document.getElementById('radioInbox1').checked || document.getElementById(
                     'radioInbox2').checked)) {
@@ -2807,7 +2807,7 @@
         }
 
         submitTp.addEventListener('change', checkSelection);
-        submitJs.addEventListener('change', checkSelection);
+        // submitJs.addEventListener('change', checkSelection);
 
         radioButtons.forEach(function(radioButton) {
 
@@ -2832,7 +2832,7 @@
 
         selectElement.addEventListener('change', () => {
             inputElement.disabled = selectElement.value !== 'Lainnya';
-            selectElement.disabled = selectElement.value === 'Lainnya';
+            // selectElement.disabled = selectElement.value === 'Lainnya'; 
         });
     }
 

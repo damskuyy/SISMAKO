@@ -451,8 +451,6 @@ Route::controller(GuruController::class)->group(function() {
 
 Route::get('/korespondensi', [indexController::class, 'index'])->name('inbox.index');
 
-
-
 Route::get('/pdf/{model}', [GeneratePdfController::class, 'generatepdf'])->name('pdf');
 
 Route::controller(SuratMasukController::class)->group(function() {

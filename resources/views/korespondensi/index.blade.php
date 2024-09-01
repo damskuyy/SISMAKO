@@ -12,8 +12,7 @@
                     <div class="card-body">
 
                         <div class="row g-5 align-items-center mx-auto  ">
-
-                            <div class="col-4 ">
+                            <div class="col-md-6 col-lg-4 ">
                                 <label
                                     class="form-selectgroup-item flex-fill bg-primary-subtle border border-primary-subtle rounded-3">
                                     <div class="card-stamp">
@@ -56,7 +55,7 @@
                                     </div>
                                 </label>
                             </div>
-                            <div class="col-4">
+                            <div class="col-md-6 col-lg-4 ">
                                 <label
                                     class="form-selectgroup-item flex-fill bg-primary-subtle border border-primary-subtle rounded-3">
                                     <div class="card-stamp">
@@ -99,7 +98,7 @@
                                 </label>
                             </div>
 
-                            <div class="col-4">
+                            <div class="col-md-6 col-lg-4 ">
                                 <label
                                     class="form-selectgroup-item flex-fill bg-danger-subtle border border-danger-subtle rounded-3">
                                     <div class="card-stamp">
@@ -140,7 +139,7 @@
                                 </label>
                             </div>
 
-                            <div class="col-4">
+                            <div class="col-md-6 col-lg-4 ">
                                 <label
                                     class="form-selectgroup-item flex-fill bg-warning-subtle border border-warning-subtle rounded-3">
                                     <div class="card-stamp">
@@ -182,7 +181,7 @@
                                     </div>
                                 </label>
                             </div>
-                            <div class="col-4">
+                            <div class="col-md-6 col-lg-4 ">
                                 <label
                                     class="form-selectgroup-item flex-fill bg-warning-subtle border border-warning-subtle rounded-3">
                                     <div class="card-stamp">
@@ -227,7 +226,7 @@
                                     </div>
                                 </label>
                             </div>
-                            <div class="col-4">
+                            <div class="col-md-6 col-lg-4 ">
                                 <label
                                     class="form-selectgroup-item flex-fill bg-success-subtle border border-success-subtle rounded-3">
                                     <div class="card-stamp">
@@ -275,9 +274,9 @@
                     </div>
                     <div class="card-footer ">
                         <div class="row justify-between mx-2">
-                            <div class="col-4 d-flex ">
+                            <div class="col-md-6 col-lg-4 mb-3 d-flex ">
 
-                                <select id="tp" class="form-select me-3">
+                                <select id="tp" class="form-select me-3" onchange="showInputField()">
                                     <option value="Selected">Pilih Tahun Ajaran</option>
                                     <option value="2022/2023">2022/2023</option>
                                     <option value="2023/2024">2023/2024</option>
@@ -286,7 +285,7 @@
                                     <option value="2026/2027">2026/2027</option>
                                 </select>
 
-                                <select id="js" class="form-select me-3" onchange="showInputField()">
+                                {{-- <select id="js" class="form-select me-3" onchange="showInputField()">
                                     <option selected>Pilih Jenis Surat</option>
                                     <option value="Surat Tugas">Surat Tugas</option>
                                     <option value="Surat permohonan">Surat permohonan</option>
@@ -298,7 +297,7 @@
                                     <option value="Surat Pemberitahuan">Surat Pemberitahuan</option>
                                     <option value="Surat Izin">Surat Izin</option>
                                     <option value="Lainnya">Surat Lainnya</option>
-                                </select>
+                                </select> --}}
                             </div>
                             <div class="col-auto  text-end">
                                 <button type="button" class="btn" id='btnView' data-bs-toggle="modal">

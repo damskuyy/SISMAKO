@@ -59,29 +59,30 @@ class GeneratePdfController extends Controller
             abort(404, 'Model tidak ditemukan');
         }
 
-        $modelClass = $models[$model]['model'];
+    $modelClass = $models[$model]['model'];
+    $query = $modelClass::query();
 
-        $query = $modelClass::query();
-        if ($model === 'suratperingatan' && $request->has('subjek') && !empty($request->subjek)) {
-            $query->where('subjek', $request->subjek);
-        }
+    if ($model === 'suratperingatan' && $request->has('subjek') && !empty($request->subjek)) {
+        $query->where('subjek', $request->subjek);
+    }
 
-        if ($startDate) {
-            $query->where('tanggal', '>=', $startDate);
-        }
+    if ($startDate) {
+        $query->where('tanggal', '>=', $startDate);
+    }
 
-        if ($endDate) {
-            $query->where('tanggal', '<=', $endDate);
-        }
+    if ($endDate) {
+        $query->where('tanggal', '<=', $endDate);
+    }
 
-        $filteredData = $query->orderBy('tanggal', 'ASC')->get();
+    $filteredData = $query->orderBy('tanggal', 'ASC')->limit(1000)->get(); 
 
-        $filename = $request->input('filename', $models[$model]['default_filename']);
+    $filename = $request->input('filename', $models[$model]['default_filename']);
 
-        $pdf = Pdf::loadView($models[$model]['view'], ['data' => $filteredData])
-                  ->setPaper('a4', 'landscape');
+    $pdf = Pdf::loadView($models[$model]['view'], ['data' => $filteredData])
+              ->setPaper('a4', 'landscape')
+              ->setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);
 
-        return $pdf->stream($filename);
+    return $pdf->stream($filename);
     }
 
 }
