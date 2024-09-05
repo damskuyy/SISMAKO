@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\database\ZipController;
 use App\Http\Controllers\database\GuruController;
 use App\Http\Controllers\penilaian\PasController;
@@ -53,19 +54,16 @@ use App\Http\Controllers\database\PklAdministrasiSiswaController;
 use App\Http\Controllers\korespondensi\SuratPeringatanController;
 use App\Http\Controllers\database\PklAdministrasiSekolahController;
 
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/smktibazma.sch.id', function () {
     return view('progres');
 });
 
-Route::get('/change-password-sismako', function() {
-    return view('change-password');
-});
+// Route::middleware(['PasswordProtected'])->group(function () {
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+// });
 Route::get('database', [DatabaseDashboard::class, 'index'])->name('dashboard');
-Route::view('created-by', 'home.createdBy')->name('created-by');
 Route::view('penilaian', 'home.penilaian')->name('penilaian');
 Route::view('administrasi', 'home.administrasiKeguruan')->name('administrasi');
 Route::view('finance', 'home.finance')->name('finance');
@@ -75,16 +73,13 @@ Route::view('pkl', 'database.pkl.pkl')->name('pkl');
 Route::view('sekolah-keasramaan/al-quran', 'keasramaan.quran.quran')->name('quran');
 Route::view('sekolah-keasramaan/akademik', 'keasramaan.akademik.akademik')->name('akademik');
 Route::view('sekolah-keasramaan/jurnal-asrama', 'keasramaan.jurnal.jurnal')->name('jurnal');
-Route::view('pkl', 'database.database.pkl.pkl')->name('pkl');
-Route::view('sekolah-keasramaan/al-quran', 'keasramaan.quran.quran')->name('quran');
-Route::view('sekolah-keasramaan/akademik', 'keasramaan.akademik.akademik')->name('akademik');
-Route::view('sekolah-keasramaan/jurnal-asrama', 'keasramaan.jurnal.jurnal')->name('jurnal');
 
+Route::view('created-by', 'home.createdBy')->name('created-by');
 
-
-
-
-
+Route::controller(PasswordController::class)->group(function () {
+    Route::post('/password/verify', 'verify')->name('password.verify');
+    Route::post('/change-password-sismako', 'update')->name('password.update');
+});
 
 // Penilaian Controller Routes
 Route::controller(AverageController::class)->group(function () {
@@ -442,7 +437,7 @@ Route::get('/progres-siswa/{nisn}', [ProgresSiswaController::class, 'index'])->n
 
 
 // korespondensi
-Route::controller(GuruController::class)->group(function() {
+Route::controller(GuruController::class)->group(function () {
     Route::get('/guru', 'index')->name('guru.index');
     Route::get('/guru/create', 'create')->name('guru.create');
     Route::post('/guru/create/data', 'store')->name('guru.store');
@@ -453,7 +448,7 @@ Route::get('/korespondensi', [indexController::class, 'index'])->name('inbox.ind
 
 Route::get('/pdf/{model}', [GeneratePdfController::class, 'generatepdf'])->name('pdf');
 
-Route::controller(SuratMasukController::class)->group(function() {
+Route::controller(SuratMasukController::class)->group(function () {
     // Route::get('/inbox', 'index')->name('inbox.index');
     Route::post('/korespondensi', 'store')->name('inbox.store');
     Route::get('/korespondensi/{id}/edit', 'edit')->name('inbox.edit');
@@ -463,7 +458,7 @@ Route::controller(SuratMasukController::class)->group(function() {
     Route::delete('/korespondensi/delete/{id}', 'destroy')->name('inbox.destroy');
 });
 
-Route::controller(suratKeluarController::class)->group(function() {
+Route::controller(suratKeluarController::class)->group(function () {
     Route::post('/outbox', 'store')->name('outbox.store');
     Route::get('/outbox/{id}/edit', 'edit')->name('outbox.edit');
     Route::get('/outbox/{id}/download', 'download')->name('outbox.download');
@@ -471,7 +466,7 @@ Route::controller(suratKeluarController::class)->group(function() {
     Route::delete('/outbox/delete/{id}', 'destroy')->name('outbox.destroy');
 });
 
-Route::controller(SuratPeringatanController::class)->group(function() {
+Route::controller(SuratPeringatanController::class)->group(function () {
     Route::post('/sp', 'store')->name('sp.store');
     Route::get('/sp/{id}/edit', 'edit')->name('sp.edit');
     route::get('/sp/{id}/download', 'download')->name('sp.download');
@@ -479,14 +474,14 @@ Route::controller(SuratPeringatanController::class)->group(function() {
     Route::delete('/sp/delete/{id}', 'destroy')->name('sp.destroy');
 });
 
-Route::controller(NomorSuratController::class)->group(function(){
+Route::controller(NomorSuratController::class)->group(function () {
     Route::post('/no_surat', 'store')->name('no_surat.store');
     Route::get('/no_surat/{id}/edit', 'edit')->name('no_surat.edit');
     Route::put('/no_surat/{id}', 'update')->name('no_surat.update');
     Route::delete('/no_surat/delete/{id}', 'destroy')->name('no_surat.destroy');
 });
 
-Route::controller(NotulensiController::class)->group(function(){
+Route::controller(NotulensiController::class)->group(function () {
     Route::post('/notulensi', 'store')->name('notulensi.store');
     Route::get('/notulensi/{id}/edit', 'edit')->name('notulensi.edit');
     Route::get('/notulensi/{id}/downloadSurat', 'downloadSurat')->name('notulensi.download');
@@ -495,7 +490,7 @@ Route::controller(NotulensiController::class)->group(function(){
     Route::delete('/notulensi/delete/{id}', 'destroy')->name('notulensi.destroy');
 });
 
-Route::controller(SuratPengajuanController::class)->group(function(){
+Route::controller(SuratPengajuanController::class)->group(function () {
     Route::post('/pengajuan', 'store')->name('pengajuan.store');
     Route::get('/pengajuan/{id}/edit', 'edit')->name('pengajuan.edit');
     Route::get('/pengajuan/{id}/download', 'download')->name('pengajuan.download');
