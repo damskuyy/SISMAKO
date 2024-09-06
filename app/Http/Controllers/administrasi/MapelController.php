@@ -173,13 +173,13 @@ class MapelController extends Controller
                 $validateData[$fileField] = $file->storeAs($fileField, $originalName);
             } else {
                 // Jika tidak ada file baru, pertahankan data lama
-               $validateData[$fileField] = $mapel->$fileField;
+                $validateData[$fileField] = $mapel->$fileField;
             }
         }
 
         $mapel->update($validateData);
 
-        return redirect()->route('administrasi.mapel.index')->with('success', 'Mapel updated successfully.');
+        return redirect()->route('mapel.index')->with('success', 'Mapel updated successfully.');
     }
 
     public function destroy($id)
@@ -286,6 +286,24 @@ class MapelController extends Controller
             'pendukung_rpp_13',
         ];
 
+        // Cek apakah ada file yang tersedia untuk didownload
+        $filesAvailable = false;
+
+        foreach ($directories as $dir) {
+            if ($mapel->$dir) {
+                $filePath = storage_path('app/' . $mapel->$dir);
+                if (file_exists($filePath)) {
+                    $filesAvailable = true;
+                    break; // Jika satu file ditemukan, hentikan loop
+                }
+            }
+        }
+
+        // Jika tidak ada file yang tersedia, kembalikan alert
+        if (!$filesAvailable) {
+            return back()->with('error', 'Tidak ada file yang tersedia untuk didownload.');
+        }
+
         // Create a temporary file to store the zip
         $zipFileName = 'Mapel_files_' . $mapel->mapel . '.zip';
         $zipFilePath = storage_path('app/' . $zipFileName);
@@ -311,7 +329,7 @@ class MapelController extends Controller
             // Download the created zip file
             return response()->download($zipFilePath)->deleteFileAfterSend(true);
         } else {
-            return back()->with('error', 'Failed to create zip file');
+            return back()->with('error', 'Gagal membuat file zip.');
         }
     }
 }
