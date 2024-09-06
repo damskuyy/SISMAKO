@@ -285,7 +285,7 @@
                                     <option value="2026/2027">2026/2027</option>
                                 </select>
 
-                                {{-- <select id="js" class="form-select me-3" onchange="showInputField()">
+                                <select id="js" class="form-select me-3" onchange="showInputField()">
                                     <option selected>Pilih Jenis Surat</option>
                                     <option value="Surat Tugas">Surat Tugas</option>
                                     <option value="Surat permohonan">Surat permohonan</option>
@@ -297,7 +297,7 @@
                                     <option value="Surat Pemberitahuan">Surat Pemberitahuan</option>
                                     <option value="Surat Izin">Surat Izin</option>
                                     <option value="Lainnya">Surat Lainnya</option>
-                                </select> --}}
+                                </select>
                             </div>
                             <div class="col-auto  text-end">
                                 <button type="button" class="btn" id='btnView' data-bs-toggle="modal">

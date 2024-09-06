@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('password', function (Blueprint $table) {
             $table->id();
-            
+            $table->string('password');
             $table->timestamps();
         });
     }
