@@ -11,7 +11,7 @@
                     <div class="col-lg-8">
                         <div class="mb-3">
                             <label class="form-label">Name</label>
-                            <input type="text" class="form-control" name="nama" placeholder="name" value="{{old('nama')}}">
+                            <input autocomplete="off" type="text" class="form-control" name="nama" placeholder="name" value="{{old('nama')}}">
                             @error('nama')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -20,7 +20,7 @@
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label class="form-label">Posisi Jabatan</label>
-                            <input type="text" class="form-control" name="posisi" placeholder="Guru Matematika" value="{{old('posisi')}}">
+                            <input autocomplete="off" type="text" class="form-control" name="posisi" value="{{old('posisi')}}">
                             @error('posisi')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -31,7 +31,7 @@
                     <div class="col-lg-8">
                         <div class="mb-3">
                             <label class="form-label">Email</label>
-                            <input type="email" class="form-control" autocomplete="off" placeholder="example@mail.com" name="email" value="{{old('email')}}">
+                            <input autocomplete="off" type="email" class="form-control" autocomplete="off" placeholder="example@mail.com" name="email" value="{{old('email')}}">
                             @error('email')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -54,7 +54,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">Tempat lahir</label>
-                            <input type="text" class="form-control" name="tempat_tanggal_lahir" placeholder="Jakarta" value="{{old('tempat_tanggal_lahir')}}">
+                            <input autocomplete="off" type="text" class="form-control" name="tempat_tanggal_lahir" placeholder="Jakarta" value="{{old('tempat_tanggal_lahir')}}">
                             @error('tempat_tanggal_lahir')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -63,7 +63,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">Tanggal lahir</label>
-                            <input type="date" class="form-control" name="tanggal_lahir" value="{{old('tanggal_lahir')}}">
+                            <input autocomplete="off" type="date" class="form-control" name="tanggal_lahir" value="{{old('tanggal_lahir')}}">
                             @error('tanggal_lahir')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -74,7 +74,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">No. Handphone</label>
-                            <input type="number" class="form-control" name="no_hp" value="{{ old('no_hp') }}">
+                            <input autocomplete="off" type="number" class="form-control" name="no_hp" value="{{ old('no_hp') }}">
                             @error('no_hp')
                                 <div class="text-danger mt-2">{{ $message }}</div>
                             @enderror
@@ -83,7 +83,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">No. Rekening & Nama Bank</label>
-                            <input type="text" class="form-control" name="no_rekening" placeholder="BRI - 22312215543" value="{{ old('no_rekening') }}" required>
+                            <input autocomplete="off" type="text" class="form-control" name="no_rekening" placeholder="BRI - 22312215543" value="{{ old('no_rekening') }}" required>
                             @error('no_rekening')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -94,7 +94,6 @@
                             <label class="form-label">Agama</label>
                             <select class="form-control" name="agama" value="{{old('agama')}}">
                                 <option value="Islam" selected>Islam</option>
-                                <option value="Kristen">Kristen</option>
                             </select>
                             @error('agama')
                                 <div class="text-danger mt-2">{{$message}}</div>
@@ -104,9 +103,12 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">Pendidikan Terakhir</label>
-                            <select class="form-control" name="pendidikan_terakhir" value="{{old('pendidikan_terakhir')}}">
-                                <option value="smp" selected>SMP</option>
-                                <option value="sma">SMA</option>
+                            <select class="form-control" name="pendidikan_terakhir" value="{{old('pendidikan_terakhir')}}" placeholder="S1">
+                                <option value="Smp" selected>SMP</option>
+                                <option value="Sma" selected>SMA</option>
+                                <option value="S1" selected>S1</option>
+                                <option value="S2" selected>S2</option>
+                                <option value="S3" selected>S3</option>
                             </select>
                             @error('pendidikan_terakhir')
                                 <div class="text-danger mt-2">{{$message}}</div>
@@ -131,7 +133,7 @@
                     <div class="col-lg-12 mb-3">
                         <div>
                             <label class="form-label">No. nik</label>
-                            <input type="number" class="form-control" name="no_nik" value="{{old('no_nik')}}">
+                            <input autocomplete="off" type="number" class="form-control" name="no_nik" value="{{old('no_nik')}}">
                             @error('no_nik')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -140,7 +142,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">No. NUPTK</label>
-                            <input type="number" class="form-control" name="no_nuptk" value="{{old('no_nuptk')}}">
+                            <input autocomplete="off" type="number" class="form-control" name="no_nuptk" value="{{old('no_nuptk')}}">
                             @error('no_nuptk')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -149,7 +151,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">No. GTK</label>
-                            <input type="number" class="form-control" name="no_gtk" value="{{old('no_gtk')}}">
+                            <input autocomplete="off" type="number" class="form-control" name="no_gtk" value="{{old('no_gtk')}}">
                             @error('no_gtk')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -158,7 +160,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">Nama Perguruan tinggi</label>
-                            <input type="text" class="form-control" name="nama_lulusan_pt" placeholder="Universitas Indonesia" value="{{old('nama_lulusan_pt')}}">
+                            <input autocomplete="off" type="text" class="form-control" name="nama_lulusan_pt" placeholder="Universitas Indonesia" value="{{old('nama_lulusan_pt')}}">
                             @error('nama_lulusan_pt')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -167,7 +169,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">Jurusan</label>
-                            <input type="text" class="form-control" name="nama_jurusan_pt" placeholder="" value="{{old('nama_jurusan_pt')}}">
+                            <input autocomplete="off" type="text" class="form-control" name="nama_jurusan_pt" placeholder="" value="{{old('nama_jurusan_pt')}}">
                             @error('nama_jurusan_pt')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -190,7 +192,7 @@
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label class="form-label">Tanggal Masuk</label>
-                            <input class="form-control" type="date" name="tanggal_masuk" id="" value="{{old('tanggal_masuk')}}">
+                            <input autocomplete="off" class="form-control" type="date" name="tanggal_masuk" id="" value="{{old('tanggal_masuk')}}">
                             @error('tanggal_masuk')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -199,7 +201,7 @@
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label class="form-label">Tanggal Keluar</label>
-                            <input class="form-control" type="date" name="tanggal_keluar" id="" value="{{old('tanggal_keluar')}}">
+                            <input autocomplete="off" class="form-control" type="date" name="tanggal_keluar" id="" value="{{old('tanggal_keluar')}}">
                         </div>
                         @error('tanggal_keluar')
                                 <div class="text-danger mt-2">{{$message}}</div>
@@ -214,7 +216,7 @@
                     <div class="col-lg-6 mb-3">
                         <label class="form-label fw-bold">SMP</label>
                         <div class="input-group">
-                            <input type="file" class="form-control" name="ijazah_smp" accept=".png" onchange="handleFileUpload(event, 'ijazah_smp')">
+                            <input autocomplete="off" type="file" class="form-control" name="ijazah_smp" accept=".png" onchange="handleFileUpload(event, 'ijazah_smp')">
                             <div class="input-group-append">
                                 <button type="button" class="btn d-none" style="height: 100%" id="btn-remove-ijazah_smp" onclick="removeFile('ijazah_smp')"><i class="fa-solid fa-x"></i></button>
                             </div>
@@ -226,7 +228,7 @@
                     <div class="col-lg-6 mb-3">
                         <label class="form-label fw-bold">SMA</label>
                         <div class="input-group">
-                            <input type="file" class="form-control" name="ijazah_sma" accept=".png" onchange="handleFileUpload(event, 'ijazah_sma')">
+                            <input autocomplete="off" type="file" class="form-control" name="ijazah_sma" accept=".png" onchange="handleFileUpload(event, 'ijazah_sma')">
                             <div class="input-group-append">
                                 <button type="button" class="btn d-none" style="height: 100%" id="btn-remove-ijazah_sma" onclick="removeFile('ijazah_sma')"><i class="fa-solid fa-x"></i></button>
                             </div>
@@ -238,7 +240,7 @@
                     <div class="col-lg-6 mb-3">
                         <label class="form-label fw-bold">S1 (opsional)</label>
                         <div class="input-group">
-                            <input type="file" class="form-control" name="ijazah_s1" accept=".png" onchange="handleFileUpload(event, 'ijazah_s1')">
+                            <input autocomplete="off" type="file" class="form-control" name="ijazah_s1" accept=".png" onchange="handleFileUpload(event, 'ijazah_s1')">
                             <div class="input-group-append">
                                 <button type="button" class="btn d-none" style="height: 100%" id="btn-remove-ijazah_s1" onclick="removeFile('ijazah_s1')"><i class="fa-solid fa-x"></i></button>
                             </div>
@@ -250,7 +252,7 @@
                     <div class="col-lg-6 mb-3">
                         <label class="form-label fw-bold">S2 (opsional)</label>
                         <div class="input-group">
-                            <input type="file" class="form-control" name="ijazah_s2" accept=".png" onchange="handleFileUpload(event, 'ijazah_s2')">
+                            <input autocomplete="off" type="file" class="form-control" name="ijazah_s2" accept=".png" onchange="handleFileUpload(event, 'ijazah_s2')">
                             <div class="input-group-append">
                                 <button type="button" class="btn d-none" style="height: 100%" id="btn-remove-ijazah_s2" onclick="removeFile('ijazah_s2')"><i class="fa-solid fa-x"></i></button>
                             </div>
@@ -262,7 +264,7 @@
                     <div class="col-lg-12 mb-3">
                         <label class="form-label fw-bold">S3 (opsional)</label>
                         <div class="input-group">
-                            <input type="file" class="form-control" name="ijazah_s3" accept=".png" onchange="handleFileUpload(event, 'ijazah_s3')">
+                            <input autocomplete="off" type="file" class="form-control" name="ijazah_s3" accept=".png" onchange="handleFileUpload(event, 'ijazah_s3')">
                             <div class="input-group-append">
                                 <button type="button" class="btn d-none" style="height: 100%" id="btn-remove-ijazah_s3" onclick="removeFile('ijazah_s3')"><i class="fa-solid fa-x"></i></button>
                             </div>
@@ -276,7 +278,7 @@
                     <div class="col-lg-6 mb-3">
                         <label class="form-label fw-bold">Foto</label>
                         <div class="input-group">
-                            <input type="file" class="form-control" name="foto" accept=".png" onchange="handleFileUpload(event, 'foto')">
+                            <input autocomplete="off" type="file" class="form-control" name="foto" accept=".png" onchange="handleFileUpload(event, 'foto')">
                             <div class="input-group-append">
                                 <button type="button" class="btn d-none" style="height: 100%;" id="btn-remove-foto" onclick="removeFile('foto')"><i class="fa-solid fa-x"></i></button>
                             </div>
@@ -288,7 +290,7 @@
                     <div class="col-lg-6 mb-3">
                         <label class="form-label fw-bold">FOTO KTP</label>
                         <div class="input-group">
-                            <input type="file" class="form-control" name="foto_ktp" accept=".png" onchange="handleFileUpload(event, 'foto_ktp')">
+                            <input autocomplete="off" type="file" class="form-control" name="foto_ktp" accept=".png" onchange="handleFileUpload(event, 'foto_ktp')">
                             <div class="input-group-append">
                                 <button type="button" class="btn d-none" style="height: 100%;" id="btn-remove-foto_ktp" onclick="removeFile('foto_ktp')"><i class="fa-solid fa-x"></i></button>
                             </div>
@@ -300,7 +302,7 @@
                     <div class="col-lg-12 mb-3">
                         <label class="form-label fw-bold">FOTO Surat Keterangan Mengajar</label>
                         <div class="input-group">
-                            <input type="file" class="form-control" name="foto_surat_keterangan_mengajar" accept=".png" onchange="handleFileUpload(event, 'foto_surat_keterangan_mengajar')">
+                            <input autocomplete="off" type="file" class="form-control" name="foto_surat_keterangan_mengajar" accept=".png" onchange="handleFileUpload(event, 'foto_surat_keterangan_mengajar')">
                             <div class="input-group-append">
                                 <button type="button" class="btn d-none" style="height: 100%;" id="btn-remove-foto_surat_keterangan_mengajar" onclick="removeFile('foto_surat_keterangan_mengajar')"><i class="fa-solid fa-x"></i></button>
                             </div>
@@ -312,7 +314,7 @@
                     <div class="col-lg-12 mb-3">
                         <label class="form-label fw-bold">Foto sertifikat (opsional)</label>
                         <div class="input-group">
-                            <input type="file" class="form-control" name="foto_sertifikat[]" multiple accept=".png" onchange="handleFileUpload(event, 'foto_sertifikat')">
+                            <input autocomplete="off" type="file" class="form-control" name="foto_sertifikat[]" multiple accept=".png" onchange="handleFileUpload(event, 'foto_sertifikat')">
                             <div class="input-group-append">
                                 <button type="button" class="btn d-none" style="height: 100%;" id="btn-remove-foto_sertifikat" onclick="removeFile('foto_sertifikat')"><i class="fa-solid fa-x"></i></button>
                             </div>

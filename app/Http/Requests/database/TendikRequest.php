@@ -20,27 +20,27 @@ class TendikRequest extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
-    {
-        return [
-            'nama' => 'required|string|max:255',
-            'no_nik' => 'required|integer',
-            'no_gtk' => 'required|integer',
-            'no_nuptk' => 'required|integer',
-            'tempat_tanggal_lahir' => 'required|string|max:255',
-            'tanggal_lahir' => 'required|date',
-            'jenis_kelamin' => 'required|string|max:10',
-            'agama' => 'required|string|max:50',
-            'alamat' => 'required|string|max:255',
-            'status_kepegawaian' => 'required|string|max:50',
-            'no_rekening' => 'required',
-            'posisi' => 'required|string|max:255',
-            'email' => 'required|email|max:255|',
-            'pendidikan_terakhir' => 'required|string|max:50',
-            'tanggal_masuk' => 'required|date',
-            'foto' => 'required|file',
-            'foto_ktp' => 'required|file',
-            'foto_surat_keterangan_mengajar' => 'required|file',
-            'no_hp' => 'nullable|string|max:20',
-        ];
-    }
+{
+    return [
+        'nama' => 'required|string|max:255',
+        'no_nik' => 'required|integer',
+        'no_gtk' => 'required|integer',
+        'no_nuptk' => 'required|integer',
+        'tempat_tanggal_lahir' => 'required|string|max:255',
+        'tanggal_lahir' => 'required|date',
+        'jenis_kelamin' => 'required|string|max:10',
+        'agama' => 'required|string|max:50',
+        'alamat' => 'required|string|max:255',
+        'status_kepegawaian' => 'required|string|max:50',
+        'no_rekening' => 'required',
+        'posisi' => 'required|string|max:255',
+        'email' => 'required|email|max:255',
+        'pendidikan_terakhir' => 'required|string|max:50',
+        'tanggal_masuk' => 'required|date',
+        'foto' => 'required|file|mimes:jpeg,png,jpg|max:2048',
+        'foto_ktp' => 'required|file|mimes:jpeg,png,jpg|max:2048',
+        'foto_surat_keterangan_mengajar' => 'required|file|mimes:jpeg,png,jpg|max:2048',
+        'no_hp' => 'nullable|string',
+    ];
+}
 }

@@ -22,11 +22,11 @@ return new class extends Migration
             $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
             $table->enum('agama', ['Islam', 'Kristen', 'Buddha', 'Khonghucu', 'Hindu', 'Katolik']);
             $table->string('nama_lulusan_pt', 30);
-            $table->string('nama_jurusan_pt', 30);
+            $table->string('nama_jurusan_pt', 50);
             $table->string('alamat');
-            $table->string('no_hp', 20);
-            $table->string('mapel', 20);
-            $table->string('gelar', 20);
+            $table->string('no_hp', 40);
+            $table->string('mapel', 50);
+            $table->string('gelar', 50);
             $table->string('email', 30)->unique();
             $table->string('no_rekening', 20)->unique();
             $table->enum('status_kepegawaian', ['Aktif', 'Tidak aktif']);

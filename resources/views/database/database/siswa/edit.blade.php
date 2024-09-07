@@ -65,7 +65,6 @@
                             <label class="form-label">Agama</label>
                             <select class="form-control" name="agama" value="{{old('agama', $siswa->agama)}}">
                                 <option value="Islam" selected>Islam</option>
-                                <option value="Kristen">Kristen</option>
                             </select>
                             @error('agama')
                                 <div class="text-danger mt-2">{{$message}}</div>
@@ -128,7 +127,7 @@
                     <div class="col-12 mb-3">
                         <div>
                             <label class="form-label">No. Handphone Wali Siswa</label>
-                            <input type="number" class="form-control" name="no_hp_wali" value="{{old('no_hp_wali', $siswa->no_hp_wali)}}">
+                            <input type="number" class="form-control" name="no_hp_wali" value="{{old('no_hp_wali', $siswa->no_hp_wali)}}" placeholder="0895-3355-77657">
                             @error('no_hp_wali')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -379,8 +378,7 @@
             </div>
         </form>
     </div>
-    @include('js.stepFileSiswa')
-    {{-- @include('') --}}
+    @include('database.js.stepFileSiswa')
     <script>
       function handleFileUpload(event, inputName) {
     const fileInput = event.target;
@@ -399,7 +397,6 @@ function removeFile(inputName) {
     const removeButton = document.getElementById(`btn-remove-${inputName}`);
     removeButton.classList.add('d-none');
     console.log(`File removed: ${inputName}`);
-    // Additional logic can be added here
 }
     </script>
 

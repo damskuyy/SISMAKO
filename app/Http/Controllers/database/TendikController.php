@@ -5,7 +5,6 @@ namespace App\Http\Controllers\database;
 use Carbon\Carbon;
 use Dompdf\Dompdf;
 use Dompdf\Options;
-use Illuminate\Http\Request;
 use App\Models\database\Tendik;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\View;
@@ -29,129 +28,84 @@ class TendikController extends Controller
         return view('database.database.tendik.add');
     }
 
-    public function fileSetup($file, $nama, $prefix, $namaDir, $path = '')
-    {
-        $imageFileName = $prefix . str_replace(' ', '_', $nama) . '.' . $file->getClientOriginalExtension();
-        $fullPath = 'img/tendik/' . $namaDir . $path . '/';
+    // public function fileSetup($file, $nama, $prefix, $namaDir, $path = '')
+    // {
+    //     $imageFileName = $prefix . str_replace(' ', '_', $nama) . '.' . $file->getClientOriginalExtension();
+    //     $fullPath = 'img/tendik/' . $namaDir . $path . '/';
 
-        // Pastikan direktori tujuan ada
-        if (!file_exists($fullPath)) {
-            mkdir($fullPath, 0777, true);
-        }
+    //     // Pastikan direktori tujuan ada
+    //     if (!file_exists($fullPath)) {
+    //         mkdir($fullPath, 0777, true);
+    //     }
 
-        // Pindahkan file ke direktori tujuan
-        $file->move(public_path($fullPath), $imageFileName);
+    //     // Pindahkan file ke direktori tujuan
+    //     $file->move(public_path($fullPath), $imageFileName);
 
-        return $fullPath . $imageFileName;
-    }
+    //     return $fullPath . $imageFileName;
+    // }
 
     public function makeDir($folder, $nama)
     {
-        $baseDir = public_path('img/' . $folder . '/'  . $nama);
+        $baseDir = public_path('img/' . $folder . '/' . $nama);
 
         if (!file_exists($baseDir)) {
-            mkdir($baseDir, 0777, true);
+            if (!mkdir($baseDir, 0777, true)) {
+                throw new \Exception("Failed to create directory: $baseDir");
+            }
         }
 
         $ijazahDir = $baseDir . '/ijazah';
         if (!file_exists($ijazahDir)) {
-            mkdir($ijazahDir, 0777, true);
+            if (!mkdir($ijazahDir, 0777, true)) {
+                throw new \Exception("Failed to create directory: $ijazahDir");
+            }
         }
 
         $sertifikatDir = $baseDir . '/sertifikat';
         if (!file_exists($sertifikatDir)) {
-            mkdir($sertifikatDir, 0777, true);
+            if (!mkdir($sertifikatDir, 0777, true)) {
+                throw new \Exception("Failed to create directory: $sertifikatDir");
+            }
         }
     }
 
 
-    public function update(TendikRequest $request, $id)
+
+    // public function fileSetup($file, $nama, $prefix, $namaDir, $path = '')
+    // {
+    //     $imageFileName = $prefix . str_replace(' ', '_', $nama) . '.' . $file->getClientOriginalExtension();
+    //     $fullPath = 'img/tendik/' . $namaDir . $path . '/';
+
+    //     // Pastikan direktori tujuan ada
+    //     if (!file_exists($fullPath)) {
+    //         mkdir($fullPath, 0777, true);
+    //     }
+
+    //     // Pindahkan file ke direktori tujuan
+    //     $file->move(public_path($fullPath), $imageFileName);
+
+    //     return $fullPath . $imageFileName;
+    // }
+
+    public function fileSetup($file, $nama, $prefix, $dir, $guruh = '')
     {
-        $validatedData = $request->validated();
+        // Generate a unique file name
+        $imageFileName = $prefix . str_replace(' ', '_', $nama) . '.' . $file->getClientOriginalExtension();
 
+        // Create the full path to the directory
+        $fullPath = public_path('img/tendik/' . $dir . $guruh);
 
-        $nama = $request->nama;
-        $namaDir = str_replace(' ', '_', $nama);
-        $this->makeDir('tendik', $namaDir);
-
-        $imageNamaFoto = null;
-        $imageNamaFotoKtp = null;
-        $imageNamaFotoSk = null;
-        $tendik = Tendik::findOrFail($id);
-
-        if ($request->hasFile('foto')) $imageNamaFoto = $this->fileSetup($request->file('foto'), $nama, 'Foto-', $namaDir);
-
-        if ($request->hasFile('foto_ktp')) $imageNamaFotoKtp = $this->fileSetup($request->file('foto_ktp'), $nama, 'Foto-KTP-', $namaDir);
-
-        if ($request->hasFile('foto_surat_keterangan_mengajar')) $imageNamaFotoSk = $this->fileSetup($request->file('foto_surat_keterangan_mengajar'), $nama, 'Foto-SK-Mengajar-', $namaDir);
-
-        $oldDirname = str_replace(' ', '_', $tendik->nama);
-        $newDirname = str_replace(' ', '_', $request->nama);
-
-        if ($oldDirname !== $newDirname) {
-            $baseDirOld = public_path('img/tendik/' . $oldDirname);
-            if (File::exists($baseDirOld)) {
-                File::deleteDirectory($baseDirOld);
-            }
+        // Create the directory if it doesn't exist
+        if (!file_exists($fullPath)) {
+            mkdir($fullPath, 0777, true);
         }
 
+        // Move the file to the directory
+        $file->move($fullPath, $imageFileName);
 
-        $tendik->update(array_merge(
-            $validatedData,
-            [
-                'tanggal_keluar' => $request->tanggal_keluar, // Update nullable field
-                'foto' => $imageNamaFoto,
-                'foto_ktp' => $imageNamaFotoKtp,
-                'foto_surat_keterangan_mengajar' => $imageNamaFotoSk,
-            ]
-        ));
-
-        $idTendik = $tendik->id;
-        $ijazahData = [];
-        $ijazahTypes = [
-            'ijazah_smp' => 'SMP',
-            'ijazah_sma' => 'SMA',
-            'ijazah_s1' => 'S1',
-            'ijazah_s2' => 'S2'
-        ];
-
-        foreach ($ijazahTypes as $fileKey => $jenisIjazah) {
-            if ($request->hasFile($fileKey)) {
-                $imageNamaFile = $this->fileSetup($request->file($fileKey), str_replace(' ', '_', $request->nama), "Foto-Ijazah-{$jenisIjazah}-", $namaDir, '/ijazah');
-                $ijazahData[] = [
-                    'id_tendik' => $idTendik,
-                    'jenis_ijazah' => $jenisIjazah,
-                    'nama_file' => $imageNamaFile
-                ];
-            }
-        }
-
-        if (!empty($ijazahData)) IjazahTendik::insert($ijazahData);
-
-        // Update SertifikatGuru records
-        $sertifikatData = [];
-
-        //Delete data sertifikat of id_tendik
-        SertifikatTendik::where('id_tendik', $id)->delete();
-
-        if ($request->hasFile('foto_sertifikat')) {
-            $files = $request->file('foto_sertifikat');
-            $sertifikatDir = 'img/tendik/' . $namaDir . '/sertifikat';
-
-            foreach ($files as $index => $file) {
-                $imageNamaSertifikat = $this->fileSetup($file, $nama, 'Sertifikat-' . ($index + 1) . '-', $namaDir, '/sertifikat');
-                $sertifikatData[] = ['id_tendik' => $id, 'nama_file' => $imageNamaSertifikat];
-            }
-        }
-
-        if (!empty($sertifikatData)) {
-            SertifikatTendik::insert($sertifikatData);
-        }
-
-        return redirect()->route('tendik.index')->with('success', 'Data tendik berhasil di update.');
+        // Return the relative path for storing in the database
+        return 'img/tendik/' . $dir . $guruh . '/' . $imageFileName;
     }
-
-
     public function exportPdf($id)
     {
         $tendik = Tendik::findOrFail($id);
@@ -181,30 +135,272 @@ class TendikController extends Controller
         // Render PDF (important step!)
         $dompdf->render();
 
-        return $dompdf->stream( $tendik->nama .'.pdf');
+        return $dompdf->stream($tendik->nama . '.pdf');
+    }
+
+    // public function store(TendikRequest $request)
+    // {
+    //     // Validasi data request
+    //     $validatedData = $request->validated();
+    //     $nama = str_replace(' ', '_', $request->nama);
+    //     $namaDir = "img/tendik/{$nama}";
+
+    //     // Membuat direktori untuk menyimpan file
+    //     $this->makeDir('tendik', $nama);
+
+    //     // Upload dan simpan file foto jika ada
+    //     $imageNamaFoto = $request->hasFile('foto') ? $this->fileSetup($request->file('foto'), $nama, 'Foto-', $namaDir) : null;
+    //     $imageNamaFotoKtp = $request->hasFile('foto_ktp') ? $this->fileSetup($request->file('foto_ktp'), $nama, 'Foto-KTP-', $namaDir) : null;
+    //     $imageNamaFotoSk = $request->hasFile('foto_surat_keterangan_mengajar') ? $this->fileSetup($request->file('foto_surat_keterangan_mengajar'), $nama, 'Foto-SK-Mengajar-', $namaDir) : null;
+
+    //     // Simpan data tendik ke database
+    //     $tendik = Tendik::create(array_merge($validatedData, [
+    //         'foto' => $imageNamaFoto,
+    //         'foto_ktp' => $imageNamaFotoKtp,
+    //         'foto_surat_keterangan_mengajar' => $imageNamaFotoSk,
+    //     ]));
+
+    //     $idTendik = $tendik->id;
+
+    //     // Menangani upload dan penyimpanan ijazah
+    //     $ijazahData = [];
+    //     $ijazahTypes = [
+    //         'ijazah_smp' => 'SMP',
+    //         'ijazah_sma' => 'SMA',
+    //         'ijazah_s1' => 'S1',
+    //         'ijazah_s2' => 'S2'
+    //     ];
+
+    //     foreach ($ijazahTypes as $fileKey => $jenisIjazah) {
+    //         if ($request->hasFile($fileKey)) {
+    //             $imageNamaFile = $this->fileSetup($request->file($fileKey), $nama, "Foto-Ijazah-{$jenisIjazah}-", $namaDir, '/ijazah');
+    //             $ijazahData[] = [
+    //                 'id_tendik' => $idTendik,
+    //                 'jenis_ijazah' => $jenisIjazah,
+    //                 'nama_file' => $imageNamaFile
+    //             ];
+    //         }
+    //     }
+
+    //     if (!empty($ijazahData)) {
+    //         IjazahTendik::insert($ijazahData);
+    //     }
+
+    //     // Menangani upload dan penyimpanan sertifikat
+    //     $sertifikatData = [];
+    //     if ($request->hasFile('foto_sertifikat')) {
+    //         foreach ($request->file('foto_sertifikat') as $index => $file) {
+    //             $imageNamaSertifikat = $this->fileSetup($file, $nama, 'Sertifikat-' . ($index + 1) . '-', $namaDir, '/sertifikat');
+    //             $sertifikatData[] = [
+    //                 'id_tendik' => $idTendik,
+    //                 'nama_file' => $imageNamaSertifikat
+    //             ];
+    //         }
+    //     }
+
+    //     if (!empty($sertifikatData)) {
+    //         SertifikatTendik::insert($sertifikatData);
+    //     }
+
+    //     return redirect()->route('tendik.index')->with('success', 'Data tendik berhasil ditambahkan.');
+    // }
+
+    public function createDirectoryIfNotExists($directory)
+    {
+        if (!file_exists($directory)) mkdir($directory, 0777, true);
     }
 
     public function store(TendikRequest $request)
     {
-        // dd($request->all());
+        $validatedData = $request->validated();
+        $nama = str_replace(' ', '_', $request->nama);
+        $baseDir = "img/tendik/{$nama}";
+
+        $this->createDirectoryIfNotExists(public_path($baseDir));
+        $this->createDirectoryIfNotExists(public_path("{$baseDir}/ijazah"));
+        $this->createDirectoryIfNotExists(public_path("{$baseDir}/sertifikat"));
+
+        // Upload the main images
+        $imageNamaFoto = $request->hasFile('foto') ? $this->fileSetup($request->file('foto'), $request->nama, 'Foto-', $nama) : null;
+        $imageNamaFotoKtp = $request->hasFile('foto_ktp') ? $this->fileSetup($request->file('foto_ktp'), $request->nama, 'Foto-KTP-', $nama) : null;
+        $imageNamaFotoSk = $request->hasFile('foto_surat_keterangan_mengajar') ? $this->fileSetup($request->file('foto_surat_keterangan_mengajar'), $request->nama, 'Foto-SK-Mengajar-', $nama) : null;
+
+        $tendik = Tendik::create(array_merge($validatedData, [
+            'foto' => $imageNamaFoto,
+            'foto_ktp' => $imageNamaFotoKtp,
+            'foto_surat_keterangan_mengajar' => $imageNamaFotoSk,
+        ]));
+
+        // Debug: check if $tendik is created
+        // dd($tendik);
+
+        // Prepare Ijazah data
+        $ijazahData = [];
+        $ijazahTypes = [
+            'ijazah_smp' => 'SMP',
+            'ijazah_sma' => 'SMA',
+            'ijazah_s1' => 'S1',
+            'ijazah_s2' => 'S2',
+            'ijazah_s3' => 'S3'
+        ];
+
+        foreach ($ijazahTypes as $fileKey => $jenisIjazah) {
+            if ($request->hasFile($fileKey)) {
+                $imageNamaFile = $this->fileSetup($request->file($fileKey), $request->nama, "Foto-Ijazah-{$jenisIjazah}-", $nama, '/ijazah');
+                $ijazahData[] = [
+                    'id_tendik' => $tendik->id,
+                    'jenis_ijazah' => $jenisIjazah,
+                    'nama_file' => $imageNamaFile
+                ];
+            }
+        }
+
+        // // Debug: check if $ijazahData is populated correctly
+        // dd($ijazahData);
+
+        if ($ijazahData) {
+            IjazahTendik::insert($ijazahData);
+        }
+
+        // // Prepare Sertifikat data
+        $sertifikatData = [];
+        if ($request->hasFile('foto_sertifikat')) {
+            foreach ($request->file('foto_sertifikat') as $index => $file) {
+                $imageNamaSertifikat = $this->fileSetup($file, $request->nama, 'Sertifikat-' . ($index + 1) . '-', $nama, '/sertifikat');
+                $sertifikatData[] = [
+                    'id_tendik' => $tendik->id,
+                    'nama_file' => $imageNamaSertifikat
+                ];
+            }
+        }
+
+        // // Debug: check if $sertifikatData is populated correctly
+        // dd($sertifikatData);
+
+        if ($sertifikatData) {
+            SertifikatTendik::insert($sertifikatData);
+        }
+
+        return redirect()->route('tendik.index')->with('success', 'Data berhasil ditambahkan');
+    }
+
+    // public function update(TendikRequest $request, $id)
+    // {
+    //     $validatedData = $request->validated();
+
+
+    //     $nama = $request->nama;
+    //     $namaDir = str_replace(' ', '_', $nama);
+    //     $this->makeDir('tendik', $namaDir);
+
+    //     $imageNamaFoto = null;
+    //     $imageNamaFotoKtp = null;
+    //     $imageNamaFotoSk = null;
+    //     $tendik = Tendik::findOrFail($id);
+
+    //     if ($request->hasFile('foto')) $imageNamaFoto = $this->fileSetup($request->file('foto'), $nama, 'Foto-', $namaDir);
+
+    //     if ($request->hasFile('foto_ktp')) $imageNamaFotoKtp = $this->fileSetup($request->file('foto_ktp'), $nama, 'Foto-KTP-', $namaDir);
+
+    //     if ($request->hasFile('foto_surat_keterangan_mengajar')) $imageNamaFotoSk = $this->fileSetup($request->file('foto_surat_keterangan_mengajar'), $nama, 'Foto-SK-Mengajar-', $namaDir);
+
+    //     $oldDirname = str_replace(' ', '_', $tendik->nama);
+    //     $newDirname = str_replace(' ', '_', $request->nama);
+
+    //     if ($oldDirname !== $newDirname) {
+    //         $baseDirOld = public_path('img/tendik/' . $oldDirname);
+    //         if (File::exists($baseDirOld)) {
+    //             File::deleteDirectory($baseDirOld);
+    //         }
+    //     }
+
+
+    //     $tendik->update(array_merge(
+    //         $validatedData,
+    //         [
+    //             'tanggal_keluar' => $request->tanggal_keluar, // Update nullable field
+    //             'foto' => $imageNamaFoto,
+    //             'foto_ktp' => $imageNamaFotoKtp,
+    //             'foto_surat_keterangan_mengajar' => $imageNamaFotoSk,
+    //         ]
+    //     ));
+
+    //     $idTendik = $tendik->id;
+    //     $ijazahData = [];
+    //     $ijazahTypes = [
+    //         'ijazah_smp' => 'SMP',
+    //         'ijazah_sma' => 'SMA',
+    //         'ijazah_s1' => 'S1',
+    //         'ijazah_s2' => 'S2'
+    //     ];
+
+    //     foreach ($ijazahTypes as $fileKey => $jenisIjazah) {
+    //         if ($request->hasFile($fileKey)) {
+    //             $imageNamaFile = $this->fileSetup($request->file($fileKey), str_replace(' ', '_', $request->nama), "Foto-Ijazah-{$jenisIjazah}-", $namaDir, '/ijazah');
+    //             $ijazahData[] = [
+    //                 'id_tendik' => $idTendik,
+    //                 'jenis_ijazah' => $jenisIjazah,
+    //                 'nama_file' => $imageNamaFile
+    //             ];
+    //         }
+    //     }
+
+    //     if (!empty($ijazahData)) IjazahTendik::insert($ijazahData);
+
+    //     // Update SertifikatGuru records
+    //     $sertifikatData = [];
+
+    //     //Delete data sertifikat of id_tendik
+    //     SertifikatTendik::where('id_tendik', $id)->delete();
+
+    //     if ($request->hasFile('foto_sertifikat')) {
+    //         $files = $request->file('foto_sertifikat');
+    //         $sertifikatDir = 'img/tendik/' . $namaDir . '/sertifikat';
+
+    //         foreach ($files as $index => $file) {
+    //             $imageNamaSertifikat = $this->fileSetup($file, $nama, 'Sertifikat-' . ($index + 1) . '-', $namaDir, '/sertifikat');
+    //             $sertifikatData[] = ['id_tendik' => $id, 'nama_file' => $imageNamaSertifikat];
+    //         }
+    //     }
+
+    //     if (!empty($sertifikatData)) {
+    //         SertifikatTendik::insert($sertifikatData);
+    //     }
+
+    //     return redirect()->route('tendik.index')->with('success', 'Data tendik berhasil di update.');
+    // }
+
+    public function update(TendikRequest $request, $id)
+    {
         $validatedData = $request->validated();
 
-        $nama = $request->nama;
-        $namaDir = str_replace(' ', '_', $nama);
-        $this->makeDir('tendik', $namaDir);
+        $guru = Tendik::findOrFail($id);
 
-        $imageNamaFoto = null;
-        $imageNamaFotoKtp = null;
-        $imageNamaFotoSk = null;
+        // Handle old directory removal only if the name has changed
+        $oldDirname = str_replace(' ', '_', $guru->nama);
+        $newDirname = str_replace(' ', '_', $request->nama);
 
-        if ($request->hasFile('foto')) $imageNamaFoto = $this->fileSetup($request->file('foto'), $nama, 'Foto-', $namaDir);
+        if ($oldDirname !== $newDirname) {
+            $baseDirOld = public_path('img/tendik/' . $oldDirname);
+            if (File::exists($baseDirOld)) {
+                File::deleteDirectory($baseDirOld);
+            }
+        }
 
-        if ($request->hasFile('foto_ktp')) $imageNamaFotoKtp = $this->fileSetup($request->file('foto_ktp'), $nama, 'Foto-KTP-', $namaDir);
+        // Prepare new directory
+        $baseDir = public_path("img/tendik/{$newDirname}");
+        $this->createDirectoryIfNotExists($baseDir);
+        $this->createDirectoryIfNotExists("{$baseDir}/ijazah");
+        $this->createDirectoryIfNotExists("{$baseDir}/sertifikat");
 
-        if ($request->hasFile('foto_surat_keterangan_mengajar')) $imageNamaFotoSk = $this->fileSetup($request->file('foto_surat_keterangan_mengajar'), $nama, 'Foto-SK-Mengajar-', $namaDir);
+        // Handle file uploads
+        $imageNamaFoto = $request->hasFile('foto') ? $this->fileSetup($request->file('foto'), $request->nama, 'Foto-', $newDirname) : $guru->foto;
+        $imageNamaFotoKtp = $request->hasFile('foto_ktp') ? $this->fileSetup($request->file('foto_ktp'), $request->nama, 'Foto-KTP-', $newDirname) : $guru->foto_ktp;
+        $imageNamaFotoSk = $request->hasFile('foto_surat_keterangan_mengajar') ? $this->fileSetup($request->file('foto_surat_keterangan_mengajar'), $request->nama, 'Foto-SK-Mengajar-', $newDirname) : $guru->foto_surat_keterangan_mengajar;
 
-        $tendik = Tendik::create(array_merge(
-            $validatedData, // Include validated data
+        // Update the Guru record with validated data
+        $guru->update(array_merge(
+            $validatedData,
             [
                 'foto' => $imageNamaFoto,
                 'foto_ktp' => $imageNamaFotoKtp,
@@ -212,8 +408,6 @@ class TendikController extends Controller
             ]
         ));
 
-        // Menangani upload dan penyimpanan ijazah
-        $idTendik = $tendik->id;
         $ijazahData = [];
         $ijazahTypes = [
             'ijazah_smp' => 'SMP',
@@ -224,38 +418,40 @@ class TendikController extends Controller
 
         foreach ($ijazahTypes as $fileKey => $jenisIjazah) {
             if ($request->hasFile($fileKey)) {
-                $imageNamaFile = $this->fileSetup($request->file($fileKey), $request->nama, "Foto-Ijazah-{$jenisIjazah}-", $namaDir, '/ijazah');
+                $imageNamaFile = $this->fileSetup($request->file($fileKey), $request->nama, "Foto-Ijazah-{$jenisIjazah}-", $newDirname, '/ijazah');
                 $ijazahData[] = [
-                    'id_tendik' => $idTendik,
+                    'id_tendik' => $id,
                     'jenis_ijazah' => $jenisIjazah,
                     'nama_file' => $imageNamaFile
                 ];
             }
         }
 
+        //Delete data ijazah
+        IjazahTendik::where('id_tendik', $id)->delete();
+
+        //Create new data ijazah
         if (!empty($ijazahData)) IjazahTendik::insert($ijazahData);
 
         $sertifikatData = [];
 
+        // //Delete data Sertifikat
+        SertifikatTendik::where('id_tendik', $id)->delete();
+
         if ($request->hasFile('foto_sertifikat')) {
             $files = $request->file('foto_sertifikat');
-            $sertifikatDir = 'img/tendik/' . $namaDir . '/sertifikat';
+            $sertifikatDir = 'img/guru/' . $newDirname . '/sertifikat';
 
             foreach ($files as $index => $file) {
-                $imageNamaSertifikat = $this->fileSetup($file, $nama, 'Sertifikat-' . ($index + 1) . '-', $namaDir, '/sertifikat');
-                $sertifikatData[] = ['id_tendik' => $idTendik, 'nama_file' => $imageNamaSertifikat];
+                $imageNamaSertifikat = $this->fileSetup($file, $request->nama, 'Sertifikat-' . ($index + 1) . '-', $newDirname, '/sertifikat');
+                $sertifikatData[] = ['id_tendik' => $id, 'nama_file' => $imageNamaSertifikat];
             }
         }
 
-        if (!empty($sertifikatData)) {
-            SertifikatTendik::insert($sertifikatData);
-        }
+        if (!empty($sertifikatData)) SertifikatTendik::insert($sertifikatData);
 
-        return redirect()->route('tendik.index')->with('success', 'Data tendik berhasil di tambahkan.');
+        return redirect()->route('tendik.index')->with('success', 'Data berhasil di update');
     }
-
-
-
 
     public function edit($id)
     {
@@ -280,7 +476,6 @@ class TendikController extends Controller
         if (Storage::exists($folderPath)) {
             $ijazahFiles = Storage::files($folderPath);
         } else {
-
         }
 
         return view('database.database.tendik.edit', compact('tendik', 'ijazahFiles'));

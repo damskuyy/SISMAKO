@@ -9,8 +9,9 @@
                 <a href="{{route('dashboard')}}" class="btn btn-secondary">Back</a>
                 <a href="{{ route('mutasi.create') }}" class="btn btn-primary">Tambah Data Mutasi</a>
             </div>
-            <form method="GET" action="{{ route('mutasi.index') }}" class="mt-3 d-flex" style="gap: 20px">
-                <div class="col-lg-4">
+        </div>
+            <form method="GET" action="{{ route('mutasi.index') }}" class="mt-3 d-flex row items-center" style="gap: 5px">
+                <div class="col-lg-4 col-12">
                     <div class="form-group">
                         <label for="mutasi">Filter Mutasi:</label>
                         <select id="mutasi" name="mutasi" class="form-control" onchange="this.form.submit()">
@@ -20,7 +21,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-sm-12">
                     <div class="form-group">
                         <label for="status">Filter Status:</label>
                         <select id="status" name="status" class="form-control" onchange="this.form.submit()">
@@ -30,16 +31,15 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-lg-2" style="margin-top: 20px">
+                <div class="col-lg-2 mt-2">
                     <a href="{{ route('mutasi.export', ['mutasi' => $mutasiFilter, 'status' => $statusFilter]) }}"
                         class="btn btn-primary">Export</a>
                 </div>
             </form>
-        </div>
     </div>
 
     <div class="mt-4">
-        <div class="table-responsive shadow shadow-sm" style="margin-right: 20px; margin-left: 20px">
+        <div class="table-responsive  " style="margin-right: 20px; margin-left: 20px">
             <table class="table card-table table-vcenter text-nowrap datatable">
                 <thead>
                     <tr>

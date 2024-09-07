@@ -4,7 +4,6 @@ namespace App\Http\Controllers\database;
 
 use Dompdf\Dompdf;
 use Dompdf\Options;
-use Illuminate\Http\Request;
 use App\Models\database\Siswa;
 use App\Models\database\FotoSiswa;
 use App\Models\database\RapotSiswa;
@@ -47,8 +46,6 @@ class SiswaController extends Controller
     }
     public function store(SiswaRequest $request)
     {
-        // dd($request->all());
-        // Validate the request data
         $validatedData = $request->validated();
 
         $nama = $request->nama;
@@ -233,8 +230,6 @@ class SiswaController extends Controller
     {
         $data = Siswa::findOrFail($id);
         $namaDir = str_replace(' ', '_', $data->nama);
-
-        // Path direktori
         $baseDir = public_path('img/Siswa/' . $namaDir);
 
         // Hapus direktori dan semua isinya
@@ -242,21 +237,15 @@ class SiswaController extends Controller
             File::deleteDirectory($baseDir);
         }
 
-        // Hapus data dari database
         $data->delete();
-
         return redirect()->route('siswa.index')->with('success', 'Data berhasil dihapus');
     }
     public function exportPdf($id)
     {
-        // $siswa = Siswa::findOrFail($id);
         $siswa = Siswa::with('fotoSiswa')->findOrFail($id);
-
-
         $html = View::make('database.template.siswa_cv', compact('siswa'))->render();
 
         // Instantiate Dompdf
-
         $options = new Options();
         $options->set('isRemoteEnabled', true);
         $options->set('isHtml5ParserEnabled', true);
@@ -268,16 +257,9 @@ class SiswaController extends Controller
         $options->set('debugLayoutPaddingBox', false);
 
         $dompdf = new Dompdf($options);
-
-        // Load HTML content
         $dompdf->loadHtml($html);
-
-        // Set paper size and orientation
         $dompdf->setPaper('A4', 'portrait');
-
-        // Render PDF (important step!)
         $dompdf->render();
-
-        return $dompdf->stream($siswa->nama . '.pdf', ['Attachment' => false]);
+        return $dompdf->stream($siswa->nama . '.pdf', ['Attachment' => true]);
     }
 }

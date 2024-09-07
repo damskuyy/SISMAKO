@@ -65,7 +65,6 @@
                             <label class="form-label">Agama</label>
                             <select class="form-control" name="agama" value="{{old('agama')}}">
                                 <option value="Islam" selected>Islam</option>
-                                <option value="Kristen">Kristen</option>
                             </select>
                             @error('agama')
                                 <div class="text-danger mt-2">{{$message}}</div>
@@ -128,7 +127,7 @@
                     <div class="col-12 mb-3">
                         <div>
                             <label class="form-label">No. Handphone Wali Siswa</label>
-                            <input type="number" class="form-control" name="no_hp_wali" value="{{old('no_hp_wali')}}">
+                            <input type="number" class="form-control" name="no_hp_wali" value="{{old('no_hp_wali')}}" placeholder="0895-3355-77657">
                             @error('no_hp_wali')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -193,7 +192,7 @@
                             <label class="form-label">Status Siswa</label>
                             <select class="form-control" name="status_siswa" value="{{old('status_siswa')}}">
                                 <option value="Aktif" selected>Aktif</option>
-                                <option value="Tidak Aktif">Tidak Aktif</option>
+                                <option value="Tidak aktif">Tidak Aktif</option>
                             </select>
                             @error('status_siswa')
                                 <div class="text-danger mt-2">{{$message}}</div>

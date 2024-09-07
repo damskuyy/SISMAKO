@@ -12,7 +12,7 @@
                     <div class="col-lg-8">
                         <div class="mb-3">
                             <label class="form-label">Name</label>
-                            <input type="text" class="form-control" name="nama" placeholder="name" value="{{ old('nama', $guru->nama) }}" required>
+                            <input type="text" class="form-control" name="nama" placeholder="Muhammad Dzikri Fauzan" value="{{ old('nama', $guru->nama) }}" required>
                             @error('nama')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -95,11 +95,6 @@
                             <label class="form-label">Agama</label>
                             <select class="form-control" name="agama" required>
                                 <option value="Islam" {{ old('agama', $guru->agama) == 'Islam' ? 'selected' : '' }}>Islam</option>
-                                <option value="Kristen" {{ old('agama', $guru->agama) == 'Kristen' ? 'selected' : '' }}>Kristen</option>
-                                <option value="Buddha" {{ old('agama', $guru->agama) == 'Buddha' ? 'selected' : '' }}>Buddha</option>
-                                <option value="Khonghucu" {{ old('agama', $guru->agama) == 'Khonghucu' ? 'selected' : '' }}>Khonghucu</option>
-                                <option value="Hindu" {{ old('agama', $guru->agama) == 'Hindu' ? 'selected' : '' }}>Hindu</option>
-                                <option value="Katolik" {{ old('agama', $guru->agama) == 'Katolik' ? 'selected' : '' }}>Katolik</option>
                             </select>
                             @error('agama')
                                 <div class="text-danger mt-2">{{$message}}</div>
@@ -109,10 +104,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">Mata Pelajaran</label>
-                            <select class="form-control" name="mapel" value="{{ old('mapel', $guru->mapel) }}" required>
-                                <option value="matematika" selected>Matematika</option>
-                                <option value="bahasa inggris">Bahasa inggris</option>
-                            </select>
+                            <input class="form-control" name="mapel" value="{{ old('mapel', $guru->mapel) }}" required placeholder="Bahasa Inggris">
                             @error('mapel')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -172,7 +164,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">Jurusan</label>
-                            <input type="text" class="form-control" name="nama_jurusan_pt" placeholder="" value="{{ old('nama_jurusan_pt', $guru->nama_jurusan_pt) }}" required>
+                            <input type="text" class="form-control" name="nama_jurusan_pt" placeholder="Fakultas Ilmu Administrasi" value="{{ old('nama_jurusan_pt', $guru->nama_jurusan_pt) }}" required>
                             @error('nama_jurusan_pt')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
@@ -343,8 +335,8 @@
         </form>
     </div>
 
-   @include('js.stepButton')
-   @include('js.setFileGuru')
-   @include('js.handleFile')
+   @include('database.js.stepButton')
+   @include('database.js.setFileGuru')
+   @include('database.js.handleFile')
 
 @endsection

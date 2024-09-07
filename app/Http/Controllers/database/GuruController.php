@@ -219,7 +219,7 @@ class GuruController extends Controller
         $dompdf->render();
 
         // return $dompdf->stream($guru->nama . '.pdf');
-            return $dompdf->stream($guru->nama . '.pdf', ['Attachment' => false]);
+            return $dompdf->stream($guru->nama . '.pdf', ['Attachment' => true]);
 
     }
 

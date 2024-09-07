@@ -110,8 +110,11 @@
                             <label class="form-label">Pendidikan Terakhir</label>
                             <select class="form-control" name="pendidikan_terakhir" value="{{ old('pendidikan_terakhir', $tendik->pendidikan_terakhir) }}" required>
                                 <option value="{{$tendik->pendidikan_terakhir}}" selected>{{$tendik->pendidikan_terakhir}}</option>
-                                <option value="matematika">Matematika</option>
-                                <option value="bahasa inggris">Bahasa inggris</option>
+                                <option value="Smp" >SMP</option>
+                                <option value="Sma" >SMA</option>
+                                <option value="S1" >S1</option>
+                                <option value="S2" >S2</option>
+                                <option value="S3" >S3</option>
                             </select>
                             @error('pendidikan_terakhir')
                                 <div class="text-danger mt-2">{{$message}}</div>
@@ -316,7 +319,7 @@
         </form>
     </div>
 
-   @include('js.stepButton')
-   @include('js.handleFile')
-   @include('js.setFileTendik')
+   @include('database.js.stepButton')
+   @include('database.js.handleFile')
+   @include('database.js.setFileTendik')
 @endsection

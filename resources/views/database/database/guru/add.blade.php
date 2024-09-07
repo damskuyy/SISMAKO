@@ -11,7 +11,7 @@
                     <div class="col-lg-8">
                         <div class="mb-3">
                             <label class="form-label">Name</label>
-                            <input type="text" class="form-control" name="nama" placeholder="name"
+                            <input type="text" class="form-control" name="nama" placeholder="Muhammad Dzikri Fauzan"
                                 value="{{ old('nama') }}">
                             @error('nama')
                                 <div class="text-danger mt-2">{{ $message }}</div>
@@ -79,7 +79,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">No. Handphone</label>
-                            <input type="number" class="form-control" name="no_hp" value="{{ old('no_hp') }}">
+                            <input type="number" class="form-control" name="no_hp" value="{{ old('no_hp') }}" placeholder="0895-3355-77657">
                             @error('no_hp')
                                 <div class="text-danger mt-2">{{ $message }}</div>
                             @enderror
@@ -100,7 +100,6 @@
                             <label class="form-label">Agama</label>
                             <select class="form-control" name="agama" value="{{ old('agama') }}">
                                 <option value="Islam" selected>Islam</option>
-                                <option value="Kristen">Kristen</option>
                             </select>
                             @error('agama')
                                 <div class="text-danger mt-2">{{ $message }}</div>
@@ -110,10 +109,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">Mata Pelajaran</label>
-                            <select class="form-control" name="mapel" value="{{ old('mapel') }}">
-                                <option value="matematika" selected>Matematika</option>
-                                <option value="bahasa inggris">Bahasa inggris</option>
-                            </select>
+                            <input type="text" class="form-control" name="mapel" value="{{ old('mapel') }}" placeholder="Bahasa Inggris">
                             @error('mapel')
                                 <div class="text-danger mt-2">{{ $message }}</div>
                             @enderror
@@ -175,7 +171,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">Jurusan</label>
-                            <input type="text" class="form-control" name="nama_jurusan_pt" placeholder=""
+                            <input type="text" class="form-control" name="nama_jurusan_pt" placeholder="Fakultas Ilmu Administrasi"
                                 value="{{ old('nama_jurusan_pt') }}">
                             @error('nama_jurusan_pt')
                                 <div class="text-danger mt-2">{{ $message }}</div>

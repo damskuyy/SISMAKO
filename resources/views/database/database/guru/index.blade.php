@@ -7,7 +7,7 @@
         <a href="{{route('guru.create')}}" class="btn btn-primary">Tambah data Guru</a>
     </div>
     <div class="mt-4">
-        <div class="table-responsive shadow shadow-sm" style="margin-right: 20px; margin-left: 20px">
+        <div class="table-responsive" style="margin-right: 20px; margin-left: 20px">
             <table class="table card-table table-vcenter text-nowrap datatable">
                 <thead>
                     <tr>
@@ -44,7 +44,7 @@
                                     <button class="btn"><a href="{{route('guru.exportPdf', $data->id)}}" style="text-decoration: none" target="_blank">Export</a></button>
                                     <button class="btn rounded bg-success"><a href="{{route('file.guru', $data->nama)}}"><i class="bi bi-box-arrow-right text-white"></i></a></button>
                                     <button class="btn rounded bg-yellow"><a href="{{route('guru.edit', $data->id)}}"><i class="bi bi-pencil-square text-white"></i></a></button>
-                                    <form id="deleteForm" action="{{ route('guru.destroy', $data->id) }}" method="POST">
+                                    <form id="deleteForm" action="{{ route('guru.destory', $data->id) }}" method="POST">
                                         @csrf
                                         @method('delete')
                                         <button type="button" id="btnDelete" class="btn btn-danger" onclick="showModalDelete()">

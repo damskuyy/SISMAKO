@@ -16,62 +16,39 @@ class DataPrestasiController extends Controller
 
     public function index(Request $request)
     {
-        // Ambil nilai filter status dari query string atau default ke kosong
         $statusFilter = $request->query('status', '');
-
-        // Query untuk mengambil data prestasi
         $query = DataPrestasi::query();
 
-        // Terapkan filter jika ada
         if ($statusFilter) {
             $query->where('status', $statusFilter);
         }
-
-        // Ambil data
         $dataPrestasi = $query->get();
-
-        // Kembalikan view dengan data dan filter
         return view('database.database.prestasi.index', compact('dataPrestasi', 'statusFilter'));
     }
 
     public function exportPdf(Request $request)
     {
-        // Ambil nilai filter status dari query string atau default ke kosong
         $statusFilter = $request->query('status', '');
 
-        // Debug query string
-
-        // Query untuk mengambil data prestasi
         $query = DataPrestasi::query();
 
-        // Terapkan filter jika ada
         if ($statusFilter) {
             $query->where('status', $statusFilter);
         }
 
-        // Ambil data
         $dataPrestasi = $query->get();
 
-        // Generate HTML untuk PDF
         $html = View::make('database.template.prestasi', compact('dataPrestasi', 'statusFilter'))->render();
 
-        // Konfigurasi Dompdf
         $options = new \Dompdf\Options();
         $options->set('isRemoteEnabled', true);
         $options->set('isHtml5ParserEnabled', true);
 
         $dompdf = new \Dompdf\Dompdf($options);
 
-        // Load HTML content
         $dompdf->loadHtml($html);
-
-        // Set ukuran kertas dan orientasi
         $dompdf->setPaper('A4', 'landscape');
-
-        // Render PDF
         $dompdf->render();
-
-        // Stream the PDF
         return $dompdf->stream('data_prestasi.pdf');
     }
 
@@ -96,7 +73,6 @@ class DataPrestasiController extends Controller
             'kelas' => $request->kelas
         ]));
 
-        // Optionally, provide feedback or redirect to another page
         return redirect()->route('prestasi.index')->with('success', 'Data berhasil di tambahkan');
     }
 
@@ -108,30 +84,39 @@ class DataPrestasiController extends Controller
         // Find the existing DataPrestasi record by ID
         $data = DataPrestasi::findOrFail($id);
 
-        // Handle file upload
+        // Get the uploaded file
         $file = $request->file('path_sertifikat');
+
         if ($file) {
-            // Delete the existing file if it exists
-            if (File::exists(public_path($data->nama_file))) {
-                File::delete(public_path($data->nama_file));
+            $oldNameFile = basename($data->nama_file);
+            dd($oldNameFile);
+            $newFileName = $file->getClientOriginalName();
+
+            // Check if the new file name is the same as the old one
+            if ($oldNameFile !== $newFileName) {
+                // Delete the existing file if it's different from the new one
+                if (File::exists(public_path($data->nama_file))) {
+                    File::delete(public_path($data->nama_file));
+                }
+
+                // Generate a unique file name
+                $namaFile = Str::random(30) . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('/files/prestasi/' . $request->status . '/'), $namaFile);
+
+                // Update the file path in the database
+                $validatedData['nama_file'] = '/files/prestasi/' . $request->status . '/' . $namaFile;
             }
-
-            $namaFile =  Str::random(30) . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('/files/prestasi/' . $request->status . '/'), $namaFile);
-
-            // Update the DataPrestasi record with new data and file path
-            DataPrestasi::where('id', $id)->update(array_merge($validatedData, [
-                'nama_file' => '/files/prestasi/' . $request->status . '/' . $namaFile,
-                'kelas' => $request->kelas
-            ]));
-        } else {
-            // Update the DataPrestasi record with new data without changing the file path
-            DataPrestasi::where('id', $id)->update($validatedData);
         }
+
+        // Update the DataPrestasi record with new data (including the file path if it was updated)
+        DataPrestasi::where('id', $id)->update(array_merge($validatedData, [
+            'kelas' => $request->kelas
+        ]));
 
         // Optionally, provide feedback or redirect to another page
         return redirect()->route('prestasi.index')->with('success', 'Data berhasil di update');
     }
+
 
     public function edit($id)
     {

@@ -16,10 +16,7 @@ use App\Http\Requests\database\PunishmentRequest;
 
 class PunishmentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(Request $request)
+        public function index(Request $request)
     {
         $angkatanList = Siswa::select('angkatan')->distinct()->pluck('angkatan');
         $query = Punishment::with('siswa');
@@ -45,11 +42,8 @@ class PunishmentController extends Controller
 
     public function exportPdf(Request $request)
     {
-        // Ambil parameter filter dari request
         $angkatanFilter = $request->query('angkatan', '');
         $idSiswaFilter = $request->query('id_siswa', '');
-
-        // Query untuk mendapatkan data Punishment dengan filter
         $query = Punishment::with('siswa');
 
         if ($angkatanFilter) {
@@ -81,7 +75,6 @@ class PunishmentController extends Controller
 
         // Membuat PDF untuk setiap kronologi
         foreach ($dataPunishment as $index => $data) {
-            // Inisialisasi Dompdf untuk setiap PDF kronologi
             $dompdf = new Dompdf($options);
 
             $kronologiHtml = View::make('database.template.punishmentKronologi', compact('data'))->render();
@@ -92,8 +85,6 @@ class PunishmentController extends Controller
             $kronologiPdfPath = public_path("pdf/kronologi_pelanggaran_{$number}.pdf");
             file_put_contents($kronologiPdfPath, $dompdf->output());
         }
-
-        // Return a ZIP file
         return $this->zipPdfFiles();
     }
 
@@ -118,10 +109,9 @@ class PunishmentController extends Controller
             return response()->json(['error' => 'Could not create ZIP file'], 500);
         }
 
-        // Hapus file PDF setelah ZIP dibuat
-        @unlink(public_path('pdf/data_punishment.pdf')); // @ untuk suppress warning jika file tidak ada
+        @unlink(public_path('pdf/data_punishment.pdf'));
         foreach (glob(public_path('pdf/kronologi_pelanggaran_*.pdf')) as $file) {
-            @unlink($file); // @ untuk suppress warning jika file tidak ada
+            @unlink($file);
         }
 
         $response = response()->download($zipFileName);
@@ -151,12 +141,8 @@ class PunishmentController extends Controller
         return view('database.database.punishment.add', compact('angkatan'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(PunishmentRequest $request)
     {
-        // Validasi data
         $validatedData = $request->validated();
 
         // Handle file upload
@@ -184,42 +170,21 @@ class PunishmentController extends Controller
         return redirect()->route('punishment.index')->with('success', 'data punishment berhasil ditambahkan');
     }
 
-    /**
-     * Display the specified resource.
-     */
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($id)
     {
         $punishment = Punishment::findOrFail($id);
         $angkatan = Siswa::select('angkatan')->distinct()->pluck('angkatan'); // Ambil daftar angkatan yang unik
         return view('database.database.punishment.edit', compact('punishment', 'angkatan'));
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-
     public function update(PunishmentRequest $request, $id)
     {
-        // Validasi data
         $validatedData = $request->validated();
 
-        // Ambil data punishment lama
         $punishment = Punishment::findOrFail($id);
-
-        // Ambil siswa terkait
         $siswa = Siswa::findOrFail($punishment->id_siswa);
 
-        // Tambahkan kembali pengurangan point lama
         $siswa->point += $punishment->pengurangan_point;
-
-        // Kurangi dengan pengurangan point baru
         $siswa->point -= $validatedData['pengurangan_point'];
-
-        // Simpan perubahan point siswa
         $siswa->save();
 
         // Handle file upload
@@ -229,43 +194,27 @@ class PunishmentController extends Controller
                 unlink(public_path($punishment->path_dokumen));
             }
 
-            // Simpan file baru
             $file = $request->file('path_dokumen');
             $namaFile = Str::random(30) . '.' . $file->getClientOriginalExtension();
             $filePath = '/files/punishment/';
             $file->move(public_path($filePath), $namaFile);
             $validatedData['path_dokumen'] = $filePath . $namaFile;
         } else {
-            // Jika tidak ada file baru, pertahankan path dokumen lama
             $validatedData['path_dokumen'] = $punishment->path_dokumen;
         }
 
-        // Update punishment dengan data baru
         $punishment->update($validatedData);
-
         return redirect()->route('punishment.index')->with('success', 'data punishment berhasil di update');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
     {
-        // Ambil data punishment yang akan dihapus
         $punishment = Punishment::findOrFail($id);
 
-        // Ambil siswa terkait
         $siswa = Siswa::findOrFail($punishment->id_siswa);
-
-        // Tambahkan kembali pengurangan point ke siswa
         $siswa->point += $punishment->pengurangan_point;
-
-        // Simpan perubahan point siswa
         $siswa->save();
 
-        // Hapus punishment
         $punishment->delete();
-
         return redirect()->route('punishment.index')->with('success', 'data punishment berhasil dihapus');
     }
 }

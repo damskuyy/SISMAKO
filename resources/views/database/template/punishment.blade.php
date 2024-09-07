@@ -3,7 +3,6 @@
 <head>
     <title>Data Punishment</title>
     <style>
-        /* Add any required styles for your PDF */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -49,6 +48,6 @@
             @endforeach
         </tbody>
     </table>
-    <footer><p style="text-align: right">Total Points: {{$data->siswa->point}}</p></footer>
+    <footer><p style="text-align: right">Sisa Points: {{$data->siswa->point}}</p></footer>
 </body>
 </html>
