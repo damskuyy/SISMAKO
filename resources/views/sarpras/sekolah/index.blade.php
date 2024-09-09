@@ -52,8 +52,7 @@
                 </div>
             </div>
 
-            <div class="modal modal-blur fade" id="modal-report" tabindex="-1" style="display: none;"
-                aria-hidden="true">
+            <div class="modal modal-blur fade" id="modal-report" tabindex="-1" style="display: none;" aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                     <form action="{{ route('school-purchases.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
@@ -172,8 +171,9 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-primary ms-auto">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" class="icon">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                         <path d="M12 5l0 14"></path>
                                         <path d="M5 12l14 0"></path>
@@ -261,11 +261,9 @@
                                             <td>{{ $item->kode }}</td>
                                             <td>{{ $item->harga_satuan }}</td>
                                             <td>
-                                                <span
-                                                    class="badge bg-green text-green-fg">{{ $item->jumlah_baik }}</span>
+                                                <span class="badge bg-green text-green-fg">{{ $item->jumlah_baik }}</span>
                                                 /
-                                                <span
-                                                    class="badge bg-red text-red-fg">{{ $item->jumlah_rusak }}</span>
+                                                <span class="badge bg-red text-red-fg">{{ $item->jumlah_rusak }}</span>
                                             </td>
                                             <td>{{ $item->total_harga }}</td>
                                             <td>{{ $item->pembeli }}</td>
@@ -275,15 +273,13 @@
                                                 <div class="hidden sm:flex sm:items-center sm:ms-6">
                                                     <div class="col-6 col-sm-4 col-md-2 col-xl-auto me-2">
                                                         <a href="{{ route('school-purchases.edit', $item->id) }}"
-                                                            class="btn w-100 btn-icon btn-success"
-                                                            data-bs-toggle="modal" data-bs-target="#modal-update">
+                                                            class="btn w-100 btn-icon btn-success">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                                 height="24" viewBox="0 0 24 24" fill="none"
                                                                 stroke="currentColor" stroke-width="2"
                                                                 stroke-linecap="round" stroke-linejoin="round"
                                                                 class="icon icon-tabler icons-tabler-outline icon-tabler-edit">
-                                                                <path stroke="none" d="M0 0h24v24H0z"
-                                                                    fill="none" />
+                                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                                 <path
                                                                     d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
                                                                 <path
@@ -291,7 +287,7 @@
                                                                 <path d="M16 5l3 3" />
                                                             </svg>
                                                         </a>
-                                                        <div class="modal modal-blur fade"
+                                                        {{-- <div class="modal modal-blur fade"
                                                             id="modal-update-{{ $item->id }}" tabindex="-1"
                                                             aria-hidden="true">
                                                             <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -327,8 +323,7 @@
                                                                                 <div class="mb-3">
                                                                                     <label class="form-label">Kode
                                                                                         Barang</label>
-                                                                                    <input type="text"
-                                                                                        name="kode"
+                                                                                    <input type="text" name="kode"
                                                                                         class="form-control"
                                                                                         value="{{ $item->kode }}"
                                                                                         autofocus autocomplete="off">
@@ -405,8 +400,7 @@
                                                                                 <div class="mb-3">
                                                                                     <label
                                                                                         class="form-label">Pembeli</label>
-                                                                                    <input type="text"
-                                                                                        name="pembeli"
+                                                                                    <input type="text" name="pembeli"
                                                                                         class="form-control"
                                                                                         value="{{ $item->pembeli }}"
                                                                                         autofocus autocomplete="off">
@@ -418,10 +412,8 @@
                                                                             </div>
                                                                             <div class="col-sm-6 col-md-6">
                                                                                 <div class="mb-3">
-                                                                                    <label
-                                                                                        class="form-label">Toko</label>
-                                                                                    <input type="text"
-                                                                                        name="toko"
+                                                                                    <label class="form-label">Toko</label>
+                                                                                    <input type="text" name="toko"
                                                                                         class="form-control"
                                                                                         value="{{ $item->toko }}"
                                                                                         autofocus autocomplete="off">
@@ -447,8 +439,8 @@
                                                                                     <label class="form-label"
                                                                                         for="gambar">Upload
                                                                                         Gambar</label>
-                                                                                    <input type="file"
-                                                                                        name="gambar[]" id="gambar"
+                                                                                    <input type="file" name="gambar[]"
+                                                                                        id="gambar"
                                                                                         class="form-control" multiple>
                                                                                     @error('gambar')
                                                                                         <div class="text-danger mt-2">
@@ -459,31 +451,29 @@
                                                                         </div>
                                                                         <div class="modal-footer">
                                                                             <button type="submit"
-                                                                                class="btn btn-primary ms-auto">Simpan
+                                                                                class="btn btn-primary ms-auto"
+                                                                                data-bs-dismiss="modal">Simpan
                                                                                 Perubahan</button>
                                                                         </div>
                                                                     </div>
                                                                 </form>
                                                             </div>
-                                                        </div>
+                                                        </div> --}}
                                                     </div>
                                                     <div class="col-6 col-sm-4 col-md-2 col-xl-auto me-2">
                                                         <a href="{{ route('school-purchases.destroy', $item->id) }}"
-                                                            class="btn w-100 btn-icon btn-danger"
-                                                            data-bs-toggle="modal"
+                                                            class="btn w-100 btn-icon btn-danger" data-bs-toggle="modal"
                                                             data-bs-target="#modal-delete-{{ $item->id }}">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                                 height="24" viewBox="0 0 24 24" fill="none"
                                                                 stroke="currentColor" stroke-width="2"
                                                                 stroke-linecap="round" stroke-linejoin="round"
                                                                 class="icon icon-tabler icons-tabler-outline icon-tabler-trash">
-                                                                <path stroke="none" d="M0 0h24v24H0z"
-                                                                    fill="none" />
+                                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                                 <path d="M4 7l16 0" />
                                                                 <path d="M10 11l0 6" />
                                                                 <path d="M14 11l0 6" />
-                                                                <path
-                                                                    d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                                                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
                                                                 <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
                                                             </svg>
                                                         </a>
@@ -506,8 +496,7 @@
                                                                             <!-- Download SVG icon from http://tabler-icons.io/i/alert-triangle -->
                                                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                                                 width="24" height="24"
-                                                                                viewBox="0 0 24 24"
-                                                                                fill="currentColor"
+                                                                                viewBox="0 0 24 24" fill="currentColor"
                                                                                 class="icon mb-2 text-danger icon-lg mx-auto icon-tabler-alert-triangle">
                                                                                 <path stroke="none" d="M0 0h24v24H0z"
                                                                                     fill="none" />
@@ -524,8 +513,7 @@
                                                                         <div class="modal-footer">
                                                                             <div class="w-100">
                                                                                 <div class="row">
-                                                                                    <div class="col"><a
-                                                                                            href="#"
+                                                                                    <div class="col"><a href="#"
                                                                                             class="btn w-100"
                                                                                             data-bs-dismiss="modal">
                                                                                             Batal
@@ -552,8 +540,7 @@
                                                                 stroke="currentColor" stroke-width="2"
                                                                 stroke-linecap="round" stroke-linejoin="round"
                                                                 class="icon icon-tabler icons-tabler-outline icon-tabler-download">
-                                                                <path stroke="none" d="M0 0h24v24H0z"
-                                                                    fill="none" />
+                                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                                 <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
                                                                 <path d="M7 11l5 5l5 -5" />
                                                                 <path d="M12 4l0 12" />
@@ -577,6 +564,26 @@
             </div>
         </div>
     </div>
+    @session('success')
+        <div class="alert alert-important alert-success alert-dismissible position-absolute bottom-0 end-0 me-3"
+            role="alert">
+            <div class="d-flex">
+                <div>
+                    <!-- Download SVG icon from http://tabler-icons.io/i/check -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon" width="24" height="24"
+                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M5 12l5 5l10 -10"></path>
+                    </svg>
+                </div>
+                <div>
+                    {{ session('success') }}
+                </div>
+            </div>
+            <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
+        </div>
+    @endsession
     <script>
         const hargaInput = document.getElementById('harga');
         const jumlahInput = document.getElementById('jumlah_baik');
@@ -612,44 +619,14 @@
 
         jumlahInput.addEventListener('input', calculateTotal);
 
-        document.querySelectorAll('[id^="harga-update-"]').forEach((hargaInput) => {
-            const id = hargaInput.id.split('-').pop();
-            const jumlahInput = document.getElementById(`jumlah_baik-update-${id}`);
-            const totalInput = document.getElementById(`total-update-${id}`);
-            function formatRupiah(angka, prefix) {
-                var number_string = angka.replace(/[^,\d]/g, '').toString(),
-                    split = number_string.split(','),
-                    sisa = split[0].length % 3,
-                    rupiah = split[0].substr(0, sisa),
-                    ribuan = split[0].substr(sisa).match(/\d{3}/gi);
-                if (ribuan) {
-                    separator = sisa ? '.' : '';
-                    rupiah += separator + ribuan.join('.');
-                }
-                rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
-                return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
-            }
-            function calculateTotal() {
-                const harga = parseFloat(hargaInput.value.replace(/[^,\d]/g, '')) || 0;
-                const jumlah = parseFloat(jumlahInput.value) || 0;
-                const total = harga * jumlah;
-                totalInput.value = formatRupiah(total.toString(), 'Rp. ');
-            }
-            hargaInput.addEventListener('input', function(e) {
-                hargaInput.value = formatRupiah(this.value, 'Rp. ');
-                calculateTotal();
-            });
-            jumlahInput.addEventListener('input', calculateTotal);
-        });
-
         document.addEventListener("DOMContentLoaded", function() {
             @if ($errors->any())
-                var myModal = new bootstrap.Modal(document.getElementById('modal-report'));
-                myModal.show();
+                var myModalUpd = new bootstrap.Modal(document.getElementById('modal-update'));
+                myModalUpd.show();
             @endif
             @if ($errors->any())
-                var myModal = new bootstrap.Modal(document.getElementById('modal-update'));
-                myModal.show();
+                var myModalNew = new bootstrap.Modal(document.getElementById('modal-report'));
+                myModalNew.show();
             @endif
         });
     </script>

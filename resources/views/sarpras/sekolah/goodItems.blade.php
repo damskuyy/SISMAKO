@@ -13,22 +13,19 @@
             </div>
 
             <!-- Modal untuk Tambah Barang -->
-            <div class="modal fade" id="addItemModal" tabindex="-1" aria-labelledby="addItemModalLabel"
-                aria-hidden="true">
+            <div class="modal fade" id="addItemModal" tabindex="-1" aria-labelledby="addItemModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="addItemModalLabel">Tambah Barang Baru</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <form id="addItemForm" action="" method="POST">
                                 @csrf
                                 <div class="mb-3">
                                     <label for="school_purchase_id" class="form-label">Nama Barang</label>
-                                    <select class="form-control" id="school_purchase_id" name="school_purchase_id"
-                                        required>
+                                    <select class="form-control" id="school_purchase_id" name="school_purchase_id" required>
                                         <option value="">Pilih Nama Barang</option>
                                         @foreach ($schoolPurchases as $purchase)
                                             <option value="{{ $purchase->id }}">{{ $purchase->nama_barang }}</option>

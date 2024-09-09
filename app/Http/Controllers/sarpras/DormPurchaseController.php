@@ -56,7 +56,7 @@ class DormPurchaseController extends Controller
             }
         }
 
-        return redirect("/dorm-purchase")->with("success", "Berhasil menambahkan data Pembelian Asrama.");
+        return redirect("/sarpras/dorm-purchase")->with("success", "Berhasil menambahkan data Pembelian Asrama.");
     }
 
     public function edited($id)
@@ -89,7 +89,7 @@ class DormPurchaseController extends Controller
 
         $dormPurchase->update($data);
 
-        return redirect("/dorm-purchase")->with("success", "Berhasil memperbarui data Pembelian Asrama.");
+        return redirect("/sarpras/dorm-purchase")->with("success", "Berhasil memperbarui data Pembelian Asrama.");
     }
     public function getDamaged($id)
     {
@@ -104,7 +104,7 @@ class DormPurchaseController extends Controller
     public function edit($id)
     {
         $dormPurchase = DormPurchase::findOrFail($id);
-        return response()->json($dormPurchase);
+        return view("sarpras.asrama.edit", compact("dormPurchase"));
     }
     public function damaged(Request $request, $id)
     {
@@ -133,7 +133,7 @@ class DormPurchaseController extends Controller
     public function destroy($id)
     {
         DormPurchase::findOrFail($id)->delete();
-        return redirect("/dorm-purchase")->with("success", "Berhasil menghapus data Pembelian Asrama.");
+        return redirect("/sarpras/dorm-purchase")->with("success", "Berhasil menghapus data Pembelian Asrama.");
     }
     public function print()
     {

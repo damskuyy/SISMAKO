@@ -20,8 +20,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="addItemModalLabel">Pilih Barang</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <select class="form-control" id="selectItem" required>
@@ -44,8 +43,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="editItemModalLabel">Tambah Barang Rusak</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <form id="updateItemForm" method="POST">
@@ -61,8 +59,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="keterangan" class="form-label">Keterangan</label>
-                                    <input type="text" class="form-control" id="keterangan" name="keterangan"
-                                        required>
+                                    <input type="text" class="form-control" id="keterangan" name="keterangan" required>
                                     @error('keterangan')
                                         <div class="text-danger mt-2">{{ $message }}</div>
                                     @enderror
