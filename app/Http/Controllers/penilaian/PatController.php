@@ -3,19 +3,18 @@
 namespace App\Http\Controllers\penilaian;
 
 use ZipArchive;
-use Illuminate\Http\Request;
-use App\Models\penilaian\pat;
+use App\Models\penilaian\pas;
 use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\penilaian\PatRequest;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\penilaian\PasRequest;
 
 class PatController extends Controller
 {
     public function index()
     {
-        $pat = pat::get();
+        $pat = pas::where('type', 'pat')->get();
         return view('penilaian.exam.pat.pat', compact('pat'));
     }
 
@@ -24,82 +23,62 @@ class PatController extends Controller
         return view('penilaian.exam.pat.create');
     }
 
-    public function store(PatRequest $request)
+    public function store(PasRequest $request)
     {
-        $validateData = $request->validate();
+        $validateData = $request->validated();
 
         // Menyimpan file-file yang di-upload dengan nama asli
         $fileFields = [
             'kisi_kisi',
             'soal',
             'jawaban',
-            'proker',
             'kehadiran',
-            'ba',
-            'sk_panitia',
-            'tatib',
-            'surat_pemberitahuan',
-            'jadwal',
             'daftar_nilai',
-            'tanda_terima_dan_penerimaan_soal',
-            'kehadiran_panitia'
         ];
 
         foreach ($fileFields as $fileField) {
-            if ($request->file($fileField)) {
+            if ($request->hasFile($fileField)) {
                 $file = $request->file($fileField);
                 $originalName = $file->getClientOriginalName();
-                $validateData[$fileField] = $file->storeAs('public', $originalName);
+                // Simpan di public/storage/{fileField}/{originalName}
+                $validateData[$fileField] = $file->storeAs($fileField, $originalName, 'public');
             }
         }
 
-        pat::create($validateData);
-
+        pas::create(array_merge($validateData, ['type' => 'pat']));
         return redirect('/penilaian/pat')->with('success', 'Data berhasil ditambahkan');
     }
 
     public function edit($id)
     {
-        $pat = pat::find($id);
+        $pat = pas::find($id);
         return view('penilaian.exam.pat.edit', compact('pat'));
     }
 
-    public function update(PatRequest $request, $id)
+    public function update(PasRequest $request, $id)
     {
         $validateData = $request->validated();
-
-        $pat = pat::findOrFail($id);
+        $pat = pas::findOrFail($id);
 
         $fileFields = [
             'kisi_kisi',
             'soal',
             'jawaban',
-            'proker',
             'kehadiran',
-            'ba',
-            'sk_panitia',
-            'tatib',
-            'surat_pemberitahuan',
-            'jadwal',
             'daftar_nilai',
-            'tanda_terima_dan_penerimaan_soal',
-            'kehadiran_panitia'
         ];
 
         foreach ($fileFields as $fileField) {
-            if ($request->file($fileField)) {
+            if ($request->hasFile($fileField)) {
                 // Hapus file lama jika ada
                 if ($pat->$fileField) {
-                    $oldFilePath = $pat->$fileField;
-
-                    if (Storage::disk('public')->exists($oldFilePath)) {
-                        Storage::disk('public')->delete($oldFilePath);
-                    }
+                    // Hapus file dari storage/public
+                    Storage::disk('public')->delete($pat->$fileField);
                 }
                 // Simpan file baru
                 $file = $request->file($fileField);
                 $originalName = $file->getClientOriginalName();
-                $validateData[$fileField] = $file->storeAs('public', $originalName);
+                $validateData[$fileField] = $file->storeAs($fileField, $originalName, 'public');
             } else {
                 // Set the field to the old value if no file was uploaded
                 $validateData[$fileField] = $pat->$fileField;
@@ -113,7 +92,13 @@ class PatController extends Controller
 
     public function destroy($id)
     {
-        $pat = pat::findOrFail($id);
+        // Menemukan data dengan ID yang diberikan
+        $pat = pas::findOrFail($id);
+
+        // Memeriksa apakah data memiliki type 'pas'
+        if ($pat->type !== 'pat') {
+            return redirect('/penilaian/pat')->with('error', 'Data tidak dapat dihapus karena type tidak sesuai.');
+        }
 
         $fileFields = [
             'kisi_kisi',
@@ -141,6 +126,7 @@ class PatController extends Controller
             }
         }
 
+        // Menghapus entri dari database
         $pat->delete();
 
         return redirect('/penilaian/pat')->with('success', 'Data berhasil dihapus');
@@ -148,7 +134,7 @@ class PatController extends Controller
 
     public function download($id)
     {
-        $pat = pat::findOrFail($id);
+        $pat = pas::findOrFail($id);
 
         $directories = [
             'kisi_kisi',
@@ -171,8 +157,8 @@ class PatController extends Controller
         $zipFilePath = storage_path('app/temp/' . $zipFileName);
 
         // Ensure the temp directory exists
-        if (!Storage::disk('local')->exists('temp')) {
-            Storage::disk('local')->makeDirectory('temp');
+        if (!Storage::exists('temp')) {
+            Storage::makeDirectory('temp');
         }
 
         // Initialize zip archive

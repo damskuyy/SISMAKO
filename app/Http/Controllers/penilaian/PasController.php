@@ -14,7 +14,7 @@ class PasController extends Controller
 {
     public function index()
     {
-        $pas = pas::get();
+        $pas = pas::where('type', 'pas')->get();
         return view('penilaian.exam.pas.pas', compact('pas'));
     }
 
@@ -32,20 +32,12 @@ class PasController extends Controller
             'kisi_kisi',
             'soal',
             'jawaban',
-            'proker',
             'kehadiran',
-            'ba',
-            'sk_panitia',
-            'tatib',
-            'surat_pemberitahuan',
-            'jadwal',
             'daftar_nilai',
-            'tanda_terima_dan_penerimaan_soal',
-            'kehadiran_panitia'
         ];
 
         foreach ($fileFields as $fileField) {
-            if ($request->file($fileField)) {
+            if ($request->hasFile($fileField)) {
                 $file = $request->file($fileField);
                 $originalName = $file->getClientOriginalName();
                 // Simpan di public/storage/{fileField}/{originalName}
@@ -53,11 +45,9 @@ class PasController extends Controller
             }
         }
 
-        pas::create($validateData);
-
+        pas::create(array_merge($validateData, ['type' => 'pas']));
         return redirect('/penilaian/pas')->with('success', 'Data berhasil ditambahkan');
     }
-
 
     public function edit($id)
     {
@@ -74,20 +64,12 @@ class PasController extends Controller
             'kisi_kisi',
             'soal',
             'jawaban',
-            'proker',
             'kehadiran',
-            'ba',
-            'sk_panitia',
-            'tatib',
-            'surat_pemberitahuan',
-            'jadwal',
             'daftar_nilai',
-            'tanda_terima_dan_penerimaan_soal',
-            'kehadiran_panitia'
         ];
 
         foreach ($fileFields as $fileField) {
-            if ($request->file($fileField)) {
+            if ($request->hasFile($fileField)) {
                 // Hapus file lama jika ada
                 if ($pas->$fileField) {
                     // Hapus file dari storage/public
@@ -110,7 +92,13 @@ class PasController extends Controller
 
     public function destroy($id)
     {
+        // Menemukan data dengan ID yang diberikan
         $pas = pas::findOrFail($id);
+
+        // Memeriksa apakah data memiliki type 'pas'
+        if ($pas->type !== 'pas') {
+            return redirect('/penilaian/pat')->with('error', 'Data tidak dapat dihapus karena type tidak sesuai.');
+        }
 
         $fileFields = [
             'kisi_kisi',
@@ -132,18 +120,17 @@ class PasController extends Controller
             if ($pas->$fileField) {
                 $filePath = $pas->$fileField;
 
-                // Hapus file dari public disk
                 if (Storage::disk('public')->exists($filePath)) {
                     Storage::disk('public')->delete($filePath);
                 }
             }
         }
 
+        // Menghapus entri dari database
         $pas->delete();
 
         return redirect('/penilaian/pas')->with('success', 'Data berhasil dihapus');
     }
-
 
     public function download($id)
     {

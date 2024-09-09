@@ -28,6 +28,8 @@ return new class extends Migration
             $table->string('jadwal')->nullable();
             $table->string('daftar_nilai')->nullable();
             $table->string('tanda_terima_dan_penerimaan_soal')->nullable();
+            $table->string('denah')->nullable();
+            $table->string('type');
             $table->string('kehadiran_panitia')->nullable();
             $table->timestamps();
         });

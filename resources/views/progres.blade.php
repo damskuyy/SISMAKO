@@ -4,13 +4,9 @@
     <!-- Button to Open Modal -->
     <div class="container my-5">
         <div class="row">
-            <div class="col-md-1">
-                <a href="/" class="text-decoration-none">SISMAKO
-                </a>
-            </div>
             <div class="col-md-2">
-                <a href="/" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#dateNisnModal">Progres
-                    Kemajuan siswa
+                <a href="/" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#dateNisnModal">Cek progres
+                    kemajuan siswa
                 </a>
             </div>
         </div>

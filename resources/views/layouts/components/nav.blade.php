@@ -1,25 +1,27 @@
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
     <div class="container">
-        <div class="shrink-0 flex items-center">
-            <a href="/">
-                <img src="https://res.cloudinary.com/dhyq9uts4/image/upload/v1676360444/logo_v09np1.png" alt="Logo"
-                    class="img-fluid h-6 w-auto text-dark"> <!-- Mengganti h-9 menjadi h-6 -->
-            </a>
-        </div>
+        <!-- Logo -->
+        <a class="navbar-brand" href="/">
+            <img src="https://res.cloudinary.com/dhyq9uts4/image/upload/v1676360444/logo_v09np1.png" alt="Logo"
+                class="img-fluid h-6 w-auto">
+        </a>
+        <!-- Burger button for collapsing navbar -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
+        <!-- Navbar content -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- Left Side Of Navbar -->
-            <ul class="navbar-nav me-auto">
+            <!-- Left Side of Navbar -->
 
-            </ul>
-
-            <!-- Right Side Of Navbar -->
+            <!-- Right Side of Navbar -->
             <ul class="navbar-nav ms-auto">
                 <!-- Authentication Links -->
+                <li class="nav-item">
+                    <a href="/smktibazma.sch.id" class="text-black nav-item {{ Request::is('smktibazma.sch.id') ? 'hidden' : '' }}">Klik Progres Kemajuan Siswa</a>
+                </li>
+
                 @guest
                     @if (Route::has('login'))
                         <li class="nav-item">
@@ -35,17 +37,14 @@
                 @else
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{ Auth::user()->name }}
                         </a>
-
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
-
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
