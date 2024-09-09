@@ -45,7 +45,7 @@
                                 </select>
                             </div>
                             <div class="col-auto">
-                                <button type="submit" class="btn btn-primary">Filter</button>
+                                <button type="submit" class="btn btn-primary">Search</button>
                             </div>
                         </div>
                     </form>
@@ -294,8 +294,7 @@
                                                 <div class="hidden sm:flex sm:items-center sm:ms-6">
                                                     <div class="col-6 col-sm-4 col-md-2 col-xl-auto me-2">
                                                         <a href="{{ route('dorm-purchases.edit', $item->id) }}"
-                                                            class="btn w-100 btn-icon btn-success" data-bs-toggle="modal"
-                                                            data-bs-target="#modal-update-{{ $item->id }}">
+                                                            class="btn w-100 btn-icon btn-success">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                                 height="24" viewBox="0 0 24 24" fill="none"
                                                                 stroke="currentColor" stroke-width="2"
@@ -309,177 +308,6 @@
                                                                 <path d="M16 5l3 3" />
                                                             </svg>
                                                         </a>
-                                                        <div class="modal modal-blur fade"
-                                                            id="modal-update-{{ $item->id }}" tabindex="-1"
-                                                            aria-hidden="true">
-                                                            <div class="modal-dialog modal-lg modal-dialog-centered">
-                                                                <form
-                                                                    action="{{ route('dorm-purchases.update', $item->id) }}"
-                                                                    method="post" enctype="multipart/form-data">
-                                                                    @csrf
-                                                                    @method('PUT')
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <h5 class="modal-title">Edit Pembelian</h5>
-                                                                            <button type="button" class="btn-close"
-                                                                                data-bs-dismiss="modal"
-                                                                                aria-label="Close"></button>
-                                                                        </div>
-                                                                        <div class="modal-body row row-cards">
-                                                                            <div class="col-md-3">
-                                                                                <div class="mb-3">
-                                                                                    <label class="form-label">Tanggal
-                                                                                        Pembelian</label>
-                                                                                    <input type="date"
-                                                                                        name="tanggal_pembelian"
-                                                                                        class="form-control"
-                                                                                        value="{{ $item->tanggal_pembelian }}"
-                                                                                        autofocus autocomplete="off">
-                                                                                    @error('tanggal_pembelian')
-                                                                                        <div class="text-danger mt-2">
-                                                                                            {{ $message }}</div>
-                                                                                    @enderror
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-sm-6 col-md-3">
-                                                                                <div class="mb-3">
-                                                                                    <label class="form-label">Kode
-                                                                                        Barang</label>
-                                                                                    <input type="text" name="kode"
-                                                                                        class="form-control"
-                                                                                        value="{{ $item->kode }}"
-                                                                                        autofocus autocomplete="off">
-                                                                                    @error('kode')
-                                                                                        <div class="text-danger mt-2">
-                                                                                            {{ $message }}</div>
-                                                                                    @enderror
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-sm-6 col-md-6">
-                                                                                <div class="mb-3">
-                                                                                    <label class="form-label">Nama
-                                                                                        Barang</label>
-                                                                                    <input type="text"
-                                                                                        name="nama_barang"
-                                                                                        class="form-control"
-                                                                                        value="{{ $item->nama_barang }}"
-                                                                                        autofocus autocomplete="off">
-                                                                                    @error('nama_barang')
-                                                                                        <div class="text-danger mt-2">
-                                                                                            {{ $message }}</div>
-                                                                                    @enderror
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-sm-6 col-md-4">
-                                                                                <div class="mb-3">
-                                                                                    <label class="form-label">Harga
-                                                                                        Satuan</label>
-                                                                                    <input type="text"
-                                                                                        id="harga-update-{{ $item->id }}"
-                                                                                        name="harga_satuan"
-                                                                                        class="form-control"
-                                                                                        value="{{ $item->harga_satuan }}"
-                                                                                        autofocus autocomplete="off">
-                                                                                    @error('harga_satuan')
-                                                                                        <div class="text-danger mt-2">
-                                                                                            {{ $message }}</div>
-                                                                                    @enderror
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-sm-6 col-md-3">
-                                                                                <div class="mb-3">
-                                                                                    <label
-                                                                                        class="form-label">Jumlah</label>
-                                                                                    <input type="number"
-                                                                                        id="jumlah_baik-update-{{ $item->id }}"
-                                                                                        name="jumlah_baik"
-                                                                                        class="form-control"
-                                                                                        value="{{ $item->jumlah_baik }}"
-                                                                                        autofocus autocomplete="off">
-                                                                                    @error('jumlah_baik')
-                                                                                        <div class="text-danger mt-2">
-                                                                                            {{ $message }}</div>
-                                                                                    @enderror
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-5">
-                                                                                <div class="mb-3">
-                                                                                    <label class="form-label">Total
-                                                                                        Harga</label>
-                                                                                    <input type="text"
-                                                                                        id="total-update-{{ $item->id }}"
-                                                                                        name="total_harga"
-                                                                                        class="form-control"
-                                                                                        value="{{ $item->total_harga }}"
-                                                                                        autofocus autocomplete="off">
-                                                                                    @error('total_harga')
-                                                                                        <div class="text-danger mt-2">
-                                                                                            {{ $message }}</div>
-                                                                                    @enderror
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-sm-6 col-md-6">
-                                                                                <div class="mb-3">
-                                                                                    <label
-                                                                                        class="form-label">Pembeli</label>
-                                                                                    <input type="text" name="pembeli"
-                                                                                        class="form-control"
-                                                                                        value="{{ $item->pembeli }}"
-                                                                                        autofocus autocomplete="off">
-                                                                                    @error('pembeli')
-                                                                                        <div class="text-danger mt-2">
-                                                                                            {{ $message }}</div>
-                                                                                    @enderror
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-sm-6 col-md-6">
-                                                                                <div class="mb-3">
-                                                                                    <label class="form-label">Toko</label>
-                                                                                    <input type="text" name="toko"
-                                                                                        class="form-control"
-                                                                                        value="{{ $item->toko }}"
-                                                                                        autofocus autocomplete="off">
-                                                                                    @error('toko')
-                                                                                        <div class="text-danger mt-2">
-                                                                                            {{ $message }}</div>
-                                                                                    @enderror
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-12">
-                                                                                <div class="mb-3">
-                                                                                    <label
-                                                                                        class="form-label">Keterangan</label>
-                                                                                    <textarea rows="3" name="deskripsi" class="form-control" autofocus autocomplete="off">{{ $item->deskripsi }}</textarea>
-                                                                                    @error('deskripsi')
-                                                                                        <div class="text-danger mt-2">
-                                                                                            {{ $message }}</div>
-                                                                                    @enderror
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-12">
-                                                                                <div class="mb-3">
-                                                                                    <label class="form-label"
-                                                                                        for="gambar">Upload
-                                                                                        Gambar</label>
-                                                                                    <input type="file" name="gambar[]"
-                                                                                        id="gambar"
-                                                                                        class="form-control" multiple>
-                                                                                    @error('gambar')
-                                                                                        <div class="text-danger mt-2">
-                                                                                            {{ $message }}</div>
-                                                                                    @enderror
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="submit"
-                                                                                class="btn btn-primary ms-auto">Simpan
-                                                                                Perubahan</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
                                                     </div>
                                                     <div class="col-6 col-sm-4 col-md-2 col-xl-auto me-2">
                                                         <a href="{{ route('dorm-purchases.destroy', $item->id) }}"
@@ -585,6 +413,26 @@
             </div>
         </div>
     </div>
+    @session('success')
+        <div class="alert alert-important alert-success alert-dismissible position-absolute bottom-0 end-0 me-3"
+            role="alert">
+            <div class="d-flex">
+                <div>
+                    <!-- Download SVG icon from http://tabler-icons.io/i/check -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon" width="24" height="24"
+                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M5 12l5 5l10 -10"></path>
+                    </svg>
+                </div>
+                <div>
+                    {{ session('success') }}
+                </div>
+            </div>
+            <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
+        </div>
+    @endsession
     <script>
         const hargaInput = document.getElementById('harga');
         const jumlahInput = document.getElementById('jumlah_baik');
@@ -619,38 +467,6 @@
         });
 
         jumlahInput.addEventListener('input', calculateTotal);
-
-        document.querySelectorAll('[id^="harga-update-"]').forEach((hargaInput) => {
-            const id = hargaInput.id.split('-').pop();
-            const jumlahInput = document.getElementById(`jumlah_baik-update-${id}`);
-            const totalInput = document.getElementById(`total-update-${id}`);
-
-            function formatRupiah(angka, prefix) {
-                var number_string = angka.replace(/[^,\d]/g, '').toString(),
-                    split = number_string.split(','),
-                    sisa = split[0].length % 3,
-                    rupiah = split[0].substr(0, sisa),
-                    ribuan = split[0].substr(sisa).match(/\d{3}/gi);
-                if (ribuan) {
-                    separator = sisa ? '.' : '';
-                    rupiah += separator + ribuan.join('.');
-                }
-                rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
-                return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
-            }
-
-            function calculateTotal() {
-                const harga = parseFloat(hargaInput.value.replace(/[^,\d]/g, '')) || 0;
-                const jumlah = parseFloat(jumlahInput.value) || 0;
-                const total = harga * jumlah;
-                totalInput.value = formatRupiah(total.toString(), 'Rp. ');
-            }
-            hargaInput.addEventListener('input', function(e) {
-                hargaInput.value = formatRupiah(this.value, 'Rp. ');
-                calculateTotal();
-            });
-            jumlahInput.addEventListener('input', calculateTotal);
-        });
 
         document.addEventListener("DOMContentLoaded", function() {
             @if ($errors->any())

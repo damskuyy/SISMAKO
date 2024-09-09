@@ -59,12 +59,36 @@ class SchoolPurchaseController extends Controller
             }
         }
 
-        return redirect("/school-purchase")->with("success", "Berhasil menambahkan data Pembelian Sekolah.");
+        return redirect("/sarpras/school-purchase")->with("success", "Berhasil menambahkan data Pembelian Sekolah.");
     }
 
     public function update(SchoolPurchaseRequest $request, $id)
     {
-        $request->validated();
+        $request->validate([
+            "tanggal_pembelian" => "required",
+            "nama_barang" => "required",
+            "kode" => "required|unique:school_purchases,kode," . $id,
+            "harga_satuan" => "required",
+            "jumlah_baik" => "required",
+            "total_harga" => "required",
+            "pembeli" => "required",
+            "toko" => "required",
+            "deskripsi" => "required",
+            'gambar.*' => "nullable|mimes:jpg,jpeg,png|max:2048",
+        ], [
+            "tanggal_pembelian.required" => "Tanggal Pembelian harus diisi",
+            "nama_barang.required" => "Nama Barang harus diisi",
+            "kode.required" => "Kode harus diisi",
+            "kode.unique" => "Kode sudah digunakan",
+            "harga_satuan.required" => "Harga Satuan harus diisi",
+            "jumlah_baik.required" => "Jumlah harus diisi",
+            "total_harga.required" => "Total Harga harus diisi",
+            "pembeli.required" => "Pembeli harus diisi",
+            "toko.required" => "Toko harus diisi",
+            "deskripsi.required" => "Deskripsi harus diisi",
+            "gambar.mimes" => "Gambar harus berupa file dengan format: jpg, jpeg, png",
+            "gambar.max" => "Ukuran gambar maksimal adalah 2MB",
+        ]);
 
         $schoolPurchase = SchoolPurchase::findOrFail($id);
         $data = $request->except('gambar');
@@ -86,7 +110,7 @@ class SchoolPurchaseController extends Controller
 
         $schoolPurchase->update($data);
 
-        return redirect("/school-purchase")->with("success", "Berhasil memperbarui data Pembelian Sekolah.");
+        return redirect("/sarpras/school-purchase")->with("success", "Berhasil memperbarui data Pembelian Sekolah.");
     }
 
     public function getDamaged($id)
@@ -104,7 +128,7 @@ class SchoolPurchaseController extends Controller
     public function edit($id)
     {
         $schoolPurchase = SchoolPurchase::findOrFail($id);
-        return response()->json($schoolPurchase);
+        return view("sarpras.sekolah.edit", compact("schoolPurchase"));
     }
 
     public function damaged(Request $request, $id)
@@ -129,14 +153,14 @@ class SchoolPurchaseController extends Controller
         $schoolPurchase->keterangan = $request->keterangan;
         $schoolPurchase->save();
 
-        return redirect('/damaged-items-school')->with('success', 'Data barang rusak berhasil diperbarui.');
+        return redirect('/sarpras/damaged-items-school')->with('success', 'Data barang rusak berhasil diperbarui.');
     }
 
 
     public function destroy($id)
     {
         SchoolPurchase::findOrFail($id)->delete();
-        return redirect("/school-purchase")->with("success", "Berhasil menghapus data Pembelian Sekolah.");
+        return redirect("/sarpras/school-purchase")->with("success", "Berhasil menghapus data Pembelian Sekolah.");
     }
 
     public function print()
