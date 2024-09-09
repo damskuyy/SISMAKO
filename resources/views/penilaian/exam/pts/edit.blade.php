@@ -2,90 +2,77 @@
 
 @section('content')
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="col">
-                <div class="row row-cards">
-                    <div class="col-12">
-                        <div class="mb-4 col">
-                            <a href="/penilaian/pts" class="btn btn-secondary">
-                                Back
-                            </a>
-                        </div>
-                        <form class="card" action="{{ route('pts.update', $pts->id) }}" method="post"
-                            enctype="multipart/form-data">
-                            @csrf
-                            @method('PUT')
-                            <div class="card-body">
-                                <h3 class="card-title">Tambahkan Data</h3>
-                                <div class="row row-cards">
-                                    <div class="col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Tahun Ajaran</label>
-                                            <select class="form-control form-select" name="tahun_ajaran">
-                                                <option value="">Pilih Tahun Ajaran</option>
-                                                @foreach (['2024-2025', '2025-2026', '2026-2027', '2027-2028', '2028-2029', '2029-2030'] as $tahun)
-                                                    <option value="{{ $tahun }}"
-                                                        {{ $pts->tahun_ajaran == $tahun ? 'selected' : '' }}>
-                                                        {{ $tahun }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                            @error('tahun_ajaran')
-                                                <div class="text-danger mt-2">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-3">
-                                        <div class="mb-3">
-                                            <label class="form-label">Kelas</label>
-                                            <select class="form-control form-select" name="kelas">
-                                                <option value="">Pilih Kelas</option>
-                                                @foreach (['X', 'XI', 'XII', 'XIII'] as $kelas)
-                                                    <option value="{{ $kelas }}"
-                                                        {{ $pts->kelas == $kelas ? 'selected' : '' }}>
-                                                        {{ $kelas }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                            @error('kelas')
-                                                <div class="text-danger mt-2">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-5">
-                                        <div class="mb-3">
-                                            <label class="form-label">Mapel</label>
-                                            <select class="form-control form-select" name="mapel">
-                                                <option value="">Pilih Mapel</option>
-                                                @foreach (['SAAS', 'PAAS', 'IAAS', 'SKJ', 'SIoT', 'PJOK', 'MTK', 'BIng', 'BInd', 'PAIBP', 'Kimia', 'Fisika', 'Seni', 'Sejarah', 'Pancasila'] as $mapel)
-                                                    <option value="{{ $mapel }}"
-                                                        {{ $pts->mapel == $mapel ? 'selected' : '' }}>
-                                                        {{ $mapel }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                            @error('mapel')
-                                                <div class="text-danger mt-2">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <p>{{ $pts->kisi_kisi }}</p>
-                                    @foreach (['kisi_kisi', 'soal', 'jawaban', 'proker', 'kehadiran', 'ba', 'sk_panitia', 'tatib', 'surat_pemberitahuan', 'jadwal', 'daftar_nilai', 'tanda_terima_dan_penerimaan_soal', 'kehadiran_panitia'] as $fileField)
-                                        <div class="col-sm-6 col-md-4">
-                                            <div class="mb-3">
-                                                <div class="form-label">
-                                                    {{ ucwords(str_replace('_', ' ', $fileField)) }}</div>
-                                                <input type="file" class="form-control" name="{{ $fileField }}">
-                                            </div>
-                                        </div>
-                                    @endforeach
+        <div class="container">
+            <div class="row">
+                <div class="col-12 mb-4">
+                    <a href="/penilaian/pts" class="btn btn-secondary">
+                        Back
+                    </a>
+                </div>
+                <div class="col-12">
+                    <form class="card" action="{{ route('pts.update', $pts->id) }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+                        <div class="card-body">
+                            <h3 class="card-title">Perbarui Data</h3>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label">Tahun Ajaran</label>
+                                    <select class="form-select" name="tahun_ajaran">
+                                        <option value="">Pilih Tahun Ajaran</option>
+                                        @foreach(['2024-2025', '2025-2026', '2026-2027', '2027-2028', '2028-2029', '2029-2030'] as $tahun)
+                                            <option value="{{ $tahun }}" {{ $pts->tahun_ajaran == $tahun ? 'selected' : '' }}>
+                                                {{ $tahun }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('tahun_ajaran')
+                                        <div class="text-danger mt-2">{{ $message }}</div>
+                                    @enderror
                                 </div>
+                                <div class="col-sm-6 col-md-3 mb-3">
+                                    <label class="form-label">Kelas</label>
+                                    <select class="form-select" name="kelas">
+                                        <option value="">Pilih Kelas</option>
+                                        @foreach(['X', 'XI', 'XII', 'XIII'] as $kelas)
+                                            <option value="{{ $kelas }}" {{ $pts->kelas == $kelas ? 'selected' : '' }}>
+                                                {{ $kelas }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('kelas')
+                                        <div class="text-danger mt-2">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="col-sm-6 col-md-5 mb-3">
+                                    <label class="form-label">Mapel</label>
+                                    <select class="form-select" name="mapel">
+                                        <option value="">Pilih Mapel</option>
+                                        @foreach(['SAAS', 'PAAS', 'IAAS', 'SKJ', 'SIoT', 'PJOK', 'MTK', 'BIng', 'BInd', 'PAIBP', 'Kimia', 'Fisika', 'Seni', 'Sejarah', 'Pancasila'] as $mapel)
+                                            <option value="{{ $mapel }}" {{ $pts->mapel == $mapel ? 'selected' : '' }}>
+                                                {{ $mapel }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('mapel')
+                                        <div class="text-danger mt-2">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <p>{{ $pts->kisi_kisi }}</p>
+                                </div>
+                                @foreach (['kisi_kisi', 'soal', 'jawaban', 'kehadiran', 'daftar_nilai'] as $fileField)
+                                    <div class="col-sm-6 col-md-4 mb-3">
+                                        <label class="form-label">{{ ucwords(str_replace('_', ' ', $fileField)) }}</label>
+                                        <input type="file" class="form-control" name="{{ $fileField }}">
+                                    </div>
+                                @endforeach
                             </div>
-                            <div class="card-footer text-end">
-                                <button type="submit" class="btn btn-primary">Perbaharui</button>
-                            </div>
-                        </form>
-                    </div>
+                        </div>
+                        <div class="card-footer text-end">
+                            <button type="submit" class="btn btn-primary">Perbaharui</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -95,12 +82,10 @@
             const data = @json($pts);
             console.log(data);
 
-
             const setFileInput = (fileName, inputName) => {
                 if (fileName) {
                     const inputElement = document.querySelector(`input[name="${inputName}"]`);
                     if (inputElement) {
-
                         fetch('/storage/' + fileName)
                             .then(response => {
                                 if (!response.ok) {
@@ -127,7 +112,6 @@
                 'surat_pemberitahuan', 'jadwal', 'daftar_nilai', 'tanda_terima_dan_penerimaan_soal',
                 'kehadiran_panitia'
             ]
-            // Call the function with appropriate parameters
             array.forEach(v => {
                 setFileInput(data[v], v);
             })

@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\database\ZipController;
 use App\Http\Controllers\database\GuruController;
 use App\Http\Controllers\penilaian\PasController;
@@ -21,6 +20,7 @@ use App\Http\Controllers\keasramaan\tafsirController;
 use App\Http\Controllers\keasramaan\tahsinController;
 use App\Http\Controllers\keasramaan\tajwidController;
 use App\Http\Controllers\penilaian\AverageController;
+use App\Http\Controllers\penilaian\PanitiaController;
 use App\Http\Controllers\administrasi\MapelController;
 use App\Http\Controllers\database\DataKelasController;
 use App\Http\Controllers\keasramaan\tahfidzController;
@@ -60,8 +60,6 @@ Route::get('/smktibazma.sch.id', function () {
     return view('progres');
 });
 
-// Route::middleware(['PasswordProtected'])->group(function () {
-
 // });
 Route::get('database', [DatabaseDashboard::class, 'index'])->name('dashboard');
 Route::view('penilaian', 'home.penilaian')->name('penilaian');
@@ -75,11 +73,6 @@ Route::view('sekolah-keasramaan/akademik', 'keasramaan.akademik.akademik')->name
 Route::view('sekolah-keasramaan/jurnal-asrama', 'keasramaan.jurnal.jurnal')->name('jurnal');
 
 Route::view('created-by', 'home.createdBy')->name('created-by');
-
-Route::controller(PasswordController::class)->group(function () {
-    Route::post('/password/verify', 'verify')->name('password.verify');
-    Route::post('/change-password-sismako', 'update')->name('password.update');
-});
 
 // Penilaian Controller Routes
 Route::controller(AverageController::class)->group(function () {
@@ -138,7 +131,15 @@ Route::controller(PtsController::class)->group(function () {
     Route::get('/penilaian/pts/download/{id}', 'download')->name('pts.download');
 });
 
-
+Route::controller(PanitiaController::class)->group(function () {
+    Route::get('/penilaian/panitia', 'index')->name('panitia');
+    Route::get('/penilaian/panitia/create', 'create')->name('panitia.create');
+    Route::post('/penilaian/panitia/store', 'store')->name('panitia.perform');
+    Route::get('/penilaian/panitia/edit/{id}', 'edit')->name('panitia.edit');
+    Route::put('/penilaian/panitia/update/{id}', 'update')->name('panitia.update');
+    Route::delete('/penilaian/panitia/delete/{id}', 'destroy')->name('panitia.delete');
+    Route::get('/penilaian/panitia/download/{id}', 'download')->name('panitia.download');
+});
 
 
 

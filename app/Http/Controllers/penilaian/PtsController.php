@@ -4,18 +4,18 @@ namespace App\Http\Controllers\penilaian;
 
 use ZipArchive;
 use Illuminate\Http\Request;
-use App\Models\penilaian\pts;
+use App\Models\penilaian\pas;
 use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\penilaian\PtsRequest;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\penilaian\PasRequest;
 
 class PtsController extends Controller
 {
     public function index()
     {
-        $pts = pts::get();
+        $pts = pas::where('type', 'pts')->get();
         return view('penilaian.exam.pts.pts', compact('pts'));
     }
 
@@ -24,7 +24,7 @@ class PtsController extends Controller
         return view('penilaian.exam.pts.create');
     }
 
-    public function store(PtsRequest $request)
+    public function store(PasRequest $request)
     {
         $validateData = $request->validated();
 
@@ -54,7 +54,7 @@ class PtsController extends Controller
             }
         }
 
-        pts::create($validateData);
+        pas::create(array_merge($validateData, ['type' => 'pts']));
 
         return redirect('/penilaian/pts')->with('success', 'Data berhasil ditambahkan');
     }
@@ -62,14 +62,14 @@ class PtsController extends Controller
 
     public function edit($id)
     {
-        $pts = pts::find($id);
+        $pts = pas::find($id);
         return view('penilaian.exam.pts.edit', compact('pts'));
     }
 
-    public function update(PtsRequest $request, $id)
+    public function update(PasRequest $request, $id)
     {
         $validateData = $request->validated();
-        $pts = pts::findOrFail($id);
+        $pts = pas::findOrFail($id);
 
         $fileFields = [
             'kisi_kisi',
@@ -111,22 +111,14 @@ class PtsController extends Controller
 
     public function destroy($id)
     {
-        $pts = pts::findOrFail($id);
+        $pts = pas::findOrFail($id);
 
         $fileFields = [
             'kisi_kisi',
             'soal',
             'jawaban',
-            'proker',
             'kehadiran',
-            'ba',
-            'sk_panitia',
-            'tatib',
-            'surat_pemberitahuan',
-            'jadwal',
             'daftar_nilai',
-            'tanda_terima_dan_penerimaan_soal',
-            'kehadiran_panitia'
         ];
 
         foreach ($fileFields as $fileField) {
@@ -148,22 +140,14 @@ class PtsController extends Controller
 
     public function download($id)
     {
-        $pts = pts::findOrFail($id);
+        $pts = pas::findOrFail($id);
 
         $directories = [
             'kisi_kisi',
             'soal',
             'jawaban',
-            'proker',
             'kehadiran',
-            'ba',
-            'sk_panitia',
-            'tatib',
-            'surat_pemberitahuan',
-            'jadwal',
             'daftar_nilai',
-            'tanda_terima_dan_penerimaan_soal',
-            'kehadiran_panitia'
         ];
 
         // Create a temporary file to store the zip

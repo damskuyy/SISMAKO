@@ -4,47 +4,31 @@
 <link rel="stylesheet" href="{{ asset('dist/css/style.css') }}">
     <div class="banner">
         <div class="slider" style="--quantity: 11">
-            @for ($i = 1; $i <= 11; $i++)
-                <div class="item" style="--position: {{ $i }}">
-                    <img src="{{ asset('dist/img/createdBy/dragon_' . $i . '.jpg') }}" alt="">
+            @php
+                $data = [
+                    ['name' => 'Ahmad Dahlan, S.Ag', 'role' => 'Kepala SMK TI BAZMA (Inisiator & Pembuat Skema Alur Kerja)'],
+                    ['name' => 'I Gde Bayu Priyambada M. S.Kom', 'role' => 'Kepala LABKOM & Guru IT'],
+                    ['name' => 'Fadhil Rabbani XII', 'role' => 'Project Database'],
+                    ['name' => 'Mufiz Ihsanulhaq XII', 'role' => 'Project Penilaian'],
+                    ['name' => 'Attar Rifai XII', 'role' => 'Project Sarpras'],
+                    ['name' => 'Muhammad Abdullah Al-Aziz XII', 'role' => 'Project Korespondensi'],
+                    ['name' => 'Muhammad Saeful Romadhon XII', 'role' => 'Project Administrasi Keguruan'],
+                    ['name' => 'Gemi Widodo XII', 'role' => 'Project PKG'],
+                    ['name' => 'Hafith Muhammad Fauzan XII', 'role' => 'Project PKG'],
+                    ['name' => 'Syahban Syahputra XII', 'role' => 'Project Keuangan'],
+                    ['name' => 'Hanif Gibran Syidiq XII', 'role' => 'Project Keuangan'],
+                ];
+            @endphp
+
+            @foreach ($data as $index => $person)
+                <div class="item" style="--position: {{ $index + 1 }}">
+                    <img src="{{ asset('dist/img/createdBy/dragon_' . ($index + 1) . '.png') }}" alt="">
                     <div class="overlay">
-                        @if ($i == 1)
-                            <h3>Ahmad Dahlan, S.Ag</h3>
-                            <p>Kepala SMK TI BAZMA (Inisiator & Pembuat Skema Alur Kerja)</p>
-                        @elseif($i == 2)
-                            <h3 class="long-name">I Gde Bayu Priyambada M. S.Kom</h3>
-                            <p>Kepala LABKOM & Guru IT</p>
-                        @elseif($i == 3)
-                            <h3>Fadhil Rabbani XII</h3>
-                            <p>Project Database</p>
-                        @elseif($i == 4)
-                            <h3>Mufiz Ihsanulhaq XII</h3>
-                            <p>Project Penilaian</p>
-                        @elseif($i == 5)
-                            <h3>Attar Rifai XII</h3>
-                            <p>Project Sarpras </p>
-                        @elseif($i == 6)
-                            <h3>Muhammad Abdullah Al-Aziz XII</h3>
-                            <p>Project Korespondensi </p>
-                        @elseif($i == 7)
-                            <h3>Muhammad Saeful Romadhon XII</h3>
-                            <p>Project Administrasi Keguruan</p>
-                        @elseif($i == 8)
-                            <h3>Gemi Widodo XII</h3>
-                            <p>Project PKG</p>
-                        @elseif($i == 9)
-                            <h3>Hafith Muhammad Fauzan XII</h3>
-                            <p>Project PKG</p>
-                        @elseif($i == 10)
-                            <h3>Syahban Syahputra XII</h3>
-                            <p>Project Keuangan</p>
-                        @elseif($i == 11)
-                            <h3>Hanif Gibran Syidiq XII</h3>
-                            <p>Project Keuangan</p>
-                        @endif
+                        <h3>{{ $person['name'] }}</h3>
+                        <p>{{ $person['role'] }}</p>
                     </div>
                 </div>
-            @endfor
+            @endforeach
         </div>
 
         <div class="content">
@@ -58,4 +42,3 @@
         </div>
     </div>
 @endsection
-

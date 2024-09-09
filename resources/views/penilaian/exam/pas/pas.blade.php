@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="py-12">
+    <div class="py-5">
         <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
-            <div class="">
+            <div class="container xl-custom-container">
                 <div class="col-12">
                     <div class="mb-4">
                         <div class="col-12 row">
@@ -40,7 +40,7 @@
                     </div>
                     <div class="card">
                         <div class="table-responsive">
-                            <table class="table table-vcenter table-mobile-md card-table">
+                            <table class="table table-center table-mobile-md card-table">
                                 <thead>
                                     <th>Tahun Ajaran</th>
                                     <th>Kelas</th>
@@ -48,16 +48,8 @@
                                     <th>Kisi-Kisi</th>
                                     <th>Soal</th>
                                     <th>Jawaban</th>
-                                    <th>Proker</th>
                                     <th>Kehadiran Peserta</th>
-                                    <th>BA</th>
-                                    <th>SK Panitia</th>
-                                    <th>Tatib</th>
-                                    <th>Surat Pemberitahuan</th>
-                                    <th>Jadwal</th>
                                     <th>Daftar Nilai</th>
-                                    <th>Tanda Terima dan Penyerahan Soal</th>
-                                    <th>Daftar Hadir Panitia</th>
                                     <th></th>
                                     <th></th>
                                     <th></th>
@@ -88,34 +80,10 @@
                                                 {!! Str::limit(Str::afterLast($item->jawaban, '/'), 10, '...') !!}
                                             </td>
                                             <td>
-                                                {!! Str::limit(Str::afterLast($item->proker, '/'), 10, '...') !!}
-                                            </td>
-                                            <td>
                                                 {!! Str::limit(Str::afterLast($item->kehadiran, '/'), 10, '...') !!}
                                             </td>
                                             <td>
-                                                {!! Str::limit(Str::afterLast($item->ba, '/'), 10, '...') !!}
-                                            </td>
-                                            <td>
-                                                {!! Str::limit(Str::afterLast($item->sk_panitia, '/'), 10, '...') !!}
-                                            </td>
-                                            <td>
-                                                {!! Str::limit(Str::afterLast($item->tatib, '/'), 10, '...') !!}
-                                            </td>
-                                            <td>
-                                                {!! Str::limit(Str::afterLast($item->surat_pemberitahuan, '/'), 10, '...') !!}
-                                            </td>
-                                            <td>
-                                                {!! Str::limit(Str::afterLast($item->jadwal, '/'), 10, '...') !!}
-                                            </td>
-                                            <td>
                                                 {!! Str::limit(Str::afterLast($item->daftar_nilai, '/'), 10, '...') !!}
-                                            </td>
-                                            <td>
-                                                {!! Str::limit(Str::afterLast($item->tanda_terima_dan_penerimaan_soal, '/'), 10, '...') !!}
-                                            </td>
-                                            <td>
-                                                {!! Str::limit(Str::afterLast($item->kehadiran_panitia, '/'), 10, '...') !!}
                                             </td>
                                             <td>
                                                 <a href="{{ route('pas.edit', $item->id) }}">

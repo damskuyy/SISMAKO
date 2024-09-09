@@ -3,10 +3,9 @@
 @section('content')
     <livewire:layout.header />
     <div class="card">
-        <div class="img-fluid py-6" style="background-image: url('dist/img/gif/bg.png');">
+        <div class="py-6" style="background-image: url('dist/img/gif/bg.png'); background-size: cover;">
             <div class="container">
                 <div class="row">
-
                     <style>
                         .hover-shadow:hover {
                             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -17,30 +16,8 @@
                             height: auto;
                         }
 
-                        .modal-body input {
-                            font-size: 0.875rem;
-                            /* Smaller font size */
-                        }
-
                         .card-title {
                             font-size: 1.25rem;
-                            /* Smaller font size for card title */
-                        }
-
-                        .card-custom {
-                            background-color: rgba(0, 123, 255, 0.25);
-                        }
-
-                        .card-custom-red {
-                            background-color: rgba(255, 0, 0, 0.25);
-                        }
-
-                        .card-custom-green {
-                            background-color: rgba(0, 128, 0, 0.25);
-                        }
-
-                        .card-title-custom {
-                            font-size: 1.25rem;
                             font-family: 'Poppins', sans-serif;
                             font-weight: bold;
                             color: white;
@@ -62,19 +39,6 @@
 
                         .card-custom-green {
                             background-color: rgba(0, 128, 0, 0.25);
-                        }
-
-                        .card-title-custom {
-                            font-size: 1.25rem;
-                            font-family: 'Poppins', sans-serif;
-                            font-weight: bold;
-                            color: white;
-                        }
-
-                        .img-custom {
-                            max-width: 40%;
-                            height: auto;
-                            margin-right: 12px;
                         }
                     </style>
 
@@ -132,15 +96,13 @@
                     @endphp
 
                     @foreach ($cards as $card)
-                        <div class="col-12 col-sm-6 col-md-4 modals">
+                        <div class="col-12 col-sm-6 col-md-4">
                             <a href="#" class="text-decoration-none" data-bs-toggle="modal"
                                 data-bs-target="#passwordModal" data-url="{{ $card['url'] }}">
                                 <div class="card shadow-sm mb-4 hover-shadow {{ $card['color'] }}">
                                     <div class="card-body d-flex align-items-center">
                                         <img src="{{ asset($card['img']) }}" alt="" class="img-fluid img-custom">
-                                        <h2 class="card-title text-sm font-semibold mb-0 card-title-custom">
-                                            {{ $card['title'] }}
-                                        </h2>
+                                        <h2 class="card-title">{{ $card['title'] }}</h2>
                                     </div>
                                 </div>
                             </a>
@@ -153,10 +115,7 @@
                                 <div class="card-body d-flex align-items-center">
                                     <img src="{{ asset('dist/img/gif/management-consulting.gif') }}" alt=""
                                         class="img-fluid" style="max-width: 40%; height: auto; margin-right: 12px;">
-                                    <h2 class="card-title text-sm font-semibold mb-0"
-                                        style="font-size: 1.25rem; font-family: 'Poppins', sans-serif; font-weight: bold; color: white;">
-                                        Created By
-                                    </h2>
+                                    <h2 class="card-title">Created By</h2>
                                 </div>
                             </div>
                         </a>
@@ -169,42 +128,38 @@
         <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form method="POST" action="{{ route('password.verify') }}">
-                        @csrf
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="passwordModalLabel">Enter Default Password</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="passwordModalLabel">Enter Default Password</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            @if (session('success'))
+                                <div class="alert alert-success">{{ session('success') }}</div>
+                            @endif
                         </div>
-                        <div class="modal-body">
-                            <div class="mb-3">
-                                @if (session('success'))
-                                    <div class="alert alert-success">
-                                        {{ session('success') }}
-                                    </div>
-                                @endif
-                            </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password" name="password" required>
-                                <input type="hidden" id="redirectUrl" name="redirectUrl" value="">
-                                @if ($errors->any())
-                                    <div class="alert alert-danger">
-                                        <ul>
-                                            @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                @endif
-                            </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                            <input type="hidden" id="redirectUrl" name="redirectUrl" value="">
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                    </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
                 </div>
             </div>
         </div>
-
-    @endsection
+    </div>
+@endsection

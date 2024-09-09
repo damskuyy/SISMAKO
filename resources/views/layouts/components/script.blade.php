@@ -5,38 +5,56 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Include Chart.js CDN -->
 <script src="{{ asset('dist/libs/litepicker/dist/litepicker.js') }}" defer></script>
 <script src="https://kit.fontawesome.com/82f9bbc013.js" crossorigin="anonymous"></script>
-<script src="https://cdn.tailwindcss.com"></script>
+{{-- <script src="https://cdn.tailwindcss.com"></script> --}}
 
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         var passwordModal = document.getElementById('passwordModal');
-        passwordModal.addEventListener('show.bs.modal', function (event) {
+        var passwordInput = document.getElementById('password');
+        var redirectUrlInput = document.getElementById('redirectUrl');
+
+        // Event listener ketika modal muncul
+        passwordModal.addEventListener('shown.bs.modal', function(event) {
             var button = event.relatedTarget;
             var url = button.getAttribute('data-url');
-            var modal = passwordModal.querySelector('input[name="redirectUrl"]');
-            modal.value = url;
+            redirectUrlInput.value = url;
+
+            // Coba fokuskan dengan sedikit delay untuk memastikan modal sudah sepenuhnya terbuka
+            setTimeout(function() {
+                passwordInput.focus();
+            }, 500); // Delay 500ms untuk memberi waktu modal ditampilkan
         });
+
+        // Fungsi untuk verifikasi password
+        function verifyPassword() {
+            var password = passwordInput.value;
+            var redirectUrl = redirectUrlInput.value;
+
+            if (password === '12345') {
+                window.location.href = redirectUrl; // Redirect ke URL yang diambil
+            } else {
+                alert('Password salah!');
+                passwordInput.value = ''; // Kosongkan input jika salah
+                passwordInput.focus(); // Fokus kembali ke input password
+            }
+        }
     });
 
-    function updateChart(chart, data) {
-        const ctx = document.getElementById('modalAverageChart').getContext('2d');
-        if (chart) {
-            chart.destroy(); // Destroy existing chart if it exists
-        }
-        return new Chart(ctx, {
-            type: 'bar',
-            data: data,
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
+    // Event listener untuk tombol submit
+    document.querySelector('.modal-footer button[type="submit"]').addEventListener('click', function(
+        event) {
+        event.preventDefault(); // Mencegah submit form default
+        verifyPassword(); // Verifikasi password
+    });
+
+    // Event listener untuk tombol "Enter"
+    passwordInput.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault(); // Cegah submit form default
+        verifyPassword(); // Verifikasi password
     }
+    });
 
     // Populate filter dropdowns with unique values from the table
     function populateFilters() {

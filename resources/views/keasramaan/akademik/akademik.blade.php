@@ -31,7 +31,7 @@
                             <div class="card shadow-sm mb-4 hover-shadow"
                                 style="background-color:  rgba(0, 123, 255, 0.25);">
                                 <div class="card-body d-flex align-items-center">
-                                    <img src="{{ asset('dist/img/gif/podium.gif') }}" alt=""
+                                    <img src="{{ asset('dist/img/gif/Podium.gif') }}" alt=""
                                         style="width: 50%; height: auto; margin-right: 16px;">
                                     <h2 class="card-title text-xl font-semibold mb-0"
                                         style="font-size: 1.5rem; font-family: 'Poppins', sans-serif; font-weight: bold; color: white;">
