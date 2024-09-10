@@ -320,9 +320,12 @@
                         <div class="input-group">
                             <input type="file" class="form-control" name="foto_sertifikat[]" multiple accept=".png" id="foto_sertifikat">
                             <div class="input-group-append">
-                                <button type="button" class="btn" style="height: 100%;" id="btn-remove-foto_sertifikat" onclick="removeFile('foto_sertifikat')"><i class="fa-solid fa-x"></i></button>
+                                <button type="button" class="btn" style="height: 100%;" id="btn-remove-foto_sertifikat" onclick="removeFile('foto_sertifikat[]')"><i class="fa-solid fa-x"></i></button>
                             </div>
                         </div>
+                        @error('foto_sertifikat.*')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
             </div>

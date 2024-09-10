@@ -38,6 +38,11 @@ class TendikRequest extends FormRequest
             'pendidikan_terakhir' => 'required|string|max:50',
             'tanggal_masuk' => 'required|date',
             'no_hp' => 'nullable|string',
+            'foto' => 'file|max:2048',
+            'foto_ktp' => 'file|max:2048',
+            'foto_surat_keterangan_mengajar' => 'file|max:2048',
+            'ijazah_smp' => 'file|max:2048',
+            'ijazah_sma' => 'file|max:2048',
         ];
     }
 }

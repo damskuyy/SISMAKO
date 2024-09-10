@@ -15,12 +15,10 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('dokumentasi_jamaah')->unsigned();
             $table->foreign('dokumentasi_jamaah')->references('id')->on('dokumentasi_jamaah_siswa')->cascadeOnDelete();
-            $table->bigInteger('id_siswa')->unsigned(); // Menambahkan kolom id_siswa
+            $table->bigInteger('id_siswa')->unsigned();
             $table->foreign('id_siswa')->references('id')->on('siswa')->cascadeOnDelete();
-            $table->enum('status_jamaah', ['Hadir', 'Sakit', 'Alpha']);
+            $table->enum('status_jamaah', ['-','Hadir', 'Sakit', 'Alpha']);
             $table->timestamps();
-
-            // Menambahkan foreign key ke tabel siswa
         });
     }
 

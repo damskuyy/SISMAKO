@@ -76,15 +76,41 @@ class PatroliAsramaController extends Controller
     }
 
     // Update the specified resource in storage
-    public function update(PatroliRequest $request, PatroliAsrama $patroliAsrama)
-    {
-        $request->validated();
+    public function update(PatroliRequest $request, $id)
+{
+    // Temukan data PatroliAsrama berdasarkan ID
+    $patroliAsrama = PatroliAsrama::findOrFail($id);
 
-        $patroliAsrama->update($request->all());
+    // Validasi input
+    $request->validated();
 
-        return redirect()->route('patroli.asrama.index')
-            ->with('success', 'Patroli Asrama updated successfully.');
+    // Inisialisasi variabel pathDokumentasi dengan path yang sudah ada di database
+    $pathDokumentasi = $patroliAsrama->dokumentasi;
+
+    // Periksa apakah file dokumentasi baru diunggah
+    if ($request->hasFile('dokumentasi')) {
+        $file = $request->file('dokumentasi');
+        $originalName = $file->getClientOriginalName();
+
+        // Cek apakah nama file yang diunggah berbeda dengan yang ada di database
+        if ($originalName !== basename($patroliAsrama->dokumentasi)) {
+            // Jika nama file berbeda, unggah file baru
+            $pathDokumentasi = $this->handleFileUpload($request);
+        }
     }
+
+    // Simpan path dokumentasi ke dalam array data yang akan diperbarui
+    $data = $request->all();
+    $data['dokumentasi'] = $pathDokumentasi;
+
+    // Update data patroli asrama
+    $patroliAsrama->update($data);
+
+    return redirect()->route('patroli.asrama.index')
+        ->with('success', 'Patroli Asrama updated successfully.');
+}
+
+
 
     // Remove the specified resource from storage
     public function destroy(PatroliAsrama $patroliAsrama)

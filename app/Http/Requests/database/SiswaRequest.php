@@ -42,6 +42,19 @@ class SiswaRequest extends FormRequest
             'asal_sekolah' => 'required|string|max:20',
             'alamat_asal_sekolah' => 'required|string|max:255',
             'status_siswa' => 'required|in:Aktif,Tidak aktif',
+            'foto_kelas10' => 'file|max:2048',
+            'foto_kelas11' => 'file|max:2048',
+            'foto_kelas12' => 'file|max:2048',
+            'rapot_kelas7' => 'file|max:2048',
+            'rapot_kelas8' => 'file|max:2048',
+            'rapot_kelas9' => 'file|max:2048',
+            'ijazah' => 'nullable|file|max:2048',
+            'surat_kelulusan' => 'nullable|file|max:2048',
+            'kk' => 'nullable|file|max:2048',
+            'akta_kelahiran' => 'nullable|file|max:2048',
+            'surat_pernyataan_calonPesertaDidik' => 'nullable|file|max:2048',
+            'surat_pernyataan_wali' => 'nullable|file|max:2048',
+            'surat_pernyataan_tidak_merokok' => 'nullable|file|max:2048',
         ];
     }
 }

@@ -22,13 +22,12 @@ class JamaahRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // 'kelas' => 'required|string|max:10',
             'status' => 'required|array',
-            'status.*' => 'in:Hadir,Sakit,Alpha',
+            'status.*' => 'in:-,Hadir,Sakit,Alpha',
             'nama_siswa' => 'required|array',
             'nama_siswa.*' => 'string|max:75',
             'sholat' => 'required|string|in:subuh,dzuhur,ashar,maghrib,isya',
-            'path_dokumentasi' => 'required|file|mimes:jpg,jpeg,png,pdf|max:2048',
+            'path_dokumentasi' => 'file|max:2048',
         ];
     }
 }

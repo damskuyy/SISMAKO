@@ -327,9 +327,12 @@
                                 accept=".png" onchange="handleFileUpload(event, 'foto_sertifikat')">
                             <div class="input-group-append">
                                 <button type="button" class="btn" style="height: 100%;"
-                                    id="btn-remove-foto_sertifikat" onclick="removeFile('foto_sertifikat')"><i
+                                    id="btn-remove-foto_sertifikat" onclick="removeFile('foto_sertifikat[]')"><i
                                         class="fa-solid fa-x"></i></button>
                             </div>
+                            @error('foto_sertifikat.*')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                         </div>
                     </div>
                 </div>

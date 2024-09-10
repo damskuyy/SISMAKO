@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('kelas', 10);
             $table->date('tanggal');
-            $table->string('path_dokumentasi', 100);
+            $table->string('path_dokumentasi', 100)->nullable();
             $table->enum('sholat', ['subuh', 'dzuhur', 'ashar', 'maghrib', 'isya']);
             $table->timestamps();
         });
