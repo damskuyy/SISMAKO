@@ -90,7 +90,7 @@
             window.location.href = url;
         }
     </script>
-    <div class="py-12 container">
+    <div class="py-12 container mt-4">
         <div class="row g-3">
             <div class="col-lg-3">
                 <div class="card card-bordered card-guru" style="cursor: pointer" onclick="toHref('/guru')">
