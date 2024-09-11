@@ -3,9 +3,9 @@
 @section('content')
     <livewire:layout.header />
     <div class="card">
-        <div class="py-6" style="background-image: url('dist/img/gif/bg.png'); background-size: cover;">
-            <div class="container">
-                <div class="row">
+        <div class="py-6" style="background-image: url('dist/img/gif/bg.png'); background-size: cover; min-height: 92vh;">
+            <div class="container ">
+                <div class="row d-flex justify-content-center">
                     <style>
                         .hover-shadow:hover {
                             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -96,12 +96,10 @@
                     @endphp
 
                     @foreach ($cards as $card)
-                        <div class="col-12 col-sm-6 col-md-4">
-                                 <a href="{{ $card['url'] }}" class="text-decoration-none"  >
-                            {{-- <a href="#" class="text-decoration-none" data-bs-toggle="modal"
-                                data-bs-target="#passwordModal" data-url="{{ $card['url'] }}"> --}}
+                        <div class="col-12 col-sm-6 col-md-4 text-center">
+                            <a href="{{ $card['url'] }}" class="text-decoration-none">
                                 <div class="card shadow-sm mb-4 hover-shadow {{ $card['color'] }}">
-                                    <div class="card-body d-flex align-items-center">
+                                    <div class="card-body d-flex align-items-center justify-content-center">
                                         <img src="{{ asset($card['img']) }}" alt="" class="img-fluid img-custom">
                                         <h2 class="card-title">{{ $card['title'] }}</h2>
                                     </div>
@@ -110,12 +108,12 @@
                         </div>
                     @endforeach
 
-                    <div class="col-12 col-sm-6 col-md-4">
+                    <div class="col-12 col-sm-6 col-md-4 text-center">
                         <a href="{{ route('created-by') }}" class="text-decoration-none">
                             <div class="card shadow-sm mb-4 hover-shadow" style="background-color: rgba(0, 128, 0, 0.25);">
-                                <div class="card-body d-flex align-items-center">
+                                <div class="card-body d-flex align-items-center justify-content-center">
                                     <img src="{{ asset('dist/img/gif/management-consulting.gif') }}" alt=""
-                                        class="img-fluid" style="max-width: 40%; height: auto; margin-right: 12px;">
+                                        class="img-fluid img-custom">
                                     <h2 class="card-title">Created By</h2>
                                 </div>
                             </div>

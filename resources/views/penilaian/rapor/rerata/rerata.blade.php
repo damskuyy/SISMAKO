@@ -2,9 +2,9 @@
 
 @section('content')
 
-    <div class="py-12">
+    <div class="py-5">
         <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
-            <div class="">
+            <div class="container xl-custom-container">
                 <div class="col-12">
                     <div class="mb-4">
                         <div class="col-12 row">
@@ -139,7 +139,7 @@
 
     {{-- Danger Modal --}}
     @foreach ($averages as $item)
-        <form action="{{ route('rapor.delete', $item->id) }}" method="post">
+        <form action="{{ route('average.destroy', $item->id) }}" method="post">
             @csrf
             @method('DELETE')
             <div class="modal modal-blur fade" id="modal-danger" tabindex="-1" role="dialog" aria-hidden="true">

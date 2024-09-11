@@ -41,13 +41,6 @@
         }
     });
 
-    // Event listener untuk tombol submit
-    document.querySelector('.modal-footer button[type="submit"]').addEventListener('click', function(
-        event) {
-        event.preventDefault(); // Mencegah submit form default
-        verifyPassword(); // Verifikasi password
-    });
-
     // Event listener untuk tombol "Enter"
     passwordInput.addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {

@@ -3,7 +3,7 @@
 @section('content')
     <div class="py-5">
         <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
-            <div class="container xl-custom-container">
+            <div class="container">
                 <div class="col-12">
                     <div class="mb-4">
                         <div class="col-12 row">

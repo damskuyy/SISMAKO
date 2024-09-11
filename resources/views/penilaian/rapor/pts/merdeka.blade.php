@@ -198,25 +198,24 @@
 <body>
     <div class="report-card">
         <table class="head" style="margin-left: 10px;">
-            {{-- eror disini --}}
             <tr>
                 <td>
                     <span>LAPORAN HASIL PENILAIAN TENGAH SEMESTER GANJIL<br>TAHUN
                         PELAJARAN 2022/2023</span>
                 </td>
                 <td>
-                    <img style="height: 100px"
-                        src="https://smktibazma.sch.id/static/media/main-logo-2.7b74690f86ab4e9a4743.png" alt="Logo">
+                    <img style="height: 100px" src="{{ asset('dist/img/logo/Logo.png') }}" alt="Logo">
                 </td>
             </tr>
         </table>
+
         <div class="student-info" style="font-size: 13px; margin-left: 10px;">
-            <p><span>Nama Peserta Didik</span> : Radid Aditia Renaldi</p>
-            <p><span>Kelas</span> : X (SIJA)</p>
+            <p><span>Nama Peserta Didik</span> : {{$rpts->nama}}</p>
+            <p><span>Kelas</span> : {{$rpts->kelas}}</p>
         </div>
 
         @php
-            $i = 1;
+        $i = 1;
         @endphp
         <table class="group" style="padding: 0; margin:0; width: 100%;">
             <tr>
@@ -233,431 +232,277 @@
                         </thead>
                         <tbody>
                             @if (!empty($rpts->pai))
-                                <tr>
-                                    <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
-                                    <td style="padding: 2px;">Pendidikan Agama dan Budi Pekerti</td>
-                                    <td class="kkm" style="padding: 2px;">75</td>
-                                    <td class="grade" style="padding: 2px;">{{ $rpts->pai }}</td>
-                                    <td class="predicate" style="padding: 2px;">
-                                        @if ($rpts->pai >= 90 && $rpts->pai <= 100)
-                                            A
-                                        @elseif ($rpts->pai >= 80 && $rpts->pai <= 89)
-                                            B
-                                        @elseif ($rpts->pai >= 70 && $rpts->pai <= 79)
-                                            C
-                                        @else
-                                            D
-                                        @endif
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
+                                <td style="padding: 2px;">Pendidikan Agama dan Budi Pekerti</td>
+                                <td class="kkm" style="padding: 2px;">75</td>
+                                <td class="grade" style="padding: 2px;">{{ $rpts->pai }}</td>
+                                <td class="predicate" style="padding: 2px;">
+                                    @if ($rpts->pai >= 90 && $rpts->pai <= 100) A @elseif ($rpts->pai >= 80 &&
+                                        $rpts->pai <= 89) B @elseif ($rpts->pai >= 70 && $rpts->pai <= 79) C @else D
+                                                @endif </td>
+                            </tr>
                             @endif
 
                             @if (!empty($rpts->pkn))
-                                <tr>
-                                    <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
-                                    <td style="padding: 2px;">Pendidikan Pancasila dan Kewarganegaraan</td>
-                                    <td class="kkm" style="padding: 2px;">75</td>
-                                    <td class="grade" style="padding: 2px;">{{ $rpts->pkn }}</td>
-                                    <td class="predicate" style="padding: 2px;">
-                                        @if ($rpts->pkn >= 90 && $rpts->pkn <= 100)
-                                            A
-                                        @elseif ($rpts->pkn >= 80 && $rpts->pkn <= 89)
-                                            B
-                                        @elseif ($rpts->pkn >= 70 && $rpts->pkn <= 79)
-                                            C
-                                        @else
-                                            D
-                                        @endif
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
+                                <td style="padding: 2px;">Pendidikan Pancasila dan Kewarganegaraan</td>
+                                <td class="kkm" style="padding: 2px;">75</td>
+                                <td class="grade" style="padding: 2px;">{{ $rpts->pkn }}</td>
+                                <td class="predicate" style="padding: 2px;">
+                                    @if ($rpts->pkn >= 90 && $rpts->pkn <= 100) A @elseif ($rpts->pkn >= 80 &&
+                                        $rpts->pkn <= 89) B @elseif ($rpts->pkn >= 70 && $rpts->pkn <= 79) C @else D
+                                                @endif </td>
+                            </tr>
                             @endif
 
                             @if (!empty($rpts->indo))
-                                <tr>
-                                    <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
-                                    <td style="padding: 2px;">Bahasa Indonesia</td>
-                                    <td class="kkm" style="padding: 2px;">75</td>
-                                    <td class="grade" style="padding: 2px;">{{ $rpts->indo }}</td>
-                                    <td class="predicate" style="padding: 2px;">
-                                        @if ($rpts->indo >= 90 && $rpts->indo <= 100)
-                                            A
-                                        @elseif ($rpts->indo >= 80 && $rpts->indo <= 89)
-                                            B
-                                        @elseif ($rpts->indo >= 70 && $rpts->indo <= 79)
-                                            C
-                                        @else
-                                            D
-                                        @endif
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
+                                <td style="padding: 2px;">Bahasa Indonesia</td>
+                                <td class="kkm" style="padding: 2px;">75</td>
+                                <td class="grade" style="padding: 2px;">{{ $rpts->indo }}</td>
+                                <td class="predicate" style="padding: 2px;">
+                                    @if ($rpts->indo >= 90 && $rpts->indo <= 100) A @elseif ($rpts->indo >= 80 &&
+                                        $rpts->indo <= 89) B @elseif ($rpts->indo >= 70 && $rpts->indo <= 79) C @else D
+                                                @endif </td>
+                            </tr>
                             @endif
 
                             @if (!empty($rpts->mtk))
-                                <tr>
-                                    <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
-                                    <td style="padding: 2px;">Bahasa Inggris</td>
-                                    <td class="kkm" style="padding: 2px;">75</td>
-                                    <td class="grade" style="padding: 2px;">{{ $rpts->mtk }}</td>
-                                    <td class="predicate" style="padding: 2px;">
-                                        @if ($rpts->mtk >= 90 && $rpts->mtk <= 100)
-                                            A
-                                        @elseif ($rpts->mtk >= 80 && $rpts->mtk <= 89)
-                                            B
-                                        @elseif ($rpts->mtk >= 70 && $rpts->mtk <= 79)
-                                            C
-                                        @else
-                                            D
-                                        @endif
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
+                                <td style="padding: 2px;">Bahasa Inggris</td>
+                                <td class="kkm" style="padding: 2px;">75</td>
+                                <td class="grade" style="padding: 2px;">{{ $rpts->mtk }}</td>
+                                <td class="predicate" style="padding: 2px;">
+                                    @if ($rpts->mtk >= 90 && $rpts->mtk <= 100) A @elseif ($rpts->mtk >= 80 &&
+                                        $rpts->mtk <= 89) B @elseif ($rpts->mtk >= 70 && $rpts->mtk <= 79) C @else D
+                                                @endif </td>
+                            </tr>
                             @endif
 
                             @if (!empty($rpts->sejindo))
-                                <tr>
-                                    <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
-                                    <td style="padding: 2px;">Matematika</td>
-                                    <td class="kkm" style="padding: 2px;">75</td>
-                                    <td class="grade" style="padding: 2px;">{{ $rpts->sejindo }}</td>
-                                    <td class="predicate" style="padding: 2px;">
-                                        @if ($rpts->sejindo >= 90 && $rpts->sejindo <= 100)
-                                            A
-                                        @elseif ($rpts->sejindo >= 80 && $rpts->sejindo <= 89)
-                                            B
-                                        @elseif ($rpts->sejindo >= 70 && $rpts->sejindo <= 79)
-                                            C
-                                        @else
-                                            D
-                                        @endif
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
+                                <td style="padding: 2px;">Matematika</td>
+                                <td class="kkm" style="padding: 2px;">75</td>
+                                <td class="grade" style="padding: 2px;">{{ $rpts->sejindo }}</td>
+                                <td class="predicate" style="padding: 2px;">
+                                    @if ($rpts->sejindo >= 90 && $rpts->sejindo <= 100) A @elseif ($rpts->sejindo >= 80
+                                        && $rpts->sejindo <= 89) B @elseif ($rpts->sejindo >= 70 && $rpts->sejindo <=
+                                                79) C @else D @endif </td>
+                            </tr>
                             @endif
 
                             @if (!empty($rpts->bhs_asing))
-                                <tr>
-                                    <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
-                                    <td style="padding: 2px;">Ilmu Pengetahuan Alam</td>
-                                    <td class="kkm" style="padding: 2px;">75</td>
-                                    <td class="grade" style="padding: 2px;">{{ $rpts->bhs_asing }}</td>
-                                    <td class="predicate" style="padding: 2px;">
-                                        @if ($rpts->bhs_asing >= 90 && $rpts->bhs_asing <= 100)
-                                            A
-                                        @elseif ($rpts->bhs_asing >= 80 && $rpts->bhs_asing <= 89)
-                                            B
-                                        @elseif ($rpts->bhs_asing >= 70 && $rpts->bhs_asing <= 79)
-                                            C
-                                        @else
-                                            D
-                                        @endif
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
+                                <td style="padding: 2px;">Ilmu Pengetahuan Alam</td>
+                                <td class="kkm" style="padding: 2px;">75</td>
+                                <td class="grade" style="padding: 2px;">{{ $rpts->bhs_asing }}</td>
+                                <td class="predicate" style="padding: 2px;">
+                                    @if ($rpts->bhs_asing >= 90 && $rpts->bhs_asing <= 100) A @elseif ($rpts->bhs_asing
+                                        >= 80 && $rpts->bhs_asing <= 89) B @elseif ($rpts->bhs_asing >= 70 &&
+                                            $rpts->bhs_asing <= 79) C @else D @endif </td>
+                            </tr>
                             @endif
 
                             @if (!empty($rpts->sbd))
-                                <tr>
-                                    <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
-                                    <td style="padding: 2px;">Ilmu Pengetahuan Sosial</td>
-                                    <td class="kkm" style="padding: 2px;">75</td>
-                                    <td class="grade" style="padding: 2px;">{{ $rpts->sbd }}</td>
-                                    <td class="predicate" style="padding: 2px;">
-                                        @if ($rpts->sbd >= 90 && $rpts->sbd <= 100)
-                                            A
-                                        @elseif ($rpts->sbd >= 80 && $rpts->sbd <= 89)
-                                            B
-                                        @elseif ($rpts->sbd >= 70 && $rpts->sbd <= 79)
-                                            C
-                                        @else
-                                            D
-                                        @endif
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
+                                <td style="padding: 2px;">Ilmu Pengetahuan Sosial</td>
+                                <td class="kkm" style="padding: 2px;">75</td>
+                                <td class="grade" style="padding: 2px;">{{ $rpts->sbd }}</td>
+                                <td class="predicate" style="padding: 2px;">
+                                    @if ($rpts->sbd >= 90 && $rpts->sbd <= 100) A @elseif ($rpts->sbd >= 80 &&
+                                        $rpts->sbd <= 89) B @elseif ($rpts->sbd >= 70 && $rpts->sbd <= 79) C @else D
+                                                @endif </td>
+                            </tr>
                             @endif
 
                             @if (!empty($rpts->pjok))
-                                <tr>
-                                    <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
-                                    <td style="padding: 2px;">Seni Budaya</td>
-                                    <td class="kkm" style="padding: 2px;">75</td>
-                                    <td class="grade" style="padding: 2px;">{{ $rpts->pjok }}</td>
-                                    <td class="predicate" style="padding: 2px;">
-                                        @if ($rpts->pjok >= 90 && $rpts->pjok <= 100)
-                                            A
-                                        @elseif ($rpts->pjok >= 80 && $rpts->pjok <= 89)
-                                            B
-                                        @elseif ($rpts->pjok >= 70 && $rpts->pjok <= 79)
-                                            C
-                                        @else
-                                            D
-                                        @endif
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
+                                <td style="padding: 2px;">Seni Budaya</td>
+                                <td class="kkm" style="padding: 2px;">75</td>
+                                <td class="grade" style="padding: 2px;">{{ $rpts->pjok }}</td>
+                                <td class="predicate" style="padding: 2px;">
+                                    @if ($rpts->pjok >= 90 && $rpts->pjok <= 100) A @elseif ($rpts->pjok >= 80 &&
+                                        $rpts->pjok <= 89) B @elseif ($rpts->pjok >= 70 && $rpts->pjok <= 79) C @else D
+                                                @endif </td>
+                            </tr>
                             @endif
 
                             @if (!empty($rpts->pjok))
-                                <tr>
-                                    <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
-                                    <td style="padding: 2px;">Pendidikan Jasmani, Olahraga, dan Kesehatan</td>
-                                    <td class="kkm" style="padding: 2px;">75</td>
-                                    <td class="grade" style="padding: 2px;">{{ $rpts->pjok }}</td>
-                                    <td class="predicate" style="padding: 2px;">
-                                        @if ($rpts->pjok >= 90 && $rpts->pjok <= 100)
-                                            A
-                                        @elseif ($rpts->pjok >= 80 && $rpts->pjok <= 89)
-                                            B
-                                        @elseif ($rpts->pjok >= 70 && $rpts->pjok <= 79)
-                                            C
-                                        @else
-                                            D
-                                        @endif
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
+                                <td style="padding: 2px;">Pendidikan Jasmani, Olahraga, dan Kesehatan</td>
+                                <td class="kkm" style="padding: 2px;">75</td>
+                                <td class="grade" style="padding: 2px;">{{ $rpts->pjok }}</td>
+                                <td class="predicate" style="padding: 2px;">
+                                    @if ($rpts->pjok >= 90 && $rpts->pjok <= 100) A @elseif ($rpts->pjok >= 80 &&
+                                        $rpts->pjok <= 89) B @elseif ($rpts->pjok >= 70 && $rpts->pjok <= 79) C @else D
+                                                @endif </td>
+                            </tr>
                             @endif
 
                             @if (!empty($rpts->simdig))
-                                <tr>
-                                    <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
-                                    <td style="padding: 2px;">Simulasi dan Komunikasi Digital</td>
-                                    <td class="kkm" style="padding: 2px;">75</td>
-                                    <td class="grade" style="padding: 2px;">{{ $rpts->simdig }}</td>
-                                    <td class="predicate" style="padding: 2px;">
-                                        @if ($rpts->simdig >= 90 && $rpts->simdig <= 100)
-                                            A
-                                        @elseif ($rpts->simdig >= 80 && $rpts->simdig <= 89)
-                                            B
-                                        @elseif ($rpts->simdig >= 70 && $rpts->simdig <= 79)
-                                            C
-                                        @else
-                                            D
-                                        @endif
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
+                                <td style="padding: 2px;">Simulasi dan Komunikasi Digital</td>
+                                <td class="kkm" style="padding: 2px;">75</td>
+                                <td class="grade" style="padding: 2px;">{{ $rpts->simdig }}</td>
+                                <td class="predicate" style="padding: 2px;">
+                                    @if ($rpts->simdig >= 90 && $rpts->simdig <= 100) A @elseif ($rpts->simdig >= 80 &&
+                                        $rpts->simdig <= 89) B @elseif ($rpts->simdig >= 70 && $rpts->simdig <= 79) C
+                                                @else D @endif </td>
+                            </tr>
                             @endif
                             @if (!empty($rpts->fis))
-                                <tr>
-                                    <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
-                                    <td style="padding: 2px;">Fisika</td>
-                                    <td class="kkm" style="padding: 2px;">75</td>
-                                    <td class="grade" style="padding: 2px;">{{ $rpts->fis }}</td>
-                                    <td class="predicate" style="padding: 2px;">
-                                        @if ($rpts->fis >= 90 && $rpts->fis <= 100)
-                                            A
-                                        @elseif ($rpts->fis >= 80 && $rpts->fis <= 89)
-                                            B
-                                        @elseif ($rpts->fis >= 70 && $rpts->fis <= 79)
-                                            C
-                                        @else
-                                            D
-                                        @endif
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
+                                <td style="padding: 2px;">Fisika</td>
+                                <td class="kkm" style="padding: 2px;">75</td>
+                                <td class="grade" style="padding: 2px;">{{ $rpts->fis }}</td>
+                                <td class="predicate" style="padding: 2px;">
+                                    @if ($rpts->fis >= 90 && $rpts->fis <= 100) A @elseif ($rpts->fis >= 80 &&
+                                        $rpts->fis <= 89) B @elseif ($rpts->fis >= 70 && $rpts->fis <= 79) C @else D
+                                                @endif </td>
+                            </tr>
                             @endif
                             @if (!empty($rpts->kim))
-                                <tr>
-                                    <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
-                                    <td style="padding: 2px;">Kimia</td>
-                                    <td class="kkm" style="padding: 2px;">75</td>
-                                    <td class="grade" style="padding: 2px;">{{ $rpts->kim }}</td>
-                                    <td class="predicate" style="padding: 2px;">
-                                        @if ($rpts->kim >= 90 && $rpts->kim <= 100)
-                                            A
-                                        @elseif ($rpts->kim >= 80 && $rpts->kim <= 89)
-                                            B
-                                        @elseif ($rpts->kim >= 70 && $rpts->kim <= 79)
-                                            C
-                                        @else
-                                            D
-                                        @endif
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
+                                <td style="padding: 2px;">Kimia</td>
+                                <td class="kkm" style="padding: 2px;">75</td>
+                                <td class="grade" style="padding: 2px;">{{ $rpts->kim }}</td>
+                                <td class="predicate" style="padding: 2px;">
+                                    @if ($rpts->kim >= 90 && $rpts->kim <= 100) A @elseif ($rpts->kim >= 80 &&
+                                        $rpts->kim <= 89) B @elseif ($rpts->kim >= 70 && $rpts->kim <= 79) C @else D
+                                                @endif </td>
+                            </tr>
                             @endif
                             @if (!empty($rpts->sis_kom))
-                                <tr>
-                                    <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
-                                    <td style="padding: 2px;">Sistem Komputer</td>
-                                    <td class="kkm" style="padding: 2px;">75</td>
-                                    <td class="grade" style="padding: 2px;">{{ $rpts->sis_kom }}</td>
-                                    <td class="predicate" style="padding: 2px;">
-                                        @if ($rpts->sis_kom >= 90 && $rpts->sis_kom <= 100)
-                                            A
-                                        @elseif ($rpts->sis_kom >= 80 && $rpts->sis_kom <= 89)
-                                            B
-                                        @elseif ($rpts->sis_kom >= 70 && $rpts->sis_kom <= 79)
-                                            C
-                                        @else
-                                            D
-                                        @endif
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
+                                <td style="padding: 2px;">Sistem Komputer</td>
+                                <td class="kkm" style="padding: 2px;">75</td>
+                                <td class="grade" style="padding: 2px;">{{ $rpts->sis_kom }}</td>
+                                <td class="predicate" style="padding: 2px;">
+                                    @if ($rpts->sis_kom >= 90 && $rpts->sis_kom <= 100) A @elseif ($rpts->sis_kom >= 80
+                                        && $rpts->sis_kom <= 89) B @elseif ($rpts->sis_kom >= 70 && $rpts->sis_kom <=
+                                                79) C @else D @endif </td>
+                            </tr>
                             @endif
                             @if (!empty($rpts->komjar))
-                                <tr>
-                                    <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
-                                    <td style="padding: 2px;">Komputer dan Jaringan Dasar</td>
-                                    <td class="kkm" style="padding: 2px;">75</td>
-                                    <td class="grade" style="padding: 2px;">{{ $rpts->komjar }}</td>
-                                    <td class="predicate" style="padding: 2px;">
-                                        @if ($rpts->komjar >= 90 && $rpts->komjar <= 100)
-                                            A
-                                        @elseif ($rpts->komjar >= 80 && $rpts->komjar <= 89)
-                                            B
-                                        @elseif ($rpts->komjar >= 70 && $rpts->komjar <= 79)
-                                            C
-                                        @else
-                                            D
-                                        @endif
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
+                                <td style="padding: 2px;">Komputer dan Jaringan Dasar</td>
+                                <td class="kkm" style="padding: 2px;">75</td>
+                                <td class="grade" style="padding: 2px;">{{ $rpts->komjar }}</td>
+                                <td class="predicate" style="padding: 2px;">
+                                    @if ($rpts->komjar >= 90 && $rpts->komjar <= 100) A @elseif ($rpts->komjar >= 80 &&
+                                        $rpts->komjar <= 89) B @elseif ($rpts->komjar >= 70 && $rpts->komjar <= 79) C
+                                                @else D @endif </td>
+                            </tr>
                             @endif
                             @if (!empty($rpts->progdas))
-                                <tr>
-                                    <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
-                                    <td style="padding: 2px;">Pemrograman Dasar</td>
-                                    <td class="kkm" style="padding: 2px;">75</td>
-                                    <td class="grade" style="padding: 2px;">{{ $rpts->progdas }}</td>
-                                    <td class="predicate" style="padding: 2px;">
-                                        @if ($rpts->progdas >= 90 && $rpts->progdas <= 100)
-                                            A
-                                        @elseif ($rpts->progdas >= 80 && $rpts->progdas <= 89)
-                                            B
-                                        @elseif ($rpts->progdas >= 70 && $rpts->progdas <= 79)
-                                            C
-                                        @else
-                                            D
-                                        @endif
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
+                                <td style="padding: 2px;">Pemrograman Dasar</td>
+                                <td class="kkm" style="padding: 2px;">75</td>
+                                <td class="grade" style="padding: 2px;">{{ $rpts->progdas }}</td>
+                                <td class="predicate" style="padding: 2px;">
+                                    @if ($rpts->progdas >= 90 && $rpts->progdas <= 100) A @elseif ($rpts->progdas >= 80
+                                        && $rpts->progdas <= 89) B @elseif ($rpts->progdas >= 70 && $rpts->progdas <=
+                                                79) C @else D @endif </td>
+                            </tr>
                             @endif
                             @if (!empty($rpts->ddg))
-                                <tr>
-                                    <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
-                                    <td style="padding: 2px;">Dasar Desain Grafis</td>
-                                    <td class="kkm" style="padding: 2px;">75</td>
-                                    <td class="grade" style="padding: 2px;">{{ $rpts->ddg }}</td>
-                                    <td class="predicate" style="padding: 2px;">
-                                        @if ($rpts->ddg >= 90 && $rpts->ddg <= 100)
-                                            A
-                                        @elseif ($rpts->ddg >= 80 && $rpts->ddg <= 89)
-                                            B
-                                        @elseif ($rpts->ddg >= 70 && $rpts->ddg <= 79)
-                                            C
-                                        @else
-                                            D
-                                        @endif
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
+                                <td style="padding: 2px;">Dasar Desain Grafis</td>
+                                <td class="kkm" style="padding: 2px;">75</td>
+                                <td class="grade" style="padding: 2px;">{{ $rpts->ddg }}</td>
+                                <td class="predicate" style="padding: 2px;">
+                                    @if ($rpts->ddg >= 90 && $rpts->ddg <= 100) A @elseif ($rpts->ddg >= 80 &&
+                                        $rpts->ddg <= 89) B @elseif ($rpts->ddg >= 70 && $rpts->ddg <= 79) C @else D
+                                                @endif </td>
+                            </tr>
                             @endif
                             @if (!empty($rpts->iaas))
-                                <tr>
-                                    <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
-                                    <td style="padding: 2px;">Infrastruktur Komputasi Awan</td>
-                                    <td class="kkm" style="padding: 2px;">75</td>
-                                    <td class="grade" style="padding: 2px;">{{ $rpts->iaas }}</td>
-                                    <td class="predicate" style="padding: 2px;">
-                                        @if ($rpts->iaas >= 90 && $rpts->iaas <= 100)
-                                            A
-                                        @elseif ($rpts->iaas >= 80 && $rpts->iaas <= 89)
-                                            B
-                                        @elseif ($rpts->iaas >= 70 && $rpts->iaas <= 79)
-                                            C
-                                        @else
-                                            D
-                                        @endif
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
+                                <td style="padding: 2px;">Infrastruktur Komputasi Awan</td>
+                                <td class="kkm" style="padding: 2px;">75</td>
+                                <td class="grade" style="padding: 2px;">{{ $rpts->iaas }}</td>
+                                <td class="predicate" style="padding: 2px;">
+                                    @if ($rpts->iaas >= 90 && $rpts->iaas <= 100) A @elseif ($rpts->iaas >= 80 &&
+                                        $rpts->iaas <= 89) B @elseif ($rpts->iaas >= 70 && $rpts->iaas <= 79) C @else D
+                                                @endif </td>
+                            </tr>
                             @endif
                             @if (!empty($rpts->paas))
-                                <tr>
-                                    <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
-                                    <td style="padding: 2px;">Platform Komputasi Awan</td>
-                                    <td class="kkm" style="padding: 2px;">75</td>
-                                    <td class="grade" style="padding: 2px;">{{ $rpts->paas }}</td>
-                                    <td class="predicate" style="padding: 2px;">
-                                        @if ($rpts->paas >= 90 && $rpts->paas <= 100)
-                                            A
-                                        @elseif ($rpts->paas >= 80 && $rpts->paas <= 89)
-                                            B
-                                        @elseif ($rpts->paas >= 70 && $rpts->paas <= 79)
-                                            C
-                                        @else
-                                            D
-                                        @endif
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
+                                <td style="padding: 2px;">Platform Komputasi Awan</td>
+                                <td class="kkm" style="padding: 2px;">75</td>
+                                <td class="grade" style="padding: 2px;">{{ $rpts->paas }}</td>
+                                <td class="predicate" style="padding: 2px;">
+                                    @if ($rpts->paas >= 90 && $rpts->paas <= 100) A @elseif ($rpts->paas >= 80 &&
+                                        $rpts->paas <= 89) B @elseif ($rpts->paas >= 70 && $rpts->paas <= 79) C @else D
+                                                @endif </td>
+                            </tr>
                             @endif
                             @if (!empty($rpts->saas))
-                                <tr>
-                                    <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
-                                    <td style="padding: 2px;">Layanan Komputasi Awan</td>
-                                    <td class="kkm" style="padding: 2px;">75</td>
-                                    <td class="grade" style="padding: 2px;">{{ $rpts->saas }}</td>
-                                    <td class="predicate" style="padding: 2px;">
-                                        @if ($rpts->saas >= 90 && $rpts->saas <= 100)
-                                            A
-                                        @elseif ($rpts->saas >= 80 && $rpts->saas <= 89)
-                                            B
-                                        @elseif ($rpts->saas >= 70 && $rpts->saas <= 79)
-                                            C
-                                        @else
-                                            D
-                                        @endif
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
+                                <td style="padding: 2px;">Layanan Komputasi Awan</td>
+                                <td class="kkm" style="padding: 2px;">75</td>
+                                <td class="grade" style="padding: 2px;">{{ $rpts->saas }}</td>
+                                <td class="predicate" style="padding: 2px;">
+                                    @if ($rpts->saas >= 90 && $rpts->saas <= 100) A @elseif ($rpts->saas >= 80 &&
+                                        $rpts->saas <= 89) B @elseif ($rpts->saas >= 70 && $rpts->saas <= 79) C @else D
+                                                @endif </td>
+                            </tr>
                             @endif
                             @if (!empty($rpts->siot))
-                                <tr>
-                                    <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
-                                    <td style="padding: 2px;">Sistem Internet of Things</td>
-                                    <td class="kkm" style="padding: 2px;">75</td>
-                                    <td class="grade" style="padding: 2px;">{{ $rpts->siot }}</td>
-                                    <td class="predicate" style="padding: 2px;">
-                                        @if ($rpts->siot >= 90 && $rpts->siot <= 100)
-                                            A
-                                        @elseif ($rpts->siot >= 80 && $rpts->siot <= 89)
-                                            B
-                                        @elseif ($rpts->siot >= 70 && $rpts->siot <= 79)
-                                            C
-                                        @else
-                                            D
-                                        @endif
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
+                                <td style="padding: 2px;">Sistem Internet of Things</td>
+                                <td class="kkm" style="padding: 2px;">75</td>
+                                <td class="grade" style="padding: 2px;">{{ $rpts->siot }}</td>
+                                <td class="predicate" style="padding: 2px;">
+                                    @if ($rpts->siot >= 90 && $rpts->siot <= 100) A @elseif ($rpts->siot >= 80 &&
+                                        $rpts->siot <= 89) B @elseif ($rpts->siot >= 70 && $rpts->siot <= 79) C @else D
+                                                @endif </td>
+                            </tr>
                             @endif
                             @if (!empty($rpts->skj))
-                                <tr>
-                                    <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
-                                    <td style="padding: 2px;">Sistem Keamanan Jaringan</td>
-                                    <td class="kkm" style="padding: 2px;">75</td>
-                                    <td class="grade" style="padding: 2px;">{{ $rpts->skj }}</td>
-                                    <td class="predicate" style="padding: 2px;">
-                                        @if ($rpts->skj >= 90 && $rpts->skj <= 100)
-                                            A
-                                        @elseif ($rpts->skj >= 80 && $rpts->skj <= 89)
-                                            B
-                                        @elseif ($rpts->skj >= 70 && $rpts->skj <= 79)
-                                            C
-                                        @else
-                                            D
-                                        @endif
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
+                                <td style="padding: 2px;">Sistem Keamanan Jaringan</td>
+                                <td class="kkm" style="padding: 2px;">75</td>
+                                <td class="grade" style="padding: 2px;">{{ $rpts->skj }}</td>
+                                <td class="predicate" style="padding: 2px;">
+                                    @if ($rpts->skj >= 90 && $rpts->skj <= 100) A @elseif ($rpts->skj >= 80 &&
+                                        $rpts->skj <= 89) B @elseif ($rpts->skj >= 70 && $rpts->skj <= 79) C @else D
+                                                @endif </td>
+                            </tr>
                             @endif
                             @if (!empty($rpts->pkk))
-                                <tr>
-                                    <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
-                                    <td style="padding: 2px;">Produk Kreatif dan Kewirausahaan</td>
-                                    <td class="kkm" style="padding: 2px;">75</td>
-                                    <td class="grade" style="padding: 2px;">{{ $rpts->pkk }}</td>
-                                    <td class="predicate" style="padding: 2px;">
-                                        @if ($rpts->pkk >= 90 && $rpts->pkk <= 100)
-                                            A
-                                        @elseif ($rpts->pkk >= 80 && $rpts->pkk <= 89)
-                                            B
-                                        @elseif ($rpts->pkk >= 70 && $rpts->pkk <= 79)
-                                            C
-                                        @else
-                                            D
-                                        @endif
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
+                                <td style="padding: 2px;">Produk Kreatif dan Kewirausahaan</td>
+                                <td class="kkm" style="padding: 2px;">75</td>
+                                <td class="grade" style="padding: 2px;">{{ $rpts->pkk }}</td>
+                                <td class="predicate" style="padding: 2px;">
+                                    @if ($rpts->pkk >= 90 && $rpts->pkk <= 100) A @elseif ($rpts->pkk >= 80 &&
+                                        $rpts->pkk <= 89) B @elseif ($rpts->pkk >= 70 && $rpts->pkk <= 79) C @else D
+                                                @endif </td>
+                            </tr>
                             @endif
                         </tbody>
                     </table>
@@ -732,11 +577,11 @@
                     <td colspan="1" style="font-size: 13px"><strong>Catatan</strong></td>
                 </tr>
                 <tr style="font-size: 13px;">
-                    <td>1. Nilai yang dicantumkan adalah nilai murni Peserta Didik dalam mengerjakan soal PTS Ganjil
+                    <td>Nilai yang dicantumkan adalah nilai murni Peserta Didik dalam mengerjakan soal PTS Ganjil
                         TP 2022/2023 (nilai remedi tidak dicantumkan).</td>
                 </tr>
                 <tr style="font-size: 13px;">
-                    <td>2. Nilai yang ditujukan pada PTS Ganjil TP 2022/2023 adalah aspek pengetahuan dan praktik yang
+                    <td>Nilai yang ditujukan pada PTS Ganjil TP 2022/2023 adalah aspek pengetahuan dan praktik yang
                         telah dikumulasi.</td>
                 </tr>
             </tbody>
@@ -746,7 +591,10 @@
             <tr>
                 <td>Mengetahui,</td>
                 <td></td>
-                <td>Bogor, {{$rpts->released}}</td>
+                <td>
+                    Bogor, {{ \Carbon\Carbon::parse($rpts->released)->translatedFormat('d F Y') }}
+                </td>
+
             </tr>
             <tr>
                 <td class='right-signature'>Kepala Sekolah,</td>

@@ -2,14 +2,8 @@
 
 @section('content')
 
-<style>
-    .custom-container {
-        max-width: 1600px;
-    }
-</style>
-
 <div class="py-5">
-    <div class="container custom-container">
+    <div class="container xl-custom-container">
         <div class="d-flex justify-content-between mb-4">
             <a href="/penilaian" class="btn btn-secondary">Back</a>
             <div>
@@ -76,19 +70,20 @@
                             <td>{{ $value }}</td>
                             @endforeach
                             <td>
-                                <a href="{{ route('rapor.edit', $item->id) }}" class="btn btn-warning btn-sm">
-                                    <i class="fa-regular fa-pen-to-square"></i>
+                                <a href="{{ route('average.edit', $item->id) }}">
+                                    <i
+                                        class="fa-regular fa-pen-to-square text-white text-xl bg-yellow p-2 rounded"></i>
                                 </a>
                             </td>
                             <td>
-                                <a href="{{ route('rapor.pdf', $item->id) }}" class="btn btn-info btn-sm">
-                                    <i class="fa-solid fa-file-export"></i>
+                                <a href="{{ route('rapor.pdf', $item->id) }}">
+                                    <i class="fa-solid fa-file-export text-white text-xl bg-green p-2 rounded"></i>
                                 </a>
                             </td>
                             <td>
-                                <a href="#" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                <a href="#" data-bs-toggle="modal"
                                     data-bs-target="#modal-{{ $item->id }}">
-                                    <i class="far fa-trash-alt"></i>
+                                    <i class="far fa-trash-alt text-white text-xl bg-red p-2 rounded"></i>
                                 </a>
                             </td>
                         </tr>

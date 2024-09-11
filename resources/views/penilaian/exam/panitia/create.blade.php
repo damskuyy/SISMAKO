@@ -52,7 +52,7 @@
                             </div>
                             @foreach(['proker', 'ba', 'sk_panitia', 'tatib', 'surat_pemberitahuan', 'jadwal', 'denah', 'tanda_terima_dan_penerimaan_soal', 'kehadiran_panitia'] as $file)
                                 <div class="col-sm-6 col-md-4 mb-3">
-                                    <label class="form-label">{{ ucwords(str_replace('_', ' ', $file)) }}</label>
+                                    <label class="form-label">{{ $file === 'ba' ? 'Berita Acara' : ucwords(str_replace('_', ' ', $file)) }}</label>
                                     <input type="file" class="form-control" name="{{ $file }}">
                                     @error($file)
                                         <div class="text-danger mt-2">{{ $message }}</div>

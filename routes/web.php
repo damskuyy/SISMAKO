@@ -81,6 +81,7 @@ Route::controller(AverageController::class)->group(function () {
     Route::post('/penilaian/rapor/rerata/store', 'store')->name('average.perform');
     Route::get('/penilaian/rapor/rerata/edit/{id}', 'edit')->name('average.edit');
     Route::post('/penilaian/rapor/rerata/update/{id}', 'update')->name('average.update');
+    Route::delete('/penilaian/rapor/rerata/delete/{id}', 'destroy')->name('average.destroy');
 });
 Route::controller(RaporController::class)->group(function () {
     Route::get('/penilaian/rapor', 'index')->name('rapor');

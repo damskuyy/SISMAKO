@@ -41,7 +41,7 @@ class RaporController extends Controller
         $data = $request->validated();
 
         // Save the updated rapor
-        $rapor->save();
+        $rapor->update($data);
 
         return redirect("/penilaian/rapor")->with("success", "Berhasil diperbarui");
     }

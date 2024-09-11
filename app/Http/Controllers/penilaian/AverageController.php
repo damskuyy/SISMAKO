@@ -53,4 +53,9 @@ class AverageController extends Controller
 
         return redirect("/penilaian/rapor/rerata")->with("success", "Berhasil diPerbaharui");
     }
+    public function destroy($id)
+    {
+        average::findOrFail($id)->delete();
+        return redirect("/penilaian/rapor/rerata")->with("success", "Berhasil dihapus");
+    }
 }
