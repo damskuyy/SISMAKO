@@ -86,12 +86,12 @@
                                                 {!! Str::limit(Str::afterLast($item->daftar_nilai, '/'), 10, '...') !!}
                                             </td>
                                             <td>
-                                                <a href="{{ route('panitia.edit', $item->id) }}">
+                                                <a href="{{ route('pat.edit', $item->id) }}">
                                                     <i class="fa-regular fa-pen-to-square text-white text-xl bg-yellow p-2 rounded"></i>
                                                 </a>
                                             </td>
                                             <td>
-                                                <a href="{{ route('panitia.download', $item->id) }}">
+                                                <a href="{{ route('pat.download', $item->id) }}">
                                                     <i class="fas fa-download text-white text-xl bg-green p-2 rounded"></i>
                                                 </a>
                                             </td>

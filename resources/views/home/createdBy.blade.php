@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<style></style>
 <link rel="stylesheet" href="{{ asset('dist/css/style.css') }}">
     <div class="banner">
         <div class="slider" style="--quantity: 11">
