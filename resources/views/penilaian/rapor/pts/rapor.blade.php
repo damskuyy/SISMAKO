@@ -105,20 +105,20 @@
                                             <td>
                                                 <a href="{{ route('rpts.edit', $item->id) }}">
                                                     <i
-                                                        class="fa-regular fa-pen-to-square text-white text-xl bg-yellow p-2 rounded-lg"></i>
+                                                        class="fa-regular fa-pen-to-square text-white text-xl bg-yellow p-2 rounded"></i>
                                                 </a>
                                             </td>
                                             <td>
                                                 <a href="{{ route('rpts.pdf', $item->id) }}">
                                                     <i
-                                                        class="fa-solid fa-file-export text-white text-xl bg-teal p-2 rounded-lg"></i>
+                                                        class="fa-solid fa-file-export text-white text-xl bg-green p-2 rounded"></i>
                                                 </a>
                                             </td>
                                             <td>
                                                 <a href="#" class="" data-bs-toggle="modal"
                                                     data-bs-target="#modal-danger">
                                                     <i
-                                                        class="far fa-trash-alt text-white text-xl bg-red p-2 rounded-lg"></i>
+                                                        class="far fa-trash-alt text-white text-xl bg-red p-2 rounded"></i>
                                                 </a>
                                             </td>
                                         </tr>
