@@ -86,22 +86,19 @@
                                                 {!! Str::limit(Str::afterLast($item->daftar_nilai, '/'), 10, '...') !!}
                                             </td>
                                             <td>
-                                                <a href="{{ route('pas.edit', $item->id) }}">
-                                                    <i
-                                                        class="fa-regular fa-pen-to-square text-white text-xl bg-yellow p-2 rounded-lg"></i>
+                                                <a href="{{ route('panitia.edit', $item->id) }}">
+                                                    <i class="fa-regular fa-pen-to-square text-white text-xl bg-yellow p-2 rounded"></i>
                                                 </a>
                                             </td>
                                             <td>
-                                                <a href="{{ route('pas.download', $item->id) }}">
-                                                    <i
-                                                        class="fa-solid fa-file-arrow-down text-white text-xl bg-green p-2 rounded-lg"></i>
+                                                <a href="{{ route('panitia.download', $item->id) }}">
+                                                    <i class="fas fa-download text-white text-xl bg-green p-2 rounded"></i>
                                                 </a>
                                             </td>
                                             <td>
-                                                <a href="#" class="" data-bs-toggle="modal"
-                                                    data-bs-target="#modal-danger">
-                                                    <i
-                                                        class="far fa-trash-alt text-white text-xl bg-red p-2 rounded-lg"></i>
+                                                <a type="button" data-bs-toggle="modal"
+                                                    data-bs-target="#modal-danger-{{ $item->id }}">
+                                                    <i class="far fa-trash-alt text-white text-xl bg-red p-2 rounded"></i>
                                                 </a>
                                             </td>
                                         </tr>

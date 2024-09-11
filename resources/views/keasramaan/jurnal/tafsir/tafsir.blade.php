@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    
-    <div class="py-12">
+
+    <div class="py-5">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="">
+            <div class="container">
                 <div class="col-12">
                     <div class="mb-4">
                         <div class="col-12 row">

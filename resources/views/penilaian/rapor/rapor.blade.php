@@ -70,7 +70,7 @@
                             <td>{{ $value }}</td>
                             @endforeach
                             <td>
-                                <a href="{{ route('average.edit', $item->id) }}">
+                                <a href="{{ route('rapor.edit', $item->id) }}">
                                     <i
                                         class="fa-regular fa-pen-to-square text-white text-xl bg-yellow p-2 rounded"></i>
                                 </a>

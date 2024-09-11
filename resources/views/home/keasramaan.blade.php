@@ -3,7 +3,7 @@
 @section('content')
     @include('database.inc.form')
 
-    <div class="py-12">
+    <div class="py-5">
         <div class="container">
             <div class="row">
                 <!-- Card 1 -->

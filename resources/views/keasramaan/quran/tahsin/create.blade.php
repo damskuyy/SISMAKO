@@ -2,9 +2,9 @@
 
 @section('content')
 
-    <div class="py-12">
+    <div class="py-5">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="col">
+            <div class="col container">
                 <div class="row row-cards">
                     <div class="col-12">
                         <div class="mb-4 col">
@@ -33,7 +33,7 @@
                                         <div class="mb-3">
                                             <label class="form-label">Angkatan</label>
                                             <select class="form-control" name="angkatan" id="angkatan-select">
-                                                <option value="">-- Pilih Angkatan --</option>
+                                                <option value="">Pilih Angkatan</option>
                                                 @foreach ($angkatan as $data)
                                                     <option value="{{ $data }}"
                                                         {{ old('angkatan') == $data ? 'selected' : '' }}>
@@ -50,7 +50,7 @@
                                         <div class="mb-3">
                                             <label class="form-label">Nama</label>
                                             <select class="form-control" name="siswa_id" id="nama-select">
-                                                <option value="">-- Pilih Nama --</option>
+                                                <option value="">Pilih Nama</option>
                                                 <!-- Options will be populated dynamically -->
                                             </select>
                                             @error('siswa_id')
@@ -82,7 +82,7 @@
                                         <div class="mb-3">
                                             <label class="form-label">Predikat</label>
                                             <select class="form-control form-select" name="predikat" required>
-                                                <option value="">Pilih Tahun Ajaran</option>
+                                                <option value="">Pilih Predikat Bacaan</option>
                                                 <option value="Sempurna"
                                                     {{ old('predikat') == 'Sempurna' ? 'selected' : '' }}>Sempurna
                                                 </option>
@@ -102,7 +102,7 @@
                                         <div class="mb-3">
                                             <label class="form-label">Pengajar</label>
                                             <select class="form-control form-select" name="pengajar" required>
-                                                <option value="">Pilih Tahun Ajaran</option>
+                                                <option value="">Pilih Nama Pengajar</option>
                                                 <option value="Ahmad Dahlan"
                                                     {{ old('pengajar') == 'Ahmad Dahlan' ? 'selected' : '' }}>Ahmad Dahlan
                                                 </option>

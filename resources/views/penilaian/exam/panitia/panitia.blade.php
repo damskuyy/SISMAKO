@@ -57,20 +57,20 @@
                                     <td>{{ Str::limit(Str::afterLast($item->kehadiran_panitia, '/'), 10, '...') }}</td>
                                     <td>{{ Str::limit(Str::afterLast($item->tanda_terima_dan_penerimaan_soal, '/'), 10, '...') }}</td>
                                     <td>
-                                        <a href="{{ route('panitia.edit', $item->id) }}" class="btn btn-warning btn-sm">
-                                            <i class="fas fa-edit"></i>
+                                        <a href="{{ route('panitia.edit', $item->id) }}">
+                                            <i class="fa-regular fa-pen-to-square text-white text-xl bg-yellow p-2 rounded"></i>
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="{{ route('panitia.download', $item->id) }}" class="btn btn-success btn-sm">
-                                            <i class="fas fa-download"></i>
+                                        <a href="{{ route('panitia.download', $item->id) }}">
+                                            <i class="fas fa-download text-white text-xl bg-green p-2 rounded"></i>
                                         </a>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                        <a type="button" data-bs-toggle="modal"
                                             data-bs-target="#modal-danger-{{ $item->id }}">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>
+                                            <i class="far fa-trash-alt text-white text-xl bg-red p-2 rounded"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             @empty

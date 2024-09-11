@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="py-12">
+    <div class="py-5">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="col">
+            <div class="col container">
                 <div class="row row-cards">
                     <div class="col-12">
                         <div class="mb-4 col">
@@ -32,7 +32,7 @@
                                         <div class="mb-3">
                                             <label class="form-label">Angkatan</label>
                                             <select class="form-control" name="angkatan" id="angkatan-select">
-                                                <option value="">-- Pilih Angkatan --</option>
+                                                <option value="">Pilih Angkatan</option>
                                                 @foreach ($angkatan as $data)
                                                     <option value="{{ $data }}"
                                                         {{ old('angkatan') == $data ? 'selected' : '' }}>
@@ -49,7 +49,7 @@
                                         <div class="mb-3">
                                             <label class="form-label">Nama</label>
                                             <select class="form-control" name="siswa_id" id="nama-select">
-                                                <option value="">-- Pilih Nama --</option>
+                                                <option value="">Pilih Nama</option>
                                                 <!-- Options will be populated dynamically -->
                                             </select>
                                             @error('siswa_id')

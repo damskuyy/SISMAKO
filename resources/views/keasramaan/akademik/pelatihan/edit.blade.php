@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="py-12">
+    <div class="py-5">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="row row-cards">
-                <div class="col-12">
+                <div class="col-12 container">
                     <div class="mb-4">
                         <a href="/sekolah-keasramaan/akademik/pelatihan" class="btn btn-secondary">
                             Back

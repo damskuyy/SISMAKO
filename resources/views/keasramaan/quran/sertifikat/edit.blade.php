@@ -2,9 +2,9 @@
 
 @section('content')
 
-    <div class="py-12">
+    <div class="py-5">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="col">
+            <div class="col container">
                 <div class="row row-cards">
                     <div class="col-12">
                         <div class="mb-4 col">
