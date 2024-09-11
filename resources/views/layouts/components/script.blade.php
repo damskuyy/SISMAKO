@@ -9,46 +9,6 @@
 
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var passwordModal = document.getElementById('passwordModal');
-        var passwordInput = document.getElementById('password');
-        var redirectUrlInput = document.getElementById('redirectUrl');
-
-        // Event listener ketika modal muncul
-        passwordModal.addEventListener('shown.bs.modal', function(event) {
-            var button = event.relatedTarget;
-            var url = button.getAttribute('data-url');
-            redirectUrlInput.value = url;
-
-            // Coba fokuskan dengan sedikit delay untuk memastikan modal sudah sepenuhnya terbuka
-            setTimeout(function() {
-                passwordInput.focus();
-            }, 500); // Delay 500ms untuk memberi waktu modal ditampilkan
-        });
-
-        // Fungsi untuk verifikasi password
-        function verifyPassword() {
-            var password = passwordInput.value;
-            var redirectUrl = redirectUrlInput.value;
-
-            if (password === '12345') {
-                window.location.href = redirectUrl; // Redirect ke URL yang diambil
-            } else {
-                alert('Password salah!');
-                passwordInput.value = ''; // Kosongkan input jika salah
-                passwordInput.focus(); // Fokus kembali ke input password
-            }
-        }
-    });
-
-    // Event listener untuk tombol "Enter"
-    passwordInput.addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
-        event.preventDefault(); // Cegah submit form default
-        verifyPassword(); // Verifikasi password
-    }
-    });
-
     // Populate filter dropdowns with unique values from the table
     function populateFilters() {
         const tableRows = document.querySelectorAll('#dataTable tbody tr');

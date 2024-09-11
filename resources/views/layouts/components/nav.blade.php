@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-    <div class="container">
+<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm sticky-top">
+    <div class="container {{ Request::is('penilaian/panitia') || Request::is('penilaian/rpts') || Request::is('penilaian/rapor/rerata') ? 'custom-container' : (Request::is('penilaian/rapor') ? 'xl-custom-container' : '') }}">
         <!-- Logo -->
         <a class="navbar-brand" href="/">
             <img src="https://res.cloudinary.com/dhyq9uts4/image/upload/v1676360444/logo_v09np1.png" alt="Logo"
