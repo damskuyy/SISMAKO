@@ -2,9 +2,9 @@
 
 @section('content')
     @include('layouts.livewire.header')
-    <div class="pb-5">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="overflow-hidden shadow-sm sm:rounded-lg">
+    <div class="container pb-5">
+        <div class="row">
+            <div class="col-lg-12">
                 <div class="mb-4">
                     <a href="/sarpras/dorm-purchase" class="btn btn-secondary">Back</a>
                 </div>
@@ -180,6 +180,13 @@
                 calculateTotal();
             });
             jumlahInput.addEventListener('input', calculateTotal);
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            @if ($errors->any())
+                var myModal = new bootstrap.Modal(document.getElementById('modal-update'));
+                myModal.show();
+            @endif
         });
     </script>
 @endsection

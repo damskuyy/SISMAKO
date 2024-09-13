@@ -1,14 +1,13 @@
-<div class="col-12 max-w-7xl mx-auto sm:px-6 lg:px-8 my-3">
-    <div class="row row-cards">
-        <div class="col-sm-12 col-lg-6">
-            <div class="card card-sm">
+<div class="container my-3">
+    <div class="row">
+        <div class="col-sm-12 col-lg-6 mb-3">
+            <div class="card shadow-sm">
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col-3">
-                            <img src="{{ asset('dist/img/gif/school.gif') }}" alt=""
-                            style="width: 100%;">
+                            <img src="{{ asset('dist/img/gif/school.gif') }}" alt="" class="img-fluid">
                         </div>
-                        <div class="col-9 row">
+                        <div class="col-9">
                             <div class="row">
                                 <div class="col-12 mb-3">
                                     <h1 class="page-title">Sarpras Sekolah</h1>
@@ -34,15 +33,14 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-12 col-lg-6">
-            <div class="card card-sm">
+        <div class="col-sm-12 col-lg-6 mb-3">
+            <div class="card shadow-sm">
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col-3">
-                            <img src="{{ asset('dist/img/gif/dormitory.gif') }}" alt=""
-                            style="width: 100%;">
+                            <img src="{{ asset('dist/img/gif/dormitory.gif') }}" alt="" class="img-fluid">
                         </div>
-                        <div class="col-9 row">
+                        <div class="col-9">
                             <div class="row">
                                 <div class="col-12 mb-3">
                                     <h1 class="page-title">Sarpras Asrama</h1>

@@ -3,10 +3,10 @@
 @section('content')
     @include('layouts.livewire.header')
 
-    <div class="col-12 max-w-7xl mx-auto sm:px-6 lg:px-8 my-3">
+    <div class="container my-3">
         <div class="row row-cards">
             <div class="col-12">
-                <div class="d-flex justify-content-between align-items-center mb-2">
+                <div class="d-flex justify-content-between align-items-center mb-3">
                     <div>
                         <a href="{{ route('school-purchases.create') }}" class="btn btn-primary" data-bs-toggle="modal"
                             data-bs-target="#modal-report">Tambah</a>
@@ -270,7 +270,7 @@
                                             <td>{{ $item->toko }}</td>
                                             <td>{{ $item->deskripsi }}</td>
                                             <td>
-                                                <div class="hidden sm:flex sm:items-center sm:ms-6">
+                                                <div class="btn-group">
                                                     <div class="col-6 col-sm-4 col-md-2 col-xl-auto me-2">
                                                         <a href="{{ route('school-purchases.edit', $item->id) }}"
                                                             class="btn w-100 btn-icon btn-success">
@@ -287,178 +287,6 @@
                                                                 <path d="M16 5l3 3" />
                                                             </svg>
                                                         </a>
-                                                        {{-- <div class="modal modal-blur fade"
-                                                            id="modal-update-{{ $item->id }}" tabindex="-1"
-                                                            aria-hidden="true">
-                                                            <div class="modal-dialog modal-lg modal-dialog-centered">
-                                                                <form
-                                                                    action="{{ route('school-purchases.update', $item->id) }}"
-                                                                    method="post" enctype="multipart/form-data">
-                                                                    @csrf
-                                                                    @method('PUT')
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <h5 class="modal-title">Edit Pembelian</h5>
-                                                                            <button type="button" class="btn-close"
-                                                                                data-bs-dismiss="modal"
-                                                                                aria-label="Close"></button>
-                                                                        </div>
-                                                                        <div class="modal-body row row-cards">
-                                                                            <div class="col-md-3">
-                                                                                <div class="mb-3">
-                                                                                    <label class="form-label">Tanggal
-                                                                                        Pembelian</label>
-                                                                                    <input type="date"
-                                                                                        name="tanggal_pembelian"
-                                                                                        class="form-control"
-                                                                                        value="{{ $item->tanggal_pembelian }}"
-                                                                                        autofocus autocomplete="off">
-                                                                                    @error('tanggal_pembelian')
-                                                                                        <div class="text-danger mt-2">
-                                                                                            {{ $message }}</div>
-                                                                                    @enderror
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-sm-6 col-md-3">
-                                                                                <div class="mb-3">
-                                                                                    <label class="form-label">Kode
-                                                                                        Barang</label>
-                                                                                    <input type="text" name="kode"
-                                                                                        class="form-control"
-                                                                                        value="{{ $item->kode }}"
-                                                                                        autofocus autocomplete="off">
-                                                                                    @error('kode')
-                                                                                        <div class="text-danger mt-2">
-                                                                                            {{ $message }}</div>
-                                                                                    @enderror
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-sm-6 col-md-6">
-                                                                                <div class="mb-3">
-                                                                                    <label class="form-label">Nama
-                                                                                        Barang</label>
-                                                                                    <input type="text"
-                                                                                        name="nama_barang"
-                                                                                        class="form-control"
-                                                                                        value="{{ $item->nama_barang }}"
-                                                                                        autofocus autocomplete="off">
-                                                                                    @error('nama_barang')
-                                                                                        <div class="text-danger mt-2">
-                                                                                            {{ $message }}</div>
-                                                                                    @enderror
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-sm-6 col-md-4">
-                                                                                <div class="mb-3">
-                                                                                    <label class="form-label">Harga
-                                                                                        Satuan</label>
-                                                                                    <input type="text"
-                                                                                        id="harga-update-{{ $item->id }}"
-                                                                                        name="harga_satuan"
-                                                                                        class="form-control"
-                                                                                        value="{{ $item->harga_satuan }}"
-                                                                                        autofocus autocomplete="off">
-                                                                                    @error('harga_satuan')
-                                                                                        <div class="text-danger mt-2">
-                                                                                            {{ $message }}</div>
-                                                                                    @enderror
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-sm-6 col-md-3">
-                                                                                <div class="mb-3">
-                                                                                    <label
-                                                                                        class="form-label">Jumlah</label>
-                                                                                    <input type="number"
-                                                                                        id="jumlah_baik-update-{{ $item->id }}"
-                                                                                        name="jumlah_baik"
-                                                                                        class="form-control"
-                                                                                        value="{{ $item->jumlah_baik }}"
-                                                                                        autofocus autocomplete="off">
-                                                                                    @error('jumlah_baik')
-                                                                                        <div class="text-danger mt-2">
-                                                                                            {{ $message }}</div>
-                                                                                    @enderror
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-5">
-                                                                                <div class="mb-3">
-                                                                                    <label class="form-label">Total
-                                                                                        Harga</label>
-                                                                                    <input type="text"
-                                                                                        id="total-update-{{ $item->id }}"
-                                                                                        name="total_harga"
-                                                                                        class="form-control"
-                                                                                        value="{{ $item->total_harga }}"
-                                                                                        autofocus autocomplete="off">
-                                                                                    @error('total_harga')
-                                                                                        <div class="text-danger mt-2">
-                                                                                            {{ $message }}</div>
-                                                                                    @enderror
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-sm-6 col-md-6">
-                                                                                <div class="mb-3">
-                                                                                    <label
-                                                                                        class="form-label">Pembeli</label>
-                                                                                    <input type="text" name="pembeli"
-                                                                                        class="form-control"
-                                                                                        value="{{ $item->pembeli }}"
-                                                                                        autofocus autocomplete="off">
-                                                                                    @error('pembeli')
-                                                                                        <div class="text-danger mt-2">
-                                                                                            {{ $message }}</div>
-                                                                                    @enderror
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-sm-6 col-md-6">
-                                                                                <div class="mb-3">
-                                                                                    <label class="form-label">Toko</label>
-                                                                                    <input type="text" name="toko"
-                                                                                        class="form-control"
-                                                                                        value="{{ $item->toko }}"
-                                                                                        autofocus autocomplete="off">
-                                                                                    @error('toko')
-                                                                                        <div class="text-danger mt-2">
-                                                                                            {{ $message }}</div>
-                                                                                    @enderror
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-12">
-                                                                                <div class="mb-3">
-                                                                                    <label
-                                                                                        class="form-label">Keterangan</label>
-                                                                                    <textarea rows="3" name="deskripsi" class="form-control" autofocus autocomplete="off">{{ $item->deskripsi }}</textarea>
-                                                                                    @error('deskripsi')
-                                                                                        <div class="text-danger mt-2">
-                                                                                            {{ $message }}</div>
-                                                                                    @enderror
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-12">
-                                                                                <div class="mb-3">
-                                                                                    <label class="form-label"
-                                                                                        for="gambar">Upload
-                                                                                        Gambar</label>
-                                                                                    <input type="file" name="gambar[]"
-                                                                                        id="gambar"
-                                                                                        class="form-control" multiple>
-                                                                                    @error('gambar')
-                                                                                        <div class="text-danger mt-2">
-                                                                                            {{ $message }}</div>
-                                                                                    @enderror
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="submit"
-                                                                                class="btn btn-primary ms-auto"
-                                                                                data-bs-dismiss="modal">Simpan
-                                                                                Perubahan</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                        </div> --}}
                                                     </div>
                                                     <div class="col-6 col-sm-4 col-md-2 col-xl-auto me-2">
                                                         <a href="{{ route('school-purchases.destroy', $item->id) }}"
@@ -477,60 +305,6 @@
                                                                 <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
                                                             </svg>
                                                         </a>
-                                                        <div class="modal modal-blur fade"
-                                                            id="modal-delete-{{ $item->id }}" tabindex="-1"
-                                                            style="display: none;" aria-hidden="true">
-                                                            <div class="modal-dialog modal-sm modal-dialog-centered"
-                                                                role="document">
-                                                                <form
-                                                                    action="{{ route('school-purchases.destroy', $item->id) }}"
-                                                                    method="post">
-                                                                    @csrf
-                                                                    @method('delete')
-                                                                    <div class="modal-content">
-                                                                        <button type="button" class="btn-close"
-                                                                            data-bs-dismiss="modal"
-                                                                            aria-label="Close"></button>
-                                                                        <div class="modal-status bg-danger"></div>
-                                                                        <div class="modal-body text-center py-4">
-                                                                            <!-- Download SVG icon from http://tabler-icons.io/i/alert-triangle -->
-                                                                            <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                width="24" height="24"
-                                                                                viewBox="0 0 24 24" fill="currentColor"
-                                                                                class="icon mb-2 text-danger icon-lg mx-auto icon-tabler-alert-triangle">
-                                                                                <path stroke="none" d="M0 0h24v24H0z"
-                                                                                    fill="none" />
-                                                                                <path
-                                                                                    d="M12 1.67c.955 0 1.845 .467 2.39 1.247l.105 .16l8.114 13.548a2.914 2.914 0 0 1 -2.307 4.363l-.195 .008h-16.225a2.914 2.914 0 0 1 -2.582 -4.2l.099 -.185l8.11 -13.538a2.914 2.914 0 0 1 2.491 -1.403zm.01 13.33l-.127 .007a1 1 0 0 0 0 1.986l.117 .007l.127 -.007a1 1 0 0 0 0 -1.986l-.117 -.007zm-.01 -7a1 1 0 0 0 -.993 .883l-.007 .117v4l.007 .117a1 1 0 0 0 1.986 0l.007 -.117v-4l-.007 -.117a1 1 0 0 0 -.993 -.883z" />
-                                                                            </svg>
-                                                                            <h3>Apakah Anda Yakin?</h3>
-                                                                            <div class="text-secondary">Apakah Anda
-                                                                                benar-benar ingin menghapus data ini?
-                                                                                Apa
-                                                                                yang telah Anda lakukan tidak dapat
-                                                                                dibatalkan.</div>
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <div class="w-100">
-                                                                                <div class="row">
-                                                                                    <div class="col"><a href="#"
-                                                                                            class="btn w-100"
-                                                                                            data-bs-dismiss="modal">
-                                                                                            Batal
-                                                                                        </a></div>
-                                                                                    <div class="col"> <button
-                                                                                            type="submit"
-                                                                                            class="btn btn-danger w-100"
-                                                                                            data-bs-dismiss="modal">
-                                                                                            Hapus
-                                                                                        </button></div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
                                                     </div>
                                                     <div class="col-6 col-sm-4 col-md-2 col-xl-auto me-2">
                                                         <a href="{{ route('school-purchases.download', $item->id) }}"
@@ -549,6 +323,54 @@
                                                     </div>
                                                 </div>
                                             </td>
+                                            <div class="modal modal-blur fade" id="modal-delete-{{ $item->id }}"
+                                                tabindex="-1" style="display: none;" aria-hidden="true">
+                                                <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                                                    <form action="{{ route('school-purchases.destroy', $item->id) }}"
+                                                        method="post">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <div class="modal-content">
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            <div class="modal-status bg-danger"></div>
+                                                            <div class="modal-body text-center py-4">
+                                                                <!-- Download SVG icon from http://tabler-icons.io/i/alert-triangle -->
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                    height="24" viewBox="0 0 24 24"
+                                                                    fill="currentColor"
+                                                                    class="icon mb-2 text-danger icon-lg mx-auto icon-tabler-alert-triangle">
+                                                                    <path stroke="none" d="M0 0h24v24H0z"
+                                                                        fill="none" />
+                                                                    <path
+                                                                        d="M12 1.67c.955 0 1.845 .467 2.39 1.247l.105 .16l8.114 13.548a2.914 2.914 0 0 1 -2.307 4.363l-.195 .008h-16.225a2.914 2.914 0 0 1 -2.582 -4.2l.099 -.185l8.11 -13.538a2.914 2.914 0 0 1 2.491 -1.403zm.01 13.33l-.127 .007a1 1 0 0 0 0 1.986l.117 .007l.127 -.007a1 1 0 0 0 0 -1.986l-.117 -.007zm-.01 -7a1 1 0 0 0 -.993 .883l-.007 .117v4l.007 .117a1 1 0 0 0 1.986 0l.007 -.117v-4l-.007 -.117a1 1 0 0 0 -.993 -.883z" />
+                                                                </svg>
+                                                                <h3>Apakah Anda Yakin?</h3>
+                                                                <div class="text-secondary">Apakah Anda
+                                                                    benar-benar ingin menghapus data ini?
+                                                                    Apa
+                                                                    yang telah Anda lakukan tidak dapat
+                                                                    dibatalkan.</div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <div class="w-100">
+                                                                    <div class="row">
+                                                                        <div class="col"><a href="#"
+                                                                                class="btn w-100" data-bs-dismiss="modal">
+                                                                                Batal
+                                                                            </a></div>
+                                                                        <div class="col"> <button type="submit"
+                                                                                class="btn btn-danger w-100"
+                                                                                data-bs-dismiss="modal">
+                                                                                Hapus
+                                                                            </button></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </tr>
                                     @empty
                                         <tr>

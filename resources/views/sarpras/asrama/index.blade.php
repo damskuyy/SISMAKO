@@ -3,10 +3,10 @@
 @section('content')
     @include('layouts.livewire.header')
 
-    <div class="col-12 max-w-7xl mx-auto sm:px-6 lg:px-8 my-3">
+    <div class="container my-3">
         <div class="row row-cards">
             <div class="col-12">
-                <div class="d-flex justify-content-between align-items-center mb-2">
+                <div class="d-flex justify-content-between align-items-center mb-3">
                     <div>
                         <a href="{{ route('dorm-purchases.create') }}" class="btn btn-primary" data-bs-toggle="modal"
                             data-bs-target="#modal-report">Tambah</a>
@@ -15,7 +15,7 @@
 
                     <form action="{{ route('dorm-purchases.index') }}" method="get" class="d-flex align-items-end">
                         @csrf
-                        <div class="row g-2 align-items-center">
+                        <div class="row g-2">
                             <div class="col-auto">
                                 <select name="tahun_pembelian" class="form-control" style="width: 150px;"
                                     value="{{ request('tahun_pembelian') }}">
@@ -50,9 +50,8 @@
                         </div>
                     </form>
                 </div>
-
-
             </div>
+
             <div class="modal modal-blur fade" id="modal-report" tabindex="-1" style="display: none;" aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                     <form action="{{ route('dorm-purchases.store') }}" method="post" enctype="multipart/form-data">
@@ -291,7 +290,7 @@
                                                 {{ $item->deskripsi }}
                                             </td>
                                             <td>
-                                                <div class="hidden sm:flex sm:items-center sm:ms-6">
+                                                <div class="btn-group"">
                                                     <div class="col-6 col-sm-4 col-md-2 col-xl-auto me-2">
                                                         <a href="{{ route('dorm-purchases.edit', $item->id) }}"
                                                             class="btn w-100 btn-icon btn-success">
@@ -326,60 +325,6 @@
                                                                 <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
                                                             </svg>
                                                         </a>
-                                                        <div class="modal modal-blur fade"
-                                                            id="modal-delete-{{ $item->id }}" tabindex="-1"
-                                                            style="display: none;" aria-hidden="true">
-                                                            <div class="modal-dialog modal-sm modal-dialog-centered"
-                                                                role="document">
-                                                                <form
-                                                                    action="{{ route('dorm-purchases.destroy', $item->id) }}"
-                                                                    method="post">
-                                                                    @csrf
-                                                                    @method('delete')
-                                                                    <div class="modal-content">
-                                                                        <button type="button" class="btn-close"
-                                                                            data-bs-dismiss="modal"
-                                                                            aria-label="Close"></button>
-                                                                        <div class="modal-status bg-danger"></div>
-                                                                        <div class="modal-body text-center py-4">
-                                                                            <!-- Download SVG icon from http://tabler-icons.io/i/alert-triangle -->
-                                                                            <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                width="24" height="24"
-                                                                                viewBox="0 0 24 24" fill="currentColor"
-                                                                                class="icon mb-2 text-danger icon-lg mx-auto icon-tabler-alert-triangle">
-                                                                                <path stroke="none" d="M0 0h24v24H0z"
-                                                                                    fill="none" />
-                                                                                <path
-                                                                                    d="M12 1.67c.955 0 1.845 .467 2.39 1.247l.105 .16l8.114 13.548a2.914 2.914 0 0 1 -2.307 4.363l-.195 .008h-16.225a2.914 2.914 0 0 1 -2.582 -4.2l.099 -.185l8.11 -13.538a2.914 2.914 0 0 1 2.491 -1.403zm.01 13.33l-.127 .007a1 1 0 0 0 0 1.986l.117 .007l.127 -.007a1 1 0 0 0 0 -1.986l-.117 -.007zm-.01 -7a1 1 0 0 0 -.993 .883l-.007 .117v4l.007 .117a1 1 0 0 0 1.986 0l.007 -.117v-4l-.007 -.117a1 1 0 0 0 -.993 -.883z" />
-                                                                            </svg>
-                                                                            <h3>Apakah Anda Yakin?</h3>
-                                                                            <div class="text-secondary">Apakah Anda
-                                                                                benar-benar ingin menghapus data ini?
-                                                                                Apa
-                                                                                yang telah Anda lakukan tidak dapat
-                                                                                dibatalkan.</div>
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <div class="w-100">
-                                                                                <div class="row">
-                                                                                    <div class="col"><a href="#"
-                                                                                            class="btn w-100"
-                                                                                            data-bs-dismiss="modal">
-                                                                                            Batal
-                                                                                        </a></div>
-                                                                                    <div class="col"> <button
-                                                                                            type="submit"
-                                                                                            class="btn btn-danger w-100"
-                                                                                            data-bs-dismiss="modal">
-                                                                                            Hapus
-                                                                                        </button></div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
                                                     </div>
                                                     <div class="col-6 col-sm-4 col-md-2 col-xl-auto me-2">
                                                         <a href="{{ route('dorm-purchases.download', $item->id) }}"
@@ -398,6 +343,54 @@
                                                     </div>
                                                 </div>
                                             </td>
+                                            <div class="modal modal-blur fade" id="modal-delete-{{ $item->id }}"
+                                                tabindex="-1" style="display: none;" aria-hidden="true">
+                                                <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                                                    <form action="{{ route('dorm-purchases.destroy', $item->id) }}"
+                                                        method="post">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <div class="modal-content">
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            <div class="modal-status bg-danger"></div>
+                                                            <div class="modal-body text-center py-4">
+                                                                <!-- Download SVG icon from http://tabler-icons.io/i/alert-triangle -->
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                    height="24" viewBox="0 0 24 24"
+                                                                    fill="currentColor"
+                                                                    class="icon mb-2 text-danger icon-lg mx-auto icon-tabler-alert-triangle">
+                                                                    <path stroke="none" d="M0 0h24v24H0z"
+                                                                        fill="none" />
+                                                                    <path
+                                                                        d="M12 1.67c.955 0 1.845 .467 2.39 1.247l.105 .16l8.114 13.548a2.914 2.914 0 0 1 -2.307 4.363l-.195 .008h-16.225a2.914 2.914 0 0 1 -2.582 -4.2l.099 -.185l8.11 -13.538a2.914 2.914 0 0 1 2.491 -1.403zm.01 13.33l-.127 .007a1 1 0 0 0 0 1.986l.117 .007l.127 -.007a1 1 0 0 0 0 -1.986l-.117 -.007zm-.01 -7a1 1 0 0 0 -.993 .883l-.007 .117v4l.007 .117a1 1 0 0 0 1.986 0l.007 -.117v-4l-.007 -.117a1 1 0 0 0 -.993 -.883z" />
+                                                                </svg>
+                                                                <h3>Apakah Anda Yakin?</h3>
+                                                                <div class="text-secondary">Apakah Anda
+                                                                    benar-benar ingin menghapus data ini?
+                                                                    Apa
+                                                                    yang telah Anda lakukan tidak dapat
+                                                                    dibatalkan.</div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <div class="w-100">
+                                                                    <div class="row">
+                                                                        <div class="col"><a href="#"
+                                                                                class="btn w-100" data-bs-dismiss="modal">
+                                                                                Batal
+                                                                            </a></div>
+                                                                        <div class="col"> <button type="submit"
+                                                                                class="btn btn-danger w-100"
+                                                                                data-bs-dismiss="modal">
+                                                                                Hapus
+                                                                            </button></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </tr>
                                     @empty
                                         <tr>
@@ -471,10 +464,6 @@
         document.addEventListener("DOMContentLoaded", function() {
             @if ($errors->any())
                 var myModal = new bootstrap.Modal(document.getElementById('modal-report'));
-                myModal.show();
-            @endif
-            @if ($errors->any())
-                var myModal = new bootstrap.Modal(document.getElementById('modal-update'));
                 myModal.show();
             @endif
         });

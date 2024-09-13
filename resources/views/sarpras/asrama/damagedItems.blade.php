@@ -4,10 +4,10 @@
     @include('layouts.livewire.header')
 
     <!-- Tambahkan Tombol "Tambah" di sini -->
-    <div class="col-12 max-w-7xl mx-auto sm:px-6 lg:px-8 my-3">
+    <div class="container my-3">
         <div class="row row-cards">
             <div class="col-12">
-                <div class="mb-2">
+                <div class="mb-3">
                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addItemModal">Tambah
                     </button>
                 </div>
@@ -29,8 +29,8 @@
                                     <option value="{{ $purchase->id }}">{{ $purchase->nama_barang }}</option>
                                 @endforeach
                             </select>
-                            <button class="btn btn-primary mt-3" id="nextModalButton"
-                                data-bs-dismiss="modal">Selanjutnya</button>
+                            <button class="btn btn-primary mt-3" id="nextModalButton" data-bs-dismiss="modal"
+                                data-bs-toggle="modal" data-bs-target="#editItemModal">Selanjutnya</button>
                         </div>
                     </div>
                 </div>
@@ -166,6 +166,26 @@
         </div>
     </div>
 
+    @session('success')
+        <div class="alert alert-important alert-success alert-dismissible position-absolute bottom-0 end-0 me-3" role="alert">
+            <div class="d-flex">
+                <div>
+                    <!-- Download SVG icon from http://tabler-icons.io/i/check -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon" width="24" height="24"
+                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M5 12l5 5l10 -10"></path>
+                    </svg>
+                </div>
+                <div>
+                    {{ session('success') }}
+                </div>
+            </div>
+            <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
+        </div>
+    @endsession
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var selectedItemId;
@@ -192,10 +212,6 @@
             @if ($errors->any())
                 var myModal = new bootstrap.Modal(document.getElementById('addItemModal'));
                 myModal.show();
-            @endif
-
-            @if (session('success'))
-                alert('{{ session('success') }}');
             @endif
         });
     </script>

@@ -3,14 +3,8 @@
 @section('content')
     @include('layouts.livewire.header')
 
-    <div class="col-12 max-w-7xl mx-auto sm:px-6 lg:px-8 my-3">
+    <div class="container my-3">
         <div class="row row-cards">
-            <div class="col-12">
-                <div class="mb-2">
-                    {{-- <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addItemModal">Tambah
-                    </button> --}}
-                </div>
-            </div>
 
             <!-- Modal untuk Tambah Barang -->
             <div class="modal fade" id="addItemModal" tabindex="-1" aria-labelledby="addItemModalLabel" aria-hidden="true">

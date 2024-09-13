@@ -4,10 +4,10 @@
     @include('layouts.livewire.header')
 
     <!-- Tambahkan Tombol "Tambah" di sini -->
-    <div class="col-12 max-w-7xl mx-auto sm:px-6 lg:px-8 my-3">
+    <div class="container my-3">
         <div class="row row-cards">
             <div class="col-12">
-                <div class="mb-2">
+                <div class="mb-3">
                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addItemModal">Tambah
                     </button>
                 </div>
@@ -32,16 +32,15 @@
                                 @endforelse
                             </select>
                             <button class="btn btn-primary mt-3" id="nextModalButton" data-bs-dismiss="modal"
-                                data-bs-toggle="modal"
-                                data-bs-target="#editItemModal{{ $purchase->id }}">Selanjutnya</button>
+                                data-bs-toggle="modal" data-bs-target="#editItemModal">Selanjutnya</button>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Modal untuk Edit Barang -->
-            <div class="modal modal-blur fade" id="editItemModal{{ $purchase->id }}" tabindex="-1"
-                aria-labelledby="editItemModalLabel" aria-hidden="true">
+            <div class="modal modal-blur fade" id="editItemModal" tabindex="-1" aria-labelledby="editItemModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -49,8 +48,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{ route('damaged-items-school.damaged', $purchase->id) }}" id="updateItemForm"
-                                method="POST">
+                            <form id="updateItemForm" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <div class="mb-3">
