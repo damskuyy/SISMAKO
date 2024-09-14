@@ -37,7 +37,8 @@ class JamaahSiswaController extends Controller
                 'dokumentasi_jamaah_siswa.id',
                 'dokumentasi_jamaah_siswa.tanggal',
                 'dokumentasi_jamaah_siswa.kelas',
-                'dokumentasi_jamaah_siswa.sholat'
+                'dokumentasi_jamaah_siswa.sholat',
+                'dokumentasi_jamaah_siswa.path_dokumentasi'
             );
 
         // Apply filters if provided
@@ -57,7 +58,7 @@ class JamaahSiswaController extends Controller
         $dataMutasi = $query->get();
 
         // Return the view with the filtered data
-        return view('keasramaan.jamaah.index', compact('dataMutasi', 'tanggal', 'kelas', 'sholat'));
+        return view('keasramaan.jamaah.index', compact('dataMutasi'));
     }
 
     // Show the form for creating a new resource

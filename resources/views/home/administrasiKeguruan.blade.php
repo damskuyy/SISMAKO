@@ -10,7 +10,7 @@
         .card-title { font-size: 1.5rem; font-family: 'Poppins', sans-serif; font-weight: bold; color: white; }
     </style>
 
-    <div class="py-12">
+    <div class="py-5">
         <div class="container">
             <div class="row">
                 @php
