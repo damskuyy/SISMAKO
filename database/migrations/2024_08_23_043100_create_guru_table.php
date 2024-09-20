@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('mapel', 50);
             $table->string('gelar', 50);
             $table->string('email', 30)->unique();
-            $table->string('no_rekening', 20)->unique();
+            $table->string('no_rekening', 30)->unique();
             $table->enum('status_kepegawaian', ['Aktif', 'Tidak aktif']);
             $table->dateTime('tanggal_masuk');
             $table->dateTime('tanggal_keluar')->nullable();

@@ -12,7 +12,7 @@ class Lab extends Model
 {
     use HasFactory;
     protected $table = 'akses_lab';
-    protected $fillable = ['tanggal', 'guru_id', 'kelas_id', 'siswa_id', 'keterangan', 'start', 'end'];
+    protected $fillable = ['tanggal', 'guru_id', 'siswa_id', 'keterangan', 'start', 'end'];
 
     public function guru()
     {
@@ -20,10 +20,6 @@ class Lab extends Model
     }
 
     // Definisikan relasi dengan model DataKelas
-    public function kelas()
-    {
-        return $this->belongsTo(DataKelas::class, 'kelas_id');
-    }
 
     // Definisikan relasi dengan model Siswa
     public function siswa()

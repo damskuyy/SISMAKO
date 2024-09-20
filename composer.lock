@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bcb4147492dab0d6590365691b1db131",
+    "content-hash": "3c3a257b2fc7d0439834ac38591a990e",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -2260,6 +2260,65 @@
                 "source": "https://github.com/Masterminds/html5-php/tree/2.9.0"
             },
             "time": "2024-03-31T07:05:07+00:00"
+        },
+        {
+            "name": "megoxv/zeromsg",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/megoxv/zeromsg.git",
+                "reference": "d4ecf70b0a609c84bc9943051d4a0c46c250cd3a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/megoxv/zeromsg/zipball/d4ecf70b0a609c84bc9943051d4a0c46c250cd3a",
+                "reference": "d4ecf70b0a609c84bc9943051d4a0c46c250cd3a",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1|^8.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Megoxv\\ZeroMsg\\ZeroMsgServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Megoxv\\ZeroMsg\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Abdelmjid Saber",
+                    "email": "abdelmjiDev@gmail.com"
+                }
+            ],
+            "description": "ZeroMsg fluent API for Whatsapp  diverse message types integration.",
+            "keywords": [
+                "laravel",
+                "php",
+                "whatsapp",
+                "zeromsg"
+            ],
+            "support": {
+                "issues": "https://github.com/megoxv/zeromsg/issues",
+                "source": "https://github.com/megoxv/zeromsg/tree/v1.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/megoxv",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-07-06T15:20:51+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -8401,5 +8460,5 @@
         "php": "^8.2"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }

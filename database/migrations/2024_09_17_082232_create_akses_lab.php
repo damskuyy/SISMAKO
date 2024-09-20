@@ -15,13 +15,11 @@ return new class extends Migration
             $table->id();
             $table->date('tanggal');
             $table->unsignedBigInteger ('guru_id');
-            $table->unsignedBigInteger ('kelas_id');
             $table->unsignedBigInteger ('siswa_id');
             $table->text('keterangan');
             $table->time('start');
             $table->time('end');
             $table->foreign('guru_id')->references('id')->on('guru')->cascadeOnDelete();
-            $table->foreign('kelas_id')->references('id')->on('data_kelas')->cascadeOnDelete();
             $table->foreign('siswa_id')->references('id')->on('siswa')->cascadeOnDelete();
             $table->timestamps();
         });

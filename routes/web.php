@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\WhatsAppController;
 use App\Http\Controllers\database\ZipController;
 use App\Http\Controllers\database\GuruController;
 use App\Http\Controllers\penilaian\PasController;
@@ -61,6 +62,9 @@ Route::get('/smktibazma.sch.id', function () {
 Route::view('sekolah-keasramaan/al-quran', 'keasramaan.quran.quran')->name('quran');
 Route::view('sekolah-keasramaan/akademik', 'keasramaan.akademik.akademik')->name('akademik');
 Route::view('sekolah-keasramaan/jurnal-asrama', 'keasramaan.jurnal.jurnal')->name('jurnal');
+
+Route::get('/api/send-whatsapp', [WhatsAppController::class, 'sendMessage']);
+
 
 Route::middleware('password')->group(function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -348,7 +352,7 @@ Route::controller(PatroliAsramaController::class)->group(function () {
 
 //clear
 Route::controller(tahfidzController::class)->group(function () {
-    Route::get('/sekolah-keasramaan/al-quran/tahfidz', 'index')->name('tahfidz');   
+    Route::get('/sekolah-keasramaan/al-quran/tahfidz', 'index')->name('tahfidz');
     Route::get('/sekolah-keasramaan/al-quran/tahfidz/create', 'create')->name('tahfidz.create');
     Route::post('/sekolah-keasramaan/al-quran/tahfidz/store', 'store')->name('tahfidz.perform');
     Route::get('/sekolah-keasramaan/al-quran/tahfidz/edit/{id}', 'edit')->name('tahfidz.edit');

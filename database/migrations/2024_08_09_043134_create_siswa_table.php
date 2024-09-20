@@ -27,10 +27,10 @@ return new class extends Migration
             $table->string('nama_ibu', 50);
             $table->string('pekerjaan_ayah', 50);
             $table->string('pekerjaan_ibu', 50);
-            $table->string('no_hp_wali', 20);
+            $table->string('no_hp_wali', 40);
             $table->string('diterima_di_kelas', 20);
             $table->integer('angkatan');
-            $table->string('asal_sekolah', 20);
+            $table->string('asal_sekolah', 40);
             $table->string('alamat_asal_sekolah', 255);
             $table->string('path_ijazah', 100)->nullable();
             $table->string('path_surat_Kelulusan', 100)->nullable();
