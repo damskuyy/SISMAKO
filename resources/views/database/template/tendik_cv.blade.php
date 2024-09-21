@@ -242,11 +242,16 @@
             </div>
             <div class="profile-img">
                 <?php
-                    $path = public_path($tendik->foto);
+                    if (!empty($tendik->fototendik[0]->path_file)) {
+                    $path = public_path($tendik->fototendik[0]->path_file);
                     $type = pathinfo($path, PATHINFO_EXTENSION);
                     $data = file_get_contents($path);
                     $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+                }else {
+                    $base64 = 'dist/img/logo/user.png';
+                }
                 ?>
+                <p>{{$tendik->fototendik[0]->path_file}}</p>
                 <img src="{{ $base64 }}" alt="Profile Image">
             </div>
         </div>

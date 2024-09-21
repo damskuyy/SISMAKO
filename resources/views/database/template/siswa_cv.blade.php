@@ -154,7 +154,8 @@
                 width: auto;
                 color: #004085;
                 font-weight: bold;
-                left: 0; /* Menjaga kolom tetap di tempat saat scroll */
+                left: 0;
+                /* Menjaga kolom tetap di tempat saat scroll */
 
             }
 
@@ -256,13 +257,18 @@
             </div>
             <div class="profile-img">
                 <?php
+                if (!empty($siswa->fotoSiswa[0]->path_file)) {
                     $path = public_path($siswa->fotoSiswa[0]->path_file);
                     $type = pathinfo($path, PATHINFO_EXTENSION);
                     $data = file_get_contents($path);
                     $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+                } else {
+                    $base64 = 'https://firebasestorage.googleapis.com/v0/b/portofolio-database-fadhil.appspot.com/o/BLOG.png?alt=media&token=d8b1cf90-c9e3-4659-aead-10d2c358c676';
+                }
                 ?>
                 <img src="{{ $base64 }}" alt="Profile Image">
             </div>
+
         </div>
     </div>
 </body>

@@ -250,11 +250,16 @@
             </div>
             <div class="profile-img">
                 <?php
-                $path = public_path($guru->foto);
-                $type = pathinfo($path, PATHINFO_EXTENSION);
-                $data = file_get_contents($path);
-                $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+                if (!empty($guru->fotoguru[0]->path_file)) {
+                    $path = public_path($guru->fotoguru[0]->path_file);
+                    $type = pathinfo($path, PATHINFO_EXTENSION);
+                    $data = file_get_contents($path);
+                    $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+                }else {
+                    $base64 = 'dist/img/logo/user.png';
+                }
                 ?>
+                <p>{{$guru->fotoguru[0]->path_file}}</p>
                 <img src="{{ $base64 }}" alt="Profile Image">
             </div>
         </div>

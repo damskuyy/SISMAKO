@@ -5,8 +5,7 @@
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col-3">
-                            <img src="{{ asset('dist/img/gif/school.gif') }}" alt="" class="img-fluid">
-                        </div>
+                            <img src="https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/Icons%2Fdormitory.gif?alt=media&token=d2d8e1c5-9914-4e76-8c62-f457165f37ba" alt="" class="img-fluid">                        </div>
                         <div class="col-9">
                             <div class="row">
                                 <div class="col-12 mb-3">
@@ -38,8 +37,7 @@
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col-3">
-                            <img src="{{ asset('dist/img/gif/dormitory.gif') }}" alt="" class="img-fluid">
-                        </div>
+                            <img src="https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/Icons%2Fdormitory.gif?alt=media&token=d2d8e1c5-9914-4e76-8c62-f457165f37ba" alt="" class="img-fluid">                        </div>
                         <div class="col-9">
                             <div class="row">
                                 <div class="col-12 mb-3">

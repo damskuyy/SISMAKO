@@ -3,7 +3,7 @@
 @section('content')
 <livewire:layout.header />
 <div class="card">
-    <div class="py-6" style="background-image: url('dist/img/gif/bg.png'); background-size: cover; min-height: 92vh;">
+    <div class="py-6" style="background-image: url(https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/Icons%2Fbg.png?alt=media&token=9e12403b-e795-4db3-b936-a127271e3bb9); background-size: cover; min-height: 92vh;">
         <div class="container ">
             <div class="row d-flex justify-content-center">
                 <style>
@@ -46,49 +46,49 @@
                 $cards = [
                 [
                 'url' => '/database',
-                'img' => 'dist/img/gif/protection.gif',
+                'img' => 'https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/Icons%2Fprotection.gif?alt=media&token=f150a7b5-d7f3-4fdf-bbdb-5df887635dd4',
                 'title' => 'Database',
                 'color' => 'card-custom',
                 ],
                 [
                 'url' => '/korespondensi',
-                'img' => 'dist/img/gif/passport.gif',
+                'img' => 'https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/Icons%2Fpassport.gif?alt=media&token=b2331b75-36b2-440f-9e17-e405d5c4c596',
                 'title' => 'Korespondensi',
                 'color' => 'card-custom',
                 ],
                 [
                 'url' => '/administrasi',
-                'img' => 'dist/img/gif/files.gif',
+                'img' => 'https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/Icons%2Ffiles.gif?alt=media&token=322cb890-2c30-455d-bd28-34f8ac0a7066',
                 'title' => 'Administrasi',
                 'color' => 'card-custom-red',
                 ],
                 [
                 'url' => '/penilaian',
-                'img' => 'dist/img/gif/passed.gif',
+                'img' => 'https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/Icons%2Fpassed.gif?alt=media&token=5c0140cc-50a9-44df-a3c1-58e5eb0ceda3',
                 'title' => 'Penilaian',
                 'color' => 'card-custom',
                 ],
                 [
                 'url' => '/sarpras',
-                'img' => 'dist/img/gif/school.gif',
+                'img' => 'https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/Icons%2Fschool.gif?alt=media&token=df4d9eee-ff3c-4aa9-892d-f94ca0a3e060',
                 'title' => 'Sarpras',
                 'color' => 'card-custom-red',
                 ],
                 [
                 'url' => '/finance',
-                'img' => 'dist/img/gif/dollar.gif',
+                'img' => 'https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/Icons%2Fdollar.gif?alt=media&token=b996e252-0ec3-48c4-ac6b-c53228ba5105',
                 'title' => 'Keuangan',
                 'color' => 'card-custom-green',
                 ],
                 [
                 'url' => '/pkg',
-                'img' => 'dist/img/gif/360-feedback.gif',
+                'img' => 'https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/Icons%2F360-feedback.gif?alt=media&token=63220144-e26a-4e26-a32d-49434ed8380d',
                 'title' => 'Penilaian Kinerja Guru (PKG)',
                 'color' => 'card-custom-red',
                 ],
                 [
                 'url' => '/sekolah-keasramaan',
-                'img' => 'dist/img/gif/quran.gif',
+                'img' => 'https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/Icons%2Fquran.gif?alt=media&token=c69149c5-73e5-4a8e-929f-e51a1b1b38d3',
                 'title' => 'Sekolah dan Keasramaan',
                 'color' => 'card-custom-green',
                 ],
@@ -112,7 +112,7 @@
                     <a href="{{ route('created-by') }}" class="text-decoration-none">
                         <div class="card shadow-sm mb-4 hover-shadow" style="background-color: rgba(0, 128, 0, 0.25);">
                             <div class="card-body d-flex align-items-center justify-content-center">
-                                <img src="{{ asset('dist/img/gif/management-consulting.gif') }}" alt=""
+                                <img src="https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/Icons%2Fmanagement-consulting.gif?alt=media&token=db2d8a1b-46ff-4e95-b8ff-478beddbfeba" alt=""
                                     class="img-fluid img-custom">
                                 <h2 class="card-title">Created By</h2>
                             </div>
