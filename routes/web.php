@@ -59,9 +59,11 @@ use App\Http\Controllers\database\PklAdministrasiSekolahController;
 Route::get('/smktibazma.sch.id', function () {
     return view('progres');
 });
+Route::view('sekolah-keasramaan', 'home.keasramaan')->name('keasramaan');
 Route::view('sekolah-keasramaan/al-quran', 'keasramaan.quran.quran')->name('quran');
 Route::view('sekolah-keasramaan/akademik', 'keasramaan.akademik.akademik')->name('akademik');
 Route::view('sekolah-keasramaan/jurnal-asrama', 'keasramaan.jurnal.jurnal')->name('jurnal');
+Route::view('created-by', 'home.createdBy')->name('created-by');
 
 Route::get('/api/send-whatsapp', [WhatsAppController::class, 'sendMessage']);
 
@@ -73,7 +75,6 @@ Route::middleware('password')->group(function () {
     Route::view('penilaian', 'home.penilaian')->name('penilaian');
     Route::view('administrasi', 'home.administrasiKeguruan')->name('administrasi');
     Route::view('finance', 'home.finance')->name('finance');
-    Route::view('sekolah-keasramaan', 'home.keasramaan')->name('keasramaan');
     Route::view('sarpras', 'home.sarpras')->name('sarpras');
     Route::view('pkl', '.database.database.pkl.pkl')->name('pkl');
     Route::get('/pin', [App\Http\Controllers\PasswordController::class, 'index'])->name('pin');
@@ -85,7 +86,6 @@ Route::middleware('password')->group(function () {
     Route::get('/sekolah-keasramaan/akses-lab',[App\Http\Controllers\keasramaan\LabController::class, 'index'])->name('lab.index');
 });
 
-Route::view('created-by', 'home.createdBy')->name('created-by');
 
 // Penilaian Controller Routes
 Route::controller(AverageController::class)->group(function () {

@@ -136,7 +136,6 @@
 </div>
 
 {{-- Danger Modal --}}
-@foreach ($averages as $item)
 <form action="{{ route('average.destroy', $item->id) }}" method="post">
     @csrf
     @method('DELETE')
@@ -177,7 +176,6 @@
         </div>
     </div>
 </form>
-@endforeach
 
 <!-- Chart Modal -->
 <div class="modal fade" id="chartModal" tabindex="-1" aria-labelledby="chartModalLabel" aria-hidden="true">

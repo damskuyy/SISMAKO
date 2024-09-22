@@ -112,6 +112,18 @@
                                                 <option value="Ratno Wijaya"
                                                     {{ old('pengajar') == 'Ratno Wijaya' ? 'selected' : '' }}>Ratno Wijaya
                                                 </option>
+                                                <option value="Diandra (Mentor)"
+                                                    {{ old('pengajar') == 'Diandra (Mentor)' ? 'selected' : '' }}>Diandra (Mentor)
+                                                </option>
+                                                <option value="Hafith (Mentor)"
+                                                    {{ old('pengajar') == 'Hafith (Mentor)' ? 'selected' : '' }}>Hafith (Mentor)
+                                                </option>
+                                                <option value="Akram (Mentor)"
+                                                    {{ old('pengajar') == 'Akram (Mentor)' ? 'selected' : '' }}>Akram (Mentor)
+                                                </option>
+                                                <option value="Zainul (mentor)"
+                                                    {{ old('pengajar') == 'Zainul (mentor)' ? 'selected' : '' }}>Zainul (mentor)
+                                                </option>
                                             </select>
                                             @error('pengajar')
                                                 <div class="text-danger mt-2"> {{ $message }} </div>

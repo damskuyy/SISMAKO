@@ -96,9 +96,10 @@
                                                 </a>
                                             </td>
                                             <td>
-                                                <a type="button" data-bs-toggle="modal"
-                                                    data-bs-target="#modal-danger-{{ $item->id }}">
-                                                    <i class="far fa-trash-alt text-white text-xl bg-red p-2 rounded"></i>
+                                                <a href="#" class="" data-bs-toggle="modal"
+                                                    data-bs-target="#modal-danger">
+                                                    <i
+                                                        class="far fa-trash-alt text-white text-xl bg-red p-2 rounded-lg"></i>
                                                 </a>
                                             </td>
                                         </tr>
@@ -119,7 +120,6 @@
     </div>
 
     {{-- Danger Modal --}}
-    @foreach ($pat as $item)
         <form action="{{ route('pat.delete', $item->id) }}" method="post">
             @csrf
             @method('DELETE')
@@ -164,5 +164,4 @@
                 </div>
             </div>
         </form>
-    @endforeach
 @endsection

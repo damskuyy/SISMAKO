@@ -6,8 +6,7 @@ use App\Models\keasramaan\Lab;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\keasramaan\LabRequest;
 use App\Models\database\Guru;
-use App\Models\database\Siswa;
-use Illuminate\Support\Facades\Http;
+use Illuminate\Http\Request;
 
 class LabController extends Controller
 {
@@ -25,20 +24,8 @@ class LabController extends Controller
 
     public function store(LabRequest $request)
     {
-        $data = [
-            'guru' => Guru::select('nama')->findOrFail($request->guru_id),
-            'siswa' => Siswa::select('nama')->findOrFail($request->siswa_id),
-            'class' => $request->kelas_id,
-            'description' => $request->keterangan,
-            'start' => $request->start
-        ];
-
         $validated = $request->validated();
         Lab::create(attributes: $validated);
-
-        $response = Http::post('http://localhost:5000/send-whatsapp-message', [
-            'data' => $data
-        ]);
         return redirect('/sekolah-keasramaan/akses-lab')->with('success', 'Data berhasil ditambahkan!');
     }
 

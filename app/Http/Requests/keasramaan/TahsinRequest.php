@@ -35,8 +35,9 @@ class TahsinRequest extends FormRequest
     {
         return [
             'tanggal.required' => 'Tanggal harus diisi.',
-            'ayat.required' => 'Ayat harus diisi.',
-            'predikat.required' => 'Predikat harus diisi.',
+            'surat.required' => 'Surat tahfidz harus diisi.',
+            'ayat.required' => 'Ayat tahfidz harus diisi.',
+            'predikat.required' => 'Predikat tahfidz harus diisi.',
             'pengajar.required' => 'Pengajar harus diisi.',
         ];
     }

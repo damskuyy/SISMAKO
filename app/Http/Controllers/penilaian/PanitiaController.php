@@ -35,6 +35,8 @@ class PanitiaController extends Controller
             'jawaban',
             'proker',
             'kehadiran',
+            'jawaban',
+            'proker',
             'ba',
             'sk_panitia',
             'tatib',
@@ -42,7 +44,10 @@ class PanitiaController extends Controller
             'jadwal',
             'daftar_nilai',
             'tanda_terima_dan_penerimaan_soal',
-            'kehadiran_panitia'
+            'kehadiran_panitia',
+            'denah',
+            'kehadiran_panitia',
+            'tanda_terima_dan_penerimaan_soal',
         ];
 
         foreach ($fileFields as $fileField) {
@@ -75,6 +80,8 @@ class PanitiaController extends Controller
             'jawaban',
             'proker',
             'kehadiran',
+            'jawaban',
+            'proker',
             'ba',
             'sk_panitia',
             'tatib',
@@ -82,7 +89,10 @@ class PanitiaController extends Controller
             'jadwal',
             'daftar_nilai',
             'tanda_terima_dan_penerimaan_soal',
-            'kehadiran_panitia'
+            'kehadiran_panitia',
+            'denah',
+            'kehadiran_panitia',
+            'tanda_terima_dan_penerimaan_soal',
         ];
 
         foreach ($fileFields as $fileField) {
@@ -114,23 +124,20 @@ class PanitiaController extends Controller
 
         // Memeriksa apakah data memiliki type 'pas'
         if ($panitia->type !== 'panitia') {
-            return redirect('/penilaian/pat')->with('error', 'Data tidak dapat dihapus karena type tidak sesuai.');
+            return redirect('/penilaian/panitia')->with('error', 'Data tidak dapat dihapus karena type tidak sesuai.');
         }
 
         $fileFields = [
-            'kisi_kisi',
-            'soal',
             'jawaban',
             'proker',
-            'kehadiran',
             'ba',
             'sk_panitia',
             'tatib',
             'surat_pemberitahuan',
             'jadwal',
-            'daftar_nilai',
+            'denah',
+            'kehadiran_panitia',
             'tanda_terima_dan_penerimaan_soal',
-            'kehadiran_panitia'
         ];
 
         foreach ($fileFields as $fileField) {
@@ -159,6 +166,8 @@ class PanitiaController extends Controller
             'jawaban',
             'proker',
             'kehadiran',
+            'jawaban',
+            'proker',
             'ba',
             'sk_panitia',
             'tatib',
@@ -166,7 +175,10 @@ class PanitiaController extends Controller
             'jadwal',
             'daftar_nilai',
             'tanda_terima_dan_penerimaan_soal',
-            'kehadiran_panitia'
+            'kehadiran_panitia',
+            'denah',
+            'kehadiran_panitia',
+            'tanda_terima_dan_penerimaan_soal',
         ];
 
         // Create a temporary file to store the zip

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\database\Siswa;
 use App\Models\keasramaan\akhlak;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\keasramaan\AkhlakRequest;
 use App\Http\Requests\keasramaan\TajwidRequest;
 
 class tajwidController extends Controller
@@ -37,7 +38,7 @@ class tajwidController extends Controller
         return view('keasramaan.jurnal.tajwid.create', compact('angkatan', 'names'));
     }
 
-    public function store(TajwidRequest $request)
+    public function store(AkhlakRequest $request)
     {
         $validateData = $request->validated();
 

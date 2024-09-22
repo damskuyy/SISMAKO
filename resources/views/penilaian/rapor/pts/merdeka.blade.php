@@ -204,7 +204,7 @@
                         PELAJARAN 2022/2023</span>
                 </td>
                 <td>
-                    <img style="height: 100px" src="{{ asset('dist/img/logo/Logo.png') }}" alt="Logo">
+                    <img style="height: 100px" src="{{ asset('https://smktibazma.sch.id/static/media/main-logo-2.7b74690f86ab4e9a4743.png') }}" alt="Logo">
                 </td>
             </tr>
         </table>

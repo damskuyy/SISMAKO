@@ -69,7 +69,8 @@ class tahfidzController extends Controller
 
     public function destroy($id)
     {
-        tahfidz::findOrFail($id)->delete();
-        return redirect("/sekolah-keasramaan/al-quran/tahfidz")->with("success", "Berhasil dihapus");
+        $tahfidz = tahfidz::findOrFail($id);
+        $tahfidz->delete();
+        return redirect('/sekolah-keasramaan/al-quran/tahfidz')->with('success', 'Data berhasil dihapus');
     }
 }

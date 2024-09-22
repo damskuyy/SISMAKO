@@ -139,7 +139,6 @@
     </div>
 
     {{-- Danger Modal --}}
-    @foreach ($rpts as $item)
         <form action="{{ route('rpts.delete', $item->id) }}" method="post">
             @csrf
             @method('DELETE')
@@ -184,5 +183,4 @@
                 </div>
             </div>
         </form>
-    @endforeach
 @endsection

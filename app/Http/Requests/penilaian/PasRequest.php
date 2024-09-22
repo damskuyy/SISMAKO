@@ -23,8 +23,8 @@ class PasRequest extends FormRequest
     {
         return [
             'tahun_ajaran' => 'required',
-            'kelas' => 'required',
-            'mapel' => 'required',
+            'kelas' => 'nullable',
+            'mapel' => 'nullable',
             'kisi_kisi' => 'file|max:2056',
             'soal' => 'file|max:2056',
             'jawaban' => 'file|max:2056',
@@ -35,6 +35,7 @@ class PasRequest extends FormRequest
             'tatib' => 'file|max:2056',
             'surat_pemberitahuan' => 'file|max:2056',
             'jadwal' => 'file|max:2056',
+            'denah' => 'file|max:2056',
             'daftar_nilai' => 'file|max:2056',
             'tanda_terima_dan_penerimaan_soal' => 'file|max:2056',
             'kehadiran_panitia' => 'file|max:2056',
@@ -45,8 +46,6 @@ class PasRequest extends FormRequest
     {
         return [
             'tahun_ajaran.required' => 'Tahun ajaran harus diisi',
-            'kelas.required' => 'Kelas harus diisi',
-            'mapel.required' => 'Mapel harus diisi',
         ];
     }
 }

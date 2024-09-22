@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\database\Siswa;
 use App\Models\keasramaan\pelatihan;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\keasramaan\LombaRequest;
+use App\Http\Requests\keasramaan\PelatihanRequest;
 use Illuminate\Support\Facades\Storage;
 
 class lombaController extends Controller
@@ -33,7 +33,7 @@ class lombaController extends Controller
         return view('keasramaan.akademik.lomba.create', compact('angkatan', 'names'));
     }
 
-    public function store(LombaRequest $request)
+    public function store(PelatihanRequest $request)
     {
         $validateData = $request->validated();
 

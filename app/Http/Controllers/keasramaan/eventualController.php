@@ -5,9 +5,9 @@ namespace App\Http\Controllers\keasramaan;
 use Illuminate\Http\Request;
 use App\Models\database\Siswa;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\keasramaan\EventualRequest;
 use App\Models\keasramaan\pelatihan;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\keasramaan\PelatihanRequest;
 
 class eventualController extends Controller
 {
@@ -32,7 +32,7 @@ class eventualController extends Controller
         return view('keasramaan.akademik.volentir.create', compact('angkatan', 'names'));
     }
 
-    public function store(EventualRequest $request)
+    public function store(PelatihanRequest $request)
     {
         $validateData = $request->validated();
 
@@ -64,7 +64,7 @@ class eventualController extends Controller
         return view('keasramaan.akademik.volentir.edit', compact('eventual'));
     }
 
-    public function update(EventualRequest $request, $id)
+    public function update(PelatihanRequest $request, $id)
     {
         $validateData = $request->validated();
 

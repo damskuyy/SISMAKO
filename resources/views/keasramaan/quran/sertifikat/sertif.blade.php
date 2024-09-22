@@ -99,7 +99,6 @@
     </div>
 
     {{-- Danger Modal --}}
-    @foreach ($sertifikat as $item)
         <form action="{{ route('sertifikat.delete', $item->id) }}" method="post">
             @csrf
             @method('DELETE')
@@ -144,5 +143,4 @@
                 </div>
             </div>
         </form>
-    @endforeach
 @endsection

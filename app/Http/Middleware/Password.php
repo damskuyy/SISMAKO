@@ -21,7 +21,6 @@ class Password
             'penilaian',
             'administrasi',
             'finance',
-            'keasramaan',
             'sarpras',
             'jamaah.index',
             'inbox.index',

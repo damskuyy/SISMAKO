@@ -97,7 +97,7 @@ class PasController extends Controller
 
         // Memeriksa apakah data memiliki type 'pas'
         if ($pas->type !== 'pas') {
-            return redirect('/penilaian/pat')->with('error', 'Data tidak dapat dihapus karena type tidak sesuai.');
+            return redirect('/penilaian/pas')->with('error', 'Data tidak dapat dihapus karena type tidak sesuai.');
         }
 
         $fileFields = [

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\database\Siswa;
 use App\Models\keasramaan\akhlak;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\keasramaan\AkhlakRequest;
 use App\Http\Requests\keasramaan\FiqihRequest;
 
 class fiqihController extends Controller
@@ -39,7 +40,7 @@ class fiqihController extends Controller
         return view('keasramaan.jurnal.fiqih.create', compact('angkatan', 'names'));
     }
 
-    public function store(FiqihRequest $request)
+    public function store(AkhlakRequest $request)
     {
         $validateData = $request->validated();
 

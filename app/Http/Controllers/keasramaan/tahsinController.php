@@ -75,7 +75,9 @@ class tahsinController extends Controller
 
     public function destroy($id)
     {
-        tahsin::findOrFail($id)->delete();
-        return redirect("/sekolah-keasramaan/al-quran/tahsin")->with("success", "Berhasil dihapus");
+        $tahsin = tahsin::findOrFail($id);
+        $tahsin->delete();
+        return redirect('/sekolah-keasramaan/al-quran/tahsin')->with('success', 'Data berhasil dihapus');
     }
+
 }

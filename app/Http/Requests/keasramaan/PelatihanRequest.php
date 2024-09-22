@@ -24,6 +24,7 @@ class PelatihanRequest extends FormRequest
         return [
             'tanggal' => 'required',
             'kegiatan' => 'required',
+            'siswa_id' => 'required',
             'keterangan' => 'required',
             'dokumentasi.' => 'file|max:10240',
             'undangan.' => 'file|max:10240',

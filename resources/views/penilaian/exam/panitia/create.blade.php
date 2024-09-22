@@ -14,7 +14,7 @@
                     <div class="card-body">
                         <h3 class="card-title mb-4">Tambahkan Data</h3>
                         <div class="row">
-                            <div class="col-md-4 mb-3">
+                            <div class="col-md-12 mb-3">
                                 <label class="form-label">Tahun Ajaran</label>
                                 <select class="form-select" name="tahun_ajaran">
                                     <option value="">Pilih Tahun Ajaran</option>
@@ -23,30 +23,6 @@
                                     @endforeach
                                 </select>
                                 @error('tahun_ajaran')
-                                    <div class="text-danger mt-2">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="col-sm-6 col-md-3 mb-3">
-                                <label class="form-label">Kelas</label>
-                                <select class="form-select" name="kelas">
-                                    <option value="">Pilih Kelas</option>
-                                    @foreach(['X', 'XI', 'XII', 'XIII'] as $class)
-                                        <option value="{{ $class }}" {{ old('kelas') == $class ? 'selected' : '' }}>{{ $class }}</option>
-                                    @endforeach
-                                </select>
-                                @error('kelas')
-                                    <div class="text-danger mt-2">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="col-sm-6 col-md-5 mb-3">
-                                <label class="form-label">Mapel</label>
-                                <select class="form-select" name="mapel">
-                                    <option value="">Pilih Mapel</option>
-                                    @foreach(['SAAS', 'PAAS', 'IAAS', 'SKJ', 'SIoT', 'PJOK', 'MTK', 'BIng', 'BInd', 'PAIBP', 'Kimia', 'Fisika', 'Seni', 'Sejarah', 'Pancasila'] as $subject)
-                                        <option value="{{ $subject }}" {{ old('mapel') == $subject ? 'selected' : '' }}>{{ $subject }}</option>
-                                    @endforeach
-                                </select>
-                                @error('mapel')
                                     <div class="text-danger mt-2">{{ $message }}</div>
                                 @enderror
                             </div>
