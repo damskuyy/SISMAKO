@@ -15,11 +15,11 @@
                         <div class="col-6">
                             <select id="tp-modal-1" class="form-select" name="tp">
                                 <option value="Selected">Pilih Tahun Ajaran</option>
-                                    <option value="2022/2023">2022/2023</option>
-                                    <option value="2023/2024">2023/2024</option>
-                                    <option value="2024/2025">2024/2025</option>
-                                    <option value="2025/2026">2025/2026</option>
-                                    <option value="2026/2027">2026/2027</option>
+                                <option value="2022/2023">2022/2023</option>
+                                <option value="2023/2024">2023/2024</option>
+                                <option value="2024/2025">2024/2025</option>
+                                <option value="2025/2026">2025/2026</option>
+                                <option value="2026/2027">2026/2027</option>
                             </select>
                         </div>
                         @error('tp')
@@ -236,11 +236,11 @@
 
                             <select id="tp-modal-2" class="form-select" name="tp">
                                 <option value="Selected">Pilih Tahun Ajaran</option>
-                                    <option value="2022/2023">2022/2023</option>
-                                    <option value="2023/2024">2023/2024</option>
-                                    <option value="2024/2025">2024/2025</option>
-                                    <option value="2025/2026">2025/2026</option>
-                                    <option value="2026/2027">2026/2027</option>
+                                <option value="2022/2023">2022/2023</option>
+                                <option value="2023/2024">2023/2024</option>
+                                <option value="2024/2025">2024/2025</option>
+                                <option value="2025/2026">2025/2026</option>
+                                <option value="2026/2027">2026/2027</option>
                             </select>
                             @error('tp')
                                 <div class="text-danger">{{ $message }}</div>
@@ -370,11 +370,11 @@
                         <div class="col-6">
                             <select id="tp-modal-3" class="form-select" name="tp">
                                 <option value="Selected">Pilih Tahun Ajaran</option>
-                                    <option value="2022/2023">2022/2023</option>
-                                    <option value="2023/2024">2023/2024</option>
-                                    <option value="2024/2025">2024/2025</option>
-                                    <option value="2025/2026">2025/2026</option>
-                                    <option value="2026/2027">2026/2027</option>
+                                <option value="2022/2023">2022/2023</option>
+                                <option value="2023/2024">2023/2024</option>
+                                <option value="2024/2025">2024/2025</option>
+                                <option value="2025/2026">2025/2026</option>
+                                <option value="2026/2027">2026/2027</option>
                             </select>
                             @error('tp')
                                 <div class="text-danger mt-2"> {{ $message }}</div>
@@ -522,7 +522,7 @@
 
 <div class="modal modal-blur fade" id="modalReport4" tabindex="-1" aria-hidden="true" style="display: none;">
     <form action="{{ route('no_surat.store') }}" method="post" enctype="multipart/form-data">
-        @csrf   
+        @csrf
         @method('POST')
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -537,11 +537,11 @@
 
                             <select id="tp-modal-4" class="form-select" name="tp">
                                 <option value="Selected">Pilih Tahun Ajaran</option>
-                                    <option value="2022/2023">2022/2023</option>
-                                    <option value="2023/2024">2023/2024</option>
-                                    <option value="2024/2025">2024/2025</option>
-                                    <option value="2025/2026">2025/2026</option>
-                                    <option value="2026/2027">2026/2027</option>
+                                <option value="2022/2023">2022/2023</option>
+                                <option value="2023/2024">2023/2024</option>
+                                <option value="2024/2025">2024/2025</option>
+                                <option value="2025/2026">2025/2026</option>
+                                <option value="2026/2027">2026/2027</option>
                             </select>
                             @error('tp')
                                 <div class="text-danger">{{ $message }}</div>
@@ -631,11 +631,11 @@
                         <div class="col-6">
                             <select id="tp-modal-4" class="form-select" name="tp">
                                 <option value="Selected">Pilih Tahun Ajaran</option>
-                                    <option value="2022/2023">2022/2023</option>
-                                    <option value="2023/2024">2023/2024</option>
-                                    <option value="2024/2025">2024/2025</option>
-                                    <option value="2025/2026">2025/2026</option>
-                                    <option value="2026/2027">2026/2027</option>
+                                <option value="2022/2023">2022/2023</option>
+                                <option value="2023/2024">2023/2024</option>
+                                <option value="2024/2025">2024/2025</option>
+                                <option value="2025/2026">2025/2026</option>
+                                <option value="2026/2027">2026/2027</option>
                             </select>
                         </div>
                         @error('tp')
@@ -778,11 +778,11 @@
 
                             <select id="tp-modal-6" class="form-select" name="tp">
                                 <option value="Selected">Pilih Tahun Ajaran</option>
-                                    <option value="2022/2023">2022/2023</option>
-                                    <option value="2023/2024">2023/2024</option>
-                                    <option value="2024/2025">2024/2025</option>
-                                    <option value="2025/2026">2025/2026</option>
-                                    <option value="2026/2027">2026/2027</option>
+                                <option value="2022/2023">2022/2023</option>
+                                <option value="2023/2024">2023/2024</option>
+                                <option value="2024/2025">2024/2025</option>
+                                <option value="2025/2026">2025/2026</option>
+                                <option value="2026/2027">2026/2027</option>
                             </select>
                             @error('tp')
                                 <div class="text-danger">{{ $message }}</div>
@@ -1357,8 +1357,8 @@
                         <div class="col-8 d-flex g-2">
                             <div class="col-4 me-2">
                                 <div class="input-icon mb-2">
-                                    <input class="form-control" placeholder="Select a start date" id="datepicker-1"
-                                        name="start_date">
+                                    <input class="form-control" placeholder="Select a start date"
+                                        id="datepicker-1" name="start_date">
                                     @error('start_date')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -1688,8 +1688,7 @@
                                                             class="btn btn-icon btn-sm btn-outline-success"
                                                             role="button"
                                                             data-bs-target="#modalUpdate5{{ $item->id }}"
-                                                            data-bs-toggle="modal" 
-                                                            data-bs-dismiss="modal">
+                                                            data-bs-toggle="modal" data-bs-dismiss="modal">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                                 height="24" viewBox="0 0 24 24" fill="none"
                                                                 stroke="currentColor" stroke-width="2"
@@ -2749,212 +2748,125 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-    // Cari semua modal dengan ID yang mengikuti pola "modalUpdate"
-    const modals = document.querySelectorAll('[id^="modalUpdate"], [id^="modalView"]');
+        // Semua kode dalam satu blok
+        const modals = document.querySelectorAll('[id^="modalUpdate"], [id^="modalView"]');
 
-    function hideModal(modal) {
-        const modalInstance = bootstrap.Modal.getInstance(modal);
-        if (modalInstance) {
-            modalInstance.hide();
-            modal.addEventListener('hidden.bs.modal', function() {
-                removeBackdrop();
-            }, { once: true });
-        }
-    }
-
-    function removeBackdrop() {
-        const backdrops = document.querySelectorAll('.modal-backdrop');
-        backdrops.forEach(backdrop => {
-            backdrop.remove();
-        });
-        document.body.classList.remove('modal-open'); // memastikan body tidak terkunci
-        document.body.style.paddingRight = ''; // menghapus padding yang ditambahkan Bootstrap
-    }
-
-    function resetAllModals() {
-        modals.forEach(modal => {
-            if (modal) hideModal(modal);
-        });
-    }
-
-    // Menambahkan event listener ke setiap modal untuk menghapus backdrop yang tidak terpakai
-    modals.forEach(modal => {
-        if (modal) {
-            modal.addEventListener('show.bs.modal', function() {
-                removeBackdrop(); // Hapus backdrop yang mungkin tersisa dari modal sebelumnya
-            });
-            modal.addEventListener('hidden.bs.modal', function() {
-                removeBackdrop(); // Pastikan backdrop juga dihapus saat modal ditutup
-            });
-        }
-    });
-});
-
-
-    document.addEventListener('DOMContentLoaded', function() {
-        var radioButtons = document.querySelectorAll('.radio-inbox');
-        var submitButton = document.getElementById('submitButton');
-        var btnView = document.getElementById('btnView');
-        var submitTp = document.getElementById('tp');
-        // var submitJs = document.getElementById('js
-
-
-
-        function checkSelection() {
-            var tpValue = submitTp.value;
-            // var jsValue = submitJs.value;
-            var radioChecked = Array.from(radioButtons).some(function(radio) {
-                return radio.checked;
-            });
-
-            submitButton.disabled = !(tpValue !== "" &&  radioChecked);
-
-            if (radioChecked && (document.getElementById('radioInbox1').checked || document.getElementById(
-                    'radioInbox2').checked)) {
-                submitJs.disabled = false;
-            } else {
-                submitJs.disabled = true;
+        function hideModal(modal) {
+            const modalInstance = bootstrap.Modal.getInstance(modal);
+            if (modalInstance) {
+                modalInstance.hide();
+                modal.addEventListener('hidden.bs.modal', function() {
+                    removeBackdrop();
+                }, {
+                    once: true
+                });
             }
         }
 
-        submitTp.addEventListener('change', checkSelection);
-        // submitJs.addEventListener('change', checkSelection);
+        function removeBackdrop() {
+            const backdrops = document.querySelectorAll('.modal-backdrop');
+            backdrops.forEach(backdrop => {
+                backdrop.remove();
+            });
+            document.body.classList.remove('modal-open');
+            document.body.style.paddingRight = '';
+        }
+
+        function resetAllModals() {
+            modals.forEach(modal => {
+                if (modal) hideModal(modal);
+            });
+        }
+
+        modals.forEach(modal => {
+            if (modal) {
+                modal.addEventListener('show.bs.modal', function() {
+                    removeBackdrop();
+                });
+                modal.addEventListener('hidden.bs.modal', function() {
+                    removeBackdrop();
+                });
+            }
+        });
+
+        var radioButtons = document.querySelectorAll('.radio-inbox');
+        var submitButton = document.getElementById('submitButton');
+        var btnView = document.getElementById('btnView');
+
+        function checkSelection() {
+            const radioChecked = Array.from(radioButtons).some(function(radio) {
+                return radio.checked;
+            });
+            submitButton.disabled = !radioChecked;
+        }
 
         radioButtons.forEach(function(radioButton) {
-
             radioButton.addEventListener('change', function() {
+                checkSelection();
                 if (this.checked) {
-                    // Ambil data-target-view dan data-target-report dari radio button yang dipilih
                     var dataTargetView = this.getAttribute('data-target-view');
                     var dataTargetReport = this.getAttribute('data-target-report');
 
-                    // Set data-bs-target untuk btnView dan submitButton
                     btnView.setAttribute('data-bs-target', dataTargetView);
                     submitButton.setAttribute('data-bs-target', dataTargetReport);
+
+                    // Enable/disable input fields based on selected radio
+                    toggleInputFields(this.value);
                 }
             });
         });
-    });
 
-    // suratlainnya
-    function handleSelectChange(indexId, selectId, inputId) {
-    const selectIndexElement = document.getElementById(indexId);
-    const selectElement = document.getElementById(selectId);
-    const inputElement = document.getElementById(inputId);
+        function toggleInputFields(selectedValue) {
+            const siswaInput = document.querySelector('input[name="siswa"]');
+            const guruInput = document.querySelector('input[name="guru"]');
 
-    function updateInputState() {
-        if (selectElement.value === 'Lainnya' || selectIndexElement.value === 'Lainnya') {
-            inputElement.disabled = false;
-        } else {
-            inputElement.disabled = true;
+            if (selectedValue === 'siswa') {
+                siswaInput.disabled = false;
+                guruInput.disabled = true;
+                guruInput.value = ''; // Clear the input when disabled
+            } else if (selectedValue === 'guru') {
+                guruInput.disabled = false;
+                siswaInput.disabled = true;
+                siswaInput.value = ''; // Clear the input when disabled
+            }
         }
-    }
 
-    selectElement.addEventListener('change', updateInputState);
-    selectIndexElement.addEventListener('change', updateInputState);
-}
-
-// Menggunakan fungsi untuk elemen-elemen dengan ID yang berbeda
-handleSelectChange('js','js-modal-1', 'lainnya-field-1');
-handleSelectChange('js', 'js-modal-2', 'lainnya-field-2');
-
-
-    // datepicker
-    document.addEventListener("DOMContentLoaded", function() {
-        var datepickers = document.querySelectorAll('[id^="datepicker"]');
-        datepickers.forEach(function(datepicker) {
+        document.querySelectorAll('[id^="datepicker"]').forEach(function(datepicker) {
             new Litepicker({
                 element: datepicker,
                 buttonText: {
                     previousMonth: `<svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                    stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                    <path d="M15 6l-6 6l6 6" /></svg>`,
+                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M15 6l-6 6l6 6" /></svg>`,
                     nextMonth: `<svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                    stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                    <path d="M9 6l6 6l-6 6" /></svg>`,
+                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M9 6l6 6l-6 6" /></svg>`,
                 },
             });
         });
-    });
 
-    // tp&js value set
-    var mainTp = document.getElementById('tp');
+        $(function() {
+            $("#datepicker-icon-1").datepicker({
+                dateFormat: 'yy-mm-dd' // Format tanggal sesuai kebutuhan
+            });
+            $("#datepicker-icon-2").datepicker({
+                dateFormat: 'yy-mm-dd' // Format tanggal sesuai kebutuhan
+            });
+        });
 
-    mainTp.addEventListener('change', function() {
-        var modalTps = document.querySelectorAll('[id^="tp-modal-"]');
-        modalTps.forEach(function(modalTp) {
-            modalTp.value = mainTp.value;
+        document.getElementById('filterButton').addEventListener('click', function() {
+            // Menyalin nilai dari input tanggal ke input tersembunyi
+            document.getElementById('hiddenStartDate').value = document.getElementById(
+                'datepicker-icon-1').value;
+            document.getElementById('hiddenEndDate').value = document.getElementById(
+                'datepicker-icon-2').value;
         });
     });
 
-    var mainJs = document.getElementById('js');
 
-    mainJs.addEventListener('change', function() {
-        var modalJs = document.querySelectorAll('[id^="js-modal-"]');
-        modalJs.forEach(function(modalJs) {
-            modalJs.value = mainJs.value;
-        });
-    });
 
-    // modal radio set
-    document.addEventListener('DOMContentLoaded', function() {
-        function setupRadioButtons() {
-            var radioButtons = document.querySelectorAll('.radio-inbox');
-            var siswaInput = document.querySelector('input[name="siswa"]');
-            var guruInput = document.querySelector('input[name="guru"]');
 
-            radioButtons.forEach(function(radioButton) {
-                radioButton.addEventListener('change', function() {
-                    if (this.value === 'siswa' && this.checked) {
-                        siswaInput.removeAttribute('disabled');
-                        guruInput.setAttribute('disabled', 'true');
-                    } else if (this.value === 'guru' && this.checked) {
-                        guruInput.removeAttribute('disabled');
-                        siswaInput.setAttribute('disabled', 'true');
-                    }
-                });
-            });
-        }
-
-        // Panggil fungsi untuk pertama kali
-        setupRadioButtons();
-
-        // Jalankan script setelah modal ditampilkan
-        var modal = document.getElementById('modalUpdate'); // Ganti dengan ID modal Anda
-        if (modal) {
-            modal.addEventListener('shown.bs.modal', function() {
-                setupRadioButtons();
-            });
-        }
-    });
-
-    document.addEventListener('DOMContentLoaded', function() {
-        const radioSiswa = document.querySelector('.radio-inbox7');
-        const radioGuru = document.querySelector('.radio-inbox8');
-        const inputSiswa = document.querySelector('input[name="siswa"]');
-        const inputGuru = document.querySelector('input[name="guru"]');
-
-        function toggleInputs() {
-            if (radioSiswa.checked) {
-                inputSiswa.disabled = false;
-                inputGuru.disabled = true;
-            } else if (radioGuru.checked) {
-                inputSiswa.disabled = true;
-                inputGuru.disabled = false;
-            } else {
-                inputSiswa.disabled = true;
-                inputGuru.disabled = true;
-            }
-        }
-
-        radioSiswa.addEventListener('change', toggleInputs);
-        radioGuru.addEventListener('change', toggleInputs);
-
-        // Run on page load
-        toggleInputs();
-    });
 
 
     $(function() {

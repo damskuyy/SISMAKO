@@ -14,14 +14,29 @@ use App\Models\korespondensi\SuratPeringatan;
 
 class indexController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $suratmasuk = SuratMasuk::all();
         $suratkeluar = SuratKeluar::all();
         $suratperingatan = SuratPeringatan::all();
         $nomorsurat = NomorSurat::all();
         $notulensi = Notulensi::all();
-        $suratpengajuan= SuratPengajuan::all();
+        $suratpengajuan = SuratPengajuan::all();
 
-        return view('korespondensi.index', compact('suratmasuk', 'suratkeluar', 'nomorsurat', 'suratperingatan', 'suratpengajuan', 'notulensi'));
+        $suratMasukBaru = SuratMasuk::where('created_at', '>=', now()->subDays(30))->get();
+        $suratKeluarBaru = SuratKeluar::where('created_at', '>=', now()->subDays(30))->get();
+        $suratPengajuanBaru = SuratPengajuan::where('created_at', '>=', now()->subDays(30))->get();
+        $suratPeringatanBaru = SuratPeringatan::where('created_at', '>=', now()->subDays(30))->get();
+        $notulensiBaru = Notulensi::where('created_at', '>=', now()->subDays(30))->get();
+
+        // Menggabungkan semua data
+        $suratBaru = $suratMasukBaru
+            ->merge($suratKeluarBaru)
+            ->merge($suratPengajuanBaru)
+            ->merge($suratPeringatanBaru)
+            ->merge($notulensiBaru);
+
+        return view('korespondensi.index', compact('suratmasuk', 'suratkeluar', 'nomorsurat', 'suratperingatan', 'suratpengajuan', 'notulensi', 'suratBaru'));
     }
+
 }

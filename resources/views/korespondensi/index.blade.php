@@ -273,8 +273,7 @@
                         </div>
                     </div>
                     <div class="card-footer ">
-                        <div class="row justify-between mx-2">
-                            <div class="col-md-6 col-lg-4 mb-3 d-flex ">
+                        {{-- <div class="col-md-6 col-lg-4 mb-3 d-flex ">
 
                                 <select id="tp" class="form-select me-3" onchange="showInputField()">
                                     <option value="Selected">Pilih Tahun Ajaran</option>
@@ -298,31 +297,56 @@
                                     <option value="Surat Izin">Surat Izin</option>
                                     <option value="Lainnya">Surat Lainnya</option>
                                 </select>
-                            </div>
-                            <div class="col-auto  text-end">
-                                <button type="button" class="btn" id='btnView' data-bs-toggle="modal">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round"
-                                        class="icon icon-tabler icons-tabler-outline icon-tabler-table-export">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                        <path d="M12.5 21h-7.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v7.5" />
-                                        <path d="M3 10h18" />
-                                        <path d="M10 3v18" />
-                                        <path d="M16 19h6" />
-                                        <path d="M19 16l3 3l-3 3" />
-                                    </svg>
-                                    View
-                                </button>
-                                <button id="submitButton" class="btn btn-primary" data-bs-toggle="modal"
-                                    disabled>Input</button>
-                                <button class="btn btn-warning ms-2" disabled>Export</button>
-                            </div>
+                            </div> --}}
+                        <div class="text-end">
+                            <button type="button" class="btn" id='btnView' data-bs-toggle="modal">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-table-export">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M12.5 21h-7.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v7.5" />
+                                    <path d="M3 10h18" />
+                                    <path d="M10 3v18" />
+                                    <path d="M16 19h6" />
+                                    <path d="M19 16l3 3l-3 3" />
+                                </svg>
+                                View
+                            </button>
+                            <button id="submitButton" class="btn btn-primary" data-bs-toggle="modal"
+                                disabled>Input</button>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- Tambahkan card lainnya di sini jika diperlukan -->
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="col-12">
+            <div class="card">
+                <div class="table-responsive p-3">
+                    <table class="table card-table table-vcenter text-nowrap datatable" style="width: 100%">
+
+                        <thead>
+                            <tr>
+                                <th>Jenis Surat</th>
+                                <th>Tanggal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($suratBaru as $surat)
+                                <tr>
+                                    <td>{{ class_basename($surat) }}</td> <!-- Mengambil nama kelas untuk jenis surat -->
+                                    <td>{{ $surat->created_at }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 

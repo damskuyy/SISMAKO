@@ -64,13 +64,15 @@ class JamaahSiswaController extends Controller
     // Show the form for creating a new resource
     public function create()
     {
-        // Mengambil data kelas yang tidak termasuk kelas "XII"
-        $dataKelas = DataKelas::with('siswa:id,nama')
-            ->where('kelas', '!=', 'lulus') // Menghapus kelas yang lulus
+        $dataKelas = DataKelas::with(['siswa' => function ($query) {
+            $query->select('id', 'nama')->orderBy('nama', 'asc');
+        }])
+            ->where('kelas', '!=', 'lulus')
             ->get();
 
         return view('keasramaan.jamaah.add', compact('dataKelas'));
     }
+
 
     public function edit($tanggal, $kelas, $sholat, $id)
     {

@@ -19,31 +19,40 @@ client.on('ready', () => {
 });
 
 // Fungsi untuk mengirim pesan
-const sendMessage = async (nama = 'Fadhil Rabbani') => {
+const sendMessage = async (data) => {
 
     const chatIds = [
         '6289514563365@c.us',
     ];
 
     const now = new Date();
-    const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-    const seconds = String(now.getSeconds()).padStart(2, '0');
 
-    const formattedTime = `${hours}:${minutes}:${seconds}`;
+    // Mendapatkan nama hari, tanggal, bulan, dan tahun dalam format yang diinginkan
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const formattedDate = now.toLocaleDateString('id-ID', options);
+
+
+    // Hasil akhir: "Sabtu, 14 September 2024 07:53:22"
+    const result = `${formattedDate}}`;
 
     // Format pesan
-    const message = `
-Reuni STAN 80
-Hotel Harris FX Soedirman - Jakarta
-Registrasi: Sabtu 31 Agustus 2024
+    const message = `SMK TI BAZMA
+Akses LAB : ${result}
 
-Nama             : ${nama}
-Waktu Hadir  : ${formattedTime}
+Nama            : ${data.siswa.nama}
+Kelas             : ${data.class}
+Jam Masuk     : ${data.start}
+Project Guru  : ${data.guru.nama}
+Keterangan    : ${data.siswa.nama}
+
+Bagi bapak ibu guru yang memberi tugas, harap mengawasi langsung via CCTV.
+
+Bagi Bapak/ibu yang tidak merasa memberikan tugas, silahkan untuk ditindaklanjuti.
 
 Notification sent by the system
 E-Absensi Digital SMK TI BAZMA
-    `;
+`;
+
 
     // Kirim pesan
     for (const chatId of chatIds) {
