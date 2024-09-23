@@ -49,10 +49,10 @@
                                             value="{{ $student->siswa->nama }}">
                                         <select class="form-select" name="status[{{ $student->id }}]"
                                             style="width: 100px;">
-                                            <option value="-"
-                                                {{ $student->status_jamaah == '-' ? 'selected' : '' }}>-</option>
                                             <option value="Hadir"
                                                 {{ $student->status_jamaah == 'Hadir' ? 'selected' : '' }}>Hadir</option>
+                                                <option value="Izin"
+                                                {{ $student->status_jamaah == 'Izin' ? 'selected' : '' }}>Izin</option>
                                             <option value="Sakit"
                                                 {{ $student->status_jamaah == 'Sakit' ? 'selected' : '' }}>Sakit</option>
                                             <option value="Alpha"

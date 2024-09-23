@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreign('dokumentasi_jamaah')->references('id')->on('dokumentasi_jamaah_siswa')->cascadeOnDelete();
             $table->bigInteger('id_siswa')->unsigned();
             $table->foreign('id_siswa')->references('id')->on('siswa')->cascadeOnDelete();
-            $table->enum('status_jamaah', ['-','Hadir', 'Sakit', 'Alpha']);
+            $table->enum('status_jamaah', allowed: ['-','Hadir', 'Sakit', 'Alpha']); //tambah izin
             $table->timestamps();
         });
     }

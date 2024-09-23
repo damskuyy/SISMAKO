@@ -64,10 +64,12 @@ class JamaahSiswaController extends Controller
     // Show the form for creating a new resource
     public function create()
     {
-        // Mengambil data kelas yang tidak termasuk kelas "XII"
         $dataKelas = DataKelas::with('siswa:id,nama')
-            ->where('kelas', '!=', 'lulus') // Menghapus kelas yang lulus
-            ->get();
+            ->where('kelas', '!=', 'lulus')
+            ->get()
+            ->sortBy(function ($kelas) {
+                return $kelas->siswa->nama;
+            });
 
         return view('keasramaan.jamaah.add', compact('dataKelas'));
     }
@@ -128,17 +130,7 @@ class JamaahSiswaController extends Controller
     public function update(JamaahRequest $request, $tanggal, $kelas, $sholat, $id)
     {
         // Validasi request
-        $request->validate([
-            'kelas' => 'required|string|max:10',
-            'status' => 'required|array',
-            'status.*' => 'in:-,Hadir,Sakit,Alpha',
-            'nama_siswa' => 'required|array',
-            'nama_siswa.*' => 'string|max:75',
-            'sholat' => 'required|string|in:subuh,dzuhur,ashar,maghrib,isya',
-            'path_dokumentasi' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
-            'siswa_ids' => 'required|array',
-            'siswa_ids.*' => 'exists:jamaah_siswa,id',
-        ]);
+        $request->validated();
 
         // Handle file upload if a new file is provided
         $pathDokumentasi = null;
@@ -305,7 +297,7 @@ class JamaahSiswaController extends Controller
             $dataBySholat[$sholat] = $query;
         }
 
-        $html = View::make('template.jamaahSiswaPerHari', compact('dataBySholat', 'kelas', 'tanggal'))->render();
+        $html = View::make('database.template.jamaahSiswaPerHari', compact('dataBySholat', 'kelas', 'tanggal'))->render();
 
         $options = new Options();
         $options->set('isRemoteEnabled', true);
@@ -357,6 +349,7 @@ class JamaahSiswaController extends Controller
                         // Initialize absence counters
                         $studentAbsences[$idSiswa] = 0;
                         $studentSick[$idSiswa] = 0;
+                        $studentIzin[$idSiswa] = 0;
                     }
 
                     if ($record->status_jamaah == 'Hadir') {
@@ -369,7 +362,10 @@ class JamaahSiswaController extends Controller
                         $studentDetails[$idSiswa][$sholat]++;
                     } elseif ($record->status_jamaah == 'Sakit') {
                         $studentSick[$idSiswa]++;
-                    } else {
+                    } elseif($record->status_jamaah == 'Izin') {
+                        $studentIzin[$idSiswa]++;
+                    }
+                    else {
                         $studentAbsences[$idSiswa]++;
                     }
                 }
@@ -390,12 +386,13 @@ class JamaahSiswaController extends Controller
                 'details' => $studentDetails[$idSiswa], // Include detailed points
                 'sick' => $studentSick[$idSiswa] ?? 0, // Include sick count
                 'absences' => $studentAbsences[$idSiswa] ?? 0, // Include absences count
-                'name' => $students[$idSiswa] ?? 'Unknown'
+                'name' => $students[$idSiswa] ?? 'Unknown',
+                'izin' => $studentIzin[$idSiswa] ?? 0
             ];
         }
 
         // Generate the HTML content for the PDF
-        $html = View::make('template.jamaahSiswaPerMinggu', compact('totalPrayers', 'kelas', 'startDate', 'endDate', 'prayers', 'studentScores'))->render();
+        $html = View::make('database.template.jamaahSiswaPerMinggu', compact('totalPrayers', 'kelas', 'startDate', 'endDate', 'prayers', 'studentScores'))->render();
 
         // Initialize Dompdf with options
         $options = new Options();

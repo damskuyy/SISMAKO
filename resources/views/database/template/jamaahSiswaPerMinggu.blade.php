@@ -44,7 +44,7 @@
 <body>
     <h1>Data Jamaah Siswa Kelas {{ htmlspecialchars($kelas, ENT_QUOTES, 'UTF-8') }}</h1>
     <h3>Tanggal: {{ htmlspecialchars($startDate, ENT_QUOTES, 'UTF-8') }} - {{ htmlspecialchars($endDate, ENT_QUOTES, 'UTF-8') }}, Total Sholat: {{$totalPrayers}}</h3>
-    
+
     <table>
         <thead>
             <tr>
@@ -57,6 +57,7 @@
                 <th>Hadir</th>
                 <th>Sakit</th>
                 <th>Alpha</th>
+                <th>Izin</th>
             </tr>
         </thead>
         <tbody>
@@ -71,10 +72,11 @@
                 <td style="text-align: center">{{ $data['score'] }}</td>
                 <td style="text-align: center">{{ $data['sick'] ?? 0 }}</td>
                 <td style="text-align: center">{{ $data['absences'] ?? 0 }}</td>
+                <td style="text-align: center">{{ $data['izin'] ?? 0 }}</td>
             </tr>
             @endforeach
         </tbody>
     </table>
-    
+
 </body>
 </html>

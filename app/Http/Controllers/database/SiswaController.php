@@ -16,9 +16,10 @@ class SiswaController extends Controller
 {
     public function index()
     {
-        $siswa = Siswa::all();
+        $siswa = Siswa::orderBy('angkatan')->get();
         return view('database.database.siswa.index', compact('siswa'));
     }
+
     public function fileSetup($file, $nama, $prefix, $namaDir, $path = '')
     {
         $imageFileName = $prefix . str_replace(' ', '_', $nama) . '.' . $file->getClientOriginalExtension();

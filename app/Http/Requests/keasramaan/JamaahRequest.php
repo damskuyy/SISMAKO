@@ -23,7 +23,7 @@ class JamaahRequest extends FormRequest
     {
         return [
             'status' => 'required|array',
-            'status.*' => 'in:-,Hadir,Sakit,Alpha',
+            'status.*' => 'in:-,Hadir,Sakit,Alpha,Izin',
             'nama_siswa' => 'required|array',
             'nama_siswa.*' => 'string|max:75',
             'sholat' => 'required|string|in:subuh,dzuhur,ashar,maghrib,isya',
