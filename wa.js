@@ -21,9 +21,10 @@ client.on('ready', () => {
 // Fungsi untuk mengirim pesan
 const sendMessage = async (data) => {
 
-    console.log(data)
+    console.log(data.guru.no_hp)
     const chatIds = [
         '6289514563365@c.us',
+        `${data.guru[0].no_hp}` + '@c.us'
     ];
 
     const now = new Date();
@@ -40,11 +41,11 @@ const sendMessage = async (data) => {
     const message = `SMK TI BAZMA
 Akses LAB : ${result}
 
-Nama            : ${data.siswa.nama}
-Kelas             : ${data.class}
-Jam Masuk     : ${data.start}
-Project Guru  : ${data.guru.nama}
-Keterangan    : ${data.siswa.nama}
+Nama              : ${data.siswa.nama}
+Kelas               : ${data.class}
+Jam Masuk   : ${data.start}
+Project Guru  : ${data.guru[0].nama}
+Keterangan    : ${data.description}
 
 Bagi bapak ibu guru yang memberi tugas, harap mengawasi langsung via CCTV.
 
@@ -59,7 +60,7 @@ E-Absensi Digital SMK TI BAZMA
     for (const chatId of chatIds) {
         try {
             const response = await client.sendMessage(chatId, message);
-            console.log(`Message sent to ${chatId}:`, response);
+            // console.log(`Message sent to ${chatId}:`, response);
         } catch (err) {
             console.error(`Error sending message to ${chatId}:`, err);
         }

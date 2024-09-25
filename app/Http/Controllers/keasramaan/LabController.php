@@ -27,7 +27,7 @@ class LabController extends Controller
     public function store(LabRequest $request)
     {
         $data = [
-            'guru' => Guru::select('nama')->findOrFail($request->guru_id),
+            'guru' => Guru::findOrFail($request->guru_id)->get(),
             'siswa' => Siswa::select('nama')->findOrFail($request->siswa_id),
             'class' => $request->kelas_id,
             'description' => $request->keterangan,
