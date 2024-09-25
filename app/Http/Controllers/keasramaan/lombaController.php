@@ -14,7 +14,7 @@ class lombaController extends Controller
 {
     public function index()
     {
-        $lomba = pelatihan::where('type', 'lomba')->with(['siswa:id,nama,nisn'])->get();
+        $lomba = pelatihan::where('type', 'lomba')->with(['siswa:id,nama,nisn'])->take(500)->paginate(10);
         return view('keasramaan.akademik.lomba.lomba', compact('lomba'));
     }
 

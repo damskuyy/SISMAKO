@@ -11,7 +11,7 @@ class AverageController extends Controller
 {
     public function index()
     {
-        $averages = average::all();
+        $averages = average::take(500)->paginate(10);
 
         // Calculate averages for each record
         $chartData = [];

@@ -11,7 +11,7 @@ class RaporController extends Controller
 {
     public function index()
     {
-        $rapor = rapor::get();
+        $rapor = rapor::take(500)->paginate(10);
         return view('penilaian.rapor.rapor', compact('rapor'));
     }
 

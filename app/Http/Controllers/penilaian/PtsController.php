@@ -15,7 +15,7 @@ class PtsController extends Controller
 {
     public function index()
     {
-        $pts = pas::where('type', 'pts')->get();
+        $pts = pas::where('type', 'pts')->take(500)->paginate(10);
         return view('penilaian.exam.pts.pts', compact('pts'));
     }
 

@@ -14,7 +14,7 @@ class PatController extends Controller
 {
     public function index()
     {
-        $pat = pas::where('type', 'pat')->get();
+        $pat = pas::where('type', 'pat')->take(500)->paginate(10);
         return view('penilaian.exam.pat.pat', compact('pat'));
     }
 

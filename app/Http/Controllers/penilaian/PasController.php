@@ -14,7 +14,7 @@ class PasController extends Controller
 {
     public function index()
     {
-        $pas = pas::where('type', 'pas')->get();
+        $pas = pas::where('type', 'pas')->take(500)->paginate(10);
         return view('penilaian.exam.pas.pas', compact('pas'));
     }
 

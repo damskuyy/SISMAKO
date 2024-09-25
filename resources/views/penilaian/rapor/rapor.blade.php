@@ -80,7 +80,7 @@
                                 </a>
                             </td>
                             <td>
-                                <a href="#" class="" data-bs-toggle="modal" data-bs-target="#modal-danger">
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal-danger-{{ $item->id }}">
                                     <i class="far fa-trash-alt text-white text-xl bg-red p-2 rounded-lg"></i>
                                 </a>
                             </td>
@@ -93,22 +93,26 @@
                     </tbody>
                 </table>
             </div>
+            <div class="d-flex justify-content-center mt-4">
+                {{ $rapor->links('vendor.pagination.bootstrap-5') }} <!-- Tambahkan ini untuk menampilkan tautan pagination -->
+            </div>
         </div>
     </div>
 
     {{-- Danger Modal --}}
+    @foreach ($rapor as $item)
     <form action="{{ route('rapor.delete', $item->id) }}" method="post">
         @csrf
         @method('DELETE')
-        <div class="modal modal-blur fade" id="modal-danger" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal modal-blur fade" id="modal-danger-{{ $item->id }}" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     <div class="modal-status bg-danger"></div>
                     <div class="modal-body text-center py-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon mb-2 text-danger icon-lg" width="24"
-                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                            stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon mb-2 text-danger icon-lg" width="24" height="24"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M12 9v4"></path>
                             <path
@@ -117,21 +121,16 @@
                             <path d="M12 16h.01"></path>
                         </svg>
                         <h3>Are you sure?</h3>
-                        <div class="text-secondary">Do you really want to remove this files? What you've done cannot
-                            be
-                            undone.</div>
+                        <div class="text-secondary">Do you really want to remove this file? This action cannot be undone.</div>
                     </div>
                     <div class="modal-footer">
                         <div class="w-100">
                             <div class="row">
-                                <div class="col"><a href="#" class="btn w-100" data-bs-dismiss="modal">
-                                        Cancel
-                                    </a>
+                                <div class="col">
+                                    <a href="#" class="btn w-100" data-bs-dismiss="modal">Cancel</a>
                                 </div>
                                 <div class="col">
-                                    <button href="#" type="submit" class="btn btn-danger w-100" data-bs-dismiss="modal">
-                                        Delete
-                                    </button>
+                                    <button type="submit" class="btn btn-danger w-100">Delete</button>
                                 </div>
                             </div>
                         </div>
@@ -140,5 +139,6 @@
             </div>
         </div>
     </form>
+    @endforeach
 </div>
 @endsection

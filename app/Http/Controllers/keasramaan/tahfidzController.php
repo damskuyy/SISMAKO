@@ -12,7 +12,7 @@ class tahfidzController extends Controller
 {
     public function index()
     {
-        $tahfidz = tahfidz::with(['siswa:id,nama,nisn'])->get();;
+        $tahfidz = Tahfidz::with(['siswa:id,nama,nisn'])->take(500)->paginate(10); // Ganti dengan paginate(10)
         return view('keasramaan.quran.tahfidz.tahfidz', compact('tahfidz'));
     }
 

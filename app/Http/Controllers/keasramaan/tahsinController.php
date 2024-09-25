@@ -12,7 +12,7 @@ class tahsinController extends Controller
 {
     public function index()
     {
-        $tahsin = tahsin::with(['siswa:id,nama,nisn'])->get();
+        $tahsin = tahsin::with(['siswa:id,nama,nisn'])->take(500)->paginate(10);
         return view('keasramaan.quran.tahsin.tahsin', compact('tahsin'));
     }
 

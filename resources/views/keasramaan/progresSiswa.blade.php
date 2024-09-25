@@ -11,12 +11,16 @@
             margin: 0;
             padding: 20px;
         }
+        .logo {
+            width: 100%;
 
+        }
         .container {
             width: 600px;
             margin: 0 auto;
             border: 1px solid #ddd;
             padding: 20px;
+            position: relative;
         }
 
         .header {
@@ -40,31 +44,27 @@
 
         .photo-box {
             width: 225px;
-            /* Sesuaikan dengan lebar pas foto 3x4 dalam piksel */
             height: 300px;
-            /* Sesuaikan dengan tinggi pas foto 3x4 dalam piksel */
             overflow: hidden;
-            /* Pastikan gambar tidak meluap dari kotak */
             margin-left: 40px;
-            display: inline-block;
+            position: absolute;
+            top: 0;
+            right: 0;
         }
 
         .photo-box img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* Memastikan gambar tetap proporsional dan memenuhi kotak */
             border-radius: 10px;
-            /* Menambahkan border-radius jika diperlukan */
         }
-
 
         .section {
             width: 100%;
             margin-bottom: 20px;
             border-collapse: collapse;
             text-align: center;
-            /* Menambahkan agar teks tabel rata tengah */
+            font-size: 12px;
         }
 
         .section th,
@@ -72,31 +72,15 @@
             border: 1px solid #000;
             padding: 5px;
             text-align: center;
-            /* Teks rata tengah */
         }
 
         .section th {
             background-color: #d9d9da;
         }
 
-        .tahfidz-section th {
-            background-color: #d9d9da;
-        }
-
-        .tahsin-section th {
-            background-color: #d9d9da;
-        }
-
-        .akademik-section th {
-            background-color: #d9d9da;
-        }
-
-        .jurnal-section th {
-            background-color: #d9d9da;
-        }
-
         .certificates {
             padding-top: 10px;
+            font-size: 13px;
         }
 
         .certificates td {
@@ -114,20 +98,23 @@
         .jurnal-section td {
             text-align: center;
         }
+
     </style>
 </head>
 
 <body>
     <div class="container">
-        <table>
-            <tr>
-                <td style="width:50%;"></td>
-                <td style="width:50%;">
-                    <img src="https://smktibazma.sch.id/static/media/main-logo-2.7b74690f86ab4e9a4743.png" alt="Logo"
-                        style="height: 100px">
-                </td>
-            </tr>
-        </table>
+        <div class="logo">
+            <table>
+                <tr>
+                    <td style="width:50%;"></td>
+                    <td style="width:50%; text-align: right;">
+                        <img src="https://smktibazma.sch.id/static/media/main-logo-2.7b74690f86ab4e9a4743.png" alt="Logo"
+                            style="height: 100px">
+                    </td>
+                </tr>
+            </table>
+        </div>
         <div class="header">
             <h2>PROGRES PESERTA DIDIK</h2>
             <h3>SMK TI BAZMA</h3>
@@ -136,29 +123,22 @@
         </div>
         <table class="info-table">
             <tr>
-                <td>Nama</td>
-                <td>: {{ $siswa->nama }}</td>
-                <td rowspan="4">
+                <p><span>Nama</span> : {{$siswa->nama}}</p>
                     <div class="photo-box">
-                        <img src="{{ $siswa->fotoSiswa[0]->path_file }}" alt=""
-                            style="height: 140px; border-radius: 10px">
+                        <img src="{{ $siswa->fotoSiswa[0]->path_file }}" alt="Foto Siswa">
                     </div>
-                </td>
             </tr>
             <tr>
-                <td>NISN</td>
-                <td>: {{ $siswa->nisn }}</td>
+                <p><span>NISN</span> : {{$siswa->nisn}}</p>
             </tr>
             <tr>
-                <td>Kelas</td>
-                <td>: {{ $siswa->dataKelas[0]->kelas }}</td>
+                <p><span>Kelas</span> : {{$siswa->dataKelas[0]->kelas}}</p>
             </tr>
             <tr>
-                <td>TP</td>
-                <td>: {{ $siswa->tahun_pelajaran }}</td>
+                <p><span>TP</span> : {{$siswa->tahun_pelajaran}}</p>
             </tr>
         </table>
-        <table class="section tahfidz-section">
+        <table class="section tahfidz-section" id="tahfidzTable">
             <thead>
                 <tr>
                     <th colspan="6" style="background-color: #A9D08E;">Tahfidz</th>
@@ -185,7 +165,7 @@
                 @endforeach
             </tbody>
         </table>
-        <table class="certificates">
+        <table class="certificates" id="certificateTable">
             <tr>
                 <td>Sertifikat Juz 30:</td>
                 <td>
@@ -209,7 +189,7 @@
                 </td>
             </tr>
         </table>
-        <table class="section tahsin-section">
+        <table class="section tahsin-section" id="tahsinTable">
             <thead>
                 <tr>
                     <th colspan="6" style="background-color: #FF6666;">Tahsin</th>
@@ -236,7 +216,7 @@
                 @endforeach
             </tbody>
         </table>
-        <table class="section akademik-section">
+        <table class="section akademik-section" id="akademikTable">
             <thead>
                 <tr>
                     <th colspan="4" style="background-color: #BDD7EE;">Akademik</th>
@@ -287,5 +267,52 @@
         </table>
     </div>
 </body>
+<script>
+    const data = @json($siswa);
+    console.log(data);
 
+    // Convert tajwid object to an array
+    const tajwidArray = Object.values(data.jurnalAsramaSiswa.tajwid);
+
+    // Calculate the maximum number of rows needed
+    const maxRows = Math.max(
+        data.jurnalAsramaSiswa.akhlak.length,
+        data.jurnalAsramaSiswa.fiqih.length,
+        data.jurnalAsramaSiswa.tafsir.length,
+        tajwidArray.length
+    );
+
+    // Get the table body element
+    const jurnalBody = document.getElementById('jurnalBody');
+
+    // Function to create a table cell with text
+    const createCell = (text) => {
+        const cell = document.createElement('td');
+        cell.innerText = text || '';
+        return cell;
+    };
+
+    // Populate the table
+    for (let i = 0; i < maxRows; i++) {
+        const row = document.createElement('tr');
+
+        const fiqih = data.jurnalAsramaSiswa.fiqih[i] || {};
+        row.appendChild(createCell(fiqih.tanggal));
+        row.appendChild(createCell(fiqih.materi));
+
+        const akhlak = data.jurnalAsramaSiswa.akhlak[i] || {};
+        row.appendChild(createCell(akhlak.tanggal));
+        row.appendChild(createCell(akhlak.materi));
+
+        const tafsir = data.jurnalAsramaSiswa.tafsir[i] || {};
+        row.appendChild(createCell(tafsir.tanggal));
+        row.appendChild(createCell(tafsir.materi));
+
+        const tajwid = tajwidArray[i] || {};
+        row.appendChild(createCell(tajwid.tanggal));
+        row.appendChild(createCell(tajwid.materi));
+
+        jurnalBody.appendChild(row);
+    }
+</script>
 </html>

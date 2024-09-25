@@ -115,8 +115,8 @@
                                     <div class="col-sm-6 col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label">Tanggal dikeluarkan</label>
-                                            <input type='text' class="form-control datepicker"
-                                                placeholder="Masukan Tanggal" id="datepicker-icon-1" name="released"
+                                            <input type='date' class="form-control datepicker"
+                                                placeholder="Masukan Tanggal" name="released"
                                                 value="{{ old('released') }}" autocomplete='off'>
                                         </div>
                                     </div>

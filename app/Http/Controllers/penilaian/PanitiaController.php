@@ -15,7 +15,7 @@ class PanitiaController extends Controller
 {
     public function index()
     {
-        $panitia = pas::where('type', 'panitia')->get();
+        $panitia = pas::where('type', 'panitia')->take(500)->paginate(10);
         return view('penilaian.exam.panitia.panitia', compact('panitia'));
     }
 

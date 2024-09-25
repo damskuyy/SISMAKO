@@ -18,7 +18,7 @@ class tajwidController extends Controller
             'siswa:id,nama,nisn',
             'siswa.dataKelas:id,id_siswa,kelas' // 'id_siswa' is the correct foreign key
         ])
-        ->get();
+        ->take(500)->paginate(10);
 
 
         return view('keasramaan.jurnal.tajwid.tajwid', compact('tajwid'));

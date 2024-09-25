@@ -114,7 +114,7 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="#" class="" data-bs-toggle="modal" data-bs-target="#modal-danger">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#modal-danger-{{ $item->id }}">
                                             <i class="far fa-trash-alt text-white text-xl bg-red p-2 rounded-lg"></i>
                                         </a>
                                     </td>
@@ -129,6 +129,9 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="d-flex justify-content-center mt-4">
+                        {{ $averages->links('vendor.pagination.bootstrap-5') }} <!-- Tambahkan ini untuk menampilkan tautan pagination -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -136,10 +139,11 @@
 </div>
 
 {{-- Danger Modal --}}
-<form action="{{ route('average.destroy', $item->id) }}" method="post">
+@foreach ($averages as $item)
+<form action="{{ route('average.delete', $item->id) }}" method="post">
     @csrf
     @method('DELETE')
-    <div class="modal modal-blur fade" id="modal-danger" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal modal-blur fade" id="modal-danger-{{ $item->id }}" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
             <div class="modal-content">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -156,8 +160,7 @@
                         <path d="M12 16h.01"></path>
                     </svg>
                     <h3>Are you sure?</h3>
-                    <div class="text-secondary">Do you really want to remove this files? What you've done cannot be
-                        undone.</div>
+                    <div class="text-secondary">Do you really want to remove this file? This action cannot be undone.</div>
                 </div>
                 <div class="modal-footer">
                     <div class="w-100">
@@ -166,8 +169,7 @@
                                 <a href="#" class="btn w-100" data-bs-dismiss="modal">Cancel</a>
                             </div>
                             <div class="col">
-                                <button type="submit" class="btn btn-danger w-100"
-                                    data-bs-dismiss="modal">Delete</button>
+                                <button type="submit" class="btn btn-danger w-100">Delete</button>
                             </div>
                         </div>
                     </div>
@@ -176,6 +178,7 @@
         </div>
     </div>
 </form>
+@endforeach
 
 <!-- Chart Modal -->
 <div class="modal fade" id="chartModal" tabindex="-1" aria-labelledby="chartModalLabel" aria-hidden="true">

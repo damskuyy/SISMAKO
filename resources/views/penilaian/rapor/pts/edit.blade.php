@@ -72,10 +72,10 @@
                                             <label class="form-label">Semester</label>
                                             <select class="form-control form-select" name="semester">
                                                 <option value="">Pilih Semester</option>
-                                                <option value="1 (Ganjil)" {{ $rpts->semester == '1 (Ganjil)' ?
+                                                <option value="GANJIL" {{ $rpts->semester == 'GANJIL' ?
                                                     'selected' : '' }}>1
                                                     (Ganjil)</option>
-                                                <option value="2 (Genap)" {{ $rpts->semester == '2 (Genap)' ? 'selected'
+                                                <option value="GENAP" {{ $rpts->semester == 'GENAP' ? 'selected'
                                                     : '' }}>2
                                                     (Genap)</option>
                                             </select>
@@ -115,8 +115,8 @@
                                     <div class="col-sm-6 col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label">Tanggal dikeluarkan</label>
-                                            <input type='text' class="form-control datepicker"
-                                                placeholder="Masukan Tanggal" id="datepicker-icon-1" name="released"
+                                            <input type='date' class="form-control datepicker"
+                                                placeholder="Masukan Tanggal" name="released"
                                                 autocomplete='off' value="{{ $rpts->released }}">
                                         </div>
                                     </div>

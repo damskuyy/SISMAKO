@@ -14,7 +14,7 @@ class sertifikatController extends Controller
 {
     public function index()
     {
-        $sertifikat = sertifikat::with(['siswa:id,nama,nisn'])->get();
+        $sertifikat = sertifikat::with(['siswa:id,nama,nisn'])->take(500)->paginate(10);
         return view('keasramaan.quran.sertifikat.sertif', compact('sertifikat'));
     }
 

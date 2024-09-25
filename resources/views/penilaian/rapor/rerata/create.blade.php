@@ -53,7 +53,7 @@
                                                 <label class="form-label">Semester</label>
                                                 <select class="form-control form-select" name="semester">
                                                     <option value="">Pilih Semester</option>
-                                                    @foreach(['1 (Ganjil)', '2 (Genap)'] as $semester)
+                                                    @foreach(['Ganjil', 'Genap'] as $semester)
                                                         <option value="{{ $semester }}">{{ $semester }}</option>
                                                     @endforeach
                                                 </select>

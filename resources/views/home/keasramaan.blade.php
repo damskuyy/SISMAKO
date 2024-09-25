@@ -43,7 +43,7 @@
                                 style="width: 50%; height: auto; margin-right: 16px;">
                             <h2 class="card-title text-xl font-semibold mb-0"
                                 style="font-size: 1.5rem; font-family: 'Poppins', sans-serif; font-weight: bold; color: white;">
-                                Patroli
+                                Akses Lab
                             </h2>
                         </div>
                     </div>

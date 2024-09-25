@@ -72,10 +72,10 @@
                                             <label class="form-label">Semester</label>
                                             <select class="form-control form-select" name="semester" required>
                                                 <option value="">Pilih Semester</option>
-                                                <option value="1 (Ganjil)" {{ old('semester')=='1 (Ganjil)' ? 'selected'
+                                                <option value="GANJIL" {{ old('semester')=='GANJIL' ? 'selected'
                                                     : '' }}>1 (Ganjil)
                                                 </option>
-                                                <option value="2 (Genap)" {{ old('semester')=='2 (Genap)' ? 'selected'
+                                                <option value="GENAP" {{ old('semester')=='GENAP' ? 'selected'
                                                     : '' }}>2 (Genap)
                                                 </option>
                                             </select>
@@ -114,8 +114,8 @@
                                     <div class="col-sm-6 col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label">Tanggal dikeluarkan</label>
-                                            <input type='text' class="form-control datepicker"
-                                                placeholder="Masukan Tanggal" id="datepicker-icon-1" name="released"
+                                            <input type='date' class="form-control datepicker"
+                                                placeholder="Masukan Tanggal" name="released"
                                                 value="{{ old('released') }}" autocomplete='off'>
                                         </div>
                                     </div>

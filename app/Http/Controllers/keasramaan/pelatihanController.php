@@ -16,7 +16,7 @@ class pelatihanController extends Controller
     {
         $pelatihan = pelatihan::where('type', 'pelatihan')
             ->with(['siswa:id,nama,nisn']) // Menentukan kolom yang ingin dimuat dari model siswa
-            ->get();
+            ->take(500)->paginate(10);
         return view('keasramaan.akademik.pelatihan.pelatihan', compact('pelatihan'));
     }
     public function create(Request $request)

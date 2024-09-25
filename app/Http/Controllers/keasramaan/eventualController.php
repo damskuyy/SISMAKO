@@ -13,7 +13,7 @@ class eventualController extends Controller
 {
     public function index()
     {
-        $eventual = pelatihan::where('type', 'eventual')->with(['siswa:id,nama,nisn'])->get();
+        $eventual = pelatihan::where('type', 'eventual')->with(['siswa:id,nama,nisn'])->take(500)->paginate(10);
         return view('keasramaan.akademik.volentir.volentir', compact('eventual'));
     }
 

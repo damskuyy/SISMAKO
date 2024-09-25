@@ -3,7 +3,7 @@
 @section('content')
     <div class="py-5">
         <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
-            <div class="container custom-container">
+            <div class="container xl-custom-container">
                 <div class="col-12">
                     <div class="mb-4">
                         <div class="col-12 row">
@@ -46,6 +46,7 @@
                                     <tr>
                                         <th>Tahun Ajaran</th>
                                         <th>Kelas</th>
+                                        <th>Semester</th>
                                         <th>Nama</th>
                                         <th>PAI</th>
                                         <th>PKN</th>
@@ -80,6 +81,7 @@
                                         <tr>
                                             <td>{{ $item->tahun_ajaran }}</td>
                                             <td>{{ $item->kelas }}</td>
+                                            <td>{{ $item->semester }}</td>
                                             <td>{{ $item->nama }}</td>
                                             <td>{{ $item->pai }}</td>
                                             <td>{{ $item->pkn }}</td>
@@ -115,22 +117,23 @@
                                                 </a>
                                             </td>
                                             <td>
-                                                <a href="#" class="" data-bs-toggle="modal"
-                                                    data-bs-target="#modal-danger">
-                                                    <i
-                                                        class="far fa-trash-alt text-white text-xl bg-red p-2 rounded"></i>
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal-danger-{{ $item->id }}">
+                                                    <i class="far fa-trash-alt text-white text-xl bg-red p-2 rounded-lg"></i>
                                                 </a>
                                             </td>
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="25" class="text-center">
+                                            <td colspan="26" class="text-center">
                                                 Tidak ada Data
                                             </td>
                                         </tr>
                                     @endforelse
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="d-flex justify-content-center mt-4">
+                            {{ $rpts->links('vendor.pagination.bootstrap-5') }} <!-- Tambahkan ini untuk menampilkan tautan pagination -->
                         </div>
                     </div>
                 </div>
@@ -139,48 +142,44 @@
     </div>
 
     {{-- Danger Modal --}}
-        <form action="{{ route('rpts.delete', $item->id) }}" method="post">
-            @csrf
-            @method('DELETE')
-            <div class="modal modal-blur fade" id="modal-danger" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        <div class="modal-status bg-danger"></div>
-                        <div class="modal-body text-center py-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon mb-2 text-danger icon-lg" width="24"
-                                height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <path d="M12 9v4"></path>
-                                <path
-                                    d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z">
-                                </path>
-                                <path d="M12 16h.01"></path>
-                            </svg>
-                            <h3>Are you sure?</h3>
-                            <div class="text-secondary">Do you really want to remove this files? What you've done cannot
-                                be
-                                undone.</div>
-                        </div>
-                        <div class="modal-footer">
-                            <div class="w-100">
-                                <div class="row">
-                                    <div class="col"><a href="#" class="btn w-100" data-bs-dismiss="modal">
-                                            Cancel
-                                        </a>
-                                    </div>
-                                    <div class="col">
-                                        <button href="#" type="submit" class="btn btn-danger w-100"
-                                            data-bs-dismiss="modal">
-                                            Delete
-                                        </button>
-                                    </div>
+    @foreach ($rpts as $item)
+    <form action="{{ route('rpts.delete', $item->id) }}" method="post">
+        @csrf
+        @method('DELETE')
+        <div class="modal modal-blur fade" id="modal-danger-{{ $item->id }}" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="modal-status bg-danger"></div>
+                    <div class="modal-body text-center py-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon mb-2 text-danger icon-lg" width="24" height="24"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M12 9v4"></path>
+                            <path
+                                d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z">
+                            </path>
+                            <path d="M12 16h.01"></path>
+                        </svg>
+                        <h3>Are you sure?</h3>
+                        <div class="text-secondary">Do you really want to remove this file? This action cannot be undone.</div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="w-100">
+                            <div class="row">
+                                <div class="col">
+                                    <a href="#" class="btn w-100" data-bs-dismiss="modal">Cancel</a>
+                                </div>
+                                <div class="col">
+                                    <button type="submit" class="btn btn-danger w-100">Delete</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
+    </form>
+    @endforeach
 @endsection

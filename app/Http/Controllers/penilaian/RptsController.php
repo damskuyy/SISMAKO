@@ -10,7 +10,7 @@ class RptsController extends Controller
 {
     public function index()
     {
-        $rpts = rpts::get();
+        $rpts = rpts::take(500)->paginate(10);
         return view('penilaian.rapor.pts.rapor', compact('rpts'));
     }
 

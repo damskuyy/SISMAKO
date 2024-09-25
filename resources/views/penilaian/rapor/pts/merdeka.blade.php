@@ -200,12 +200,18 @@
         <table class="head" style="margin-left: 10px;">
             <tr>
                 <td>
-                    <span>LAPORAN HASIL PENILAIAN TENGAH SEMESTER GANJIL<br>TAHUN
-                        PELAJARAN 2022/2023</span>
+                    <span>LAPORAN HASIL PENILAIAN TENGAH SEMESTER {{$rpts->semester}}<br>TAHUN
+                        PELAJARAN {{$rpts->tahun_ajaran}}</span>
                 </td>
                 <td>
-                    <img style="height: 100px" src="{{ asset('https://smktibazma.sch.id/static/media/main-logo-2.7b74690f86ab4e9a4743.png') }}" alt="Logo">
-                </td>
+                    <?php
+        $path = public_path('dist/img/logo/Logo.png');
+        $type = pathinfo($path, PATHINFO_EXTENSION);
+        $data = file_get_contents($path);
+        $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+?>
+                <img src="{{ $base64 }}" alt="Profile Image" style="width: 200px;">
+            </td>
             </tr>
         </table>
 
@@ -511,28 +517,29 @@
                     <table class="achievements" style="font-size: 10px; width: 100%; border-collapse: collapse;">
                         <thead>
                             <tr>
-                                <th colspan="3" style="padding: 2px;"><strong>Rentang Predikat</strong></th>
+                                <th colspan="3" style="padding: 2px; text-align:center;"><strong>Rentang
+                                        Predikat</strong></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td style="width: 20%; text-align:center; padding: 2px;">A</td>
-                                <td style="width: 50%; padding: 2px;">Amat Baik</td>
+                                <td style="width: 50%; padding: 2px; text-align:center;">Amat Baik</td>
                                 <td style="width: 30%; text-align:center; padding: 2px;">90-100</td>
                             </tr>
                             <tr>
                                 <td style="width: 20%; text-align:center; padding: 2px;">B</td>
-                                <td style="width: 50%; padding: 2px;">Baik</td>
+                                <td style="width: 50%; padding: 2px; text-align:center;">Baik</td>
                                 <td style="width: 30%; text-align:center; padding: 2px;">80-89</td>
                             </tr>
                             <tr>
                                 <td style="width: 20%; text-align:center; padding: 2px;">C</td>
-                                <td style="width: 50%; padding: 2px;">Cukup</td>
+                                <td style="width: 50%; padding: 2px; text-align:center;">Cukup</td>
                                 <td style="width: 30%; text-align:center; padding: 2px;">70-79</td>
                             </tr>
                             <tr>
                                 <td style="width: 20%; text-align:center; padding: 2px;">D</td>
-                                <td style="width: 50%; padding: 2px;">Kurang</td>
+                                <td style="width: 50%; padding: 2px; text-align:center;">Kurang</td>
                                 <td style="width: 30%; text-align:center; padding: 2px;">0-69</td>
                             </tr>
                         </tbody>
@@ -540,7 +547,7 @@
                     <table class="achievements" style="font-size: 10px; width: 100%; border-collapse: collapse;">
                         <thead>
                             <tr>
-                                <th colspan="2" style="padding: 2px;"><strong>Kehadiran</strong></th>
+                                <th colspan="2" style="padding: 2px; text-align:center;"><strong>Kehadiran</strong></th>
                             </tr>
                         </thead>
                         <tbody>
