@@ -21,6 +21,7 @@ client.on('ready', () => {
 // Fungsi untuk mengirim pesan
 const sendMessage = async (data) => {
 
+    console.log(data)
     const chatIds = [
         '6289514563365@c.us',
     ];

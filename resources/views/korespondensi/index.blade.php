@@ -31,7 +31,7 @@
                                         </div>
                                     </div>
                                     <input type="radio" name="inbox" value="1" id="radioInbox1"
-                                        class="form-selectgroup-input radio-inbox" data-target-view="#modalView1"
+                                        class="form-selectgroup-input radio-inbox" data-target-view="#view1"
                                         data-target-report="#modalReport1">
                                     <div class="form-selectgroup-label d-flex align-items-center p-3 ">
                                         <div class="form-selectgroup-label-content d-flex align-items-center">
@@ -74,7 +74,7 @@
                                         </div>
                                     </div>
                                     <input type="radio" name="inbox" value="2" id="radioInbox2"
-                                        class="form-selectgroup-input radio-inbox" data-target-view="#modalView2"
+                                        class="form-selectgroup-input radio-inbox" data-target-view="#view2"
                                         data-target-report="#modalReport2">
                                     <div class="form-selectgroup-label d-flex align-items-center p-3">
                                         <div class="form-selectgroup-label-content d-flex align-items-center">
@@ -116,7 +116,7 @@
                                         </div>
                                     </div>
                                     <input type="radio" name="inbox" value="3" id="radioInbox3"
-                                        class="form-selectgroup-input radio-inbox" data-target-view="#modalView3"
+                                        class="form-selectgroup-input radio-inbox" data-target-view="#view3"
                                         data-target-report="#modalReport3">
                                     <div class="form-selectgroup-label d-flex align-items-center p-3">
                                         <div class="form-selectgroup-label-content d-flex align-items-center">
@@ -158,7 +158,7 @@
                                         </div>
                                     </div>
                                     <input type="radio" name="inbox" value="4" id="radioInbox4"
-                                        class="form-selectgroup-input radio-inbox" data-target-view="#modalView4"
+                                        class="form-selectgroup-input radio-inbox" data-target-view="#view4"
                                         data-target-report="#modalReport4">
                                     <div class="form-selectgroup-label d-flex align-items-center p-3">
                                         <div class="form-selectgroup-label-content d-flex align-items-center">
@@ -201,7 +201,7 @@
                                         </div>
                                     </div>
                                     <input type="radio" name="inbox" value="5" id="radioInbox5"
-                                        class="form-selectgroup-input radio-inbox" data-target-view="#modalView5"
+                                        class="form-selectgroup-input radio-inbox" data-target-view="#view5"
                                         data-target-report="#modalReport5">
                                     <div class="form-selectgroup-label d-flex align-items-center p-3">
                                         <div class="form-selectgroup-label-content d-flex align-items-center">
@@ -246,7 +246,7 @@
                                         </div>
                                     </div>
                                     <input type="radio" name="inbox" value="6" id="radioInbox6"
-                                        class="form-selectgroup-input radio-inbox" data-target-view="#modalView6"
+                                        class="form-selectgroup-input radio-inbox" data-target-view="#view6"
                                         data-target-report="#modalReport6">
                                     <div class="form-selectgroup-label d-flex align-items-center p-3">
                                         <div class="form-selectgroup-label-content d-flex align-items-center">
@@ -323,24 +323,606 @@
         </div>
     </div>
 
-    <div class="container">
+
+
+    <div class="container-view1 container-xl" id="view1" hidden>
 
         <div class="col-12">
             <div class="card">
                 <div class="table-responsive p-3">
-                    <table class="table card-table table-vcenter text-nowrap datatable" style="width: 100%">
-
+                    <table class="table card-table table-vcenter text-nowrap datatable" style="width: 100%"
+                        id="myTable1">
                         <thead>
                             <tr>
-                                <th>Jenis Surat</th>
+                                <th>Tahun ajaran</th>
                                 <th>Tanggal</th>
+                                <th>No. surat</th>
+                                <th>Jenis Surat</th>
+                                <th>Perihal</th>
+                                <th>dari</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($suratBaru as $surat)
+                            @foreach ($suratmasuk as $item)
                                 <tr>
-                                    <td>{{ class_basename($surat) }}</td> <!-- Mengambil nama kelas untuk jenis surat -->
-                                    <td>{{ $surat->created_at }}</td>
+                                    <td>{{ $item->tp }}</td>
+                                    <td>{{ $item->tanggal }}</td>
+                                    <td>{{ $item->no_surat }}</td>
+                                    <td>{{ Str::limit($item->jenis_surat, 15) }}</td>
+                                    <td>{{ Str::limit($item->perihal, 15) }}</td>
+                                    <td>{{ Str::limit($item->dari, 15) }}</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <form action="{{ route('inbox.download', $item->id) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('GET')
+                                                <button type="submit"
+                                                    class="btn btn-icon btn-sm btn-outline-primary"
+                                                    role="button">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                        height="24" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="1.5"
+                                                        stroke-linecap="round" stroke-linejoin="round"
+                                                        class="icon icon-tabler icons-tabler-outline icon-tabler-download">
+                                                        <path stroke="none" d="M0 0h24v24H0z"
+                                                            fill="none" />
+                                                        <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
+                                                        <path d="M7 11l5 5l5 -5" />
+                                                        <path d="M12 4l0 12" />
+                                                    </svg>
+                                                </button>
+                                            </form>
+                                            <button type="button"
+                                                class="btn btn-icon btn-sm btn-outline-success" role="button"
+                                                data-bs-target="#modalUpdate1{{ $item->id }}"
+                                                data-bs-toggle="modal" data-bs-dismiss="modal">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                    height="24" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                    class="icon icon-tabler icons-tabler-outline icon-tabler-edit">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                    <path
+                                                        d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
+                                                    <path
+                                                        d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
+                                                    <path d="M16 5l3 3" />
+                                                </svg>
+                                            </button>
+                                            <form action="{{ route('inbox.destroy', $item->id) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    class="btn btn-icon btn-sm btn-outline-danger"
+                                                    role="button">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                        height="24" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2"
+                                                        stroke-linecap="round" stroke-linejoin="round"
+                                                        class="icon icon-tabler icons-tabler-outline icon-tabler-trash">
+                                                        <path stroke="none" d="M0 0h24v24H0z"
+                                                            fill="none" />
+                                                        <path d="M4 7l16 0" />
+                                                        <path d="M10 11l0 6" />
+                                                        <path d="M14 11l0 6" />
+                                                        <path
+                                                            d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                                        <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                                    </svg>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer justify-content-between">
+                <form action="{{ route('pdf', ['model' => 'suratmasuk']) }}" id="filterdate">
+                    <div class="row d-flex justify-content-between w-100">
+                        <div class="col-8 d-flex g-2">
+                            <div class="col-4 me-2">
+                                <div class="input-icon mb-2">
+                                    <input class="form-control" placeholder="Select a start date" id="datepicker-1"
+                                        name="start_date">
+                                    @error('start_date')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                    <span class="input-icon-addon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
+                                            height="24" viewBox="0 0 24 24" stroke-width="2"
+                                            stroke="currentColor" fill="none" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path
+                                                d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
+                                            </path>
+                                            <path d="M16 3v4"></path>
+                                            <path d="M8 3v4"></path>
+                                            <path d="M4 11h16"></path>
+                                            <path d="M11 15h1"></path>
+                                            <path d="M12 15v3"></path>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-icon mb-2 me-2">
+                                    <input class="form-control" placeholder="Select an end date" id="datepicker-2"
+                                        name="end_date">
+                                    @error('end_date')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                    <span class="input-icon-addon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
+                                            height="24" viewBox="0 0 24 24" stroke-width="2"
+                                            stroke="currentColor" fill="none" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path
+                                                d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
+                                            </path>
+                                            <path d="M16 3v4"></path>
+                                            <path d="M8 3v4"></path>
+                                            <path d="M4 11h16"></path>
+                                            <path d="M11 15h1"></path>
+                                            <path d="M12 15v3"></path>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-2  align-items-end">
+
+                                <button type="submit" class="btn btn-primary">Cetak Laporan</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container-view2 container-xl" id="view2" hidden>
+
+        <div class="col-12">
+            <div class="card">
+                <div class="table-responsive p-3">
+                    <table class="table card-table table-vcenter text-nowrap datatable"
+                        style="width: 100%" id="myTable2">
+                        <thead>
+                            <tr>
+                                <th>Tahun ajaran</th>
+                                {{-- <th>Tanggal</th> --}}
+                                <th>No. surat</th>
+                                <th>Jenis Surat</th>
+                                <th>Perihal</th>
+                                <th>Kepada</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($suratkeluar as $item)
+                                <tr>
+                                    <td>{{ $item->tp }}</td>
+                                    {{-- <td>{{ $item->tanggal }}</td> --}}
+                                    <td>{{ $item->no_surat }}</td>
+                                    <td>{{ Str::limit($item->jenis_surat, 15) }}</td>
+                                    <td>{{ Str::limit($item->perihal, 15) }}</td>
+                                    <td>{{ Str::limit($item->kepada, 15) }}</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <form action="{{ route('inbox.download', $item->id) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('GET')
+                                                <button type="submit"
+                                                    class="btn btn-icon btn-sm btn-outline-primary"
+                                                    role="button">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                        height="24" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="1.5"
+                                                        stroke-linecap="round" stroke-linejoin="round"
+                                                        class="icon icon-tabler icons-tabler-outline icon-tabler-download">
+                                                        <path stroke="none" d="M0 0h24v24H0z"
+                                                            fill="none" />
+                                                        <path
+                                                            d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
+                                                        <path d="M7 11l5 5l5 -5" />
+                                                        <path d="M12 4l0 12" />
+                                                    </svg>
+                                                </button>
+                                            </form>
+                                            <button type="button"
+                                                class="btn btn-icon btn-sm btn-outline-success"
+                                                role="button"
+                                                data-bs-target="#modalUpdate2{{ $item->id }}"
+                                                data-bs-toggle="modal" data-bs-dismiss="modal">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                    height="24" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                    class="icon icon-tabler icons-tabler-outline icon-tabler-edit">
+                                                    <path stroke="none" d="M0 0h24v24H0z"
+                                                        fill="none" />
+                                                    <path
+                                                        d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
+                                                    <path
+                                                        d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
+                                                    <path d="M16 5l3 3" />
+                                                </svg>
+                                            </button>
+                                            <form action="{{ route('inbox.destroy', $item->id) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    class="btn btn-icon btn-sm btn-outline-danger"
+                                                    role="button">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                        height="24" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2"
+                                                        stroke-linecap="round" stroke-linejoin="round"
+                                                        class="icon icon-tabler icons-tabler-outline icon-tabler-trash">
+                                                        <path stroke="none" d="M0 0h24v24H0z"
+                                                            fill="none" />
+                                                        <path d="M4 7l16 0" />
+                                                        <path d="M10 11l0 6" />
+                                                        <path d="M14 11l0 6" />
+                                                        <path
+                                                            d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                                        <path
+                                                            d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                                    </svg>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer justify-content-between">
+                <form action="{{ route('pdf', ['model' => 'suratkeluar']) }}" id="filterdate">
+                    <div class="row d-flex justify-content-between w-100">
+                        <div class="col-8 d-flex g-2">
+                            <div class="col-4 me-2">
+                                <div class="input-icon mb-2">
+                                    <input class="form-control" placeholder="Select a start date" id="datepicker-1"
+                                        name="start_date">
+                                    @error('start_date')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                    <span class="input-icon-addon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
+                                            height="24" viewBox="0 0 24 24" stroke-width="2"
+                                            stroke="currentColor" fill="none" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path
+                                                d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
+                                            </path>
+                                            <path d="M16 3v4"></path>
+                                            <path d="M8 3v4"></path>
+                                            <path d="M4 11h16"></path>
+                                            <path d="M11 15h1"></path>
+                                            <path d="M12 15v3"></path>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-icon mb-2 me-2">
+                                    <input class="form-control" placeholder="Select an end date" id="datepicker-2"
+                                        name="end_date">
+                                    @error('end_date')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                    <span class="input-icon-addon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
+                                            height="24" viewBox="0 0 24 24" stroke-width="2"
+                                            stroke="currentColor" fill="none" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path
+                                                d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
+                                            </path>
+                                            <path d="M16 3v4"></path>
+                                            <path d="M8 3v4"></path>
+                                            <path d="M4 11h16"></path>
+                                            <path d="M11 15h1"></path>
+                                            <path d="M12 15v3"></path>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-2  align-items-end">
+
+                                <button type="submit" class="btn btn-primary">Cetak Laporan</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container-view3 container-xl" id="view3" hidden>
+
+        <div class="col-12">
+            <div class="card">
+                <div class="table-responsive p-3">
+                    <table class="table card-table table-vcenter text-nowrap datatable"
+                        style="width: 100%" id="myTable3">
+                        <thead>
+                            <tr>
+                                <th>Tahun ajaran</th>
+                                <th>Tanggal</th>
+                                <th>No. Surat</th>
+                                <th>subjek</th>
+                                <th>Siswa</th>
+                                <th>Guru</th>
+                                <th>sp</th>
+                                <th>alasan</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($suratperingatan as $item)
+                                <tr>
+                                    <td>{{ $item->tp }}</td>
+                                    <td>{{ $item->tanggal }}</td>
+                                    <td>{{ $item->no_surat }}</td>
+                                    <td>{{ Str::limit($item->subjek, 15) }}</td>
+                                    <td>{{ Str::limit($item->siswa, 15) }}</td>
+                                    <td>{{ Str::limit($item->guru, 15) }}</td>
+                                    <td>{{ Str::limit($item->sp, 15) }}</td>
+                                    <td>{{ Str::limit($item->alasan, 15) }}</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <form action="{{ route('sp.download', $item->id) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('GET')
+                                                <button type="submit"
+                                                    class="btn btn-icon btn-sm btn-outline-primary"
+                                                    role="button">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                        height="24" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="1.5"
+                                                        stroke-linecap="round" stroke-linejoin="round"
+                                                        class="icon icon-tabler icons-tabler-outline icon-tabler-download">
+                                                        <path stroke="none" d="M0 0h24v24H0z"
+                                                            fill="none" />
+                                                        <path
+                                                            d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
+                                                        <path d="M7 11l5 5l5 -5" />
+                                                        <path d="M12 4l0 12" />
+                                                    </svg>
+                                                </button>
+                                            </form>
+                                            <button type="button"
+                                                class="btn btn-icon btn-sm btn-outline-success"
+                                                role="button"
+                                                data-bs-target="#modalUpdate2{{ $item->id }}"
+                                                data-bs-toggle="modal" data-bs-dismiss="modal">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                    height="24" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                    class="icon icon-tabler icons-tabler-outline icon-tabler-edit">
+                                                    <path stroke="none" d="M0 0h24v24H0z"
+                                                        fill="none" />
+                                                    <path
+                                                        d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
+                                                    <path
+                                                        d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
+                                                    <path d="M16 5l3 3" />
+                                                </svg>
+                                            </button>
+                                            <form action="{{ route('sp.destroy', $item->id) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    class="btn btn-icon btn-sm btn-outline-danger"
+                                                    role="button">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                        height="24" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2"
+                                                        stroke-linecap="round" stroke-linejoin="round"
+                                                        class="icon icon-tabler icons-tabler-outline icon-tabler-trash">
+                                                        <path stroke="none" d="M0 0h24v24H0z"
+                                                            fill="none" />
+                                                        <path d="M4 7l16 0" />
+                                                        <path d="M10 11l0 6" />
+                                                        <path d="M14 11l0 6" />
+                                                        <path
+                                                            d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                                        <path
+                                                            d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                                    </svg>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer justify-content-between">
+                <form action="{{ route('pdf', ['model' => 'suratperingatan']) }}" id="filterdate">
+                    <div class="row d-flex justify-content-between w-100">
+                        <div class="col-8 d-flex g-2">
+                            <div class="col-4 me-2">
+                                <div class="input-icon mb-2">
+                                    <input class="form-control" placeholder="Select a start date"
+                                        id="datepicker-1" name="start_date">
+                                    @error('start_date')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                    <span class="input-icon-addon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
+                                            height="24" viewBox="0 0 24 24" stroke-width="2"
+                                            stroke="currentColor" fill="none" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path
+                                                d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
+                                            </path>
+                                            <path d="M16 3v4"></path>
+                                            <path d="M8 3v4"></path>
+                                            <path d="M4 11h16"></path>
+                                            <path d="M11 15h1"></path>
+                                            <path d="M12 15v3"></path>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-icon mb-2 me-2">
+                                    <input class="form-control" placeholder="Select an end date" id="datepicker-2"
+                                        name="end_date">
+                                    @error('end_date')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                    <span class="input-icon-addon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
+                                            height="24" viewBox="0 0 24 24" stroke-width="2"
+                                            stroke="currentColor" fill="none" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path
+                                                d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
+                                            </path>
+                                            <path d="M16 3v4"></path>
+                                            <path d="M8 3v4"></path>
+                                            <path d="M4 11h16"></path>
+                                            <path d="M11 15h1"></path>
+                                            <path d="M12 15v3"></path>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <select name="subjek" id="subjekFilter" class="form-control me-2">
+                                    <option selected>Pilih subjek</option>
+                                    <option value="siswa">siswa</option>
+                                    <option value="guru">guru</option>
+                                </select>
+                            </div>
+                            <div class="col-2 align-items-end">
+
+                                <button type="submit" class="btn btn-primary">Cetak Laporan</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container-view4 container-xl" id="view4" hidden>
+
+        <div class="col-12">
+            <div class="card">
+                <div class="table-responsive p-3">
+                    <table class="table card-table table-vcenter text-nowrap datatable"
+                        style="width: 100%" id="myTable4">
+                        <thead>
+                            <tr>
+                                <th>Tahun ajaran</th>
+                                <th>Tanggal</th>
+                                <th>No. surat</th>
+                                <th>keperluan</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($nomorsurat as $item)
+                                <tr>
+                                    <td>{{ $item->tp }}</td>
+                                    <td>{{ $item->tanggal }}</td>
+                                    <td>{{ $item->no_surat }}</td>
+                                    <td>{{ Str::limit($item->keperluan, 15) }}</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <form action="{{ route('inbox.download', $item->id) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('GET')
+                                                <button type="submit"
+                                                    class="btn btn-icon btn-sm btn-outline-primary"
+                                                    role="button">
+                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                        width="24" height="24"
+                                                        viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="1.5"
+                                                        stroke-linecap="round" stroke-linejoin="round"
+                                                        class="icon icon-tabler icons-tabler-outline icon-tabler-download">
+                                                        <path stroke="none" d="M0 0h24v24H0z"
+                                                            fill="none" />
+                                                        <path
+                                                            d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
+                                                        <path d="M7 11l5 5l5 -5" />
+                                                        <path d="M12 4l0 12" />
+                                                    </svg>
+                                                </button>
+                                            </form>
+                                            <button type="button"
+                                                class="btn btn-icon btn-sm btn-outline-success"
+                                                role="button"
+                                                data-bs-target="#modalUpdate4{{ $item->id }}"
+                                                data-bs-toggle="modal" data-bs-dismiss="modal">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                    height="24" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                    class="icon icon-tabler icons-tabler-outline icon-tabler-edit">
+                                                    <path stroke="none" d="M0 0h24v24H0z"
+                                                        fill="none" />
+                                                    <path
+                                                        d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
+                                                    <path
+                                                        d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
+                                                    <path d="M16 5l3 3" />
+                                                </svg>
+                                            </button>
+                                            <form action="{{ route('inbox.destroy', $item->id) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    class="btn btn-icon btn-sm btn-outline-danger"
+                                                    role="button">
+                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                        width="24" height="24"
+                                                        viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2"
+                                                        stroke-linecap="round" stroke-linejoin="round"
+                                                        class="icon icon-tabler icons-tabler-outline icon-tabler-trash">
+                                                        <path stroke="none" d="M0 0h24v24H0z"
+                                                            fill="none" />
+                                                        <path d="M4 7l16 0" />
+                                                        <path d="M10 11l0 6" />
+                                                        <path d="M14 11l0 6" />
+                                                        <path
+                                                            d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                                        <path
+                                                            d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                                    </svg>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -348,6 +930,431 @@
                 </div>
             </div>
         </div>
+        <div class="card-footer justify-content-between">
+            <form action="{{ route('pdf', ['model' => 'nomorsurat']) }}" id="filterdate">
+                <div class="row d-flex justify-content-between w-100">
+                    <div class="col-8 d-flex g-2">
+                        <div class="col-4 me-2">
+                            <div class="input-icon mb-2">
+                                <input class="form-control" placeholder="Select a start date"
+                                    id="datepicker-1" name="start_date">
+                                @error('start_date')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                                <span class="input-icon-addon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
+                                        height="24" viewBox="0 0 24 24" stroke-width="2"
+                                        stroke="currentColor" fill="none" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path
+                                            d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
+                                        </path>
+                                        <path d="M16 3v4"></path>
+                                        <path d="M8 3v4"></path>
+                                        <path d="M4 11h16"></path>
+                                        <path d="M11 15h1"></path>
+                                        <path d="M12 15v3"></path>
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="input-icon mb-2 me-2">
+                                <input class="form-control" placeholder="Select an end date" id="datepicker-2"
+                                    name="end_date">
+                                @error('end_date')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                                <span class="input-icon-addon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
+                                        height="24" viewBox="0 0 24 24" stroke-width="2"
+                                        stroke="currentColor" fill="none" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path
+                                            d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
+                                        </path>
+                                        <path d="M16 3v4"></path>
+                                        <path d="M8 3v4"></path>
+                                        <path d="M4 11h16"></path>
+                                        <path d="M11 15h1"></path>
+                                        <path d="M12 15v3"></path>
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-2  align-items-end">
+
+                            <button type="submit" class="btn btn-primary">Cetak Laporan</button>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="container-view5 container-xl" id="view5" hidden>
+        <div class="col-12">
+            <div class="card">
+                <div class="table-responsive p-3">
+                    <table class="table card-table table-vcenter text-nowrap datatable"
+                        style="width: 100%" id="myTable5">
+                        <thead>
+                            <tr>
+                                <th>Tahun ajaran</th>
+                                <th>Tanggal</th>
+                                <th>No. Surat</th>
+
+                                <th>status</th>
+                                <th>materi</th>
+                                <th>peserta</th>
+                                <th>hasil</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($notulensi as $item)
+                                <tr>
+                                    <td>{{ $item->tp }}</td>
+                                    <td>{{ $item->tanggal }}</td>
+                                    <td>{{ $item->no_surat }}</td>
+                                    <td>{{ $item->daring }}</td>
+                                    <td>{{ Str::limit($item->materi, 15) }}</td>
+                                    <td>{{ Str::limit($item->peserta, 15) }}</td>
+                                    <td>{{ Str::limit($item->hasil, 15) }}</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <form action="{{ route('notulensi.download', $item->id) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('GET')
+                                                <button type="submit"
+                                                    class="btn btn-icon btn-sm btn-outline-primary"
+                                                    role="button">
+                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                        width="24" height="24"
+                                                        viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="1.5"
+                                                        stroke-linecap="round" stroke-linejoin="round"
+                                                        class="icon icon-tabler icons-tabler-outline icon-tabler-download">
+                                                        <path stroke="none" d="M0 0h24v24H0z"
+                                                            fill="none" />
+                                                        <path
+                                                            d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
+                                                        <path d="M7 11l5 5l5 -5" />
+                                                        <path d="M12 4l0 12" />
+                                                    </svg>
+                                                </button>
+                                            </form>
+                                            <form
+                                                action="{{ route('notulensi.download_dokumentasi', $item->id) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('GET')
+                                                <button type="submit"
+                                                    class="btn btn-icon btn-sm btn-outline-primary"
+                                                    role="button">
+                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                        width="24" height="24"
+                                                        viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2"
+                                                        stroke-linecap="round" stroke-linejoin="round"
+                                                        class="icon icon-tabler icons-tabler-outline icon-tabler-camera">
+                                                        <path stroke="none" d="M0 0h24v24H0z"
+                                                            fill="none" />
+                                                        <path
+                                                            d="M5 7h1a2 2 0 0 0 2 -2a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2" />
+                                                        <path d="M9 13a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+                                                    </svg>
+                                                </button>
+                                            </form>
+                                            <button type="button"
+                                                class="btn btn-icon btn-sm btn-outline-success"
+                                                role="button"
+                                                data-bs-target="#modalUpdate5{{ $item->id }}"
+                                                data-bs-toggle="modal" data-bs-dismiss="modal">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                    height="24" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                    class="icon icon-tabler icons-tabler-outline icon-tabler-edit">
+                                                    <path stroke="none" d="M0 0h24v24H0z"
+                                                        fill="none" />
+                                                    <path
+                                                        d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
+                                                    <path
+                                                        d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
+                                                    <path d="M16 5l3 3" />
+                                                </svg>
+                                            </button>
+                                            <form action="{{ route('inbox.destroy', $item->id) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    class="btn btn-icon btn-sm btn-outline-danger"
+                                                    role="button">
+                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                        width="24" height="24"
+                                                        viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2"
+                                                        stroke-linecap="round" stroke-linejoin="round"
+                                                        class="icon icon-tabler icons-tabler-outline icon-tabler-trash">
+                                                        <path stroke="none" d="M0 0h24v24H0z"
+                                                            fill="none" />
+                                                        <path d="M4 7l16 0" />
+                                                        <path d="M10 11l0 6" />
+                                                        <path d="M14 11l0 6" />
+                                                        <path
+                                                            d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                                        <path
+                                                            d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                                    </svg>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer justify-content-between">
+            <form action="{{ route('pdf', ['model' => 'notulensi']) }}" id="filterdate">
+                <div class="row d-flex justify-content-between w-100">
+                    <div class="col-8 d-flex g-2">
+                        <div class="col-4 me-2">
+                            <div class="input-icon mb-2">
+                                <input class="form-control" placeholder="Select a start date"
+                                    id="datepicker-1" name="start_date">
+                                @error('start_date')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                                <span class="input-icon-addon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
+                                        height="24" viewBox="0 0 24 24" stroke-width="2"
+                                        stroke="currentColor" fill="none" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path
+                                            d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
+                                        </path>
+                                        <path d="M16 3v4"></path>
+                                        <path d="M8 3v4"></path>
+                                        <path d="M4 11h16"></path>
+                                        <path d="M11 15h1"></path>
+                                        <path d="M12 15v3"></path>
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="input-icon mb-2 me-2">
+                                <input class="form-control" placeholder="Select an end date" id="datepicker-2"
+                                    name="end_date">
+                                @error('end_date')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                                <span class="input-icon-addon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
+                                        height="24" viewBox="0 0 24 24" stroke-width="2"
+                                        stroke="currentColor" fill="none" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path
+                                            d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
+                                        </path>
+                                        <path d="M16 3v4"></path>
+                                        <path d="M8 3v4"></path>
+                                        <path d="M4 11h16"></path>
+                                        <path d="M11 15h1"></path>
+                                        <path d="M12 15v3"></path>
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-2  align-items-end">
+
+                            <button type="submit" class="btn btn-primary">Cetak Laporan</button>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="container-view6 container-xl" id="view6" hidden>
+
+        <div class="col-12">
+            <div class="card">
+                <div class="table-responsive p-3">
+                    <table class="table card-table table-vcenter text-nowrap datatable"
+                        style="width: 100%" id="myTable6">
+                        <thead>
+                            <tr>
+                                <th>Tahun ajaran</th>
+                                {{-- <th>Tanggal</th> --}}
+                                <th>No. surat</th>
+                                <th>Jenis Pengajuan</th>
+                                <th>Nama Pengajuan</th>
+                                <th>Nominal</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($suratpengajuan as $item)
+                                <tr>
+                                    <td>{{ $item->tp }}</td>
+                                    {{-- <td>{{ $item->tanggal }}</td> --}}
+                                    <td>{{ $item->no_surat }}</td>
+                                    <td>{{ Str::limit($item->jenis_pengajuan, 15) }}</td>
+                                    <td>{{ Str::limit($item->nama_pengajuan, 15) }}</td>
+                                    <td>{{ $item->nominal }}</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <form action="{{ route('inbox.download', $item->id) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('GET')
+                                                <button type="submit"
+                                                    class="btn btn-icon btn-sm btn-outline-primary"
+                                                    role="button">
+                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                        width="24" height="24"
+                                                        viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="1.5"
+                                                        stroke-linecap="round" stroke-linejoin="round"
+                                                        class="icon icon-tabler icons-tabler-outline icon-tabler-download">
+                                                        <path stroke="none" d="M0 0h24v24H0z"
+                                                            fill="none" />
+                                                        <path
+                                                            d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
+                                                        <path d="M7 11l5 5l5 -5" />
+                                                        <path d="M12 4l0 12" />
+                                                    </svg>
+                                                </button>
+                                            </form>
+                                            <button type="button"
+                                                class="btn btn-icon btn-sm btn-outline-success"
+                                                role="button"
+                                                data-bs-target="#modalUpdate6{{ $item->id }}"
+                                                data-bs-toggle="modal" data-bs-dismiss="modal">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                    height="24" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                    class="icon icon-tabler icons-tabler-outline icon-tabler-edit">
+                                                    <path stroke="none" d="M0 0h24v24H0z"
+                                                        fill="none" />
+                                                    <path
+                                                        d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
+                                                    <path
+                                                        d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
+                                                    <path d="M16 5l3 3" />
+                                                </svg>
+                                            </button>
+                                            <form action="{{ route('inbox.destroy', $item->id) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    class="btn btn-icon btn-sm btn-outline-danger"
+                                                    role="button">
+                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                        width="24" height="24"
+                                                        viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2"
+                                                        stroke-linecap="round" stroke-linejoin="round"
+                                                        class="icon icon-tabler icons-tabler-outline icon-tabler-trash">
+                                                        <path stroke="none" d="M0 0h24v24H0z"
+                                                            fill="none" />
+                                                        <path d="M4 7l16 0" />
+                                                        <path d="M10 11l0 6" />
+                                                        <path d="M14 11l0 6" />
+                                                        <path
+                                                            d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                                        <path
+                                                            d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                                    </svg>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer justify-content-between">
+            <form action="{{ route('pdf', ['model' => 'suratpengajuan']) }}" id="filterdate">
+                <div class="row d-flex justify-content-between w-100">
+                    <div class="col-8 d-flex g-2">
+                        <div class="col-4 me-2">
+                            <div class="input-icon mb-2">
+                                <input class="form-control" placeholder="Select a start date"
+                                    id="datepicker-1" name="start_date">
+                                @error('start_date')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                                <span class="input-icon-addon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
+                                        height="24" viewBox="0 0 24 24" stroke-width="2"
+                                        stroke="currentColor" fill="none" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path
+                                            d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
+                                        </path>
+                                        <path d="M16 3v4"></path>
+                                        <path d="M8 3v4"></path>
+                                        <path d="M4 11h16"></path>
+                                        <path d="M11 15h1"></path>
+                                        <path d="M12 15v3"></path>
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="input-icon mb-2 me-2">
+                                <input class="form-control" placeholder="Select an end date" id="datepicker-2"
+                                    name="end_date">
+                                @error('end_date')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                                <span class="input-icon-addon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
+                                        height="24" viewBox="0 0 24 24" stroke-width="2"
+                                        stroke="currentColor" fill="none" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path
+                                            d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
+                                        </path>
+                                        <path d="M16 3v4"></path>
+                                        <path d="M8 3v4"></path>
+                                        <path d="M4 11h16"></path>
+                                        <path d="M11 15h1"></path>
+                                        <path d="M12 15v3"></path>
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-2  align-items-end">
+
+                            <button type="submit" class="btn btn-primary">Cetak Laporan</button>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
     </div>
 
     @include('components.radio')
@@ -403,12 +1410,12 @@
     </script>
 
 
-    <script>
+    {{-- <script>
         document.addEventListener('DOMContentLoaded', function() {
             let tableIds = ['myTable1', 'myTable2', 'myTable3', 'myTable4', 'myTable5', 'myTable6'];
 
             // Initialize tables when modal is shown
-            $('#modalView1, #modalView2, #modalView3, #modalView4, #modalView5, #modalView6').on('shown.bs.modal',
+            $('#view1, #view2, #view3, #view4, #view5, #view6').on('shown.bs.modal',
                 function() {
                     tableIds.forEach(function(id) {
                         let tableElement = document.getElementById(id);
@@ -418,5 +1425,5 @@
                     });
                 });
         });
-    </script>
+    </script> --}}
 @endsection
