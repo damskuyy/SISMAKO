@@ -140,7 +140,7 @@
 
 {{-- Danger Modal --}}
 @foreach ($averages as $item)
-<form action="{{ route('average.delete', $item->id) }}" method="post">
+<form action="{{ route('average.destroy', $item->id) }}" method="post">
     @csrf
     @method('DELETE')
     <div class="modal modal-blur fade" id="modal-danger-{{ $item->id }}" tabindex="-1" role="dialog" aria-hidden="true">

@@ -11,10 +11,11 @@
             margin: 0;
             padding: 20px;
         }
+
         .logo {
             width: 100%;
-
         }
+
         .container {
             width: 600px;
             margin: 0 auto;
@@ -24,8 +25,14 @@
         }
 
         .header {
+            width: 80%;
             text-align: center;
-            margin-bottom: 20px;
+        }
+
+        .header h2,
+        .header h3,
+        .header p {
+            margin: 0;
         }
 
         .info-table {
@@ -98,44 +105,40 @@
         .jurnal-section td {
             text-align: center;
         }
-
     </style>
 </head>
 
 <body>
     <div class="container">
-        <div class="logo">
-            <table>
+        <div>
+            <table class="logo">
                 <tr>
-                    <td style="width:50%;"></td>
-                    <td style="width:50%; text-align: right;">
-                        <img src="https://smktibazma.sch.id/static/media/main-logo-2.7b74690f86ab4e9a4743.png" alt="Logo"
-                            style="height: 100px">
+                    <td class="header">
+                        <h2>PROGRES PESERTA DIDIK</h2>
+                        <h3>SMK TI BAZMA</h3>
+                        <p>Tanggal: {{ \Carbon\Carbon::parse($start_date)->translatedFormat('d F Y') }} -
+                            {{ \Carbon\Carbon::parse($end_date)->translatedFormat('d F Y') }}</p>
+                    </td>
+                    <td style="width:20%; vertical-align: text-top;">
+                        <img src="https://smktibazma.sch.id/static/media/main-logo-2.7b74690f86ab4e9a4743.png"
+                            alt="Logo" style="height: 63px">
                     </td>
                 </tr>
             </table>
         </div>
-        <div class="header">
-            <h2>PROGRES PESERTA DIDIK</h2>
-            <h3>SMK TI BAZMA</h3>
-            <p>Tanggal: {{ \Carbon\Carbon::parse($start_date)->translatedFormat('d F Y') }} -
-                {{ \Carbon\Carbon::parse($end_date)->translatedFormat('d F Y') }}</p>
-        </div>
         <table class="info-table">
             <tr>
-                <p><span>Nama</span> : {{$siswa->nama}}</p>
-                    <div class="photo-box">
-                        <img src="{{ $siswa->fotoSiswa[0]->path_file }}" alt="Foto Siswa">
-                    </div>
-            </tr>
-            <tr>
-                <p><span>NISN</span> : {{$siswa->nisn}}</p>
-            </tr>
-            <tr>
-                <p><span>Kelas</span> : {{$siswa->dataKelas[0]->kelas}}</p>
-            </tr>
-            <tr>
-                <p><span>TP</span> : {{$siswa->tahun_pelajaran}}</p>
+                <td style="width: 50%;">
+                    <p><span>Nama</span> : {{$siswa->nama}}</p>
+                    <p><span>NISN</span> : {{$siswa->nisn}}</p>
+                    <p><span>Kelas</span> : {{$siswa->dataKelas[0]->kelas}}</p>
+                    <p><span>TP</span> : {{$siswa->tahun_pelajaran}}</p>
+                </td>
+                <td style="width: 50%; text-align: right;">
+                    <!-- Text-align: right untuk meratakan ke kanan -->
+                    <img src="{{ $siswa->fotoSiswa[0]->path_file }}" alt="Foto Siswa" style="width: 50%; float: right;">
+                    <!-- Tambahkan float: right -->
+                </td>
             </tr>
         </table>
         <table class="section tahfidz-section" id="tahfidzTable">
@@ -262,14 +265,15 @@
                 </tr>
             </thead>
             <tbody id="jurnalBody">
-                <!-- Rows will be added here dynamically using JavaScript -->
+                <!-- Rows will be dynamically inserted here -->
             </tbody>
         </table>
+
     </div>
 </body>
 <script>
     const data = @json($siswa);
-    console.log(data);
+    console.log(data)
 
     // Convert tajwid object to an array
     const tajwidArray = Object.values(data.jurnalAsramaSiswa.tajwid);
@@ -315,4 +319,5 @@
         jurnalBody.appendChild(row);
     }
 </script>
+
 </html>
