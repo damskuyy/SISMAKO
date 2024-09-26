@@ -159,46 +159,46 @@ Route::controller(PanitiaController::class)->group(function () {
 
 // Sarpras
 Route::controller(SchoolPurchaseController::class)->group(function () {
-    Route::get('/sarpas/school-purchase', 'index')->name('school-purchases.index');
-    Route::get('/sarpas/good-items-school', 'goodItems')->name('good-items-school');
-    Route::get('/sarpas/damaged-items-school', 'damagedItems')->name('damaged-items-school');
+    Route::get('/sarpras/school-purchase', 'index')->name('school-purchases.index');
+    Route::get('/sarpras/good-items-school', 'goodItems')->name('good-items-school');
+    Route::get('/sarpras/damaged-items-school', 'damagedItems')->name('damaged-items-school');
 
-    Route::post('/sarpas/school-purchase', 'store')->name('school-purchases.store');
-    Route::get('/sarpas/school-purchases/{id}/download', 'download')->name('school-purchases.download');
+    Route::post('/sarpras/school-purchase', 'store')->name('school-purchases.store');
+    Route::get('/sarpras/school-purchases/{id}/download', 'download')->name('school-purchases.download');
 
-    Route::get('/sarpas/school-purchases/create', 'create')->name('school-purchases.create');
-    Route::get('/sarpas/school-purchases/{id}/edit', 'edit')->name('school-purchases.edit');
-    Route::put('/sarpas/school-purchases/{id}', 'update')->name('school-purchases.update');
-    Route::delete('/sarpas/school-purchases/{id}', 'destroy')->name('school-purchases.destroy');
-    Route::get('/sarpas/school-purchases/print', 'print')->name('school-purchases.print');
+    Route::get('/sarpras/school-purchases/create', 'create')->name('school-purchases.create');
+    Route::get('/sarpras/school-purchases/{id}/edit', 'edit')->name('school-purchases.edit');
+    Route::put('/sarpras/school-purchases/{id}', 'update')->name('school-purchases.update');
+    Route::delete('/sarpras/school-purchases/{id}', 'destroy')->name('school-purchases.destroy');
+    Route::get('/sarpras/school-purchases/print', 'print')->name('school-purchases.print');
 
-    Route::get('/sarpas/damaged-items-school/{$id}', 'getDamaged')->name('damaged-items-school.getDamaged');
-    Route::get('/sarpas/damaged-items-school/{id}/edit', 'edit')->name('damaged-items-school.edit');
+    Route::get('/sarpras/damaged-items-school/{$id}', 'getDamaged')->name('damaged-items-school.getDamaged');
+    Route::get('/sarpras/damaged-items-school/{id}/edit', 'edit')->name('damaged-items-school.edit');
     // Route::get('/items/{id}', 'show')->name('items.show');
-    Route::put('/sarpas/damaged-items-school/{id}', 'damaged')->name('damaged-items-school.damaged');
+    Route::put('/sarpras/damaged-items-school/{id}', 'damaged')->name('damaged-items-school.damaged');
 });
 
 Route::controller(DormPurchaseController::class)->group(function () {
-    Route::get('/sarpas/dorm-purchase', 'index')->name('dorm-purchases.index');
-    Route::get('/sarpas/good-items-dorm', 'goodItems')->name('good-items-dorm');
-    Route::get('/sarpas/damaged-items-dorm', 'damagedItems')->name('damaged-items-dorm');
+    Route::get('/sarpras/dorm-purchase', 'index')->name('dorm-purchases.index');
+    Route::get('/sarpras/good-items-dorm', 'goodItems')->name('good-items-dorm');
+    Route::get('/sarpras/damaged-items-dorm', 'damagedItems')->name('damaged-items-dorm');
 
-    Route::post('/sarpas/dorm-purchase', 'store')->name('dorm-purchases.store');
-    Route::get('/sarpas/dorm-purchases/{id}/download', 'download')->name('dorm-purchases.download');
+    Route::post('/sarpras/dorm-purchase', 'store')->name('dorm-purchases.store');
+    Route::get('/sarpras/dorm-purchases/{id}/download', 'download')->name('dorm-purchases.download');
 
-    Route::get('/sarpas/dorm-purchases/create', 'create')->name('dorm-purchases.create');
-    Route::get('/sarpas/dorm-purchases/{id}/edit', 'edit')->name('dorm-purchases.edit');
-    Route::put('/sarpas/dorm-purchases/{id}', 'update')->name('dorm-purchases.update');
-    Route::delete('/sarpas/dorm-purchases/{id}', 'destroy')->name('dorm-purchases.destroy');
-    Route::get('/sarpas/dorm-purchases/print', 'print')->name('dorm-purchases.print');
+    Route::get('/sarpras/dorm-purchases/create', 'create')->name('dorm-purchases.create');
+    Route::get('/sarpras/dorm-purchases/{id}/edit', 'edit')->name('dorm-purchases.edit');
+    Route::put('/sarpras/dorm-purchases/{id}', 'update')->name('dorm-purchases.update');
+    Route::delete('/sarpras/dorm-purchases/{id}', 'destroy')->name('dorm-purchases.destroy');
+    Route::get('/sarpras/dorm-purchases/print', 'print')->name('dorm-purchases.print');
 
-    Route::get('/sarpas/damaged-items-dorm/{$id}', 'getDamaged')->name('damaged-items-dorm.getDamaged');
-    Route::get('/sarpas/damaged-items-dorm/{id}/edit', 'edit')->name('damaged-items-dorm.edit');
+    Route::get('/sarpras/damaged-items-dorm/{$id}', 'getDamaged')->name('damaged-items-dorm.getDamaged');
+    Route::get('/sarpras/damaged-items-dorm/{id}/edit', 'edit')->name('damaged-items-dorm.edit');
     // Route::get('/items/{id}', 'show')->name('items.show');
-    Route::put('/sarpas/damaged-items-dorm/{id}', 'damaged')->name('damaged-items-dorm.damaged');
+    Route::put('/sarpras/damaged-items-dorm/{id}', 'damaged')->name('damaged-items-dorm.damaged');
 });
 
-Route::get('sarpas/zip-file', [SchoolPurchaseController::class, 'zip']);
+Route::get('sarpras/zip-file', [SchoolPurchaseController::class, 'zip']);
 
 
 
