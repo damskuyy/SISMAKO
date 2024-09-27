@@ -39,7 +39,7 @@ class SiswaRequest extends FormRequest
             'no_hp_wali' => 'required|string|max:20',
             'diterima_di_kelas' => 'required|string|max:20',
             'angkatan' => 'required',
-            'asal_sekolah' => 'required|string|max:50',
+            'asal_sekolah' => 'required|string',
             'alamat_asal_sekolah' => 'required|string|max:255',
             'status_siswa' => 'required|in:Aktif,Tidak aktif',
             'foto_kelas10' => 'file|max:2048',
