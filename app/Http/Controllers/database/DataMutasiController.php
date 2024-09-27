@@ -17,7 +17,6 @@ class DataMutasiController extends Controller
     {
         $mutasiFilter = $request->query('mutasi', ''); // Default empty filter
         $statusFilter = $request->query('status', ''); // Default empty filter
-
         $query = DataMutasi::query();
 
         if ($mutasiFilter) {

@@ -3,8 +3,24 @@
 @section('content')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <div class="container mt-3">
-        <a href="{{route('dashboard')}}" class="btn btn-secondary">Back</a>
+        <a href="{{ route('dashboard') }}" class="btn btn-secondary">Back</a>
         <a href="{{ route('siswa.create') }}" class="btn btn-primary">Tambah data Siswa</a>
+        <form method="GET" action="{{ route('siswa.index') }}" class="mt-3 d-flex row items-center" style="gap: 5px">
+            <div class="col-lg-4 col-12">
+                <div class="form-group">
+                    <label for="angkatan">Filter Angkatan:</label>
+                    <select id="angkatan" name="angkatan" class="form-control" onchange="this.form.submit()">
+                        <option value="">Semua</option>
+                        @foreach ($angkatanData as $data)
+                            <option value="{{ $data->angkatan }}"
+                                {{ $angkatanFilter == $data->angkatan ? 'selected' : '' }}>
+                                {{ $data->angkatan }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+        </form>
     </div>
     <div class="mt-4">
         <div class="table-responsive" style="margin-right: 20px; margin-left: 20px">
@@ -39,13 +55,13 @@
                             <td>{{ $data->status_siswa }}</td>
                             <td>
                                 <div class="btn-list flex-nowrap">
-                                    <button class="btn"><a target="_blank" href="{{ route('siswa.exportPdf', $data->id) }}"
+                                    <button class="btn"><a target="_blank"
+                                            href="{{ route('siswa.exportPdf', $data->id) }}"
                                             style="text-decoration: none">Export</a></button>
                                     <button class="btn rounded bg-success"><a
                                             href="{{ route('file.siswa', $data->nama) }}"><i
                                                 class="bi bi-box-arrow-right text-white"></i></a></button>
-                                    <button class="btn rounded bg-yellow"><a
-                                            href="{{ route('siswa.edit', $data->id) }}"><i
+                                    <button class="btn rounded bg-yellow"><a href="{{ route('siswa.edit', $data->id) }}"><i
                                                 class="bi bi-pencil-square text-white"></i></a></button>
                                     <form action="{{ route('siswa.destroy', $data->id) }}" method="POST">
                                         @csrf
@@ -65,6 +81,9 @@
                 </tbody>
             </table>
         </div>
+        <div class="d-flex justify-content-center mt-4">
+            {{ $siswa->links('vendor.pagination.bootstrap-5') }} <!-- Tambahkan ini untuk menampilkan tautan pagination -->
+        </div>
     </div>
     @if (session('success'))
         <div class="alert alert-success alert-dismissible position-absolute bottom-0 end-0 me-3" role="alert"
@@ -82,8 +101,8 @@
                     {{ session('success') }}
                 </div>
             </div>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"
-                onclick="disabledAlert()" style="cursor: pointer;"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close" onclick="disabledAlert()"
+                style="cursor: pointer;"></button>
         </div>
     @endif
 
