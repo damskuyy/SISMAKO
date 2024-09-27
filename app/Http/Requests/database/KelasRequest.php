@@ -23,9 +23,9 @@ class KelasRequest extends FormRequest
     {
         return [
             'id_siswa' => 'required|unique:data_kelas,id_siswa',
-            'tahun_pelajaran' => 'required|string|max:20',
+            'tahun_pelajaran' => 'required',
             'kelas' => 'nullable|in:X,XI,XII,XIII',
-            'jurusan' => 'required|string|max:50',
+            'jurusan' => 'required',
             'angkatan' => 'required'
         ];
     }
