@@ -75,7 +75,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">No. Handphone</label>
-                            <input type="number" class="form-control" name="no_hp" value="{{ old('no_hp', $tendik->no_hp) }}" required>
+                            <input type="number" class="form-control" name="no_hp" value="{{ old('no_hp', $tendik->no_hp) }}" required placeholder="6289533557657">
                             @error('no_hp')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror

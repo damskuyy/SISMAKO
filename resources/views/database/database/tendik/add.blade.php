@@ -74,7 +74,7 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">No. Handphone</label>
-                            <input autocomplete="off" type="number" class="form-control" name="no_hp" value="{{ old('no_hp') }}">
+                            <input autocomplete="off" type="number" class="form-control" name="no_hp" value="{{ old('no_hp') }}" placeholder="6289533557657">
                             @error('no_hp')
                                 <div class="text-danger mt-2">{{ $message }}</div>
                             @enderror

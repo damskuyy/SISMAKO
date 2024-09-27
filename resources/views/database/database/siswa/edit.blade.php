@@ -127,7 +127,7 @@
                     <div class="col-12 mb-3">
                         <div>
                             <label class="form-label">No. Handphone Wali Siswa</label>
-                            <input type="number" class="form-control" name="no_hp_wali" value="{{old('no_hp_wali', $siswa->no_hp_wali)}}" placeholder="0895-3355-77657">
+                            <input type="number" class="form-control" name="no_hp_wali" value="{{old('no_hp_wali', $siswa->no_hp_wali)}}" placeholder="6289533557657">
                             @error('no_hp_wali')
                                 <div class="text-danger mt-2">{{$message}}</div>
                             @enderror
