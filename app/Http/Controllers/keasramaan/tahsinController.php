@@ -10,9 +10,34 @@ use App\Http\Requests\keasramaan\TahsinRequest;
 
 class tahsinController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $tahsin = tahsin::with(['siswa:id,nama,nisn'])->take(500)->paginate(10);
+        // Ambil tanggal dan nama dari input
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+        $searchName = $request->input('search_name');
+
+        // Mulai dengan query dasar
+        $tahsin = tahsin::with(['siswa:id,nama,nisn']);
+
+        // Tambahkan filter tanggal jika ada input
+        if ($startDate) {
+            $tahsin->where('tanggal', '>=', $startDate);
+        }
+        if ($endDate) {
+            $tahsin->where('tanggal', '<=', $endDate);
+        }
+
+        // Tambahkan filter nama jika ada input
+        if ($searchName) {
+            $tahsin->whereHas('siswa', function ($query) use ($searchName) {
+                $query->where('nama', 'like', '%' . $searchName . '%');
+            });
+        }
+
+        // Paginate hasil
+        $tahsin = $tahsin->paginate(10);
+
         return view('keasramaan.quran.tahsin.tahsin', compact('tahsin'));
     }
 

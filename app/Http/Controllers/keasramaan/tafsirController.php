@@ -11,15 +11,45 @@ use App\Http\Requests\keasramaan\TafsirRequest;
 
 class tafsirController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $tafsir = akhlak::where('type', 'tafsir')
-        ->with([
-            'siswa:id,nama,nisn',
-            'siswa.dataKelas:id,id_siswa,kelas' // 'id_siswa' is the correct foreign key
-        ])
-        ->take(500)->paginate(10);
+        // Ambil filter dari input
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+        $searchName = $request->input('search_name');
+        $searchKelas = $request->input('search_kelas');
 
+        // Mulai dengan query dasar
+        $tafsir = Akhlak::where('type', 'tafsir')
+            ->with([
+                'siswa:id,nama,nisn',
+                'siswa.dataKelas:id,id_siswa,kelas' // 'id_siswa' is the correct foreign key
+            ]);
+
+        // Filter berdasarkan tanggal jika ada input
+        if ($startDate) {
+            $tafsir->where('tanggal', '>=', $startDate);
+        }
+        if ($endDate) {
+            $tafsir->where('tanggal', '<=', $endDate);
+        }
+
+        // Filter berdasarkan nama jika ada input
+        if ($searchName) {
+            $tafsir->whereHas('siswa', function ($query) use ($searchName) {
+                $query->where('nama', 'like', '%' . $searchName . '%');
+            });
+        }
+
+        // Filter berdasarkan kelas jika ada input
+        if ($searchKelas) {
+            $tafsir->whereHas('siswa.dataKelas', function ($query) use ($searchKelas) {
+                $query->where('kelas', 'like', '%' . $searchKelas . '%');
+            });
+        }
+
+        // Paginate hasil
+        $tafsir = $tafsir->paginate(10);
 
         return view('keasramaan.jurnal.tafsir.tafsir', compact('tafsir'));
     }

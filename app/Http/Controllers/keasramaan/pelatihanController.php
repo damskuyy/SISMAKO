@@ -12,13 +12,38 @@ use Illuminate\Support\Facades\Storage;
 
 class pelatihanController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $pelatihan = pelatihan::where('type', 'pelatihan')
-            ->with(['siswa:id,nama,nisn']) // Menentukan kolom yang ingin dimuat dari model siswa
-            ->take(500)->paginate(10);
+        // Ambil tanggal dan nama dari input
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+        $searchName = $request->input('search_name');
+
+        // Mulai dengan query dasar
+        $pelatihan = Pelatihan::where('type', 'pelatihan')
+            ->with(['siswa:id,nama,nisn']);
+
+        // Tambahkan filter tanggal jika ada input
+        if ($startDate) {
+            $pelatihan->where('tanggal', '>=', $startDate);
+        }
+        if ($endDate) {
+            $pelatihan->where('tanggal', '<=', $endDate);
+        }
+
+        // Tambahkan filter nama jika ada input
+        if ($searchName) {
+            $pelatihan->whereHas('siswa', function ($query) use ($searchName) {
+                $query->where('nama', 'like', '%' . $searchName . '%');
+            });
+        }
+
+        // Paginate hasil
+        $pelatihan = $pelatihan->paginate(10);
+
         return view('keasramaan.akademik.pelatihan.pelatihan', compact('pelatihan'));
     }
+
     public function create(Request $request)
     {
         $mutasiFilter = $request->query('angkatan', ''); // Default empty filter

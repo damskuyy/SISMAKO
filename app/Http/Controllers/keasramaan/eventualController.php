@@ -11,9 +11,35 @@ use App\Http\Requests\keasramaan\PelatihanRequest;
 
 class eventualController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $eventual = pelatihan::where('type', 'eventual')->with(['siswa:id,nama,nisn'])->take(500)->paginate(10);
+        // Ambil tanggal dan nama dari input
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+        $searchName = $request->input('search_name');
+
+        // Mulai dengan query dasar
+        $eventual = Pelatihan::where('type', 'eventual')
+            ->with(['siswa:id,nama,nisn']);
+
+        // Tambahkan filter tanggal jika ada input
+        if ($startDate) {
+            $eventual->where('tanggal', '>=', $startDate);
+        }
+        if ($endDate) {
+            $eventual->where('tanggal', '<=', $endDate);
+        }
+
+        // Tambahkan filter nama jika ada input
+        if ($searchName) {
+            $eventual->whereHas('siswa', function ($query) use ($searchName) {
+                $query->where('nama', 'like', '%' . $searchName . '%');
+            });
+        }
+
+        // Paginate hasil
+        $eventual = $eventual->paginate(10);
+
         return view('keasramaan.akademik.volentir.volentir', compact('eventual'));
     }
 

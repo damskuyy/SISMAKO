@@ -2,20 +2,63 @@
 
 namespace App\Http\Controllers\keasramaan;
 
-use App\Models\keasramaan\Lab;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\keasramaan\LabRequest;
+use Illuminate\Http\Request;
 use App\Models\database\Guru;
 use App\Models\database\Siswa;
+use App\Models\keasramaan\Lab;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Http;
+use App\Http\Requests\keasramaan\LabRequest;
 
 class LabController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $labs = Lab::take(500)->paginate(10);
+        // Ambil filter dari input
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+        $searchGuru = $request->input('search_guru');
+        $searchKelas = $request->input('search_kelas');
+        $searchSiswa = $request->input('search_siswa');
+
+        // Mulai dengan query dasar
+        $labs = Lab::query();
+
+        // Filter berdasarkan tanggal jika ada input
+        if ($startDate) {
+            $labs->where('tanggal', '>=', $startDate);
+        }
+        if ($endDate) {
+            $labs->where('tanggal', '<=', $endDate);
+        }
+
+        // Filter berdasarkan guru jika ada input
+        if ($searchGuru) {
+            $labs->whereHas('guru', function ($query) use ($searchGuru) {
+                $query->where('name', 'like', '%' . $searchGuru . '%');
+            });
+        }
+
+        // Filter berdasarkan kelas jika ada input
+        if ($searchKelas) {
+            $labs->whereHas('kelas', function ($query) use ($searchKelas) {
+                $query->where('name', 'like', '%' . $searchKelas . '%');
+            });
+        }
+
+        // Filter berdasarkan siswa jika ada input
+        if ($searchSiswa) {
+            $labs->whereHas('siswa', function ($query) use ($searchSiswa) {
+                $query->where('name', 'like', '%' . $searchSiswa . '%');
+            });
+        }
+
+        // Ambil data dengan pagination
+        $labs = $labs->take(500)->paginate(10);
+
         return view('keasramaan.akses-lab.lab', compact('labs'));
     }
+
 
     public function create()
     {

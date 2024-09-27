@@ -10,9 +10,34 @@ use App\Http\Requests\keasramaan\TahfidzRequest;
 
 class tahfidzController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $tahfidz = Tahfidz::with(['siswa:id,nama,nisn'])->take(500)->paginate(10); // Ganti dengan paginate(10)
+        // Ambil tanggal dan nama dari input
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+        $searchName = $request->input('search_name');
+
+        // Mulai dengan query dasar
+        $tahfidz = tahfidz::with(['siswa:id,nama,nisn']);
+
+        // Tambahkan filter tanggal jika ada input
+        if ($startDate) {
+            $tahfidz->where('tanggal', '>=', $startDate);
+        }
+        if ($endDate) {
+            $tahfidz->where('tanggal', '<=', $endDate);
+        }
+
+        // Tambahkan filter nama jika ada input
+        if ($searchName) {
+            $tahfidz->whereHas('siswa', function ($query) use ($searchName) {
+                $query->where('nama', 'like', '%' . $searchName . '%');
+            });
+        }
+
+        // Paginate hasil
+        $tahfidz = $tahfidz->paginate(10);
+
         return view('keasramaan.quran.tahfidz.tahfidz', compact('tahfidz'));
     }
 

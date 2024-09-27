@@ -18,6 +18,29 @@
                                 Tambah
                             </a>
                         </div>
+                        <!-- Form Filter -->
+                        <form method="GET" action="{{ route('akhlak.index') }}" class="mb-4">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <input type="date" name="start_date" class="form-control" placeholder="Start Date">
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="date" name="end_date" class="form-control" placeholder="End Date">
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="text" name="search_name" class="form-control"
+                                        placeholder="Search by Name">
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="text" name="search_kelas" class="form-control"
+                                        placeholder="Search by Kelas">
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-success">Filter</button>
+                                </div>
+                            </div>
+                        </form>
+
                         @if (session('success'))
                         <div class="alert alert-important alert-success alert-dismissible" role="alert">
                             <div class="d-flex">
@@ -70,7 +93,8 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#modal-danger-{{ $item->id }}">
+                                        <a href="#" data-bs-toggle="modal"
+                                            data-bs-target="#modal-danger-{{ $item->id }}">
                                             <i class="far fa-trash-alt text-white text-xl bg-red p-2 rounded-lg"></i>
                                         </a>
                                     </td>
@@ -86,7 +110,8 @@
                         </table>
                     </div>
                     <div class="d-flex justify-content-center mt-4">
-                        {{ $akhlak->links('vendor.pagination.bootstrap-5') }} <!-- Tambahkan ini untuk menampilkan tautan pagination -->
+                        {{ $akhlak->links('vendor.pagination.bootstrap-5') }}
+                        <!-- Tambahkan ini untuk menampilkan tautan pagination -->
                     </div>
                 </div>
             </div>

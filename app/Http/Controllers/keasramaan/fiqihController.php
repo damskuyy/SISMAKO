@@ -13,15 +13,45 @@ use App\Http\Requests\keasramaan\FiqihRequest;
 
 class fiqihController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $fiqih = akhlak::where('type', 'fiqih')
-        ->with([
-            'siswa:id,nama,nisn',
-            'siswa.dataKelas:id,id_siswa,kelas' // 'id_siswa' is the correct foreign key
-        ])
-        ->take(500)->paginate(10);
+        // Ambil filter dari input
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+        $searchName = $request->input('search_name');
+        $searchKelas = $request->input('search_kelas');
 
+        // Mulai dengan query dasar
+        $fiqih = Akhlak::where('type', 'fiqih')
+            ->with([
+                'siswa:id,nama,nisn',
+                'siswa.dataKelas:id,id_siswa,kelas' // 'id_siswa' is the correct foreign key
+            ]);
+
+        // Filter berdasarkan tanggal jika ada input
+        if ($startDate) {
+            $fiqih->where('tanggal', '>=', $startDate);
+        }
+        if ($endDate) {
+            $fiqih->where('tanggal', '<=', $endDate);
+        }
+
+        // Filter berdasarkan nama jika ada input
+        if ($searchName) {
+            $fiqih->whereHas('siswa', function ($query) use ($searchName) {
+                $query->where('nama', 'like', '%' . $searchName . '%');
+            });
+        }
+
+        // Filter berdasarkan kelas jika ada input
+        if ($searchKelas) {
+            $fiqih->whereHas('siswa.dataKelas', function ($query) use ($searchKelas) {
+                $query->where('kelas', 'like', '%' . $searchKelas . '%');
+            });
+        }
+
+        // Paginate hasil
+        $fiqih = $fiqih->paginate(10);
 
         return view('keasramaan.jurnal.fiqih.fiqih', compact('fiqih'));
     }

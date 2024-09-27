@@ -12,9 +12,35 @@ use Illuminate\Support\Facades\Storage;
 
 class lombaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $lomba = pelatihan::where('type', 'lomba')->with(['siswa:id,nama,nisn'])->take(500)->paginate(10);
+        // Ambil tanggal dan nama dari input
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+        $searchName = $request->input('search_name');
+
+        // Mulai dengan query dasar
+        $lomba = Pelatihan::where('type', 'lomba')
+            ->with(['siswa:id,nama,nisn']);
+
+        // Tambahkan filter tanggal jika ada input
+        if ($startDate) {
+            $lomba->where('tanggal', '>=', $startDate);
+        }
+        if ($endDate) {
+            $lomba->where('tanggal', '<=', $endDate);
+        }
+
+        // Tambahkan filter nama jika ada input
+        if ($searchName) {
+            $lomba->whereHas('siswa', function ($query) use ($searchName) {
+                $query->where('nama', 'like', '%' . $searchName . '%');
+            });
+        }
+
+        // Paginate hasil
+        $lomba = $lomba->paginate(10);
+
         return view('keasramaan.akademik.lomba.lomba', compact('lomba'));
     }
 

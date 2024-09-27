@@ -18,6 +18,23 @@
                                 Tambah
                             </a>
                         </div>
+                        <form method="GET" action="{{ route('sertifikat') }}">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <input type="date" name="start_date" class="form-control" placeholder="Start Date">
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="date" name="end_date" class="form-control" placeholder="End Date">
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" name="search_name" class="form-control" placeholder="Search by Name">
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-success">Filter</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                         @if (session('success'))
                         <div class="alert alert-important alert-success alert-dismissible" role="alert">
                             <div class="d-flex">

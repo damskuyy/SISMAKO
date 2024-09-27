@@ -17,6 +17,28 @@
                                 Tambah
                             </a>
                         </div>
+                        <form method="GET" action="{{ route('lab.index') }}" class="mb-4">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <input type="date" name="start_date" class="form-control" placeholder="Start Date">
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="date" name="end_date" class="form-control" placeholder="End Date">
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="text" name="search_guru" class="form-control" placeholder="Search Guru">
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="text" name="search_kelas" class="form-control" placeholder="Search Kelas">
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="text" name="search_siswa" class="form-control" placeholder="Search Siswa">
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-success">Filter</button>
+                                </div>
+                            </div>
+                        </form>
                         @if (session('success'))
                         <div class="alert alert-important alert-success alert-dismissible" role="alert">
                             <div class="d-flex">
