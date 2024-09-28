@@ -97,8 +97,7 @@
                     </table>
                 </div>
                 <div class="d-flex justify-content-center mt-4">
-                    {{ $labs->links('vendor.pagination.bootstrap-5') }} <!-- Tambahkan ini untuk menampilkan tautan pagination -->
-                </div>
+                    {{ $labs->appends(request()->input())->links('vendor.pagination.bootstrap-5') }}                </div>
                 <!-- Akhir dari div table-responsive -->
             </div>
         </div>

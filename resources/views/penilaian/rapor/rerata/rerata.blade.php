@@ -22,6 +22,26 @@
                                 Tambah
                             </a>
                         </div>
+                        <form method="GET" action="{{ route('average') }}" class="mb-4">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <input type="text" name="tahun_ajaran" class="form-control" value="{{ request('tahun_ajaran') }}"
+                                        placeholder="Tahun Ajaran">
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" name="kelas" class="form-control" value="{{ request('kelas') }}"
+                                        placeholder="Kelas">
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" name="semester" class="form-control" value="{{ request('semester') }}"
+                                        placeholder="Semester">
+                                </div>
+                                <div class="col-md-3">
+                                    <button type="submit" class="btn btn-success">Filter</button>
+                                </div>
+                            </div>
+                        </form>
+
                         @if (session('success'))
                         <div class="alert alert-important alert-success alert-dismissible" role="alert">
                             <div class="d-flex">
@@ -130,7 +150,7 @@
                         </table>
                     </div>
                     <div class="d-flex justify-content-center mt-4">
-                        {{ $averages->links('vendor.pagination.bootstrap-5') }} <!-- Tambahkan ini untuk menampilkan tautan pagination -->
+                        {{ $averages->appends(request()->input())->links('vendor.pagination.bootstrap-5') }}
                     </div>
                 </div>
             </div>

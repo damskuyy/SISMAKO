@@ -11,7 +11,23 @@
                 <a href="{{ route('rapor.create') }}" class="btn btn-primary">Tambah</a>
             </div>
         </div>
-
+        <form method="GET" action="{{ route('rapor') }}" class="mb-4">
+            <div class="row">
+                <div class="col-md-2">
+                    <!-- Ganti "search_name" menjadi "nama" agar sesuai dengan controller -->
+                    <input type="text" name="nama" class="form-control" value="{{ request('nama') }}"
+                        placeholder="Search by Name">
+                </div>
+                <div class="col-md-2">
+                    <!-- Ganti "search_kelas" menjadi "kelas" agar sesuai dengan controller -->
+                    <input type="text" name="kelas" class="form-control" value="{{ request('kelas') }}"
+                        placeholder="Search by Kelas">
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-success">Filter</button>
+                </div>
+            </div>
+        </form>
         @if (session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <div class="d-flex align-items-center">
@@ -94,7 +110,7 @@
                 </table>
             </div>
             <div class="d-flex justify-content-center mt-4">
-                {{ $rapor->links('vendor.pagination.bootstrap-5') }} <!-- Tambahkan ini untuk menampilkan tautan pagination -->
+                {{ $rapor->appends(request()->input())->links('vendor.pagination.bootstrap-5') }}
             </div>
         </div>
     </div>

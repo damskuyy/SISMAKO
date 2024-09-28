@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\penilaian;
+use Illuminate\Http\Request;
 use App\Models\penilaian\rpts;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
@@ -8,10 +9,30 @@ use App\Http\Requests\penilaian\RptsRequest;
 
 class RptsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $rpts = rpts::take(500)->paginate(10);
-        return view('penilaian.rapor.pts.rapor', compact('rpts'));
+        // Ambil nilai filter dari request
+        $filterKelas = $request->input('kelas');
+        $filterNama = $request->input('nama');
+
+        // Query untuk rapor dengan filter kelas dan nama jika ada
+        $query = rpts::query();
+
+        if ($filterKelas) {
+            // Menggunakan pencocokan yang tepat (exact match) alih-alih LIKE
+            $query->where('kelas', '=', $filterKelas);
+        }
+
+        if ($filterNama) {
+            // Nama tetap menggunakan LIKE karena mungkin ingin pencarian sebagian
+            $query->where('nama', 'like', '%' . $filterNama . '%');
+        }
+
+        // Lakukan pagination dan ambil hasilnya
+        $rapor = $query->paginate(10);
+
+        // Mengembalikan view dengan data rapor dan filter yang diterapkan
+        return view('penilaian.rapor.rapor', compact('rapor', 'filterKelas', 'filterNama'));
     }
 
     public function create()

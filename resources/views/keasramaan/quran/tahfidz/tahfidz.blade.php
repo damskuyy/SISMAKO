@@ -104,8 +104,7 @@
                     </table>
                 </div>
                 <div class="d-flex justify-content-center mt-4">
-                    {{ $tahfidz->links('vendor.pagination.bootstrap-5') }}
-                </div>
+                    {{ $tahfidz->appends(request()->input())->links('vendor.pagination.bootstrap-5') }}                </div>
             </div>
         </div>
     </div>

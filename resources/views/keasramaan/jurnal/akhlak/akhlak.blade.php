@@ -110,8 +110,7 @@
                         </table>
                     </div>
                     <div class="d-flex justify-content-center mt-4">
-                        {{ $akhlak->links('vendor.pagination.bootstrap-5') }}
-                        <!-- Tambahkan ini untuk menampilkan tautan pagination -->
+                        {{ $akhlak->appends(request()->input())->links('vendor.pagination.bootstrap-5') }}
                     </div>
                 </div>
             </div>

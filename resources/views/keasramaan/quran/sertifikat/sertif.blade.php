@@ -107,8 +107,7 @@
                         </table>
                     </div>
                     <div class="d-flex justify-content-center mt-4">
-                        {{ $sertifikat->links('vendor.pagination.bootstrap-5') }} <!-- Tambahkan ini untuk menampilkan tautan pagination -->
-                    </div>
+                        {{ $sertifikat->appends(request()->input())->links('vendor.pagination.bootstrap-5') }}                    </div>
                 </div>
             </div>
         </div>

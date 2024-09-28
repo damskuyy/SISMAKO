@@ -17,6 +17,23 @@
                                     Tambah
                                 </a>
                             </div>
+                            <form method="GET" action="{{ route('rpts') }}" class="mb-4">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <!-- Ganti "search_name" menjadi "nama" agar sesuai dengan controller -->
+                                        <input type="text" name="nama" class="form-control" value="{{ request('nama') }}"
+                                            placeholder="Search by Name">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <!-- Ganti "search_kelas" menjadi "kelas" agar sesuai dengan controller -->
+                                        <input type="text" name="kelas" class="form-control" value="{{ request('kelas') }}"
+                                            placeholder="Search by Kelas">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button type="submit" class="btn btn-success">Filter</button>
+                                    </div>
+                                </div>
+                            </form>
                             @if (session('success'))
                                 <div class="alert alert-important alert-success alert-dismissible" role="alert">
                                     <div class="d-flex">
@@ -133,7 +150,7 @@
                             </table>
                         </div>
                         <div class="d-flex justify-content-center mt-4">
-                            {{ $rpts->links('vendor.pagination.bootstrap-5') }} <!-- Tambahkan ini untuk menampilkan tautan pagination -->
+                            {{ $rpts->appends(request()->input())->links('vendor.pagination.bootstrap-5') }} <!-- Tambahkan ini untuk menampilkan tautan pagination -->
                         </div>
                     </div>
                 </div>

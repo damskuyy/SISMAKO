@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\penilaian;
 
+use Illuminate\Http\Request;
 use App\Models\penilaian\rapor;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
@@ -9,10 +10,30 @@ use App\Http\Requests\penilaian\RaporRequest;
 
 class RaporController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $rapor = rapor::take(500)->paginate(10);
-        return view('penilaian.rapor.rapor', compact('rapor'));
+        // Ambil nilai filter dari request
+        $filterKelas = $request->input('kelas');
+        $filterNama = $request->input('nama');
+
+        // Query untuk rapor dengan filter kelas dan nama jika ada
+        $query = rapor::query();
+
+        if ($filterKelas) {
+            // Menggunakan pencocokan yang tepat (exact match) alih-alih LIKE
+            $query->where('kelas', '=', $filterKelas);
+        }
+
+        if ($filterNama) {
+            // Nama tetap menggunakan LIKE karena mungkin ingin pencarian sebagian
+            $query->where('nama', 'like', '%' . $filterNama . '%');
+        }
+
+        // Lakukan pagination dan ambil hasilnya
+        $rapor = $query->paginate(10);
+
+        // Mengembalikan view dengan data rapor dan filter yang diterapkan
+        return view('penilaian.rapor.rapor', compact('rapor', 'filterKelas', 'filterNama'));
     }
 
     public function create()

@@ -9,11 +9,33 @@ use App\Http\Requests\penilaian\AverageRequest;
 
 class AverageController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $averages = average::take(500)->paginate(10);
+        // Ambil nilai filter dari request
+        $filterTahunAjaran = $request->input('tahun_ajaran');
+        $filterKelas = $request->input('kelas');
+        $filterSemester = $request->input('semester');
 
-        // Calculate averages for each record
+        // Query dasar
+        $query = average::query();
+
+        // Tambahkan kondisi berdasarkan filter yang diisi
+        if ($filterTahunAjaran) {
+            $query->where('tahun_ajaran', '=', $filterTahunAjaran);
+        }
+
+        if ($filterKelas) {
+            $query->where('kelas', '=', $filterKelas);
+        }
+
+        if ($filterSemester) {
+            $query->where('semester', '=', $filterSemester);
+        }
+
+        // Ambil data dengan filter yang diterapkan dan pagination
+        $averages = $query->paginate(10);
+
+        // Hitung rata-rata untuk setiap record
         $chartData = [];
         foreach ($averages as $average) {
             $average->totalAverage = $average->calculateAverage();
@@ -25,8 +47,10 @@ class AverageController extends Controller
             ];
         }
 
-        return view('penilaian.rapor.rerata.rerata', compact('averages', 'chartData'));
+        // Kembalikan view dengan data averages dan chartData
+        return view('penilaian.rapor.rerata.rerata', compact('averages', 'chartData', 'filterTahunAjaran', 'filterKelas', 'filterSemester'));
     }
+
     public function create()
     {
         return view('penilaian.rapor.rerata.create');

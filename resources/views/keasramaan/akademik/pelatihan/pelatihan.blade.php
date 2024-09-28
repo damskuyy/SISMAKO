@@ -86,8 +86,7 @@
                         </table>
                     </div>
                     <div class="d-flex justify-content-center mt-4">
-                        {{ $pelatihan->links('vendor.pagination.bootstrap-5') }}
-                    </div>
+                        {{ $pelatihan->appends(request()->input())->links('vendor.pagination.bootstrap-5') }}                    </div>
                 </div>
             </div>
         </div>
