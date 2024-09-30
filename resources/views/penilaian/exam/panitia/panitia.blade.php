@@ -12,6 +12,29 @@
             </div>
         </div>
 
+        <form action="{{ route('panitia') }}" method="GET" class="mb-4">
+            <div class="row">
+                <div class="col-md-4">
+                    <select name="tahun_ajaran" class="form-select" aria-label="Filter by Tahun Ajaran">
+                        <option value="">Pilih Tahun Ajaran</option>
+                        @for ($i = 0; $i < 10; $i++)
+                            @php
+                                $startYear = 2022 + $i; // Starting from 2022
+                                $endYear = $startYear + 1; // Next year
+                                $yearRange = "{$startYear}-{$endYear}"; // Format as "YYYY-YYYY"
+                            @endphp
+                            <option value="{{ $yearRange }}" {{ request('tahun_ajaran') == $yearRange ? 'selected' : '' }}>
+                                {{ $yearRange }}
+                            </option>
+                        @endfor
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary">Filter</button>
+                </div>
+            </div>
+        </form>
+
         @if (session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('success') }}

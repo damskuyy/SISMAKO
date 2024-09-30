@@ -13,11 +13,25 @@ use App\Http\Requests\penilaian\PasRequest;
 
 class PanitiaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $panitia = pas::where('type', 'panitia')->take(500)->paginate(10);
-        return view('penilaian.exam.panitia.panitia', compact('panitia'));
+        // Fetch the filter from the request
+        $tahunAjaran = $request->input('tahun_ajaran');
+
+        // Build the query based on whether the filter is present
+        $query = pas::where('type', 'panitia');
+
+        if ($tahunAjaran) {
+            $query->where('tahun_ajaran', $tahunAjaran);
+        }
+
+        // Paginate the results
+        $panitia = $query->take(500)->paginate(10);
+
+        // Return the view with filtered data
+        return view('penilaian.exam.panitia.panitia', compact('panitia', 'tahunAjaran'));
     }
+
 
     public function create()
     {

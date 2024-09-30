@@ -17,6 +17,36 @@
                                 Tambah
                             </a>
                         </div>
+                        <form method="GET" action="{{ route('pat') }}" class="mb-4">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <select name="tahun_ajaran" class="form-select" aria-label="Filter by Tahun Ajaran">
+                                        <option value="">Pilih Tahun Ajaran</option>
+                                        @for ($i = 0; $i < 10; $i++)
+                                            @php
+                                                $startYear = 2022 + $i; // Starting from 2022
+                                                $endYear = $startYear + 1; // Next year
+                                                $yearRange = "{$startYear}-{$endYear}"; // Format as "YYYY-YYYY"
+                                            @endphp
+                                            <option value="{{ $yearRange }}" {{ request('tahun_ajaran') == $yearRange ? 'selected' : '' }}>
+                                                {{ $yearRange }}
+                                            </option>
+                                        @endfor
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="text" name="kelas" class="form-control" value="{{ request('kelas') }}"
+                                        placeholder="Search by Kelas">
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="text" name="mapel" class="form-control" value="{{ request('mapel') }}"
+                                        placeholder="Search by Mapel">
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-success">Filter</button>
+                                </div>
+                            </div>
+                        </form>
                         @if (session('success'))
                         <div class="alert alert-important alert-success alert-dismissible" role="alert">
                             <div class="d-flex">

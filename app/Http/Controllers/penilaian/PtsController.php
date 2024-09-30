@@ -13,10 +13,32 @@ use App\Http\Requests\penilaian\PasRequest;
 
 class PtsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $pts = pas::where('type', 'pts')->take(500)->paginate(10);
-        return view('penilaian.exam.pts.pts', compact('pts'));
+        $tahunAjaran = $request->input('tahun_ajaran');
+        $kelas = $request->input('kelas');
+        $mapel = $request->input('mapel');
+
+        // Build the query with optional filters
+        $query = pas::where('type', 'pts');
+
+        if ($tahunAjaran) {
+            $query->where('tahun_ajaran', $tahunAjaran);
+        }
+
+        if ($kelas) {
+            $query->where('kelas', $kelas);
+        }
+
+        if ($mapel) {
+            $query->where('mapel', $mapel);
+        }
+
+        // Paginate the results
+        $pts = $query->take(500)->paginate(10);
+
+        // Return the view with filtered data
+        return view('penilaian.exam.pts.pts', compact('pts', 'tahunAjaran', 'kelas', 'mapel'));
     }
 
     public function create()

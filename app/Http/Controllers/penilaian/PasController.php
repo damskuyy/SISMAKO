@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\penilaian;
 
 use ZipArchive;
+use Illuminate\Http\Request;
 use App\Models\penilaian\pas;
 use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
@@ -12,11 +13,35 @@ use App\Http\Requests\penilaian\PasRequest;
 
 class PasController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $pas = pas::where('type', 'pas')->take(500)->paginate(10);
-        return view('penilaian.exam.pas.pas', compact('pas'));
+        // Get the filter values from the request
+        $tahunAjaran = $request->input('tahun_ajaran');
+        $kelas = $request->input('kelas');
+        $mapel = $request->input('mapel');
+
+        // Build the query with optional filters
+        $query = pas::where('type', 'pas');
+
+        if ($tahunAjaran) {
+            $query->where('tahun_ajaran', $tahunAjaran);
+        }
+
+        if ($kelas) {
+            $query->where('kelas', $kelas);
+        }
+
+        if ($mapel) {
+            $query->where('mapel', $mapel);
+        }
+
+        // Paginate the results
+        $pas = $query->take(500)->paginate(10);
+
+        // Return the view with filtered data
+        return view('penilaian.exam.pas.pas', compact('pas', 'tahunAjaran', 'kelas', 'mapel'));
     }
+
 
     public function create()
     {
