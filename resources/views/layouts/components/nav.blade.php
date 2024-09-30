@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm sticky-top">
-    <div class="container {{ Request::is('penilaian/panitia') || Request::is('penilaian/rpts') || Request::is('penilaian/rapor/rerata') ? 'custom-container' : (Request::is('penilaian/rapor') ? 'xl-custom-container' : '') }}">
+    <div class="container {{ Request::is('penilaian/panitia') || Request::is('penilaian/rpts') || Request::is('penilaian/rapor/rerata') || Request::is('sarpras') || Request::is('sarpras/dorm-purchase') || Request::is('sarpras/damaged-items-dorm') || Request::is('sarpras/good-items-dorm') || Request::is('sarpras/school-purchase') || Request::is('sarpras/damaged-items-school') || Request::is('sarpras/good-items-school') ? 'custom-container' : (Request::is('penilaian/rapor') ? 'xl-custom-container' : '') }}">
         <!-- Logo -->
         <a class="navbar-brand" href="/">
             <img src="https://res.cloudinary.com/dhyq9uts4/image/upload/v1676360444/logo_v09np1.png" alt="Logo"

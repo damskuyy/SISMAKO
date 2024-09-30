@@ -1,4 +1,4 @@
-<div class="container my-3">
+<div class="container custom-container my-3">
     <div class="row">
         <div class="col-sm-12 col-lg-6 mb-3">
             <div class="card shadow-sm">

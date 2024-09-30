@@ -4,7 +4,7 @@
     @include('layouts.livewire.header')
 
     <!-- Tambahkan Tombol "Tambah" di sini -->
-    <div class="container my-3">
+    <div class="container custom-container my-3">
         <div class="row row-cards">
             <div class="col-12">
                 <div class="mb-3">

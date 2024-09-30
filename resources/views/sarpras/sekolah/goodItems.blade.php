@@ -3,7 +3,7 @@
 @section('content')
     @include('layouts.livewire.header')
 
-    <div class="container my-3">
+    <div class="container custom-container my-3">
         <div class="row row-cards">
 
             <!-- Modal untuk Tambah Barang -->
