@@ -1,7 +1,7 @@
 <?php
 
 if (!function_exists('generateTahunAjaran')) {
-    function generateTahunAjaran($startYear = 2024, $years = 10)
+    function generateTahunAjaran($startYear = 2022, $years = 10)
     {
         $tahunAjaran = [];
 

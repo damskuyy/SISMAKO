@@ -20,17 +20,16 @@
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label">Tahun Ajaran</label>
-                                        <select class="form-select" name="tahun_ajaran">
+                                        <select class="form-control form-select" name="tahun_ajaran">
                                             <option value="">Pilih Tahun Ajaran</option>
-                                            @foreach (['2024-2025', '2025-2026', '2026-2027', '2027-2028', '2028-2029', '2029-2030'] as $tahun)
+                                            @foreach (generateTahunAjaran() as $tahun)
                                                 <option value="{{ $tahun }}"
                                                     {{ $pas->tahun_ajaran == $tahun ? 'selected' : '' }}>
-                                                    {{ $tahun }}
-                                                </option>
+                                                    {{ $tahun }}</option>
                                             @endforeach
                                         </select>
                                         @error('tahun_ajaran')
-                                            <div class="text-danger mt-2">{{ $message }}</div>
+                                            <div class="text-danger mt-2"> {{ $message }} </div>
                                         @enderror
                                     </div>
                                 </div>

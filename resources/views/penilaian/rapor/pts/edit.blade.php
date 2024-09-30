@@ -24,27 +24,14 @@
                                             <label class="form-label">Tahun Ajaran</label>
                                             <select class="form-control form-select" name="tahun_ajaran">
                                                 <option value="">Pilih Tahun Ajaran</option>
-                                                <option value="2024-2025" {{ $rpts->tahun_ajaran == '2024-2025' ?
-                                                    'selected' : '' }}>
-                                                    2024-2025</option>
-                                                <option value="2025-2026" {{ $rpts->tahun_ajaran == '2025-2026' ?
-                                                    'selected' : '' }}>
-                                                    2025-2026</option>
-                                                <option value="2026-2027" {{ $rpts->tahun_ajaran == '2026-2027' ?
-                                                    'selected' : '' }}>
-                                                    2026-2027</option>
-                                                <option value="2027-2028" {{ $rpts->tahun_ajaran == '2027-2028' ?
-                                                    'selected' : '' }}>
-                                                    2027-2028</option>
-                                                <option value="2028-2029" {{ $rpts->tahun_ajaran == '2028-2029' ?
-                                                    'selected' : '' }}>
-                                                    2028-2029</option>
-                                                <option value="2029-2030" {{ $rpts->tahun_ajaran == '2029-2030' ?
-                                                    'selected' : '' }}>
-                                                    2029-2030</option>
+                                                @foreach (generateTahunAjaran() as $tahun)
+                                                    <option value="{{ $tahun }}"
+                                                        {{ $rpts->tahun_ajaran == $tahun ? 'selected' : '' }}>
+                                                        {{ $tahun }}</option>
+                                                @endforeach
                                             </select>
                                             @error('tahun_ajaran')
-                                            <div class="text-danger mt-2"> {{ $message }} </div>
+                                                <div class="text-danger mt-2"> {{ $message }} </div>
                                             @enderror
                                         </div>
                                     </div>

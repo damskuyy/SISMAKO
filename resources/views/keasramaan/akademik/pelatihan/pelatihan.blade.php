@@ -66,12 +66,12 @@
                                     <td>{{ $item->pengajar }}</td>
                                     <td>
                                         <a href="{{ route('pelatihan.edit', $item->id) }}">
-                                            <i class="fa-regular fa-pen-to-square text-white text-xl bg-yellow p-2 rounded-lg"></i>
+                                            <i class="fa-regular fa-pen-to-square text-white text-xl bg-yellow p-2 rounded"></i>
                                         </a>
                                     </td>
                                     <td>
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#modal-danger-{{ $item->id }}">
-                                            <i class="far fa-trash-alt text-white text-xl bg-red p-2 rounded-lg"></i>
+                                            <i class="far fa-trash-alt text-white text-xl bg-red p-2 rounded"></i>
                                         </a>
                                     </td>
                                 </tr>

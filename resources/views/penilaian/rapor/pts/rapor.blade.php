@@ -135,7 +135,7 @@
                                             </td>
                                             <td>
                                                 <a href="#" data-bs-toggle="modal" data-bs-target="#modal-danger-{{ $item->id }}">
-                                                    <i class="far fa-trash-alt text-white text-xl bg-red p-2 rounded-lg"></i>
+                                                    <i class="far fa-trash-alt text-white text-xl bg-red p-2 rounded"></i>
                                                 </a>
                                             </td>
                                         </tr>
