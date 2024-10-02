@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+
 @section('content')
     <div class="px-5 py-4">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -71,45 +72,31 @@
                                             <th>Tahun Ajaran</th>
                                             <th>Kelas</th>
                                             <th>Mapel</th>
-                                            <th>PKG</th>
                                             <th>Kategori Kurikulum</th>
-                                            <th>Silabus</th>
-                                            <th>KI KD & SKL</th>
-                                            <th>Kode Etik</th>
-                                            <th>Program Semester</th>
-                                            <th>Program Tahunan</th>
-                                            <th>Kaldik Sekolah</th>
-                                            <th>JAK</th>
-                                            <th>Analisi Waktu</th>
+                                            <th>Capaian Pembelajaran</th>
+                                            <th>Tujuan Pembelajaran & Alur Tujuan Pembelajaran (TP. ATP)</th>
+                                            <th>Kriteria Ketuntasan Tujuan Pembelajaran (KKTP)</th>
+                                            {{-- <th>RPP</th>
+                                            <th>Pendukung RPP</th> --}}
+                                            <th>Kode Etik Guru</th>
+                                            <th>Ikrar Guru</th>
+                                            <th>Tata Tertib Guru</th>
+                                            <th>Pembiasaan Guru</th>
+                                            <th>Kalender Pendidikan (KALDIK)</th>
+                                            <th>Alokasi Waktu</th>
+                                            <th>Program Tahunan (PROTA)</th>
+                                            <th>Program Semester (PROSEM)</th>
+                                            <th>Jurnal Agenda Guru</th>
                                             <th>Daftar Hadir Siswa</th>
-                                            <th>Jadwal Pelajaran</th>
-                                            <th>Kisi-kisi, Soal, Kartu Soal</th>
-                                            <th>RPP 1</th>
-                                            <th>Pendukung RPP 1</th>
-                                            <th>RPP 2</th>
-                                            <th>Pendukung RPP 2</th>
-                                            <th>RPP 3</th>
-                                            <th>Pendukung RPP 3</th>
-                                            <th>RPP 4</th>
-                                            <th>Pendukung RPP 4</th>
-                                            <th>RPP 5</th>
-                                            <th>Pendukung RPP 5</th>
-                                            <th>RPP 6</th>
-                                            <th>Pendukung RPP 6</th>
-                                            <th>RPP 7</th>
-                                            <th>Pendukung RPP 7</th>
-                                            <th>RPP 8</th>
-                                            <th>Pendukung RPP 8</th>
-                                            <th>RPP 9</th>
-                                            <th>Pendukung RPP 9</th>
-                                            <th>RPP 10</th>
-                                            <th>Pendukung RPP 10</th>
-                                            <th>RPP 11</th>
-                                            <th>Pendukung RPP 11</th>
-                                            <th>RPP 12</th>
-                                            <th>Pendukung RPP 12</th>
-                                            <th>RPP 13</th>
-                                            <th>Pendukung RPP 13</th>
+                                            <th>Daftar Nilai Siswa</th>
+                                            <th>Penilaian Sikap & Spiritual (PS. S)</th>
+                                            <th>Analisis Hasil Penilaian</th>
+                                            <th>Program Remedial & Pengayaan (PR. P)</th>
+                                            <th>Jadwal Mengajar Guru</th>
+                                            <th>Tugas Terstruktur</th>
+                                            <th>Tugas Tidak Terstruktur</th>
+                                            <th>Daftar Evaluasi Diri Kerja Guru (DEDKG)</th>
+                                            <th>Program Tindak Lanjut Kerja Guru (PTLKG)</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -121,44 +108,32 @@
                                                 <td>{{ $item->kelas }}</td>
                                                 <td>{{ $item->mapel }}</td>
                                                 <td>{{ $item->kategori_kurikulum }}</td>
-                                                <td>{{ Str::limit($item->pkg, 10, '...') }}</td>
-                                                <td>{{ Str::limit($item->silabus, 10, '...') }}</td>
-                                                <td>{{ Str::limit($item->ki_kd_skl, 10, '...') }}</td>
-                                                <td>{{ Str::limit($item->kode_etik, 10, '...') }}</td>
-                                                <td>{{ Str::limit($item->program_semester, 10, '...') }}</td>
-                                                <td>{{ Str::limit($item->program_tahunan, 10, '...') }}</td>
-                                                <td>{{ Str::limit($item->kaldik_sekolah, 10, '...') }}</td>
-                                                <td>{{ Str::limit($item->jak, 10, '...') }}</td>
-                                                <td>{{ Str::limit($item->analisi_waktu, 10, '...') }}</td>
-                                                <td>{{ Str::limit($item->daftar_hadir_siswa, 10, '...') }}</td>
-                                                <td>{{ Str::limit($item->jadwal_pelajaran, 10, '...') }}</td>
-                                                <td>{{ Str::limit($item->kisi_kisi_soal_kartu_soal, 10, '...') }}</td>
-                                                <td>{{ Str::limit($item->rpp_1, 10, '...') }}</td>
-                                                <td>{{ Str::limit($item->pendukung_rpp_1, 10, '...') }}</td>
-                                                <td>{{ Str::limit($item->rpp_2, 10, '...') }}</td>
-                                                <td>{{ Str::limit($item->pendukung_rpp_2, 10, '...') }}</td>
-                                                <td>{{ Str::limit($item->rpp_3, 10, '...') }}</td>
-                                                <td>{{ Str::limit($item->pendukung_rpp_3, 10, '...') }}</td>
-                                                <td>{{ Str::limit($item->rpp_4, 10, '...') }}</td>
-                                                <td>{{ Str::limit($item->pendukung_rpp_4, 10, '...') }}</td>
-                                                <td>{{ Str::limit($item->rpp_5, 10, '...') }}</td>
-                                                <td>{{ Str::limit($item->pendukung_rpp_5, 10, '...') }}</td>
-                                                <td>{{ Str::limit($item->rpp_6, 10, '...') }}</td>
-                                                <td>{{ Str::limit($item->pendukung_rpp_6, 10, '...') }}</td>
-                                                <td>{{ Str::limit($item->rpp_7, 10, '...') }}</td>
-                                                <td>{{ Str::limit($item->pendukung_rpp_7, 10, '...') }}</td>
-                                                <td>{{ Str::limit($item->rpp_8, 10, '...') }}</td>
-                                                <td>{{ Str::limit($item->pendukung_rpp_8, 10, '...') }}</td>
-                                                <td>{{ Str::limit($item->rpp_9, 10, '...') }}</td>
-                                                <td>{{ Str::limit($item->pendukung_rpp_9, 10, '...') }}</td>
-                                                <td>{{ Str::limit($item->rpp_10, 10, '...') }}</td>
-                                                <td>{{ Str::limit($item->pendukung_rpp_10, 10, '...') }}</td>
-                                                <td>{{ Str::limit($item->rpp_11, 10, '...') }}</td>
-                                                <td>{{ Str::limit($item->pendukung_rpp_11, 10, '...') }}</td>
-                                                <td>{{ Str::limit($item->rpp_12, 10, '...') }}</td>
-                                                <td>{{ Str::limit($item->pendukung_rpp_12, 10, '...') }}</td>
-                                                <td>{{ Str::limit($item->rpp_13, 10, '...') }}</td>
-                                                <td>{{ Str::limit($item->pendukung_rpp_13, 10, '...') }}</td>
+                                                <td>{{ Str::limit($item->CapaianPembelajaran, 10, '...') }}</td>
+                                                <td>{{ Str::limit($item->TPATP, 10, '...') }}</td>
+                                                <td>{{ Str::limit($item->KKTP, 10, '...') }}</td>
+                                                {{-- @for ($i = 1; $i <= 13; $i++)
+                                                    <td>{{ Str::limit($item->{'rpp_' . $i}, 10, '...') }}</td>
+                                                    <td>{{ Str::limit($item->{'pendukung_rpp_' . $i}, 10, '...') }}</td>
+                                                @endfor --}}
+                                                <td>{{ Str::limit($item->KodeEtikGuru, 10, '...') }}</td>
+                                                <td>{{ Str::limit($item->IkrarGuru, 10, '...') }}</td>
+                                                <td>{{ Str::limit($item->TatibGuru, 10, '...') }}</td>
+                                                <td>{{ Str::limit($item->PembiasaanGuru, 10, '...') }}</td>
+                                                <td>{{ Str::limit($item->Kaldik, 10, '...') }}</td>
+                                                <td>{{ Str::limit($item->AlokasiWaktu, 10, '...') }}</td>
+                                                <td>{{ Str::limit($item->Prota, 10, '...') }}</td>
+                                                <td>{{ Str::limit($item->Prosem, 10, '...') }}</td>
+                                                <td>{{ Str::limit($item->JurnalAgendaGuru, 10, '...') }}</td>
+                                                <td>{{ Str::limit($item->DaftarHadirSiswa, 10, '...') }}</td>
+                                                <td>{{ Str::limit($item->DaftarNilaiSiswa, 10, '...') }}</td>
+                                                <td>{{ Str::limit($item->PSS, 10, '...') }}</td>
+                                                <td>{{ Str::limit($item->AnalisisHasilPenilaian, 10, '...') }}</td>
+                                                <td>{{ Str::limit($item->PRP, 10, '...') }}</td>
+                                                <td>{{ Str::limit($item->JadwalMengajarGuru, 10, '...') }}</td>
+                                                <td>{{ Str::limit($item->TugasTerstruktur, 10, '...') }}</td>
+                                                <td>{{ Str::limit($item->TugasTidakTerstruktur, 10, '...') }}</td>
+                                                <td>{{ Str::limit($item->DEDKG, 10, '...') }}</td>
+                                                <td>{{ Str::limit($item->PTLKG, 10, '...') }}</td>
                                                 <td>
                                                     <a href="{{ route('mapel.download', $item->id) }}">
                                                         <i
@@ -173,9 +148,11 @@
                                                         @csrf
                                                         @method('DELETE')
 
+
                                                         <button type="button"
                                                             class="far fa-trash-alt text-white text-xl bg-red p-2 rounded-lg"
                                                             data-bs-toggle="modal" data-bs-target="#modal-danger"></button>
+
 
                                                         <!-- Modal -->
                                                         <div class="modal modal-blur fade" id="modal-danger" tabindex="-1"

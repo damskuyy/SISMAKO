@@ -39,7 +39,7 @@
                 <a href="{{ route('pin', ['redirect_url' => '/sekolah-keasramaan/akses-lab']) }}" class="text-decoration-none">
                     <div class="card shadow-sm mb-4 hover-shadow" style="background-color:rgba(255, 0, 0, 0.25);">
                         <div class="card-body d-flex align-items-center">
-                            <img src="https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/Icons%2Fsearch.gif?alt=media&token=35e8b631-1ac7-46e5-b69c-9f5f82de4e04" alt=""
+                            <img src="https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/Icons%2Fcomputer.gif?alt=media&token=8ea22d50-e985-422d-b0ab-3898b6a368ed" alt=""
                                 style="width: 50%; height: auto; margin-right: 16px;">
                             <h2 class="card-title text-xl font-semibold mb-0"
                                 style="font-size: 1.5rem; font-family: 'Poppins', sans-serif; font-weight: bold; color: white;">

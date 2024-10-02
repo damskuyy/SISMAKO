@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+
 @section('content')
 <style></style>
 <link rel="stylesheet" href="{{ asset('dist/css/style.css') }}">
@@ -21,6 +22,7 @@
                 ];
             @endphp
 
+
             @foreach ($data as $index => $person)
                 <div class="item" style="--position: {{ $index + 1 }}">
                     <img src={{$person['img']}} alt="">
@@ -31,6 +33,7 @@
                 </div>
             @endforeach
         </div>
+
 
         <div class="content">
             <div class="author">

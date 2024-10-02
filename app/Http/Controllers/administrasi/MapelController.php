@@ -1,15 +1,19 @@
 <?php
 
+
 namespace App\Http\Controllers\administrasi;
+
 
 use ZipArchive;
 use Illuminate\Http\Request;
 use App\Models\administrasi\Mapel;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 // use App\Http\Helpers\TahunAjaranHelper;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\administrasi\MapelRequest;
+
 
 class MapelController extends Controller
 {
@@ -19,29 +23,38 @@ class MapelController extends Controller
         $kelasFilter = $request->query('kelas', '');
         $mapelFilter = $request->query('mapel', '');
 
+
         $query = Mapel::query();
+
 
         if ($tahunAjaranFilter) {
             $query->where('tahun_ajaran', $tahunAjaranFilter);
         }
 
+
         if ($kelasFilter) {
             $query->where('kelas', $kelasFilter);
         }
+
 
         if ($mapelFilter) {
             $query->where('mapel', $mapelFilter);
         }
 
+
         $mapels = $query->paginate(10);
+
 
         $tahunAjaranOptions = Mapel::select('tahun_ajaran')->distinct()->pluck('tahun_ajaran');
         $kelasOptions = Mapel::select('kelas')->distinct()->pluck('kelas');
         $mapelOptions = Mapel::select('mapel')->distinct()->pluck('mapel');
 
+
         // return view('page.administrasi.mapel.index', compact('mapels', 'tahunAjaranFilter', 'kelasFilter', 'mapelFilter', 'tahunAjaranOptions', 'kelasOptions', 'mapelOptions'));
         return view('administrasi.mapel.index', compact('mapels', 'tahunAjaranFilter', 'kelasFilter', 'mapelFilter', 'tahunAjaranOptions', 'kelasOptions', 'mapelOptions'));
     }
+
+
 
 
     public function create()
@@ -50,33 +63,46 @@ class MapelController extends Controller
         // $endYear = $startYear + 6;
         // $tahunAjaran = [];
 
+
         // for ($year = $startYear; $year < $endYear; $year++) {
         //     $tahunAjaran[] = $year . '-' . ($year + 1);
         // }
 
+
         // $tahunAjaran = TahunAjaranHelper::generateTahunAjaran();
+
 
         return view('administrasi.mapel.create');
     }
+
 
     public function store(MapelRequest $request)
     {
         // Validasi input
         $validateData = $request->validated();
 
+
         $fileFields = [
-            'pkg',
-            'silabus',
-            'ki_kd_skl',
-            'kode_etik',
-            'program_semester',
-            'program_tahunan',
-            'kaldik_sekolah',
-            'jak',
-            'analisi_waktu',
-            'daftar_hadir_siswa',
-            'jadwal_pelajaran',
-            'kisi_kisi_soal_kartu_soal',
+            'CapaianPembelajaran',
+            'TPATP',
+            'KKTP',
+            'KodeEtikGuru',
+            'IkrarGuru',
+            'TatibGuru',
+            'PembiasaanGuru',
+            'Kaldik',
+            'AlokasiWaktu',
+            'Prota',
+            'Prosem',
+            'JurnalAgendaGuru',
+            'DaftarHadirSiswa',
+            'DaftarNilaiSiswa',
+            'PSS',
+            'AnalisisHasilPenilaian',
+            'PRP',
+            'JadwalMengajarGuru',
+            'TugasTerstruktur',
+            'TugasTidakTerstruktur',
             'rpp_1',
             'pendukung_rpp_1',
             'rpp_2',
@@ -105,6 +131,7 @@ class MapelController extends Controller
             'pendukung_rpp_13',
         ];
 
+
         foreach ($fileFields as $fileField) {
             if ($request->file($fileField)) {
                 $file = $request->file($fileField);
@@ -114,8 +141,10 @@ class MapelController extends Controller
         }
         Mapel::create($validateData);
 
+
         return redirect()->route('mapel.index')->with('success', 'Mapel created successfully.');
     }
+
 
     public function edit($id)
     {
@@ -124,39 +153,64 @@ class MapelController extends Controller
         return view('administrasi.mapel.edit', compact('mapel'));
     }
 
+
     public function update(MapelRequest $request, $id)
     {
         $mapel = Mapel::findOrFail($id);
 
+
         $validateData = $request->validated();
 
+
         $fileFields = [
-            'pkg',
-            'silabus',
-            'ki_kd_skl',
-            'kode_etik',
-            'program_semester',
-            'program_tahunan',
-            'kaldik_sekolah',
-            'jak',
-            'analisi_waktu',
-            'daftar_hadir_siswa',
-            'jadwal_pelajaran',
-            'kisi_kisi_soal_kartu_soal',
+            'CapaianPembelajaran',
+            'TPATP',
+            'KKTP',
+            'KodeEtikGuru',
+            'IkrarGuru',
+            'TatibGuru',
+            'PembiasaanGuru',
+            'Kaldik',
+            'AlokasiWaktu',
+            'Prota',
+            'Prosem',
+            'JurnalAgendaGuru',
+            'DaftarHadirSiswa',
+            'DaftarNilaiSiswa',
+            'PSS',
+            'AnalisisHasilPenilaian',
+            'PRP',
+            'JadwalMengajarGuru',
+            'TugasTerstruktur',
+            'TugasTidakTerstruktur',
             'rpp_1',
+            'pendukung_rpp_1',
             'rpp_2',
+            'pendukung_rpp_2',
             'rpp_3',
+            'pendukung_rpp_3',
             'rpp_4',
+            'pendukung_rpp_4',
             'rpp_5',
+            'pendukung_rpp_5',
             'rpp_6',
+            'pendukung_rpp_6',
             'rpp_7',
+            'pendukung_rpp_7',
             'rpp_8',
+            'pendukung_rpp_8',
             'rpp_9',
+            'pendukung_rpp_9',
             'rpp_10',
+            'pendukung_rpp_10',
             'rpp_11',
+            'pendukung_rpp_11',
             'rpp_12',
+            'pendukung_rpp_12',
             'rpp_13',
+            'pendukung_rpp_13',
         ];
+
 
         foreach ($fileFields as $fileField) {
             if ($request->hasFile($fileField)) {
@@ -177,30 +231,42 @@ class MapelController extends Controller
             }
         }
 
+
         $mapel->update($validateData);
+
 
         return redirect()->route('mapel.index')->with('success', 'Mapel updated successfully.');
     }
+
 
     public function destroy($id)
     {
         // Temukan mapel berdasarkan ID
         $mapel = Mapel::findOrFail($id);
 
+
         // Define file fields
         $fileFields = [
-            'pkg',
-            'silabus',
-            'ki_kd_skl',
-            'kode_etik',
-            'program_semester',
-            'program_tahunan',
-            'kaldik_sekolah',
-            'jak',
-            'analisi_waktu',
-            'daftar_hadir_siswa',
-            'jadwal_pelajaran',
-            'kisi_kisi_soal_kartu_soal',
+            'CapaianPembelajaran',
+            'TPATP',
+            'KKTP',
+            'KodeEtikGuru',
+            'IkrarGuru',
+            'TatibGuru',
+            'PembiasaanGuru',
+            'Kaldik',
+            'AlokasiWaktu',
+            'Prota',
+            'Prosem',
+            'JurnalAgendaGuru',
+            'DaftarHadirSiswa',
+            'DaftarNilaiSiswa',
+            'PSS',
+            'AnalisisHasilPenilaian',
+            'PRP',
+            'JadwalMengajarGuru',
+            'TugasTerstruktur',
+            'TugasTidakTerstruktur',
             'rpp_1',
             'pendukung_rpp_1',
             'rpp_2',
@@ -228,6 +294,7 @@ class MapelController extends Controller
             'rpp_13',
             'pendukung_rpp_13',
         ];
+
 
         foreach ($fileFields as $fileField) {
             if ($mapel->$fileField) {
@@ -235,29 +302,42 @@ class MapelController extends Controller
             }
         }
 
+
         // Hapus entri dari database
         $mapel->delete();
 
+
         return redirect()->route('mapel.index')->with('success', 'Mapel deleted successfully.');
     }
+
 
     public function downloadFiles($id)
     {
         $mapel = Mapel::findOrFail($id);
 
+
+        // Daftar direktori file yang ingin didownload
         $directories = [
-            'pkg',
-            'silabus',
-            'ki_kd_skl',
-            'kode_etik',
-            'program_semester',
-            'program_tahunan',
-            'kaldik_sekolah',
-            'jak',
-            'analisi_waktu',
-            'daftar_hadir_siswa',
-            'jadwal_pelajaran',
-            'kisi_kisi_soal_kartu_soal',
+            'CapaianPembelajaran',
+            'TPATP',
+            'KKTP',
+            'KodeEtikGuru',
+            'IkrarGuru',
+            'TatibGuru',
+            'PembiasaanGuru',
+            'Kaldik',
+            'AlokasiWaktu',
+            'Prota',
+            'Prosem',
+            'JurnalAgendaGuru',
+            'DaftarHadirSiswa',
+            'DaftarNilaiSiswa',
+            'PSS',
+            'AnalisisHasilPenilaian',
+            'PRP',
+            'JadwalMengajarGuru',
+            'TugasTerstruktur',
+            'TugasTidakTerstruktur',
             'rpp_1',
             'pendukung_rpp_1',
             'rpp_2',
@@ -286,12 +366,15 @@ class MapelController extends Controller
             'pendukung_rpp_13',
         ];
 
+
         // Cek apakah ada file yang tersedia untuk didownload
         $filesAvailable = false;
 
+
         foreach ($directories as $dir) {
             if ($mapel->$dir) {
-                $filePath = storage_path('app/' . $mapel->$dir);
+                // Mendapatkan path file dari public directory
+                $filePath = public_path($mapel->$dir);
                 if (file_exists($filePath)) {
                     $filesAvailable = true;
                     break; // Jika satu file ditemukan, hentikan loop
@@ -299,34 +382,41 @@ class MapelController extends Controller
             }
         }
 
-        // Jika tidak ada file yang tersedia, kembalikan alert
+
+        // Jika tidak ada file yang tersedia, kembalikan pesan error
         if (!$filesAvailable) {
             return back()->with('error', 'Tidak ada file yang tersedia untuk didownload.');
         }
 
-        // Create a temporary file to store the zip
-        $zipFileName = 'Mapel_files_' . $mapel->mapel . '.zip';
-        $zipFilePath = storage_path('app/' . $zipFileName);
 
-        // Ensure the Storage directory exists
-        if (!Storage::exists('Storage')) {
-            Storage::makeDirectory('Storage');
-            Log::info('Created Storage directory: ' . storage_path('app'));
+        // Buat nama file zip sementara untuk menyimpan semua file
+        $zipFileName = 'Mapel_files_' . $mapel->mapel . '.zip';
+        $zipFilePath = public_path('zips/' . $zipFileName);
+
+
+        // Pastikan direktori 'zips' ada
+        if (!File::exists(public_path('zips'))) {
+            File::makeDirectory(public_path('zips'), 0755, true);
         }
 
+
+        // Membuat file ZIP
         $zip = new ZipArchive;
         if ($zip->open($zipFilePath, ZipArchive::CREATE | ZipArchive::OVERWRITE) === TRUE) {
             foreach ($directories as $dir) {
                 if ($mapel->$dir) {
-                    $filePath = storage_path('app/' . $mapel->$dir);
+                    $filePath = public_path($mapel->$dir); // Mengambil file dari public
                     if (file_exists($filePath)) {
-                        $zip->addFile($filePath, $dir . '/' . basename($filePath));
+                        $zip->addFile($filePath, basename($filePath)); // Tambahkan file ke zip
+                    } else {
+                        Log::error('File tidak ditemukan: ' . $filePath);
                     }
                 }
             }
             $zip->close();
 
-            // Download the created zip file
+
+            // Setelah ZIP dibuat, kirim untuk di-download dan hapus setelah pengiriman
             return response()->download($zipFilePath)->deleteFileAfterSend(true);
         } else {
             return back()->with('error', 'Gagal membuat file zip.');

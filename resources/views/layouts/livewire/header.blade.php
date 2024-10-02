@@ -1,11 +1,12 @@
-<div class="container custom-container my-3">
+<div class="container my-3">
     <div class="row">
         <div class="col-sm-12 col-lg-6 mb-3">
             <div class="card shadow-sm">
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col-3">
-                            <img src="https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/Icons%2Fdormitory.gif?alt=media&token=d2d8e1c5-9914-4e76-8c62-f457165f37ba" alt="" class="img-fluid">                        </div>
+                            <img src="https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/Icons%2Fschool.gif?alt=media&token=df4d9eee-ff3c-4aa9-892d-f94ca0a3e060" alt="" class="img-fluid">
+                        </div>
                         <div class="col-9">
                             <div class="row">
                                 <div class="col-12 mb-3">
@@ -37,7 +38,8 @@
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col-3">
-                            <img src="https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/Icons%2Fdormitory.gif?alt=media&token=d2d8e1c5-9914-4e76-8c62-f457165f37ba" alt="" class="img-fluid">                        </div>
+                            <img src="https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/Icons%2Fdormitory.gif?alt=media&token=d2d8e1c5-9914-4e76-8c62-f457165f37ba" alt="" class="img-fluid">
+                        </div>
                         <div class="col-9">
                             <div class="row">
                                 <div class="col-12 mb-3">

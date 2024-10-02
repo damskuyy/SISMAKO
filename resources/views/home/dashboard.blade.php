@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
+
 @section('content')
     @include('database.inc.form')
+
 
     <head>
         <style>
@@ -11,6 +13,7 @@
                 background: transparent;
             }
 
+
             /* Styling for cards */
             .card {
                 transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -19,10 +22,12 @@
                 color: #fff;
             }
 
+
             .card:hover {
                 transform: translateY(-10px);
                 box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
             }
+
 
             /* Styling for card body */
             .card-body {
@@ -31,54 +36,67 @@
                 gap: 10px;
             }
 
+
             .content-body-1 img {
                 transition: transform 0.5s ease-in-out;
             }
+
 
             .content-body-2-1 img {
                 transition: transform 0.5s ease-in-out;
             }
 
+
             .content-body-2-1:hover img {
                 transform: scale(1.5);
             }
+
 
             .content-body-1:hover img {
                 transform: scale(1.5);
             }
 
+
             .btn-group a {
                 margin-right: 10px;
             }
+
 
             /* Card Colors */
             .card-guru {
                 background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);
             }
 
+
             .card-siswa {
                 background-image: linear-gradient(to top, #00c6fb 0%, #005bea 100%);
             }
+
 
             .card-mutasi {
                 background-image: linear-gradient(-60deg, #ff5858 0%, #f09819 100%);
             }
 
+
             .card-award {
                 background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             }
+
 
             .card-tendik {
                 background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
             }
 
+
             .card-kelas {
                 background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
             }
 
+
             .card-kelulusan {
                 background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
             }
+
 
             .card-pkl {
                 background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);

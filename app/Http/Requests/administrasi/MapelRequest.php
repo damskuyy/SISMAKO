@@ -1,8 +1,11 @@
 <?php
 
+
 namespace App\Http\Requests\administrasi;
 
+
 use Illuminate\Foundation\Http\FormRequest;
+
 
 class MapelRequest extends FormRequest
 {
@@ -13,6 +16,7 @@ class MapelRequest extends FormRequest
     {
         return true;
     }
+
 
     /**
      * Get the validation rules that apply to the request.
@@ -26,18 +30,26 @@ class MapelRequest extends FormRequest
             'kelas' => 'required',
             'mapel' => 'required',
             'kategori_kurikulum' => 'required',
-            'pkg' => 'nullable|file|max:2048',
-            'silabus' => 'nullable|file|max:2048',
-            'ki_kd_skl' => 'nullable|file|max:2048',
-            'kode_etik' => 'nullable|file|max:2048',
-            'program_semester' => 'nullable|file|max:2048',
-            'program_tahunan' => 'nullable|file|max:2048',
-            'kaldik_sekolah' => 'nullable|file|max:2048',
-            'jak' => 'nullable|file|max:2048',
-            'analisi_waktu' => 'nullable|file|max:2048',
-            'daftar_hadir_siswa' => 'nullable|file|max:2048',
-            'jadwal_pelajaran' => 'nullable|file|max:2048',
-            'kisi_kisi_soal_kartu_soal' => 'nullable|file|max:2048',
+            'CapaianPembelajaran' => 'nullable|file|max:2048',
+            'TPATP' => 'nullable|file|max:2048',
+            'KKTP' => 'nullable|file|max:2048',
+            'KodeEtikGuru' => 'nullable|file|max:2048',
+            'IkrarGuru' => 'nullable|file|max:2048',
+            'TatibGuru' => 'nullable|file|max:2048',
+            'PembiasaanGuru' => 'nullable|file|max:2048',
+            'Kaldik' => 'nullable|file|max:2048',
+            'AlokasiWaktu' => 'nullable|file|max:2048',
+            'Prota' => 'nullable|file|max:2048',
+            'Prosem' => 'nullable|file|max:2048',
+            'JurnalAgendaGuru' => 'nullable|file|max:2048',
+            'DaftarHadirSiswa' => 'nullable|file|max:2048',
+            'DaftarNilaiSiswa' => 'nullable|file|max:2048',
+            'PSS' => 'nullable|file|max:2048',
+            'AnalisisHasilPenilaian' => 'nullable|file|max:2048',
+            'PRP' => 'nullable|file|max:2048',
+            'JadwalMengajarGuru' => 'nullable|file|max:2048',
+            'TugasTerstruktur' => 'nullable|file|max:2048',
+            'TugasTidakTerstruktur' => 'nullable|file|max:2048',
             'rpp_1' => 'nullable|file|max:2048',
             'pendukung_rpp_1' => 'nullable|file|max:2048',
             'rpp_2' => 'nullable|file|max:2048',
