@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             ['url' => '/pkg', 'password' => '190924'],
             ['url' => '/jamaah', 'password' => '170845'],
             ['url' => '/patroli/asrama', 'password' => '170845'],
+            ['url' => '/sekolah-keasramaan/akses-lab', 'password' => '170845'],
         ];
 
         foreach ($cards as $card) {

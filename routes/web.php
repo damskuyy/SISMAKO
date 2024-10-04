@@ -12,12 +12,16 @@ use App\Http\Controllers\database\SiswaController;
 use App\Http\Controllers\keasramaan\LabController;
 use App\Http\Controllers\penilaian\RptsController;
 use App\Http\Controllers\database\TendikController;
+use App\Http\Controllers\keasramaan\OrtuController;
+use App\Http\Controllers\keasramaan\TamuController;
 use App\Http\Controllers\penilaian\RaporController;
 use App\Http\Controllers\database\DatabaseDashboard;
+use App\Http\Controllers\keasramaan\DinasController;
 use App\Http\Controllers\keasramaan\fiqihController;
 use App\Http\Controllers\keasramaan\lombaController;
 use App\Http\Controllers\administrasi\OsisController;
 use App\Http\Controllers\keasramaan\akhlakController;
+use App\Http\Controllers\keasramaan\AlumniController;
 use App\Http\Controllers\keasramaan\tafsirController;
 use App\Http\Controllers\keasramaan\tahsinController;
 use App\Http\Controllers\keasramaan\tajwidController;
@@ -30,6 +34,7 @@ use App\Http\Controllers\administrasi\KepsekController;
 use App\Http\Controllers\database\DataMutasiController;
 use App\Http\Controllers\database\PunishmentController;
 use App\Http\Controllers\keasramaan\eventualController;
+use App\Http\Controllers\keasramaan\IndustriController;
 use App\Http\Controllers\korespondensi\indexController;
 use App\Http\Controllers\keasramaan\pelatihanController;
 use App\Http\Controllers\sarpras\DormPurchaseController;
@@ -63,6 +68,7 @@ Route::view('sekolah-keasramaan', 'home.keasramaan')->name('keasramaan');
 Route::view('sekolah-keasramaan/al-quran', 'keasramaan.quran.quran')->name('quran');
 Route::view('sekolah-keasramaan/akademik', 'keasramaan.akademik.akademik')->name('akademik');
 Route::view('sekolah-keasramaan/jurnal-asrama', 'keasramaan.jurnal.jurnal')->name('jurnal');
+Route::view('sekolah-keasramaan/kunjungan', 'keasramaan.kunjungan.kunjungan')->name('kunjungan');
 Route::view('created-by', 'home.createdBy')->name('created-by');
 
 Route::get('/api/send-whatsapp', [WhatsAppController::class, 'sendMessage']);
@@ -83,7 +89,7 @@ Route::middleware('password')->group(function () {
     Route::put('/change-password', [App\Http\Controllers\PasswordController::class, 'updatePassword'])->name('password.update');
     Route::get('/jamaah', [App\Http\Controllers\keasramaan\JamaahSiswaController::class, 'index'])->name('jamaah.index');
     Route::get('/patroli/asrama', [App\Http\Controllers\keasramaan\PatroliAsramaController::class, 'index'])->name('patroli.asrama.index');
-    Route::get('/sekolah-keasramaan/akses-lab',[App\Http\Controllers\keasramaan\LabController::class, 'index'])->name('lab.index');
+    Route::get('/sekolah-keasramaan/akses-lab', [App\Http\Controllers\keasramaan\LabController::class, 'index'])->name('lab.index');
 });
 
 
@@ -449,6 +455,51 @@ Route::controller(LabController::class)->group(function () {
     Route::get('/sekolah-keasramaan/akses-lab/edit', 'edit')->name('lab.edit');
     Route::put('/sekolah-keasramaan/akses-lab/update', 'update')->name('lab.update');
     Route::delete('/sekolah-keasramaan/akses-lab/delete', 'destroy')->name('lab.delete');
+});
+
+Route::controller(AlumniController::class)->group(function () {
+    Route::get('/sekolah-keasramaan/kunjungan/alumni', 'index')->name('alumni');
+    Route::get('/sekolah-keasramaan/kunjungan/alumni/create', 'create')->name('alumni.create');
+    Route::post('/sekolah-keasramaan/kunjungan/alumni/store', 'store')->name('alumni.store');
+    Route::get('/sekolah-keasramaan/kunjungan/alumni/edit', 'edit')->name('alumni.edit');
+    Route::put('/sekolah-keasramaan/kunjungan/alumni/update', 'update')->name('alumni.update');
+    Route::delete('/sekolah-keasramaan/kunjungan/alumni/delete', 'destroy')->name('alumni.delete');
+});
+
+Route::controller(OrtuController::class)->group(function () {
+    Route::get('/sekolah-keasramaan/kunjungan/ortu', 'index')->name('ortu');
+    Route::get('/sekolah-keasramaan/kunjungan/ortu/create', 'create')->name('ortu.create');
+    Route::post('/sekolah-keasramaan/kunjungan/ortu/store', 'store')->name('ortu.store');
+    Route::get('/sekolah-keasramaan/kunjungan/ortu/edit', 'edit')->name('ortu.edit');
+    Route::put('/sekolah-keasramaan/kunjungan/ortu/update', 'update')->name('ortu.update');
+    Route::delete('/sekolah-keasramaan/kunjungan/ortu/delete', 'destroy')->name('ortu.delete');
+});
+
+Route::controller(DinasController::class)->group(function () {
+    Route::get('/sekolah-keasramaan/kunjungan/dinas', 'index')->name('dinas');
+    Route::get('/sekolah-keasramaan/kunjungan/dinas/create', 'create')->name('dinas.create');
+    Route::post('/sekolah-keasramaan/kunjungan/dinas/store', 'store')->name('dinas.store');
+    Route::get('/sekolah-keasramaan/kunjungan/dinas/edit', 'edit')->name('dinas.edit');
+    Route::put('/sekolah-keasramaan/kunjungan/dinas/update', 'update')->name('dinas.update');
+    Route::delete('/sekolah-keasramaan/kunjungan/dinas/delete', 'destroy')->name('dinas.delete');
+});
+
+Route::controller(IndustriController::class)->group(function () {
+    Route::get('/sekolah-keasramaan/kunjungan/industri', 'index')->name('industri');
+    Route::get('/sekolah-keasramaan/kunjungan/industri/create', 'create')->name('industri.create');
+    Route::post('/sekolah-keasramaan/kunjungan/industri/store', 'store')->name('industri.store');
+    Route::get('/sekolah-keasramaan/kunjungan/industri/edit', 'edit')->name('industri.edit');
+    Route::put('/sekolah-keasramaan/kunjungan/industri/update', 'update')->name('industri.update');
+    Route::delete('/sekolah-keasramaan/kunjungan/industri/delete', 'destroy')->name('industri.delete');
+});
+
+Route::controller(TamuController::class)->group(function () {
+    Route::get('/sekolah-keasramaan/kunjungan/tamu', 'index')->name('tamu');
+    Route::get('/sekolah-keasramaan/kunjungan/tamu/create', 'create')->name('tamu.create');
+    Route::post('/sekolah-keasramaan/kunjungan/tamu/store', 'store')->name('tamu.store');
+    Route::get('/sekolah-keasramaan/kunjungan/tamu/edit', 'edit')->name('tamu.edit');
+    Route::put('/sekolah-keasramaan/kunjungan/tamu/update', 'update')->name('tamu.update');
+    Route::delete('/sekolah-keasramaan/kunjungan/tamu/delete', 'destroy')->name('tamu.delete');
 });
 
 Route::get('/progres-siswa/{nisn}', [ProgresSiswaController::class, 'index'])->name('progres-siswa.index');

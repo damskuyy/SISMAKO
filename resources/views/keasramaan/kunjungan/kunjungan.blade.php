@@ -137,78 +137,56 @@
             @php
             $cards = [
             [
-            'url' => '/jamaah',
+            'url' => '/sekolah-keasramaan/kunjungan/dinas',
             'img' =>
             'https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/Icons%2Fwindows.gif?alt=media&token=059162c4-00d0-43b1-912d-f896a92b4b1e',
-            'title' => 'Jamaaah',
+            'title' => 'DInas',
             'color' => 'card-custom',
             ],
             [
-            'url' => '/patroli/asrama',
+            'url' => '/sekolah-keasramaan/kunjungan/industri',
             'img' =>
             'https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/Icons%2Fsearch.gif?alt=media&token=35e8b631-1ac7-46e5-b69c-9f5f82de4e04',
-            'title' => 'Patroli',
+            'title' => 'Industri',
             'color' => 'card-custom',
             ],
             [
-            'url' => '/sekolah-keasramaan/akses-lab',
+            'url' => '/sekolah-keasramaan/kunjungan/ortu',
             'img' =>
             'https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/Icons%2Fcomputer.gif?alt=media&token=8ea22d50-e985-422d-b0ab-3898b6a368ed',
-            'title' => 'Akses Lab',
+            'title' => 'Orangtua/Wali',
             'color' => 'card-custom-red',
             ],
             [
-            'url' => '/sekolah-keasramaan/akademik',
+            'url' => '/sekolah-keasramaan/kunjungan/alumni',
             'img' =>
             'https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/Icons%2Feducation.gif?alt=media&token=3a16b136-b068-479d-bfbb-ee4cbe544e50',
-            'title' => 'Akademik',
+            'title' => 'Alumni',
             'color' => 'card-custom',
             ],
             [
-            'url' => '/sekolah-keasramaan/al-quran',
+            'url' => '/sekolah-keasramaan/kunjungan/tamu',
             'img' =>
             'https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/Icons%2Fal-quran.gif?alt=media&token=23b495d0-92a3-4ade-95d8-34434a8578aa',
-            'title' => 'Al-Quran',
+            'title' => 'Tamu',
             'color' => 'card-custom-red',
-            ],
-            [
-            'url' => '/sekolah-keasramaan/jurnal-asrama',
-            'img' =>
-            'https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/Icons%2Fjournal.gif?alt=media&token=bb438613-fe4c-4ecb-add1-8d59e5d13420',
-            'title' => 'Jurnal',
-            'color' => 'card-custom-green',
-            ],
-            [
-            'url' => '/sekolah-keasramaan/kunjungan',
-            'img' =>
-            'https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/Icons%2Fjournal.gif?alt=media&token=bb438613-fe4c-4ecb-add1-8d59e5d13420',
-            'title' => 'Kunjungan',
-            'color' => 'card-custom-green',
             ],
             ];
             @endphp
 
             @foreach ($cards as $card)
             <div class="col-12 col-sm-6 col-md-4 text-center">
-                @php
-                $requiresPin = ['Jamaaah', 'Patroli', 'Akses Lab'];
-                @endphp
-
-                @if(in_array($card['title'], $requiresPin))
-                <a href="{{ route('pin', ['redirect_url' => $card['url']]) }}" class="text-decoration-none">
-                    @else
-                    <a href="{{ url($card['url']) }}" class="text-decoration-none">
-                        @endif
-
-                        <div class="card shadow-sm mb-4 hover-shadow {{ $card['color'] }}">
-                            <div class="card-body d-flex align-items-center justify-content-center">
-                                <img src="{{ asset($card['img']) }}" alt="" class="img-fluid img-custom">
-                                <h2 class="card-title">{{ $card['title'] }}</h2>
-                            </div>
+                <a href="{{ url($card['url']) }}" class="text-decoration-none">
+                    <div class="card shadow-sm mb-4 hover-shadow {{ $card['color'] }}">
+                        <div class="card-body d-flex align-items-center justify-content-center">
+                            <img src="{{ asset($card['img']) }}" alt="" class="img-fluid img-custom">
+                            <h2 class="card-title">{{ $card['title'] }}</h2>
                         </div>
-                    </a>
+                    </div>
+                </a>
             </div>
             @endforeach
+
         </div>
     </div>
 </div>
