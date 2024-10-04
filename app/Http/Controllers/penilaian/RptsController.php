@@ -29,10 +29,10 @@ class RptsController extends Controller
         }
 
         // Lakukan pagination dan ambil hasilnya
-        $rapor = $query->paginate(10);
+        $rpts = $query->paginate(10);
 
         // Mengembalikan view dengan data rapor dan filter yang diterapkan
-        return view('penilaian.rapor.rapor', compact('rapor', 'filterKelas', 'filterNama'));
+        return view('penilaian.rapor.pts.rapor', compact('rpts', 'filterKelas', 'filterNama'));
     }
 
     public function create()

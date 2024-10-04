@@ -33,15 +33,15 @@ class RaporRequest extends FormRequest
             'hmaster' => 'nullable|string|max:100',
             'hmnip' => 'nullable|string|max:18',
             'attitude' => 'nullable|array',
+            'muatan_nasional' => 'nullable|array',
+            'muatan_kewilayahan' => 'nullable|array',
+            'muatan_peminatan' => 'nullable|array',
             'extracurricular' => 'nullable|array',
             'izin' => 'nullable|integer|min:0',
             'sakit' => 'nullable|integer|min:0',
             'alpha' => 'nullable|integer|min:0',
             'achievements' => 'nullable|array',
             'note' => 'nullable|string',
-            'muatan_nasional' => 'nullable|array',
-            'muatan_kewilayahan' => 'nullable|array',
-            'muatan_peminatan' => 'nullable|array',
         ];
     }
 }

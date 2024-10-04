@@ -37,7 +37,7 @@
         table th,
         table td {
             padding: 12px;
-            text-align: left;
+            text-align: center;
             border: 1px solid #343a40;
             /* Add border to table cells */
         }
@@ -53,7 +53,7 @@
 
         table tbody tr:hover {
             background-color: #e9ecef;
-            
+
         }
         .footer {
             margin-top: 50px;

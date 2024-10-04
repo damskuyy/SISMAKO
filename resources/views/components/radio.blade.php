@@ -33,8 +33,8 @@
                                 @error('tanggal')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
-                                <span
-                                    class="input-icon-addon"><!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
+                                <span class="input-icon-addon">
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                         stroke-linecap="round" stroke-linejoin="round">
@@ -61,7 +61,7 @@
                         <div class="col-6">
                             <div class="mb-3">
                                 <label class="form-label required">No. Surat</label>
-                                <input type="text" class="form-control"name="no_surat"
+                                <input type="text" class="form-control" name="no_surat"
                                     placeholder="Kolom wajib diisi">
                             </div>
                             @error('no_surat')
@@ -72,8 +72,8 @@
                         <div class="col-6">
                             <div class="mb-3">
                                 <label class="form-label required">Jenis Surat</label>
-                                <select id="js-modal-1" class="form-select" name="jenis_surat">
-                                    <option selected>Pilih Jenis Surat</option>
+                                <select id="tl-modal-1" class="form-select" name="jenis_surat">
+                                    <option>Pilih Jenis Surat</option>
                                     <option value="Surat Tugas">Surat Tugas</option>
                                     <option value="Surat permohonan">Surat permohonan</option>
                                     <option value="Surat Peringatan">Surat Peringatan</option>
@@ -135,15 +135,14 @@
     </form>
 </div>
 
-{{-- <x-component-korespondensi.modals id="modalReport2"  method='POST'>
+{{-- <x-component-korespondensi.modals id="modalReport2" method='POST'>
     <x-component-korespondensi.modal-header title="Surat Keluar" />
 
     <x-component-korespondensi.modal-body>
         <div class="row">
             <div class="col-6">
 
-                <x-component-korespondensi.select id="tp-modal-2" label="Tahun Ajaran" name="tp"
-                    required="true">
+                <x-component-korespondensi.select id="tp-modal-2" label="Tahun Ajaran" name="tp" required="true">
                     <option value="Selected">Pilih Tahun Ajaran</option>
                     <option value="2022/2023">2022/2023</option>
                     <option value="2023/2024">2023/2024</option>
@@ -154,12 +153,13 @@
             </div>
 
             <div class="col-6">
-                <x-component-korespondensi.input label="tanggal" name="tanggal" placeholder="Pilih Tanggal"
-                    type="date" id="datepicket-icon-2">\
-                    <span class="input-icon-addon"><!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                            stroke-linecap="round" stroke-linejoin="round">
+                <x-component-korespondensi.input label="tanggal" name="tanggal" placeholder="Pilih Tanggal" type="date"
+                    id="datepicket-icon-2">\
+                    <span class="input-icon-addon">
+                        <!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                            stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
                             </path>
@@ -254,8 +254,8 @@
                                 @error('tanggal')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
-                                <span
-                                    class="input-icon-addon"><!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
+                                <span class="input-icon-addon">
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
                                         height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
                                         fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -289,8 +289,8 @@
                         <div class="col-6">
                             <div class="mb-3">
                                 <label class="form-label required">Jenis Surat</label>
-                                <select id="js-modal-2" class="form-select" name="jenis_surat">
-                                    <option selected>Pilih Jenis Surat</option>
+                                <select id="tl-modal-2" class="form-select" name="jenis_surat">
+                                    <option>Pilih Jenis Surat</option>
                                     <option value="Surat Tugas">Surat Tugas</option>
                                     <option value="Surat permohonan">Surat permohonan</option>
                                     <option value="Surat Peringatan">Surat Peringatan</option>
@@ -578,7 +578,7 @@
                         <div class="col-6">
                             <div class="mb-3">
                                 <label class="form-label required">No. Surat</label>
-                                <input type="text" class="form-control"id="no_surat4" name="no_surat"
+                                <input type="text" class="form-control" id="no_surat4" name="no_surat"
                                     placeholder="Kolom wajib diisi">
                                 @error('no_surat')
                                     <div class="text-danger">{{ $message }}</div>
@@ -648,8 +648,8 @@
                                 @error('tanggal')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
-                                <span
-                                    class="input-icon-addon"><!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
+                                <span class="input-icon-addon">
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
                                         height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
                                         fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -795,8 +795,8 @@
                                 @error('tanggal')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
-                                <span
-                                    class="input-icon-addon"><!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
+                                <span class="input-icon-addon">
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
                                         height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
                                         fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -850,7 +850,7 @@
                         <div class="col-6">
                             <div class="mb-3">
                                 <label class="form-label required">Nominal</label>
-                                <input type="text" id="nominal" class="form-control" name="nominal"
+                                <input type="text" id="nominal" class="form-control nominal" name="nominal"
                                     placeholder="Kolom wajib diisi">
                                 @error('nominal')
                                     <div class="text-danger">{{ $message }}</div>
@@ -1141,931 +1141,174 @@
                 <div class="container">
 
 
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
-{{-- modal update --}}
-@foreach ($suratmasuk as $item)
-    <div class="modal modal-blur fade" id="modalUpdate1{{ $item->id }}" tabindex="-1" aria-hidden="true"
-        style="display: none;">
-        <form action="{{ route('inbox.update', $item->id) }}" method="POST" enctype="multipart/form-data">
-            @method('PUT')
-            @csrf
-            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Surat Masuk</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
+        {{-- modal update --}}
 
-                            <div class="col-6">
+        <script>
+            $(document).ready(function() {
+                // Initialize input mask
+                $("#time-input").inputmask("99:99");
 
-                                <select id="tp-modal-1" class="form-select" name="tp">
-                                    <option selected>{{ old('tp', $item->tp) }} </option>
-                                    <option value="2022/2023">2022/2023</option>
-                                    <option value="2023/2024">2023/2024</option>
-                                    <option value="2024/2025">2024/2025</option>
-                                </select>
-                            </div>
-                            @error('tp')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                            <div class="col-6">
+                // Initialize DataTable (apply this to your table element if needed)
+                // $('#your-table-id').DataTable();
+            });
+        </script>
 
-                                <div class="input-icon mb-2">
-                                    <input class="form-control " placeholder="Select a date" id="datepicker"
-                                        name="tanggal" autocomplete="false"
-                                        value="{{ old('tanggal', $item->tanggal) }}">
 
-                                    <span
-                                        class="input-icon-addon"><!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
-                                            height="24" viewBox="0 0 24 24" stroke-width="2"
-                                            stroke="currentColor" fill="none" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <path
-                                                d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
-                                            </path>
-                                            <path d="M16 3v4"></path>
-                                            <path d="M8 3v4"></path>
-                                            <path d="M4 11h16"></path>
-                                            <path d="M11 15h1"></path>
-                                            <path d="M12 15v3"></path>
-                                        </svg>
-                                    </span>
-                                </div>
-                                @error('tanggal')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label class="form-label required">No. Surat</label>
-                                    <input type="text" class="form-control"id="no_surat6" name="no_surat"
-                                        placeholder="Kolom wajib diisi"
-                                        value="{{ old('no_surat', $item->no_surat) }}">
-                                </div>
-                                @error('no_surat')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const modals = document.querySelectorAll('[id^="modalUpdate"], [id^="modalView"]');
 
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label class="form-label required">Jenis Surat</label>
-                                    <select id="js-modal-1" class="form-select" name="jenis_surat"
-                                        value="{{ old('jenis_surat', $item->jenis_surat) }}">
-                                        <option selected>Pilih Jenis Surat</option>
-                                        <option value="Surat 1">Surat 1</option>
-                                        <option value="Surat 2">Surat 2</option>
-                                        <option value="Surat 3">Surat 3</option>
-                                        <option value="Surat 4">Surat 4</option>
-                                        <option value="Surat 5">Surat 5</option>
-                                        <option value="Surat 6">Surat 6</option>
-                                        <option value="Surat 7">Surat 7</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label class="form-label required">Perihal</label>
-                                    <input type="text" class="form-control" name="perihal"
-                                        placeholder="Kolom wajib diisi"
-                                        value="{{ old('perihal', $item->perihal) }}">
-                                </div>
-                                @error('perihal')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label class="form-label required">dari</label>
-                                    <input type="text" class="form-control" name="dari"
-                                        placeholder="Kolom wajib diisi" value="{{ old('dari', $item->dari) }}">
-                                </div>
-                                @error('dari')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-body">
-                        <div class="col-12">
-                            <div class="mb-3">
-                                <div class="form-label">Import File</div>
-                                <input type="file" class="form-control" name="file_surat"
-                                    value="{{ old('file_surat', $item->file_surat) }}">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer text-end">
-                        <div class="d-flex">
-                            <a href="{{ route('inbox.index') }}" class="btn btn-link">Cancel</a>
-                            <button type="submit" class="btn btn-primary ms-auto">Save</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-@endforeach
-@foreach ($suratkeluar as $item)
-    <div class="modal modal-blur fade" id="modalUpdate2{{ $item->id }}" tabindex="-1" aria-hidden="true"
-        style="display: none;">
-        <form action="{{ route('outbox.update', $item->id) }}" method="POST" enctype="multipart/form-data">
-            @method('PUT')
-            @csrf
-            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Surat Keluar</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
+                function hideModal(modal) {
+                    const modalInstance = bootstrap.Modal.getInstance(modal);
+                    if (modalInstance) {
+                        modalInstance.hide();
+                        modal.addEventListener('hidden.bs.modal', removeBackdrop, {
+                            once: true
+                        });
+                    }
+                }
 
-                            <div class="col-6">
+                function removeBackdrop() {
+                    const backdrops = document.querySelectorAll('.modal-backdrop');
+                    if (backdrops.length > 0) {
+                        backdrops.forEach(backdrop => backdrop.remove());
+                    }
+                    document.body.classList.remove('modal-open');
+                    document.body.style.paddingRight = '';
+                }
 
-                                <select id="tp-modal-2" class="form-select" name="tp">
-                                    <option value="{{ old('tp', $item->tp) }}" selected>Pilih Tahun Ajaran
-                                    </option>
-                                    <option value="2022/2023">2022/2023</option>
-                                    <option value="2023/2024">2023/2024</option>
-                                    <option value="2024/2025">2024/2025</option>
-                                </select>
-                            </div>
-                            <div class="col-6">
+                function resetAllModals() {
+                    modals.forEach(modal => hideModal(modal));
+                }
 
-                                <div class="input-icon mb-2">
-                                    <input class="form-control " placeholder="Select a date" id="datepicker-2"
-                                        name="tanggal" autocomplete="false"
-                                        value="{{ old('tanggal', $item->tanggal) }}">
-                                    <span
-                                        class="input-icon-addon"><!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
-                                            height="24" viewBox="0 0 24 24" stroke-width="2"
-                                            stroke="currentColor" fill="none" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <path
-                                                d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
-                                            </path>
-                                            <path d="M16 3v4"></path>
-                                            <path d="M8 3v4"></path>
-                                            <path d="M4 11h16"></path>
-                                            <path d="M11 15h1"></path>
-                                            <path d="M12 15v3"></path>
-                                        </svg>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label class="form-label required">No. Surat</label>
-                                    <input type="text" class="form-control"id="no_surat7" name="no_surat"
-                                        placeholder="Kolom wajib diisi"
-                                        value="{{ old('no_surat', $item->no_surat) }}">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label class="form-label required">Jenis Surat</label>
-                                    <select id="js-modal-2" class="form-select" name="jenis_surat">
-                                        <option value="{{ old('jenis_surat', $item->jenis_surat) }}" selected>
-                                            Pilih
-                                            Jenis Surat</option>
-                                        <option value="Surat 1">Surat 1</option>
-                                        <option value="Surat 2">Surat 2</option>
-                                        <option value="Surat 3">Surat 3</option>
-                                        <option value="Surat 4">Surat 4</option>
-                                        <option value="Surat 5">Surat 5</option>
-                                        <option value="Surat 6">Surat 6</option>
-                                        <option value="Surat 7">Surat 7</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label class="form-label required">Perihal</label>
-                                    <input type="text" class="form-control" name="perihal"
-                                        placeholder="Kolom wajib diisi"
-                                        value="{{ old('perihal', $item->perihal) }}">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label class="form-label required">Ke</label>
-                                    <input type="text" class="form-control" name="kepada"
-                                        placeholder="Kolom wajib diisi"
-                                        value="{{ old('kepada', $item->kepada) }}">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-body">
-                        <div class="col-12">
-                            <div class="mb-3">
-                                <div class="form-label">Import File</div>
-                                <input type="file" class="form-control" name="file_surat"
-                                    value="{{ old('file_surat', $item->file_surat) }}">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer text-end">
-                        <div class="d-flex">
-                            <a href="{{ route('inbox.index') }}" class="btn btn-link"
-                                data-bs-dismiss="modal">Cancel</a>
-                            <button type="submit" class="btn btn-primary ms-auto"
-                                data-bs-dismiss="modal">Save</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-@endforeach
-@foreach ($suratperingatan as $item)
-    <div class="modal modal-blur fade" id="modalUpdate3{{ $item->id }}" tabindex="-1" aria-hidden="true"
-        style="display: none;">
-        <form action="{{ route('sp.update', $item->id) }}" method="POST" enctype="multipart/form-data">
-            @method('PUT')
-            @csrf
-            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Surat Peringatan</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-6">
-                                <select id="tp-modal-3" class="form-select" name="tp">
-                                    <option disabled>Pilih Tahun Ajaran</option>
-                                    <option value="2022/2023"
-                                        {{ old('tp', $item->tp) == '2022/2023' ? 'selected' : '' }}>2022/2023
-                                    </option>
-                                    <option value="2023/2024"
-                                        {{ old('tp', $item->tp) == '2023/2024' ? 'selected' : '' }}>2023/2024
-                                    </option>
-                                    <option value="2024/2025"
-                                        {{ old('tp', $item->tp) == '2024/2025' ? 'selected' : '' }}>2024/2025
-                                    </option>
-                                </select>
-                            </div>
-                            <div class="col-6">
-                                <div class="input-icon mb-2">
-                                    <input class="form-control" placeholder="Select a date" name="tanggal"
-                                        id="datepicker" autocomplete="false"
-                                        value="{{ old('tanggal', $item->tanggal) }}">
-                                    <span class="input-icon-addon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
-                                            height="24" viewBox="0 0 24 24" stroke-width="2"
-                                            stroke="currentColor" fill="none" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <path
-                                                d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
-                                            </path>
-                                            <path d="M16 3v4"></path>
-                                            <path d="M8 3v4"></path>
-                                            <path d="M4 11h16"></path>
-                                            <path d="M11 15h1"></path>
-                                            <path d="M12 15v3"></path>
-                                        </svg>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-body">
-                        <h3 class="text-center">Ditujukan Kepada</h3>
-                        <div class="row">
-                            <div class="col-6">
-                                <label class="form-selectgroup-item flex-fill">
-                                    <input type="radio" name="subjek" value="siswa"
-                                        class="form-selectgroup-input radio-inbox7"
-                                        {{ old('subjek', $item->subjek) == 'siswa' ? 'checked' : '' }}>
-                                    <div class="form-selectgroup-label d-flex align-items-center p-3">
-                                        <div class="me-3">
-                                            <span class="form-selectgroup-check"></span>
-                                        </div>
-                                        <div class="form-selectgroup-label-content d-flex align-items-center">
-                                            <span class="avatar bg-success text-white me-3">S</span>
-                                        </div>
-                                        <div>
-                                            <div class="fw-bolder fs-3">Siswa</div>
-                                        </div>
-                                    </div>
-                                </label>
-                                <input type="text" class="form-control mt-3" name="siswa"
-                                    placeholder="Masukan Nama siswa...." value="{{ old('siswa', $item->siswa) }}"
-                                    {{ old('subjek', $item->subjek) != 'siswa' ? 'disabled' : '' }}>
-                            </div>
-                            <div class="col-6">
-                                <label class="form-selectgroup-item flex-fill">
-                                    <input type="radio" name="subjek" value="guru"
-                                        class="form-selectgroup-input radio-inbox8"
-                                        {{ old('subjek', $item->subjek) == 'guru' ? 'checked' : '' }}>
-                                    <div class="form-selectgroup-label d-flex align-items-center p-3">
-                                        <div class="me-3">
-                                            <span class="form-selectgroup-check"></span>
-                                        </div>
-                                        <div class="form-selectgroup-label-content d-flex align-items-center">
-                                            <span class="avatar bg-info text-white me-3">G</span>
-                                        </div>
-                                        <div>
-                                            <div class="fw-bolder fs-3">Guru</div>
-                                        </div>
-                                    </div>
-                                </label>
-                                <input type="text" class="form-control mt-3" name="guru"
-                                    placeholder="Masukan nama guru...." value="{{ old('guru', $item->guru) }}"
-                                    {{ old('subjek', $item->subjek) != 'guru' ? 'disabled' : '' }}>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label class="form-label required">No. Surat</label>
-                                    <input type="text" class="form-control"id="no_surat8" name="no_surat"
-                                        placeholder="Kolom wajib diisi"
-                                        value="{{ old('no_surat', $item->no_surat) }}">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label class="form-label required">Alasan</label>
-                                    <input type="text" class="form-control" name="alasan"
-                                        placeholder="Kolom wajib diisi"
-                                        value="{{ old('alasan', $item->alasan) }}">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label class="form-label required">Surat Peringatan ke</label>
-                                    <select id="sp" class="form-select" name="sp">
-                                        <option disabled>-- Pilih Surat Peringatan --</option>
-                                        <option value="sp1"
-                                            {{ old('sp', $item->sp) == 'sp1' ? 'selected' : '' }}>
-                                            1 (Satu)</option>
-                                        <option value="sp2"
-                                            {{ old('sp', $item->sp) == 'sp2' ? 'selected' : '' }}>
-                                            2 (Dua)</option>
-                                        <option value="sp3"
-                                            {{ old('sp', $item->sp) == 'sp3' ? 'selected' : '' }}>
-                                            3 (Tiga)</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="mb-3">
-                                    <label class="form-label">Keterangan <span class="form-label-description">max.
-                                            150</span></label>
-                                    <textarea class="form-control" name="keterangan" rows="6" placeholder="Isi Keterangan..">{{ old('keterangan', $item->keterangan) }}</textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-body">
-                        <div class="col-12">
-                            <div class="mb-3">
-                                <div class="form-label">Import File</div>
-                                <input type="file" class="form-control" name="file_surat">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer text-end">
-                        <div class="d-flex">
-                            <a href="{{ route('inbox.index') }}" class="btn btn-link"
-                                data-bs-dismiss="modal">Cancel</a>
-                            <button type="submit" class="btn btn-primary ms-auto">Save</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-@endforeach
-
-@foreach ($nomorsurat as $item)
-    <div class="modal modal-blur fade" id="modalUpdate4{{ $item->id }}" tabindex="-1" aria-hidden="true"
-        style="display: none;">
-        <form action="{{ route('no_surat.update', $item->id) }}" method="post" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
-            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Nomor Surat</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-
-                            <div class="col-6">
-                                <select id="tp-modal-4" class="form-select" name="tp">
-                                    <option disabled>Pilih Tahun Ajaran</option>
-                                    <option value="2022/2023"
-                                        {{ old('tp', $item->tp) == '2022/2023' ? 'selected' : '' }}>2022/2023
-                                    </option>
-                                    <option value="2023/2024"
-                                        {{ old('tp', $item->tp) == '2023/2024' ? 'selected' : '' }}>2023/2024
-                                    </option>
-                                    <option value="2024/2025"
-                                        {{ old('tp', $item->tp) == '2024/2025' ? 'selected' : '' }}>2024/2025
-                                    </option>
-                                </select>
-                            </div>
-                            <div class="col-6">
-                                <div class="input-icon mb-2">
-                                    <input class="form-control " placeholder="Select a date" id="datepicker"
-                                        autocomplete="false" name="tanggal"
-                                        value="{{ old('tanggal', $item->tanggal) }}">
-                                    <span
-                                        class="input-icon-addon"><!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
-                                            height="24" viewBox="0 0 24 24" stroke-width="2"
-                                            stroke="currentColor" fill="none" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <path
-                                                d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
-                                            </path>
-                                            <path d="M16 3v4"></path>
-                                            <path d="M8 3v4"></path>
-                                            <path d="M4 11h16"></path>
-                                            <path d="M11 15h1"></path>
-                                            <path d="M12 15v3"></path>
-                                        </svg>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label class="form-label required">No. Surat</label>
-                                    <input type="number" class="form-control" id = "no_surat" name="no_surat"
-                                        placeholder="Kolom wajib diisi"
-                                        value="{{ old('no_surat', $item->no_surat) }}">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label class="form-label required">Keperluan</label>
-                                    <input type="text" class="form-control" name="keperluan"
-                                        placeholder="Kolom wajib diisi"
-                                        value="{{ old('keperluan', $item->keperluan) }}">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="mb-3">
-                                    <div class="form-label">Import File</div>
-                                    <input type="file" class="form-control" name="file_surat"
-                                        value="{{ old('file_surat', $item->file_surat) }}">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer text-end">
-                        <div class="d-flex">
-                            <a href="#" class="btn btn-link" data-bs-dismiss="modal">Cancel</a>
-                            <button type="submit" class="btn btn-primary ms-auto"
-                                data-bs-dismiss="modal">Save</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-@endforeach
-
-@foreach ($notulensi as $item)
-    <div class="modal modal-blur fade" id="modalUpdate5{{ $item->id }}" tabindex="-1" aria-hidden="true"
-        style="display: none;">
-        <form action="{{ route('notulensi.update', $item->id) }}" method="post" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
-            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Notulensi</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body p-3 ">
-                        <div class="row ">
-
-                            <div class="col-6">
-
-                                <select id="tp-modal-5" class="form-select" name="tp">
-                                    <option disabled>Pilih Tahun Ajaran</option>
-                                    <option value="2022/2023"
-                                        {{ old('tp', $item->tp) == '2022/2023' ? 'selected' : '' }}>2022/2023</option>
-                                    <option value="2023/2024"
-                                        {{ old('tp', $item->tp) == '2023/2024' ? 'selected' : '' }}>2023/2024</option>
-                                    <option value="2024/2025"
-                                        {{ old('tp', $item->tp) == '2024/2025' ? 'selected' : '' }}>2024/2025</option>
-                                </select>
-                            </div>
-
-                            <div class="col-6">
-                                <div class="input-icon mb-2">
-                                    <input class="form-control " placeholder="Select a date" id="datepicker"
-                                        autocomplete="false" name="tanggal"
-                                        value="{{ old('tanggal', $item->tanggal) }}">
-                                    <span
-                                        class="input-icon-addon"><!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
-                                            height="24" viewBox="0 0 24 24" stroke-width="2"
-                                            stroke="currentColor" fill="none" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <path
-                                                d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
-                                            </path>
-                                            <path d="M16 3v4"></path>
-                                            <path d="M8 3v4"></path>
-                                            <path d="M4 11h16"></path>
-                                            <path d="M11 15h1"></path>
-                                            <path d="M12 15v3"></path>
-                                        </svg>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <input type="text" id="time-input" class="form-control"
-                                    placeholder="00:00-00:00" autocomplete="off" name="waktu"
-                                    value="{{ old('waktu', $item->waktu) }}">
-                            </div>
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <select class="form-select" name="daring">
-                                        <option value="" selected>Off/On</option>
-                                        <option value="Offline"
-                                            {{ old('daring', $item->daring) == 'Offline' ? 'selected' : '' }}>Offline
-                                        </option>
-                                        <option value="Online"
-                                            {{ old('daring', $item->daring) == 'Online' ? 'selected' : '' }}>Online
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label class="form-label required">Materi</label>
-                                    <input type="text" class="form-control" name="materi"
-                                        placeholder="Kolom wajib diisi"
-                                        value="{{ old('materi', $item->materi) }}">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label class="form-label required">Hasil</label>
-                                    <input type="text" class="form-control" name="hasil"
-                                        placeholder="Kolom wajib diisi" value="{{ old('hasil', $item->hasil) }}">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="mb-3">
-                                    <label class="form-label required">Peserta</label>
-                                    <textarea rows="5" class="form-control" placeholder="Here can be your description" name="peserta"> {{ old('peserta', $item->peserta) }}</textarea>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="mb-3">
-                                    <label class="form-label required">Hasil</label>
-                                    <textarea rows="5" class="form-control" placeholder="Here can be your description" name="hasil"> {{ old('hasil', $item->hasil) }}</textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-
-                            <div class="col-12">
-                                <div class="mb-3">
-                                    <div class="form-label">Import File</div>
-                                    <input type="file" class="form-control" name="file_surat"
-                                        value="{{ old('file_surat', $item->file_surat) }}">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="mb-3">
-                                    <div class="form-label">Import dokumentasi</div>
-                                    <input type="file" class="form-control" name="file_dokumentasi[]" multiple
-                                        value="{{ old('file_dokumentasi', $item->file_dokumentasi) }}">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer text-end">
-                        <div class="d-flex">
-                            <a href="#" class="btn btn-link" data-bs-dismiss="modal">Cancel</a>
-                            <button type="submit" class="btn btn-primary ms-auto"
-                                data-bs-dismiss="modal">Save</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-@endforeach
-
-@foreach ($suratpengajuan as $item)
-    <div class="modal modal-blur fade" id="modalUpdate6{{ $item->id }}" tabindex="-1" aria-hidden="true">
-        <form action="{{ route('pengajuan.update', $item->id) }}" method="post" enctype="multipart/form-data">
-            @csrf
-            @method('put')
-            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Surat Pengajuan</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-
-                            <div class="col-6">
-
-                                <select id="tp-modal-6" class="form-select" name="tp">
-                                    <option selected>Pilih Tahun Ajaran</option>
-                                    <option value="2022/2023">2022/2023</option>
-                                    <option value="2023/2024">2023/2024</option>
-                                    <option value="2024/2025">2024/2025</option>
-                                </select>
-                            </div>
-                            <div class="col-6">
-                                <div class="input-icon mb-2">
-                                    <input class="form-control " placeholder="Select a date" id="datepicker"
-                                        autocomplete="false" name="tanggal">
-                                    <span
-                                        class="input-icon-addon"><!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
-                                            height="24" viewBox="0 0 24 24" stroke-width="2"
-                                            stroke="currentColor" fill="none" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <path
-                                                d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
-                                            </path>
-                                            <path d="M16 3v4"></path>
-                                            <path d="M8 3v4"></path>
-                                            <path d="M4 11h16"></path>
-                                            <path d="M11 15h1"></path>
-                                            <path d="M12 15v3"></path>
-                                        </svg>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label class="form-label required">No. Surat</label>
-                                    <input type="number" class="form-control" name="no_surat"
-                                        placeholder="Kolom wajib diisi">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label class="form-label required">Jenis Pengajuan</label>
-                                    <input type="text" class="form-control" name="jenis_pengajuan"
-                                        placeholder="Kolom wajib diisi">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label class="form-label required">Nama Pengajuan</label>
-                                    <input type="text" class="form-control" name="nama_pengajuan"
-                                        placeholder="Kolom wajib diisi">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label class="form-label required">Nominal</label>
-                                    <input type="number" class="form-control" name="nominal"
-                                        placeholder="Kolom wajib diisi">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="mb-3">
-                                    <div class="form-label">Import LPJ</div>
-                                    <input type="file" class="form-control" name="file_surat">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer text-end">
-                        <div class="d-flex">
-                            <a href="#" class="btn btn-link" data-bs-dismiss="modal">Cancel</a>
-                            <button type="submit" class="btn btn-primary ms-auto"
-                                data-bs-dismiss="modal">Save</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-@endforeach
-<script>
-    $(document).ready(function() {
-        // Initialize input mask
-        $("#time-input").inputmask("99:99");
-
-        // Initialize DataTable (apply this to your table element if needed)
-        // $('#your-table-id').DataTable();
-    });
-</script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Semua kode dalam satu blok
-        const modals = document.querySelectorAll('[id^="modalUpdate"], [id^="modalView"]');
-
-        function hideModal(modal) {
-            const modalInstance = bootstrap.Modal.getInstance(modal);
-            if (modalInstance) {
-                modalInstance.hide();
-                modal.addEventListener('hidden.bs.modal', function() {
-                    removeBackdrop();
-                }, {
-                    once: true
+                // Add event listeners to modals
+                modals.forEach(modal => {
+                    modal.addEventListener('hidden.bs.modal', removeBackdrop);
                 });
-            }
-        }
 
-        function removeBackdrop() {
-            const backdrops = document.querySelectorAll('.modal-backdrop');
-            backdrops.forEach(backdrop => {
-                backdrop.remove();
-            });
-            document.body.classList.remove('modal-open');
-            document.body.style.paddingRight = '';
-        }
+                const radioButtons = document.querySelectorAll('.radio-inbox');
+                const submitButton = document.getElementById('submitButton');
+                const viewContainers = document.querySelectorAll('#view1, #view2, #view3, #view4, #view5, #view6');
+                const tableIds = ['myTable1', 'myTable2', 'myTable3', 'myTable4', 'myTable5', 'myTable6'];
 
-        function resetAllModals() {
-            modals.forEach(modal => {
-                if (modal) hideModal(modal);
-            });
-        }
+                function checkSelection() {
+                    const radioChecked = Array.from(radioButtons).some(radio => radio.checked);
+                    submitButton.disabled = !radioChecked;
+                }
 
-        modals.forEach(modal => {
-            if (modal) {
-                modal.addEventListener('show.bs.modal', function() {
-                    removeBackdrop();
+                function handleSelectChange(selectId, inputId) {
+                    const selectElement = document.getElementById(selectId);
+                    const inputElement = document.getElementById(inputId);
+
+                    function updateInputState() {
+                        if (selectElement.value === 'Lainnya') {
+                            inputElement.disabled = false;
+                        } else {
+                            inputElement.disabled = true;
+                        }
+                    }
+
+                    selectElement.addEventListener('change', updateInputState);
+                    updateInputState();
+                }
+
+                handleSelectChange('tl-modal-1', 'lainnya-field-1');
+                handleSelectChange('tl-modal-2', 'lainnya-field-2');
+
+                function handleUpdateSelectChange(selectId, inputId) {
+                    const selectElement = document.getElementById(selectId);
+                    const inputElement = document.getElementById(inputId);
+
+                    function updateInputState() {
+                        if (selectElement.value === 'Lainnya') {
+                            inputElement.disabled = false;
+                        } else {
+                            inputElement.disabled = true;
+                        }
+                    }
+
+                    selectElement.addEventListener('change', updateInputState);
+                    updateInputState();
+                }
+
+                handleUpdateSelectChange('tl-update-1', 'lainnya-update-1');
+                handleUpdateSelectChange('tl-update-2', 'lainnya-update-2');
+
+                function hideAllContainers() {
+                    viewContainers.forEach(container => container.hidden = true);
+                }
+
+                radioButtons.forEach(radioButton => {
+                    radioButton.addEventListener('change', function() {
+                        checkSelection();
+                        hideAllContainers();
+
+                        if (this.checked) {
+                            const dataTargetView = this.getAttribute('data-target-view');
+                            const targetView = document.querySelector(dataTargetView);
+                            if (targetView) {
+                                targetView.hidden = false;
+                                initializeDataTables();
+                            }
+
+                            const dataTargetReport = this.getAttribute('data-target-report');
+                            submitButton.setAttribute('data-bs-target', dataTargetReport);
+
+                            toggleInputFields(this.value);
+                        }
+                    });
                 });
-                modal.addEventListener('hidden.bs.modal', function() {
-                    removeBackdrop();
+
+                function initializeDataTables() {
+                    tableIds.forEach(id => {
+                        const tableElement = document.getElementById(id);
+                        if (tableElement && !$.fn.DataTable.isDataTable(tableElement)) {
+                            $(tableElement).DataTable(); // Make sure to use jQuery here
+                        }
+                    });
+                }
+
+                function toggleInputFields(selectedValue) {
+                    const siswaInput = document.querySelector('input[name="siswa"]');
+                    const guruInput = document.querySelector('input[name="guru"]');
+
+                    if (selectedValue === 'siswa') {
+                        siswaInput.disabled = false;
+                        guruInput.disabled = true;
+                        guruInput.value = '';
+                    } else if (selectedValue === 'guru') {
+                        guruInput.disabled = false;
+                        siswaInput.disabled = true;
+                        siswaInput.value = '';
+                    }
+                    console.log(siswaInput, guruInput);
+
+
+                }
+
+                // Use Litepicker for date fields
+                document.querySelectorAll('[id^="datepicker"]').forEach(datepicker => {
+                    new Litepicker({
+                        element: datepicker,
+                        format: 'YYYY-MM-DD',
+                        buttonText: {
+                            previousMonth: `<svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 6l-6 6l6 6" /></svg>`,
+                            nextMonth: `<svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M9 6l6 6l-6 6" /></svg>`,
+                        },
+                    });
                 });
-            }
-        });
 
-        var radioButtons = document.querySelectorAll('.radio-inbox');
-var submitButton = document.getElementById('submitButton');
-var viewContainers = document.querySelectorAll('#view1, #view2, #view3, #view4, #view5, #view6'); // Selector untuk semua kontainer
-var tableIds = ['myTable1', 'myTable2', 'myTable3', 'myTable4', 'myTable5', 'myTable6']; // Ganti dengan ID tabel Anda
-
-function checkSelection() {
-    const radioChecked = Array.from(radioButtons).some(function (radio) {
-        return radio.checked;
-    });
-    submitButton.disabled = !radioChecked;
-}
-
-function hideAllContainers() {
-    viewContainers.forEach(function (container) {
-        container.hidden = true; // Sembunyikan semua kontainer
-    });
-}
-
-radioButtons.forEach(function (radioButton) {
-    radioButton.addEventListener('change', function () {
-        checkSelection();
-        hideAllContainers(); // Sembunyikan semua kontainer sebelum menampilkan yang baru
-
-        if (this.checked) {
-            var dataTargetView = this.getAttribute('data-target-view');
-            var targetView = document.querySelector(dataTargetView);
-            if (targetView) {
-                targetView.hidden = false; // Tampilkan kontainer yang sesuai
-                initializeDataTables(); // Inisialisasi DataTable
-            }
-            var dataTargetReport = this.getAttribute('data-target-report');
-            submitButton.setAttribute('data-bs-target', dataTargetReport);
-
-            // Enable/disable input fields based on selected radio
-            toggleInputFields(this.value);
-        }
-    });
-});
-
-function initializeDataTables() {
-    tableIds.forEach(function (id) {
-        let tableElement = document.getElementById(id);
-        if (tableElement && !$.fn.DataTable.isDataTable(tableElement)) {
-            new DataTable(tableElement); // Inisialisasi DataTable untuk setiap tabel
-        }
-    });
-}
-
-function toggleInputFields(selectedValue) {
-    const siswaInput = document.querySelector('input[name="siswa"]');
-    const guruInput = document.querySelector('input[name="guru"]');
-
-    if (selectedValue === 'siswa') {
-        siswaInput.disabled = false;
-        guruInput.disabled = true;
-        guruInput.value = ''; // Kosongkan input saat dinonaktifkan
-    } else if (selectedValue === 'guru') {
-        guruInput.disabled = false;
-        siswaInput.disabled = true;
-        siswaInput.value = ''; // Kosongkan input saat dinonaktifkan
-    }
-}
-
-
-        document.querySelectorAll('[id^="datepicker"]').forEach(function(datepicker) {
-            new Litepicker({
-                element: datepicker,
-                buttonText: {
-                    previousMonth: `<svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                <path d="M15 6l-6 6l6 6" /></svg>`,
-                    nextMonth: `<svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M9 6l6 6l-6 6" /></svg>`,
-                },
+                // Remove jQuery datepicker usage since Litepicker is used
+                // Add a click event listener for the filter button
+                document.getElementById('filterButton').addEventListener('click', function() {
+                    document.getElementById('hiddenStartDate').value = document.getElementById(
+                        'datepicker-icon-1').value;
+                    document.getElementById('hiddenEndDate').value = document.getElementById(
+                        'datepicker-icon-2').value;
+                });
             });
-        });
-
-        $(function() {
-            $("#datepicker-icon-1").datepicker({
-                dateFormat: 'yy-mm-dd' // Format tanggal sesuai kebutuhan
-            });
-            $("#datepicker-icon-2").datepicker({
-                dateFormat: 'yy-mm-dd' // Format tanggal sesuai kebutuhan
-            });
-        });
-
-        document.getElementById('filterButton').addEventListener('click', function() {
-            // Menyalin nilai dari input tanggal ke input tersembunyi
-            document.getElementById('hiddenStartDate').value = document.getElementById(
-                'datepicker-icon-1').value;
-            document.getElementById('hiddenEndDate').value = document.getElementById(
-                'datepicker-icon-2').value;
-        });
-    });
-
-
-
-
-
-
-    $(function() {
-        $("#datepicker-icon-1").datepicker({
-            dateFormat: 'yy-mm-dd' // Format tanggal sesuai kebutuhan
-        });
-        $("#datepicker-icon-2").datepicker({
-            dateFormat: 'yy-mm-dd' // Format tanggal sesuai kebutuhan
-        });
-    });
-
-    // datepickerfilter
-    // document.getElementById('pdfForm').addEventListener('submit', function() {
-    //     document.getElementById('hiddenStartDate').value = document.getElementById('datepicker-icon-1').value;
-    //     document.getElementById('hiddenEndDate').value = document.getElementById('datepicker-icon-2').value;
-    // });
-
-    document.getElementById('filterButton').addEventListener('click', function() {
-        // Menyalin nilai dari input tanggal ke input tersembunyi
-        document.getElementById('hiddenStartDate').value = document.getElementById('datepicker-icon-1').value;
-        document.getElementById('hiddenEndDate').value = document.getElementById('datepicker-icon-2').value;
-    });
-</script>
+        </script>

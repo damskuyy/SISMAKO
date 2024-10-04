@@ -22,15 +22,15 @@ class NotulensiRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'tp' => 'required',
-            'tanggal' => 'required|date',
-            'waktu' => 'required',
-            'daring' => 'required',
-            'materi' => 'required',
-            'peserta' => 'required',
-            'pemateri' => 'required',
-            'hasil' => 'required',
-            'file_surat' => 'required|file',
+            'tp' => 'nullable',
+            'tanggal' => 'nullable|date',
+            'waktu' => 'nullable',
+            'daring' => 'nullable',
+            'materi' => 'nullable',
+            'peserta' => 'nullable',
+            'pemateri' => 'nullable',
+            'hasil' => 'nullable',
+            'file_surat' => 'nullable|file',
             'file_dokumentasi' => 'nullable|mimes:jpg,jpeg,png|file'
         ];
     }
@@ -38,15 +38,15 @@ class NotulensiRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'tp.required' => 'Kolom ini wajib diisi',
-            'tanggal.required' => 'Kolom ini wajib diisi',
-            'waktu.required' => 'Kolom ini wajib diisi',
-            'daring.required' => 'Kolom ini wajib diisi',
-            'materi.required' => 'Kolom ini wajib diisi',
-            'peserta.required' => 'Kolom ini wajib diisi',
-            'pemateri.required' => 'Kolom ini wajib diisi',
-            'hasil.required' => 'Kolom ini wajib diisi',
-            'file_surat.required' => 'Wajib upload file surat',
+            'tp' => 'Kolom ini wajib diisi',
+            'tanggal' => 'Kolom ini wajib diisi',
+            'waktu' => 'Kolom ini wajib diisi',
+            'daring' => 'Kolom ini wajib diisi',
+            'materi' => 'Kolom ini wajib diisi',
+            'peserta' => 'Kolom ini wajib diisi',
+            'pemateri' => 'Kolom ini wajib diisi',
+            'hasil' => 'Kolom ini wajib diisi',
+            'file_surat' => 'Wajib upload file surat',
             'file_surat.mimes' => 'File surat harus berupa PDF',
             'file_dokumentasi.mimes' => 'File dokumentasi harus berupa JPG, JPEG, atau PNG',
         ];

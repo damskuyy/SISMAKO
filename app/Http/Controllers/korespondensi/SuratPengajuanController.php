@@ -4,6 +4,7 @@ namespace App\Http\Controllers\korespondensi;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use App\Models\korespondensi\SuratPengajuan;
 use App\Http\Requests\korespondensi\SuratPengajuanRequest;
 
@@ -32,11 +33,21 @@ class SuratPengajuanController extends Controller
     {
         // dd($request->all());
         $validated = $request->validated();
-
-        $validated['file_surat'] = $request->file('file_surat')->store('surat-pengajuan');
+        $file = $request->file('file_surat');
+        $fileName = $file->getClientOriginalName();
+        $validated['file_surat'] = $file->storeAs('surat-pengajuan', $fileName,'public');
 
         SuratPengajuan::create($validated);
         return redirect()->route('inbox.index')->with('success', 'Data surat pengajuan berhasil ditambahkan');
+    }
+
+    public function download($id)
+    {
+        $import = SuratPengajuan::findOrFail($id);
+
+        $filePath = public_path('storage/' . $import->file_surat);
+
+        return response()->download($filePath);
     }
 
     /**
@@ -65,7 +76,12 @@ class SuratPengajuanController extends Controller
         $suratPengajuan = SuratPengajuan::findOrFail($id);
 
         if ($request->hasFile('file_surat')) {
-            $validated['file_surat'] = $request->file('file_surat')->store('surat-pengajuan');
+            if($suratPengajuan->file_surat){
+                Storage::disk('public')->delete($suratPengajuan->file_surat);
+            }
+            $file = $request->file('file_surat');
+        $fileName = $file->getClientOriginalName();
+        $validated['file_surat'] = $file->storeAs('surat-pengajuan', $fileName,'public');
         }
 
         $suratPengajuan->update($validated);
@@ -75,7 +91,7 @@ class SuratPengajuanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         SuratPengajuan::findOrFail($id)->delete();
         return redirect()->route('inbox.index')->with('success', 'Data surat pengajuan berhasil dihapus');

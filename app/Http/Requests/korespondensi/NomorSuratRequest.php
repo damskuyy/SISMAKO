@@ -22,11 +22,11 @@ class NomorSuratRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'tp' => 'required',
-            'tanggal' => 'required|date',
-            'no_surat' => 'required',
-            'keperluan' => 'required',
-            'file_surat' => 'required|mimes:pdf|file'
+            'tp' => 'nullable',
+            'tanggal' => 'nullable|date',
+            'no_surat' => 'nullable',
+            'keperluan' => 'nullable',
+            'file_surat' => 'nullable|mimes:pdf|file'
         ];
     }
 

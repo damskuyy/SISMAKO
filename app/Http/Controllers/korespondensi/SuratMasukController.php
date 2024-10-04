@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\korespondensi;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Models\korespondensi\SuratMasuk;
@@ -10,7 +9,7 @@ use App\Http\Requests\korespondensi\SuratMasukRequest;
 
 class SuratMasukController extends Controller
 {
-     /**
+    /**
      * Display a listing of the resource.
      */
     public function index()
@@ -29,11 +28,13 @@ class SuratMasukController extends Controller
     public function store(SuratMasukRequest $request)
     {
 
+
+
         // dd($request->all());
         $validated = $request->validated();
         $file = $request->file('file_surat');
         $fileName = $file->getClientOriginalName();
-        $validated['file_surat'] = $file->storeAs('surat-masuk', $fileName);
+        $validated['file_surat'] = $file->storeAs('surat-masuk', $fileName, 'public');
 
 
         SuratMasuk::create($validated);
@@ -64,26 +65,25 @@ class SuratMasukController extends Controller
      */
     public function update(SuratMasukRequest $request, $id)
     {
-                // dd($request->all());
         $validated= $request->validated();
-
-        $suratMasuk = SuratMasuk::findOrFail($id);
+        $suratMasuk=SuratMasuk::findOrFail($id);
 
         if ($request->hasFile('file_surat')) {
-            $file = $request->file('file_surat');
-            $fileName = $file->getClientOriginalName();
-            $validated['file_surat'] = $file->storeAs('surat-masuk', $fileName);
-
-            // Hapus file lama jika ada
+            // If there is an existing file, delete it
             if ($suratMasuk->file_surat) {
                 Storage::disk('public')->delete($suratMasuk->file_surat);
             }
+
+            // Store the new file and update the validated data
+            $file = $request->file('file_surat');
+            $fileName = $file->getClientOriginalName(); // Get original file name
+            $validated['file_surat'] = $file->storeAs('surat-masuk', $fileName, 'public'); // Store file
         }
 
         $suratMasuk->update($validated);
-
         return redirect()->route('inbox.index')->with('success', 'Data surat masuk berhasil diperbarui');
     }
+
 
 
     /**

@@ -22,13 +22,13 @@ class SuratPengajuanRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'tp' => 'required',
-            'tanggal' => 'required|date',
-            'no_surat' => 'required',
-            'jenis_pengajuan' => 'required',
-            'nama_pengajuan' => 'required',
-            'nominal' => 'required',
-            'file_surat' => 'required|mimes:pdf|file'
+            'tp' => 'nullable',
+            'tanggal' => 'nullable|date',
+            'no_surat' => 'nullable',
+            'jenis_pengajuan' => 'nullable',
+            'nama_pengajuan' => 'nullable',
+            'nominal' => 'nullable',
+            'file_surat' => 'nullable|mimes:pdf|file'
         ];
     }
 }

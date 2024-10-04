@@ -677,6 +677,14 @@
 
     <table class="signature">
         <tr>
+            <td>Mengetahui,</td>
+            <td></td>
+            <td>
+                Bogor, {{ \Carbon\Carbon::parse($rapor->released)->translatedFormat('d F Y') }}
+            </td>
+
+        </tr>
+        <tr>
             <td class='right-signature'>Orang Tua/Wali,</td>
             <td class="center-signature"></td>
             <td class='left-signature'>Wali Kelas</td>

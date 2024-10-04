@@ -30,10 +30,21 @@ class SuratPeringatanController extends Controller
     {
         // dd($request->all());
         $validated = $request->validated();
-        $validated['file_surat'] = $request->file('file_surat')->store('surat-peringatan');
+        $file = $request->file('file_surat');
+        $fileName = $file->getClientOriginalName();
+        $validated['file_surat'] = $file->storeAs('surat-peringatan', $fileName,'public');
 
         SuratPeringatan::create($validated);
         return redirect()->route('inbox.index')->with('success', 'Data surat peringatan berhasil ditambahkan');
+    }
+
+    public function download($id)
+    {
+        $import = SuratPeringatan::findOrFail($id);
+
+        $filePath = public_path('storage/' . $import->file_surat);
+
+        return response()->download($filePath);
     }
 
     /**
@@ -65,8 +76,9 @@ class SuratPeringatanController extends Controller
             if ($suratPeringatan->file_surat) {
                 Storage::disk('public')->delete($suratPeringatan->file_surat);
             }
-            // Simpan file baru
-            $validated['file_surat'] = $request->file('file_surat')->store('surat-peringatan');
+            $file = $request->file('file_surat');
+            $fileName = $file->getClientOriginalName(); // Get original file name
+            $validated['file_surat'] = $file->storeAs('surat-peringatan', $fileName, 'public'); // Store file
         }
 
         $suratPeringatan->update($validated);

@@ -182,7 +182,7 @@
                                             <label class="form-label">Pendidikan Pancasila dan Kewarganegaraan</label>
                                             <input type="number" name="muatan_nasional[pkn][nilai]" id="pkn_nilai"
                                                 class="form-control" value="{{ old('muatan_nasional.pkn.nilai') }}"
-                                                required>
+                                                >
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
@@ -190,7 +190,7 @@
                                             <label class="form-label">Bahasa Indonesia</label>
                                             <input type="number" name="muatan_nasional[bindo][nilai]" id="bindo_nilai"
                                                 class="form-control" value="{{ old('muatan_nasional.bindo.nilai') }}"
-                                                required>
+                                                >
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
@@ -221,7 +221,7 @@
                                             <label class="form-label">Matematika</label>
                                             <input type="number" name="muatan_nasional[mtk][nilai]" id="mtk_nilai"
                                                 class="form-control" value="{{ old('muatan_nasional.mtk.nilai') }}"
-                                                required>
+                                                >
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
@@ -229,7 +229,7 @@
                                             <label class="form-label">Sejarah Indonesia</label>
                                             <input type="number" name="muatan_nasional[sejindo][nilai]"
                                                 id="sejindo_nilai" class="form-control"
-                                                value="{{ old('muatan_nasional.sejindo.nilai') }}" required>
+                                                value="{{ old('muatan_nasional.sejindo.nilai') }}" >
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
@@ -237,7 +237,7 @@
                                             <label class="form-label">Bahasa Asing</label>
                                             <input type="number" name="muatan_nasional[bhsAsing][nilai]"
                                                 id="bhsAsing_nilai" class="form-control"
-                                                value="{{ old('muatan_nasional.bhsAsing.nilai') }}" required>
+                                                value="{{ old('muatan_nasional.bhsAsing.nilai') }}" >
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
@@ -274,7 +274,7 @@
                                             <label class="form-label">Seni Budaya</label>
                                             <input type="number" name="muatan_kewilayahan[sbd][nilai]"
                                                 id="bhsAsing_nilai" class="form-control"
-                                                value="{{ old('muatan_kewilayahan.sbd.nilai') }}" required>
+                                                value="{{ old('muatan_kewilayahan.sbd.nilai') }}" >
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-6">
@@ -282,7 +282,7 @@
                                             <label class="form-label">PJOK</label>
                                             <input type="number" name="muatan_kewilayahan[pjok][nilai]"
                                                 id="bhsAsing_nilai" class="form-control"
-                                                value="{{ old('muatan_kewilayahan.pjok.nilai') }}" required>
+                                                value="{{ old('muatan_kewilayahan.pjok.nilai') }}" >
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-6">
@@ -311,7 +311,7 @@
                                             <label class="form-label">Simulasi dan Komunikasi Digital</label>
                                             <input type="number" name="muatan_peminatan[simdig][nilai]"
                                                 id="simdig_nilai" class="form-control"
-                                                value="{{ old('muatan_peminatan.simdig.nilai') }}" required>
+                                                value="{{ old('muatan_peminatan.simdig.nilai') }}" >
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
@@ -319,7 +319,7 @@
                                             <label class="form-label">Fisika</label>
                                             <input type="number" name="muatan_peminatan[fisika][nilai]"
                                                 id="fisika_nilai" class="form-control"
-                                                value="{{ old('muatan_peminatan.fisika.nilai') }}" required>
+                                                value="{{ old('muatan_peminatan.fisika.nilai') }}" >
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
@@ -327,7 +327,7 @@
                                             <label class="form-label">Kimia</label>
                                             <input type="number" name="muatan_peminatan[kimia][nilai]" id="kimia_nilai"
                                                 class="form-control" value="{{ old('muatan_peminatan.kimia.nilai') }}"
-                                                required>
+                                                >
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
@@ -363,7 +363,7 @@
                                             <label class="form-label">Sistem Komputer</label>
                                             <input type="number" name="muatan_peminatan[siskom][nilai]"
                                                 id="siskom_nilai" class="form-control"
-                                                value="{{ old('muatan_peminatan.siskom.nilai') }}" required>
+                                                value="{{ old('muatan_peminatan.siskom.nilai') }}" >
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-3">
@@ -371,7 +371,7 @@
                                             <label class="form-label">Komputer dan Jaringan</label>
                                             <input type="number" name="muatan_peminatan[komjar][nilai]"
                                                 id="komjar_nilai" class="form-control"
-                                                value="{{ old('muatan_peminatan.komjar.nilai') }}" required>
+                                                value="{{ old('muatan_peminatan.komjar.nilai') }}" >
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-3">
@@ -379,7 +379,7 @@
                                             <label class="form-label">Pemograman Dasar</label>
                                             <input type="number" name="muatan_peminatan[progdas][nilai]"
                                                 id="progdas_nilai" class="form-control"
-                                                value="{{ old('muatan_peminatan.progdas.nilai') }}" required>
+                                                value="{{ old('muatan_peminatan.progdas.nilai') }}" >
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-3">
@@ -387,7 +387,7 @@
                                             <label class="form-label">Dasar Design Grafis</label>
                                             <input type="number" name="muatan_peminatan[ddg][nilai]" id="ddg_nilai"
                                                 class="form-control" value="{{ old('muatan_peminatan.ddg.nilai') }}"
-                                                required>
+                                                >
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-3">
@@ -430,7 +430,7 @@
                                             <label class="form-label">Infrastruktur Komputasi Awan</label>
                                             <input type="number" name="muatan_peminatan[iaas][nilai]" id="iaas_nilai"
                                                 class="form-control" value="{{ old('muatan_peminatan.iaas.nilai') }}"
-                                                required>
+                                                >
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
@@ -438,7 +438,7 @@
                                             <label class="form-label">Platform Komputasi Awan</label>
                                             <input type="number" name="muatan_peminatan[paas][nilai]" id="paas_nilai"
                                                 class="form-control" value="{{ old('muatan_peminatan.paas.nilai') }}"
-                                                required>
+                                                >
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
@@ -446,7 +446,7 @@
                                             <label class="form-label">Layanan Komputasi Awan</label>
                                             <input type="number" name="muatan_peminatan[saas][nilai]" id="saas_nilai"
                                                 class="form-control" value="{{ old('muatan_peminatan.saas.nilai') }}"
-                                                required>
+                                                >
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
@@ -475,7 +475,7 @@
                                             <label class="form-label">Sistem Internet of Things</label>
                                             <input type="number" name="muatan_peminatan[siot][nilai]" id="siot_nilai"
                                                 class="form-control" value="{{ old('muatan_peminatan.siot.nilai') }}"
-                                                required>
+                                                >
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
@@ -483,7 +483,7 @@
                                             <label class="form-label">Sistem Keamanan Jaringan</label>
                                             <input type="number" name="muatan_peminatan[skj][nilai]" id="skj_nilai"
                                                 class="form-control" value="{{ old('muatan_peminatan.skj.nilai') }}"
-                                                required>
+                                                >
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
@@ -491,7 +491,7 @@
                                             <label class="form-label">Produk Kreatif dan Kewirausahaan</label>
                                             <input type="number" name="muatan_peminatan[pkk][nilai]" id="pkk_nilai"
                                                 class="form-control" value="{{ old('muatan_peminatan.pkk.nilai') }}"
-                                                required>
+                                                >
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
@@ -528,7 +528,7 @@
                                             <label class="form-label">Pramuka</label>
                                             <input type="text" name="extracurricular[pramuka][nilai]" id="pramuka_nilai"
                                                 class="form-control" value="{{ old('extracurricular.pramuka.nilai') }}"
-                                                required>
+                                                >
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-3">
@@ -536,7 +536,7 @@
                                             <label class="form-label">Bulu Tangkis</label>
                                             <input type="text" name="extracurricular[bultang][nilai]" id="bultang_nilai"
                                                 class="form-control" value="{{ old('extracurricular.bultang.nilai') }}"
-                                                required>
+                                                >
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-3">
@@ -544,7 +544,7 @@
                                             <label class="form-label">Futsal</label>
                                             <input type="text" name="extracurricular[futsal][nilai]" id="futsal_nilai"
                                                 class="form-control" value="{{ old('extracurricular.futsal.nilai') }}"
-                                                required>
+                                                >
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-3">
@@ -552,7 +552,7 @@
                                             <label class="form-label">Silat</label>
                                             <input type="text" name="extracurricular[silat][nilai]" id="silat_nilai"
                                                 class="form-control" value="{{ old('extracurricular.silat.nilai') }}"
-                                                required>
+                                                >
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-3">
@@ -623,7 +623,7 @@
                                             <label class="form-label">Prestasi 1</label>
                                             <input type="text" name="achievements[one][nilai]" id="one_nilai"
                                                 class="form-control" value="{{ old('achievements.one.nilai') }}"
-                                                required>
+                                                >
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
@@ -631,7 +631,7 @@
                                             <label class="form-label">Prestasi 2</label>
                                             <input type="text" name="achievements[two][nilai]" id="two_nilai"
                                                 class="form-control" value="{{ old('achievements.two.nilai') }}"
-                                                required>
+                                                >
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
@@ -639,7 +639,7 @@
                                             <label class="form-label">Prestasi 3</label>
                                             <input type="text" name="achievements[three][nilai]" id="three_nilai"
                                                 class="form-control" value="{{ old('achievements.three.nilai') }}"
-                                                required>
+                                                >
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
@@ -668,7 +668,7 @@
                                             <label class="form-label">Prestasi 4</label>
                                             <input type="text" name="achievements[four][nilai]" id="four_nilai"
                                                 class="form-control" value="{{ old('achievements.four.nilai') }}"
-                                                required>
+                                                >
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
@@ -676,7 +676,7 @@
                                             <label class="form-label">Prestasi 5</label>
                                             <input type="text" name="achievements[five][nilai]" id="five_nilai"
                                                 class="form-control" value="{{ old('achievements.five.nilai') }}"
-                                                required>
+                                                >
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
@@ -684,7 +684,7 @@
                                             <label class="form-label">Prestasi 6</label>
                                             <input type="text" name="achievements[six][nilai]" id="six_nilai"
                                                 class="form-control" value="{{ old('achievements.six.nilai') }}"
-                                                required>
+                                                >
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">

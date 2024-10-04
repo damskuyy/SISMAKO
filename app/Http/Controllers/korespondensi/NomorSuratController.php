@@ -26,11 +26,21 @@ class NomorSuratController extends Controller
     public function store(NomorSuratRequest $request)
     {
         $validated = $request->validated();
-
-        $validated['file_surat'] = $request->file('file_surat')->store('nomor-surat');
+        $file = $request->file('file_surat');
+        $fileName = $file->getClientOriginalName();
+        $validated['file_surat'] = $file->storeAs('surat-keluar', $fileName,'public');
 
         NomorSurat::create($validated);
         return redirect()->route('inbox.index')->with('success', 'Data nomor surat berhasil ditambahkan');
+    }
+
+    public function download($id)
+    {
+        $import = NomorSurat::findOrFail($id);
+
+        $filePath = public_path('storage/' . $import->file_surat);
+
+        return response()->download($filePath);
     }
 
     public function edit(string $id)
@@ -50,7 +60,9 @@ class NomorSuratController extends Controller
             if ($nomorSurat->file_surat) {
                 Storage::delete($nomorSurat->file_surat);
             }
-            $validated['file_surat'] = $request->file('file_surat')->store('nomor-surat');
+            $file = $request->file('file_surat');
+            $fileName = $file->getClientOriginalName(); // Get original file name
+            $validated['file_surat'] = $file->storeAs('no-surat', $fileName, 'public');
         }
 
         $nomorSurat->update($validated);

@@ -37,7 +37,7 @@
         table th,
         table td {
             padding: 12px;
-            text-align: left;
+            text-align: center;
             border: 1px solid #000000;
         }
 

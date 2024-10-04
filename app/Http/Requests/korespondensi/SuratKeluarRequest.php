@@ -22,26 +22,26 @@ class SuratKeluarRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'tp' => 'required',
-            'tanggal' => 'required|date',
-            'no_surat' => 'required',
-            'jenis_surat' => 'required',
-            'perihal' => 'required',
-            'kepada' => 'required',
-            'file_surat' => 'required|mimes:pdf|file'
+            'tp' => 'nullable',
+            'tanggal' => 'nullable|date',
+            'no_surat' => 'nullable',
+            'jenis_surat' => 'nullable',
+            'perihal' => 'nullable',
+            'kepada' => 'nullable',
+            'file_surat' => 'nullable|mimes:pdf|file'
         ];
     }
 
     public function messages(): array
     {
         return [
-            'tp.required'=> 'Kolom ini wajib diisi',
-            'tanggal.required'=> 'Kolom ini wajib diisi',
-            'no_surat.required'=> 'Kolom ini wajib diisi',
-            'jenis_surat.required'=> 'Kolom ini wajib diisi',
-            'perihal.required'=> 'Kolom ini wajib diisi',
-            'kepada.required'=> 'Kolom ini wajib diisi',
-            'file_surat.required'=> 'Wajib upload file',
+            'tp'=> 'Kolom ini wajib diisi',
+            'tanggal'=> 'Kolom ini wajib diisi',
+            'no_surat'=> 'Kolom ini wajib diisi',
+            'jenis_surat'=> 'Kolom ini wajib diisi',
+            'perihal'=> 'Kolom ini wajib diisi',
+            'kepada'=> 'Kolom ini wajib diisi',
+            'file_surat'=> 'Wajib upload file',
         ];
     }
 }

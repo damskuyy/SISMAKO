@@ -14,17 +14,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $cards = [
+            ['url' => '/database', 'password' => '140721'],
+            ['url' => '/korespondensi', 'password' => '140721'],
+            ['url' => '/administrasi', 'password' => 'bazma1992'],
+            ['url' => '/penilaian', 'password' => 'bazma1992'],
+            ['url' => '/sarpras', 'password' => 'bazma1992'],
+            ['url' => '/finance', 'password' => 'bazma1992'],
+            ['url' => '/pkg', 'password' => '190924'],
+            ['url' => '/jamaah', 'password' => '170845'],
+            ['url' => '/patroli/asrama', 'password' => '170845'],
+        ];
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => Hash::make('12345')
-        ]);
-
-
-        Password::create([
-            'password' => Hash::make('12345')
-        ]);
+        foreach ($cards as $card) {
+            Password::create([
+                'url' => $card['url'],
+                'password' => Hash::make($card['password']),
+            ]);
+        }
     }
 }

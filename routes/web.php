@@ -495,6 +495,7 @@ Route::controller(SuratPeringatanController::class)->group(function () {
 Route::controller(NomorSuratController::class)->group(function () {
     Route::post('/no_surat', 'store')->name('no_surat.store');
     Route::get('/no_surat/{id}/edit', 'edit')->name('no_surat.edit');
+    Route::get('/no_surat/{id}/download', 'download')->name('no_surat.download');
     Route::put('/no_surat/{id}', 'update')->name('no_surat.update');
     Route::delete('/no_surat/delete/{id}', 'destroy')->name('no_surat.destroy');
 });

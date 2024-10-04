@@ -13,20 +13,23 @@ class PasswordController extends Controller
         return view('password.password');
     }
 
-    public function editPw() {
+    public function editPw()
+    {
         return view('password.change-password');
     }
 
     public function checkPw(Request $request)
     {
         $password = $request->input('password');
-        $pw = Password::find(1)->first();
 
-        if (Hash::check($password, $pw->password)) {
+        // Mengambil URL dari request (tanpa perlu ID)
+        $redirectUrl = $request->input('redirect_url', '/dashboard');
+
+        // Cari password berdasarkan URL yang dikirim
+        $pw = Password::where('url', $redirectUrl)->first();
+
+        if ($pw && Hash::check($password, $pw->password)) {
             $request->session()->put('pin', $pw->password);
-
-            // Ambil URL redirect dari request
-            $redirectUrl = $request->input('redirect_url', '/dashboard');
 
             return redirect()->intended($redirectUrl);
         }

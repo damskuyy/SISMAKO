@@ -43,10 +43,7 @@ class RaporController extends Controller
 
     public function store(RaporRequest $request)
     {
-        $data = $request->validated();
-
-        rapor::create($data);
-
+        rapor::create($request->validated());
         return redirect("/penilaian/rapor")->with("success", "Berhasil disimpan");
     }
 
