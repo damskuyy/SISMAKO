@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('jenis_surat');
             $table->string('perihal');
             $table->string('kepada');
-            $table->string('file_surat');
+            $table->string('file_surat')->default('');
             $table->timestamps();
         });
     }

@@ -35,9 +35,9 @@ class suratKeluarController extends Controller
         // dd($request->all());
         $validated = $request->validated();
 
-        $file = $request->file('file_surat');
-        $fileName = $file->getClientOriginalName();
-        $validated['file_surat'] = $file->storeAs('surat-keluar', $fileName,'public');
+        // $file = $request->file('file_surat');
+        // $fileName = $file->getClientOriginalName();
+        // $validated['file_surat'] = $file->storeAs('surat-keluar', $fileName,'public');
 
 
         SuratKeluar::create($validated);
@@ -45,14 +45,14 @@ class suratKeluarController extends Controller
         return redirect()->route('inbox.index')->with('success', 'Data surat keluar berhasil ditambahkan');
     }
 
-    public function download($id)
-    {
-        $import = SuratKeluar::findOrFail($id);
+    // public function download($id)
+    // {
+    //     $import = SuratKeluar::findOrFail($id);
 
-        $filePath = public_path('storage/' . $import->file_surat);
+    //     $filePath = public_path('storage/' . $import->file_surat);
 
-        return response()->download($filePath);
-    }
+    //     return response()->download($filePath);
+    // }
 
 
 
@@ -83,15 +83,15 @@ class suratKeluarController extends Controller
 
         $suratKeluar = SuratKeluar::findOrFail($id);
 
-        if ($request->hasFile('file_surat')) {
-            // Hapus file lama jika ada
-            if ($suratKeluar->file_surat) {
-                Storage::disk('public')->delete($suratKeluar->file_surat);
-            }
-            $file = $request->file('file_surat');
-            $fileName = $file->getClientOriginalName(); // Get original file name
-            $validated['file_surat'] = $file->storeAs('surat-keluar', $fileName, 'public'); // Store file
-        }
+        // if ($request->hasFile('file_surat')) {
+        //     // Hapus file lama jika ada
+        //     if ($suratKeluar->file_surat) {
+        //         Storage::disk('public')->delete($suratKeluar->file_surat);
+        //     }
+        //     $file = $request->file('file_surat');
+        //     $fileName = $file->getClientOriginalName(); // Get original file name
+        //     $validated['file_surat'] = $file->storeAs('surat-keluar', $fileName, 'public'); // Store file
+        //}
 
         $suratKeluar->update($validated);
 

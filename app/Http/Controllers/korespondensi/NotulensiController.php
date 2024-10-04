@@ -104,45 +104,50 @@ class NotulensiController extends Controller
      * Update the specified resource in storage.
      */
     public function update(NotulensiRequest $request, $id)
-    {
-        $validated = $request->validated();
+{
+    $validated = $request->validated();
 
-        // Temukan notulensi berdasarkan ID
-        $notulensi = Notulensi::findOrFail($id);
+    // Temukan notulensi berdasarkan ID
+    $notulensi = Notulensi::findOrFail($id);
 
-        // Mengelola file_surat jika ada di request
-        if ($request->hasFile('file_surat')) {
-            // Jika ada file yang sudah ada, hapus file tersebut
-            if ($notulensi->file_surat) {
-                Storage::disk('public')->delete($notulensi->file_surat);
-            }
-
-            // Simpan file baru dan update data yang sudah tervalidasi
-            $file = $request->file('file_surat');
-            $fileName = $file->getClientOriginalName();
-            $validated['file_surat'] = $file->storeAs('notulensi', $fileName, 'public');
+    // Mengelola file_surat jika ada di request
+    if ($request->hasFile('file_surat')) {
+        // Jika ada file yang sudah ada, hapus file tersebut
+        if ($notulensi->file_surat) {
+            Storage::disk('public')->delete($notulensi->file_surat);
         }
 
-        // Mengelola file_dokumentasi jika ada di request
-        if ($request->hasFile('file_dokumentasi')) {
-            // Jika ada file yang sudah ada, hapus file tersebut
-            if ($notulensi->file_dokumentasi) {
-                Storage::disk('public')->delete($notulensi->file_dokumentasi);
-            }
-
-            // Simpan file baru dan update data yang sudah tervalidasi
-            $files = $request->file('file_dokumentasi');
-            foreach ($files as $file) {
-                $fileNameDoksli = $file->getClientOriginalName();
-                $validated['file_dokumentasi'][] = $file->storeAs('notulensi', $fileNameDoksli, 'public');
-            }
-        }
-
-        // Update notulensi dengan data yang sudah tervalidasi
-        $notulensi->update($validated);
-
-        return redirect()->route('inbox.index')->with('success', 'Data notulensi berhasil diperbarui');
+        // Simpan file baru dan update data yang sudah tervalidasi
+        $file = $request->file('file_surat');
+        $fileName = $file->getClientOriginalName();
+        $validated['file_surat'] = $file->storeAs('notulensi', $fileName, 'public');
+    } else {
+        // Jika tidak ada file baru, pertahankan file_surat yang lama
+        $validated['file_surat'] = $notulensi->file_surat;
     }
+
+    // Mengelola file_dokumentasi jika ada di request
+    if ($request->hasFile('file_dokumentasi')) {
+        // Jika ada file yang sudah ada, hapus file tersebut
+        if ($notulensi->file_dokumentasi) {
+            Storage::disk('public')->delete($notulensi->file_dokumentasi);
+        }
+
+        // Simpan file baru dan update data yang sudah tervalidasi
+        $fileDokumentasi = $request->file('file_dokumentasi');
+        $fileNameDoksli = $fileDokumentasi->getClientOriginalName();
+        $validated['file_dokumentasi'] = $fileDokumentasi->storeAs('notulensi', $fileNameDoksli, 'public');
+    } else {
+        // Jika tidak ada file baru, pertahankan file_dokumentasi yang lama
+        $validated['file_dokumentasi'] = $notulensi->file_dokumentasi;
+    }
+
+    // Update notulensi dengan data yang sudah tervalidasi
+    $notulensi->update($validated);
+
+    return redirect()->route('inbox.index')->with('success', 'Data notulensi berhasil diperbarui');
+}
+
 
 
 

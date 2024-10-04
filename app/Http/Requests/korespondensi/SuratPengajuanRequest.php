@@ -28,7 +28,7 @@ class SuratPengajuanRequest extends FormRequest
             'jenis_pengajuan' => 'nullable',
             'nama_pengajuan' => 'nullable',
             'nominal' => 'nullable',
-            'file_surat' => 'nullable|mimes:pdf|file'
+            'file_surat' => 'nullable|mimes:pdf|file|max:2048'
         ];
     }
 }

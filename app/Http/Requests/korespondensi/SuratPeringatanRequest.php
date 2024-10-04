@@ -29,7 +29,7 @@ class SuratPeringatanRequest extends FormRequest
             'alasan' => 'nullable',
             'sp' => 'nullable',
             'keterangan' => 'nullable',
-            'file_surat' => 'nullable|mimes:pdf|file',
+            'file_surat' => 'nullable|mimes:pdf|file|max:2048',
             'siswa' => 'nullable',
             'guru' => 'nullable',
         ];

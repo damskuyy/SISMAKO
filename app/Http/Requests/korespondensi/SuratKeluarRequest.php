@@ -28,7 +28,7 @@ class SuratKeluarRequest extends FormRequest
             'jenis_surat' => 'nullable',
             'perihal' => 'nullable',
             'kepada' => 'nullable',
-            'file_surat' => 'nullable|mimes:pdf|file'
+            'file_surat' => 'nullable|mimes:pdf|file|max:2048'
         ];
     }
 

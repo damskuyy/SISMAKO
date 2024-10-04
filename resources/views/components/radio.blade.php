@@ -332,11 +332,11 @@
                 <div class="modal-body">
                     <div class="col-12">
                         <div class="mb-3">
-                            <div class="form-label">Import File</div>
+                            {{-- <div class="form-label">Import File</div>
                             <input type="file" class="form-control" name="file_surat">
                             @error('file_surat')
                                 <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                            @enderror --}}
                             <div class="mb-3">
                                 <label class="form-label required">Jenis Surat Lainnya 2</label>
                                 <input type="text" id="lainnya-field-2" class="form-control" name="jenis_surat"
@@ -882,433 +882,145 @@
 
 {{-- Modal view --}}
 
-<div class="modal modal-blur fade" id="modalView1" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Rekap Surat Masuk</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="table-responsive p-3">
-                            <table class="table card-table table-vcenter text-nowrap datatable" style="width: 100%"
-                                id="myTable1">
-                                <thead>
-                                    <tr>
-                                        <th>Tahun ajaran</th>
-                                        <th>Tanggal</th>
-                                        <th>No. surat</th>
-                                        <th>Jenis Surat</th>
-                                        <th>Perihal</th>
-                                        <th>dari</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($suratmasuk as $item)
-                                        <tr>
-                                            <td>{{ $item->tp }}</td>
-                                            <td>{{ $item->tanggal }}</td>
-                                            <td>{{ $item->no_surat }}</td>
-                                            <td>{{ Str::limit($item->jenis_surat, 15) }}</td>
-                                            <td>{{ Str::limit($item->perihal, 15) }}</td>
-                                            <td>{{ Str::limit($item->dari, 15) }}</td>
-                                            <td>
-                                                <div class="btn-group">
-                                                    <form action="{{ route('inbox.download', $item->id) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('GET')
-                                                        <button type="submit"
-                                                            class="btn btn-icon btn-sm btn-outline-primary"
-                                                            role="button">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                height="24" viewBox="0 0 24 24" fill="none"
-                                                                stroke="currentColor" stroke-width="1.5"
-                                                                stroke-linecap="round" stroke-linejoin="round"
-                                                                class="icon icon-tabler icons-tabler-outline icon-tabler-download">
-                                                                <path stroke="none" d="M0 0h24v24H0z"
-                                                                    fill="none" />
-                                                                <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
-                                                                <path d="M7 11l5 5l5 -5" />
-                                                                <path d="M12 4l0 12" />
-                                                            </svg>
-                                                        </button>
-                                                    </form>
-                                                    <button type="button"
-                                                        class="btn btn-icon btn-sm btn-outline-success" role="button"
-                                                        data-bs-target="#modalUpdate1{{ $item->id }}"
-                                                        data-bs-toggle="modal" data-bs-dismiss="modal">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                            height="24" viewBox="0 0 24 24" fill="none"
-                                                            stroke="currentColor" stroke-width="2"
-                                                            stroke-linecap="round" stroke-linejoin="round"
-                                                            class="icon icon-tabler icons-tabler-outline icon-tabler-edit">
-                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                            <path
-                                                                d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
-                                                            <path
-                                                                d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
-                                                            <path d="M16 5l3 3" />
-                                                        </svg>
-                                                    </button>
-                                                    <form action="{{ route('inbox.destroy', $item->id) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit"
-                                                            class="btn btn-icon btn-sm btn-outline-danger"
-                                                            role="button">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                height="24" viewBox="0 0 24 24" fill="none"
-                                                                stroke="currentColor" stroke-width="2"
-                                                                stroke-linecap="round" stroke-linejoin="round"
-                                                                class="icon icon-tabler icons-tabler-outline icon-tabler-trash">
-                                                                <path stroke="none" d="M0 0h24v24H0z"
-                                                                    fill="none" />
-                                                                <path d="M4 7l16 0" />
-                                                                <path d="M10 11l0 6" />
-                                                                <path d="M14 11l0 6" />
-                                                                <path
-                                                                    d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-                                                                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-                                                            </svg>
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+{{-- modal update --}}
 
-        </div>
-    </div>
-</div>
+<script>
+    $(document).ready(function() {
+        // Initialize input mask
+        $("#time-input").inputmask("99:99");
 
-<div class="modal modal-blur fade" id="modalView2" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Rekap Surat Keluar</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="container">
+        // Initialize DataTable (apply this to your table element if needed)
+        // $('#your-table-id').DataTable();
+    });
+</script>
 
 
-                </div>
-            </div>
-            <div class="modal-footer justify-content-between">
-                <form action="{{ route('pdf', ['model' => 'suratkeluar']) }}" id="filterdate">
-                    <div class="row d-flex justify-content-between w-100">
-                        <div class="col-8 d-flex g-2">
-                            <div class="col-4 me-2">
-                                <div class="input-icon mb-2">
-                                    <input class="form-control" placeholder="Select a start date" id="datepicker-1"
-                                        name="start_date">
-                                    @error('start_date')
-                                        <div class="text-danger">{{ $message }}</div>
-                                    @enderror
-                                    <span class="input-icon-addon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
-                                            height="24" viewBox="0 0 24 24" stroke-width="2"
-                                            stroke="currentColor" fill="none" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <path
-                                                d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
-                                            </path>
-                                            <path d="M16 3v4"></path>
-                                            <path d="M8 3v4"></path>
-                                            <path d="M4 11h16"></path>
-                                            <path d="M11 15h1"></path>
-                                            <path d="M12 15v3"></path>
-                                        </svg>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="input-icon mb-2 me-2">
-                                    <input class="form-control" placeholder="Select an end date" id="datepicker-2"
-                                        name="end_date">
-                                    @error('end_date')
-                                        <div class="text-danger">{{ $message }}</div>
-                                    @enderror
-                                    <span class="input-icon-addon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
-                                            height="24" viewBox="0 0 24 24" stroke-width="2"
-                                            stroke="currentColor" fill="none" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <path
-                                                d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
-                                            </path>
-                                            <path d="M16 3v4"></path>
-                                            <path d="M8 3v4"></path>
-                                            <path d="M4 11h16"></path>
-                                            <path d="M11 15h1"></path>
-                                            <path d="M12 15v3"></path>
-                                        </svg>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="col-2  align-items-end">
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const modals = document.querySelectorAll('[id^="modalUpdate"]');
 
-                                <button type="submit" class="btn btn-primary">Cetak Laporan</button>
+        function hideModal(modal) {
+            const modalInstance = bootstrap.Modal.getInstance(modal);
+            if (modalInstance) {
+                modalInstance.hide();
+                modal.addEventListener('hidden.bs.modal', removeBackdrop, {
+                    once: true
+                });
+            }
+        }
 
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+        function removeBackdrop() {
+            const backdrops = document.querySelectorAll('.modal-backdrop');
+            if (backdrops.length > 0) {
+                backdrops.forEach(backdrop => backdrop.remove());
+            }
+            document.body.classList.remove('modal-open');
+            document.body.style.paddingRight = '';
+        }
 
-<div class="modal modal-blur fade" id="modalView3" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        function resetAllModals() {
+            modals.forEach(modal => hideModal(modal));
+        }
 
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Rekap Surat Peringatan</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="container">
+        modals.forEach(modal => {
+            modal.addEventListener('hidden.bs.modal', removeBackdrop);
+        });
 
+        const radioButtons = document.querySelectorAll('.radio-inbox');
+        const submitButton = document.getElementById('submitButton');
+        const viewContainers = document.querySelectorAll('#view1, #view2, #view3, #view4, #view5, #view6');
+        const tableIds = ['myTable1', 'myTable2', 'myTable3', 'myTable4', 'myTable5', 'myTable6'];
 
-                </div>
-            </div>
+        function checkSelection() {
+            const radioChecked = Array.from(radioButtons).some(radio => radio.checked);
+            submitButton.disabled = !radioChecked;
+        }
 
-        </div>
-    </div>
-</div>
+        function handleSelectChange(selectId, inputId) {
+            const selectElement = document.getElementById(selectId);
+            const inputElement = document.getElementById(inputId);
 
-<div class="modal modal-blur fade" id="modalView4" tabindex="-1" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            if (selectElement && inputElement) {
+                function updateInputState() {
+                    inputElement.disabled = (selectElement.value !== 'Lainnya');
+                }
 
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Rekap Nomor Surat</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="container">
+                selectElement.addEventListener('change', updateInputState);
+                updateInputState();
+            } else {
+                console.error(`Select or input element not found for IDs: ${selectId}, ${inputId}`);
+            }
+        }
 
+        handleSelectChange('tl-modal-1', 'lainnya-field-1');
+        handleSelectChange('tl-modal-2', 'lainnya-field-2');
+        handleSelectChange('tl-update-1', 'lainnya-update-1');
+        handleSelectChange('tl-update-2', 'lainnya-update-2');
 
-                </div>
-            </div>
+        function hideAllContainers() {
+            viewContainers.forEach(container => container.hidden = true);
+        }
 
-        </div>
-    </div>
-</div>
-<div class="modal modal-blur fade" id="modalView5" tabindex="-1" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        radioButtons.forEach(radioButton => {
+            radioButton.addEventListener('change', function() {
+                checkSelection();
+                hideAllContainers();
 
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Rekap Notulensi Rapat</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="container">
-
-
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-<div class="modal modal-blur fade" id="modalView6" tabindex="-1" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Rekap Surat Pengajuan</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="container">
-
-
-                </div>
-            </div>
-        </div>
-
-        {{-- modal update --}}
-
-        <script>
-            $(document).ready(function() {
-                // Initialize input mask
-                $("#time-input").inputmask("99:99");
-
-                // Initialize DataTable (apply this to your table element if needed)
-                // $('#your-table-id').DataTable();
+                if (this.checked) {
+                    const dataTargetView = this.getAttribute('data-target-view');
+                    const targetView = document.querySelector(dataTargetView);
+                    if (targetView) {
+                        targetView.hidden = false;
+                        initializeDataTables(); // Inisialisasi DataTable jika perlu
+                    }
+                    const dataTargetReport = this.getAttribute('data-target-report');
+                    submitButton.setAttribute('data-bs-target', dataTargetReport);
+                    toggleInputFields(this.value);
+                }
             });
-        </script>
+        });
 
-
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const modals = document.querySelectorAll('[id^="modalUpdate"], [id^="modalView"]');
-
-                function hideModal(modal) {
-                    const modalInstance = bootstrap.Modal.getInstance(modal);
-                    if (modalInstance) {
-                        modalInstance.hide();
-                        modal.addEventListener('hidden.bs.modal', removeBackdrop, {
-                            once: true
-                        });
-                    }
+        function initializeDataTables() {
+            tableIds.forEach(id => {
+                const tableElement = document.getElementById(id);
+                if (tableElement && !$.fn.DataTable.isDataTable(tableElement)) {
+                    $(tableElement).DataTable(); // Pastikan untuk menggunakan jQuery di sini
                 }
-
-                function removeBackdrop() {
-                    const backdrops = document.querySelectorAll('.modal-backdrop');
-                    if (backdrops.length > 0) {
-                        backdrops.forEach(backdrop => backdrop.remove());
-                    }
-                    document.body.classList.remove('modal-open');
-                    document.body.style.paddingRight = '';
-                }
-
-                function resetAllModals() {
-                    modals.forEach(modal => hideModal(modal));
-                }
-
-                // Add event listeners to modals
-                modals.forEach(modal => {
-                    modal.addEventListener('hidden.bs.modal', removeBackdrop);
-                });
-
-                const radioButtons = document.querySelectorAll('.radio-inbox');
-                const submitButton = document.getElementById('submitButton');
-                const viewContainers = document.querySelectorAll('#view1, #view2, #view3, #view4, #view5, #view6');
-                const tableIds = ['myTable1', 'myTable2', 'myTable3', 'myTable4', 'myTable5', 'myTable6'];
-
-                function checkSelection() {
-                    const radioChecked = Array.from(radioButtons).some(radio => radio.checked);
-                    submitButton.disabled = !radioChecked;
-                }
-
-                function handleSelectChange(selectId, inputId) {
-                    const selectElement = document.getElementById(selectId);
-                    const inputElement = document.getElementById(inputId);
-
-                    function updateInputState() {
-                        if (selectElement.value === 'Lainnya') {
-                            inputElement.disabled = false;
-                        } else {
-                            inputElement.disabled = true;
-                        }
-                    }
-
-                    selectElement.addEventListener('change', updateInputState);
-                    updateInputState();
-                }
-
-                handleSelectChange('tl-modal-1', 'lainnya-field-1');
-                handleSelectChange('tl-modal-2', 'lainnya-field-2');
-
-                function handleUpdateSelectChange(selectId, inputId) {
-                    const selectElement = document.getElementById(selectId);
-                    const inputElement = document.getElementById(inputId);
-
-                    function updateInputState() {
-                        if (selectElement.value === 'Lainnya') {
-                            inputElement.disabled = false;
-                        } else {
-                            inputElement.disabled = true;
-                        }
-                    }
-
-                    selectElement.addEventListener('change', updateInputState);
-                    updateInputState();
-                }
-
-                handleUpdateSelectChange('tl-update-1', 'lainnya-update-1');
-                handleUpdateSelectChange('tl-update-2', 'lainnya-update-2');
-
-                function hideAllContainers() {
-                    viewContainers.forEach(container => container.hidden = true);
-                }
-
-                radioButtons.forEach(radioButton => {
-                    radioButton.addEventListener('change', function() {
-                        checkSelection();
-                        hideAllContainers();
-
-                        if (this.checked) {
-                            const dataTargetView = this.getAttribute('data-target-view');
-                            const targetView = document.querySelector(dataTargetView);
-                            if (targetView) {
-                                targetView.hidden = false;
-                                initializeDataTables();
-                            }
-
-                            const dataTargetReport = this.getAttribute('data-target-report');
-                            submitButton.setAttribute('data-bs-target', dataTargetReport);
-
-                            toggleInputFields(this.value);
-                        }
-                    });
-                });
-
-                function initializeDataTables() {
-                    tableIds.forEach(id => {
-                        const tableElement = document.getElementById(id);
-                        if (tableElement && !$.fn.DataTable.isDataTable(tableElement)) {
-                            $(tableElement).DataTable(); // Make sure to use jQuery here
-                        }
-                    });
-                }
-
-                function toggleInputFields(selectedValue) {
-                    const siswaInput = document.querySelector('input[name="siswa"]');
-                    const guruInput = document.querySelector('input[name="guru"]');
-
-                    if (selectedValue === 'siswa') {
-                        siswaInput.disabled = false;
-                        guruInput.disabled = true;
-                        guruInput.value = '';
-                    } else if (selectedValue === 'guru') {
-                        guruInput.disabled = false;
-                        siswaInput.disabled = true;
-                        siswaInput.value = '';
-                    }
-                    console.log(siswaInput, guruInput);
-
-
-                }
-
-                // Use Litepicker for date fields
-                document.querySelectorAll('[id^="datepicker"]').forEach(datepicker => {
-                    new Litepicker({
-                        element: datepicker,
-                        format: 'YYYY-MM-DD',
-                        buttonText: {
-                            previousMonth: `<svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 6l-6 6l6 6" /></svg>`,
-                            nextMonth: `<svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M9 6l6 6l-6 6" /></svg>`,
-                        },
-                    });
-                });
-
-                // Remove jQuery datepicker usage since Litepicker is used
-                // Add a click event listener for the filter button
-                document.getElementById('filterButton').addEventListener('click', function() {
-                    document.getElementById('hiddenStartDate').value = document.getElementById(
-                        'datepicker-icon-1').value;
-                    document.getElementById('hiddenEndDate').value = document.getElementById(
-                        'datepicker-icon-2').value;
-                });
             });
-        </script>
+        }
+
+        function toggleInputFields(selectedValue) {
+            const siswaInput = document.querySelector('input[name="siswa"]');
+            const guruInput = document.querySelector('input[name="guru"]');
+
+            siswaInput.disabled = selectedValue !== 'siswa';
+            guruInput.disabled = selectedValue !== 'guru';
+
+            if (selectedValue === 'siswa') {
+                guruInput.value = '';
+            } else if (selectedValue === 'guru') {
+                siswaInput.value = '';
+            }
+        }
+
+        // Menggunakan Litepicker untuk field tanggal
+        document.querySelectorAll('[id^="datepicker"]').forEach(datepicker => {
+            new Litepicker({
+                element: datepicker,
+                format: 'YYYY-MM-DD',
+                buttonText: {
+                    previousMonth: `<svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 6l-6 6l6 6" /></svg>`,
+                    nextMonth: `<svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M9 6l6 6l-6 6" /></svg>`,
+                },
+            });
+        });
+
+        // Menghapus penggunaan datepicker jQuery karena Litepicker digunakan
+        document.getElementById('filterButton').addEventListener('click', function() {
+            document.getElementById('hiddenStartDate').value = document.getElementById(
+                'datepicker-icon-1').value;
+            document.getElementById('hiddenEndDate').value = document.getElementById(
+                'datepicker-icon-2').value;
+        });
+    });
+</script>

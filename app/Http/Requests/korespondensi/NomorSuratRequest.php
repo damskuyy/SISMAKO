@@ -26,7 +26,7 @@ class NomorSuratRequest extends FormRequest
             'tanggal' => 'nullable|date',
             'no_surat' => 'nullable',
             'keperluan' => 'nullable',
-            'file_surat' => 'nullable|mimes:pdf|file'
+            'file_surat' => 'nullable|mimes:pdf|file|max:2048'
         ];
     }
 

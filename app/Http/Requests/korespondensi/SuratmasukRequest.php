@@ -22,13 +22,13 @@ class SuratMasukRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'tp' => '',
-            'tanggal' => '|date',
-            'no_surat' => '',
-            'jenis_surat' => '',
-            'perihal' => '',
-            'dari' => '',
-            'file_surat' => '|mimes:pdf|file'
+            'tp' => 'nullable',
+            'tanggal' => 'nullable|date',
+            'no_surat' => 'nullable',
+            'jenis_surat' => 'nullable',
+            'perihal' => 'nullable',
+            'dari' => 'nullable',
+            'file_surat' => 'nullable|mimes:pdf|file|max:2048'
         ];
     }
 

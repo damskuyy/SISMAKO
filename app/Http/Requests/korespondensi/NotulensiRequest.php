@@ -30,8 +30,8 @@ class NotulensiRequest extends FormRequest
             'peserta' => 'nullable',
             'pemateri' => 'nullable',
             'hasil' => 'nullable',
-            'file_surat' => 'nullable|file',
-            'file_dokumentasi' => 'nullable|mimes:jpg,jpeg,png|file'
+            'file_surat' => 'nullable|file|max:2048',
+            'file_dokumentasi' => 'nullable|mimes:jpg,jpeg,png|file|max:2048'
         ];
     }
 
