@@ -34,7 +34,7 @@ class KunjunganController extends Controller
         ]));
 
         // Redirect setelah data berhasil ditambahkan
-        return redirect('/sekolah-keasramaan/kunjungan')->with('success', 'Data berhasil ditambahkan!');
+        return redirect(to: '/sekolah-keasramaan/kunjungan')->with('success', 'Data berhasil ditambahkan!');
     }
 
 
