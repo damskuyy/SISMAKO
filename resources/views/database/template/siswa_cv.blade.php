@@ -263,7 +263,7 @@
                     $data = file_get_contents($path);
                     $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
                 } else {
-                    $base64 = 'https://firebasestorage.googleapis.com/v0/b/portofolio-database-fadhil.appspot.com/o/BLOG.png?alt=media&token=d8b1cf90-c9e3-4659-aead-10d2c358c676';
+                    $base64 = 'https://cdn-icons-png.flaticon.com/512/7484/7484918.png';
                 }
                 ?>
                 <img src="{{ $base64 }}" alt="Profile Image">

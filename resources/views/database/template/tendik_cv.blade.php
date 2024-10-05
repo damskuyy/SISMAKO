@@ -248,7 +248,7 @@
                     $data = file_get_contents($path);
                     $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
                 }else {
-                    $base64 = 'dist/img/logo/user.png';
+                    $base64 = 'https://cdn-icons-png.flaticon.com/512/7484/7484918.png';
                 }
                 ?>
                 <p>{{$tendik->fototendik[0]->path_file}}</p>

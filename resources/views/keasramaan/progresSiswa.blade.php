@@ -136,8 +136,10 @@
                 </td>
                 <td style="width: 50%; text-align: right;">
                     <!-- Text-align: right untuk meratakan ke kanan -->
-                    <img src="{{ $siswa->fotoSiswa[0]->path_file }}" alt="Foto Siswa" style="width: 50%; float: right;">
-                    <!-- Tambahkan float: right -->
+                    <img src="{{ $siswa->fotoSiswa[0]->path_file ?? 'https://cdn-icons-png.flaticon.com/512/7484/7484918.png' }}" 
+                    alt="Foto Siswa" 
+                    style="width: 50%; float: right;">
+                                   <!-- Tambahkan float: right -->
                 </td>
             </tr>
         </table>
