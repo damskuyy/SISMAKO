@@ -64,25 +64,25 @@
                                         <label class="form-label">Pengajar</label>
                                         <select class="form-control form-select" name="pengajar" required>
                                             <option value="">Pilih Tahun Ajaran</option>
-                                            <option value="Ahmad Dahlan" {{ (old('pengajar') ?? $tahfidz->pengajar) ==
+                                            <option value="Ahmad Dahlan" {{ (old('pengajar') ?? $tahsin->pengajar) ==
                                                 'Ahmad Dahlan' ? 'selected' : '' }}>Ahmad Dahlan
                                             </option>
-                                            <option value="Ahmad Rifai" {{ (old('pengajar') ?? $tahfidz->pengajar) ==
+                                            <option value="Ahmad Rifai" {{ (old('pengajar') ?? $tahsin->pengajar) ==
                                                 'Ahmad Rifai' ? 'selected' : '' }}>Ahmad Rifai
                                             </option>
-                                            <option value="Ratno Wijaya" {{ (old('pengajar') ?? $tahfidz->pengajar) ==
+                                            <option value="Ratno Wijaya" {{ (old('pengajar') ?? $tahsin->pengajar) ==
                                                 'Ratno Wijaya' ? 'selected' : '' }}>Ratno Wijaya
                                             </option>
-                                            <option value="Diandra (Mentor)" {{ (old('pengajar') ?? $tahfidz->pengajar)
+                                            <option value="Diandra (Mentor)" {{ (old('pengajar') ?? $tahsin->pengajar)
                                                 == 'Diandra (Mentor)' ? 'selected' : '' }}>Diandra (Mentor)
                                             </option>
-                                            <option value="Hafith (Mentor)" {{ (old('pengajar') ?? $tahfidz->pengajar)
+                                            <option value="Hafith (Mentor)" {{ (old('pengajar') ?? $tahsin->pengajar)
                                                 == 'Hafith (Mentor)' ? 'selected' : '' }}>Hafith (Mentor)
                                             </option>
-                                            <option value="Akram (Mentor)" {{ (old('pengajar') ?? $tahfidz->pengajar) ==
+                                            <option value="Akram (Mentor)" {{ (old('pengajar') ?? $tahsin->pengajar) ==
                                                 'Akram (Mentor)' ? 'selected' : '' }}>Akram (Mentor)a
                                             </option>
-                                            <option value="Zainul (Mentor)" {{ (old('pengajar') ?? $tahfidz->pengajar)
+                                            <option value="Zainul (Mentor)" {{ (old('pengajar') ?? $tahsin->pengajar)
                                                 == 'Zainul (Mentor)' ? 'selected' : '' }}>Zainul (Mentor)
                                             </option>
                                         </select>

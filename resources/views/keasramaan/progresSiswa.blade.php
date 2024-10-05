@@ -105,6 +105,18 @@
         .jurnal-section td {
             text-align: center;
         }
+
+        .dokumentasi-img {
+            max-width: 600px;
+        }
+
+        .dokumentasi-img img {
+            width: 100%;
+            height: auto;
+            margin-top: 5px;
+            margin-bottom: 5px;
+
+        }
     </style>
 </head>
 
@@ -136,10 +148,9 @@
                 </td>
                 <td style="width: 50%; text-align: right;">
                     <!-- Text-align: right untuk meratakan ke kanan -->
-                    <img src="{{ $siswa->fotoSiswa[0]->path_file ?? 'https://cdn-icons-png.flaticon.com/512/7484/7484918.png' }}" 
-                    alt="Foto Siswa" 
-                    style="width: 50%; float: right;">
-                                   <!-- Tambahkan float: right -->
+                    <img src="{{ $siswa->fotoSiswa[0]->path_file ?? 'https://cdn-icons-png.flaticon.com/512/7484/7484918.png' }}"
+                        alt="Foto Siswa" style="width: 50%; float: right;">
+                    <!-- Tambahkan float: right -->
                 </td>
             </tr>
         </table>
@@ -270,7 +281,29 @@
                 <!-- Rows will be dynamically inserted here -->
             </tbody>
         </table>
+        <div class="dokumentasi-img">
+            @if ($siswa->pelatihanSiswa->isNotEmpty())
+            @foreach ($siswa->pelatihanSiswa as $pelatihan)
+            @php
+            $dokumenArray = json_decode(stripslashes($pelatihan->dokumentasi));
+            @endphp
 
+            @if ($dokumenArray && is_array($dokumenArray))
+            @foreach ($dokumenArray as $gambar)
+            @php
+            // Menambahkan 'storage/' di depan path gambar
+            $gambarPath = 'storage/' . $gambar;
+            @endphp
+            <img src="{{ asset($gambarPath) }}" alt="Dokumentasi" />
+            @endforeach
+            @else
+            <p>Tidak ada gambar yang dapat ditampilkan.</p>
+            @endif
+            @endforeach
+            @else
+            <p>Tidak ada dokumentasi yang tersedia.</p>
+            @endif
+        </div>
     </div>
 </body>
 <script>

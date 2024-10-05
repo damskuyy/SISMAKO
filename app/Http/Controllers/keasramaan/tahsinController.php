@@ -81,9 +81,9 @@ class tahsinController extends Controller
             'pengajar' => 'required',
         ], [
             'tanggal.required' => 'Tanggal harus diisi',
-            'surat.required' => 'Surat tahfidz harus diisi',
-            'ayat.required' => 'Ayat tahfidz harus diisi',
-            'predikat.required' => 'Predikat tahfidz harus diisi',
+            'surat.required' => 'Surat harus diisi',
+            'ayat.required' => 'Ayat harus diisi',
+            'predikat.required' => 'Predikat harus diisi',
             'pengajar.required' => 'Pengajar harus diisi',
         ]);
 

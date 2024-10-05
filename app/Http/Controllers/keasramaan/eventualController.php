@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\keasramaan;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\database\Siswa;
 use App\Http\Controllers\Controller;
@@ -71,10 +72,14 @@ class eventualController extends Controller
 
                 foreach ($files as $index => $file) {
                     if ($index < 3) { // Batas maksimal 3 file
-                        $originalName = $file->getClientOriginalName();
-                        $storedFiles[] = $file->storeAs($fileField, $originalName, 'public');
+                        $originalName = Str::random(30) . '.' . $file->getClientOriginalExtension();
+                        $filePath = $file->storeAs($fileField, $originalName, 'public');
+
+                        // Store each file path in the $storedFiles array
+                        $storedFiles[] =  $filePath;
                     }
                 }
+                // Convert $storedFiles to JSON and store it in $validateData
                 $validateData[$fileField] = json_encode($storedFiles);
             }
         }
@@ -90,53 +95,78 @@ class eventualController extends Controller
         return view('keasramaan.akademik.volentir.edit', compact('eventual'));
     }
 
-    public function update(PelatihanRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $validateData = $request->validated();
+        $validateData = $request->validate([
+            'tanggal' => 'required',
+            'kegiatan' => 'required',
+            'keterangan' => 'required',
+            'dokumentasi.*' => 'file|max:10240',
+            'undangan.*' => 'file|max:10240',
+        ], [
+            'nisn.required' => 'NISN wajib diisi',
+            'keterangan.required' => 'Keterangan wajib diisi',
+            'tanggal.required' => 'Tanggal wajib diisi',
+            'dokumentasi.*.max' => 'Maksimal file size adalah 10MB',
+            'undangan.*.max' => 'Maksimal file size adalah 10MB',
+        ]);
 
-        $eventual = pelatihan::findOrFail($id);
+        $eventual = Pelatihan::findOrFail($id);
 
+        // Array of file fields to handle
         $fileFields = ['dokumentasi', 'undangan'];
 
         foreach ($fileFields as $fileField) {
+            // If there are new files uploaded
             if ($request->hasFile($fileField)) {
+                // Delete old files from storage
+                if ($eventual->$fileField) {
+                    $oldFiles = json_decode($eventual->$fileField, true);
+                    foreach ($oldFiles as $oldFile) {
+                        Storage::disk('public')->delete($oldFile);
+                    }
+                }
+
+                // Handle new file uploads
                 $files = $request->file($fileField);
                 $storedFiles = [];
 
                 foreach ($files as $index => $file) {
-                    if ($index < 3) {
-                        // Hapus file lama jika ada
-                        $existingFiles = json_decode($eventual->$fileField);
-                        if (isset($existingFiles[$index])) {
-                            Storage::delete($existingFiles[$index]);
-                        }
-
-                        $originalName = $file->getClientOriginalName();
-                        $storedFiles[] = $file->storeAs($fileField, $originalName);
+                    if ($index < 3) { // Batas maksimal 3 file
+                        $originalName = Str::random(30) . '.' . $file->getClientOriginalExtension();
+                        $filePath = $file->storeAs($fileField, $originalName, 'public');
+                        $storedFiles[] = $filePath;
                     }
                 }
+                // Convert $storedFiles to JSON and store it in $validateData
                 $validateData[$fileField] = json_encode($storedFiles);
             } else {
+                // If no new files are uploaded, keep the existing ones
                 $validateData[$fileField] = $eventual->$fileField;
             }
         }
+
         $eventual->update($validateData);
         return redirect('/sekolah-keasramaan/akademik/eventual')->with('success', 'Data berhasil diperbaharui');
     }
 
-
     public function destroy($id)
     {
-        $eventual = pelatihan::findOrFail($id);
+        $eventual = Pelatihan::findOrFail($id);
 
+        // Array of file fields to handle
         $fileFields = [
             'dokumentasi',
             'undangan',
         ];
 
         foreach ($fileFields as $fileField) {
+            // If files exist, delete them from storage
             if ($eventual->$fileField) {
-                Storage::delete($eventual->$fileField);
+                $oldFiles = json_decode($eventual->$fileField, true);
+                foreach ($oldFiles as $oldFile) {
+                    Storage::disk('public')->delete($oldFile);
+                }
             }
         }
 

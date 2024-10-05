@@ -48,7 +48,6 @@ class ProgresSiswaController extends Controller
                 }
             ])
             ->firstOrFail();
-
         // Ensure jurnalAsramaSiswa is not null and categorize it
         $jurnalAsramaSiswa = $siswa->jurnalAsramaSiswa ?: collect();
 
