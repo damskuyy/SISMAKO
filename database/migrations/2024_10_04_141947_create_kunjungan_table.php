@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('no_hp', 50);
             $table->string('nama_instansi', 100)->nullable();
             $table->string('jabatan', 100)->nullable();
-            $table->enum('status_kunjungan', ['Dinas', 'Tamu', 'OrangTua/Wali', 'Alumni', 'Industri']);
+            $table->enum('status_kunjungan', ['Dinas', 'Tamu', 'Ortu', 'Alumni', 'Industri']);
             $table->timestamps();
         });
     }

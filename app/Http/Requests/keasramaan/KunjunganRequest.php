@@ -29,7 +29,6 @@ class KunjunganRequest extends FormRequest
             'no_hp' => 'required|string|max:50',
             'nama_instansi' => 'nullable|string|max:100',
             'jabatan' => 'nullable|string|max:100',
-            'status_kunjungan' => 'required|in:Dinas,Tamu,OrangTua/Wali,Alumni,Industri',
         ];
     }
 }

@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
 <div class="py-5">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="container">
@@ -9,7 +8,7 @@
                 <div class="mb-4">
                     <div class="col-12 row">
                         <div class="mb-4 col">
-                            <a href="/sekolah-keasramaan/kunjungan" class="btn btn-secondary">
+                            <a href="/sekolah-keasramaan" class="btn btn-secondary">
                                 Back
                             </a>
                         </div>
@@ -18,29 +17,28 @@
                                 Tambah
                             </a>
                         </div>
-                        <!-- Form Filter -->
-                        <form method="GET" action="{{ route('industri') }}" class="mb-4">
+                        <form method="GET" action="{{ route('lab.index') }}" class="mb-4">
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <input type="date" name="start_date" class="form-control" placeholder="Start Date">
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <input type="date" name="end_date" class="form-control" placeholder="End Date">
                                 </div>
                                 <div class="col-md-2">
-                                    <input type="text" name="search_name" class="form-control"
-                                        placeholder="Search by Name">
+                                    <input type="text" name="search_guru" class="form-control" placeholder="Search Guru">
                                 </div>
                                 <div class="col-md-2">
-                                    <input type="text" name="search_kelas" class="form-control"
-                                        placeholder="Search by Kelas">
+                                    <input type="text" name="search_kelas" class="form-control" placeholder="Search Kelas">
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="text" name="search_siswa" class="form-control" placeholder="Search Siswa">
                                 </div>
                                 <div class="col-md-2">
                                     <button type="submit" class="btn btn-success">Filter</button>
                                 </div>
                             </div>
                         </form>
-
                         @if (session('success'))
                         <div class="alert alert-important alert-success alert-dismissible" role="alert">
                             <div class="d-flex">
@@ -62,65 +60,59 @@
                         @endif
                     </div>
                 </div>
-                <div class="card">
-                    <div class="table-responsive">
-                        <table class="table table-vcenter table-mobile-md card-table">
-                            <thead>
-                                <tr>
-                                    <th>Tanggal</th>
-                                    <th>Nama</th>
-                                    <th>Nisn</th>
-                                    <th>Kelas</th>
-                                    <th>Materi</th>
-                                    <th></th>
-                                    <th></th>
-                            </thead>
-                            <tbody>
-                                @php
-                                $i = 1;
-                                @endphp
-                                @forelse ($industri as $item)
-                                <tr>
-                                    <td>{{ $item->tanggal }}</td>
-                                    <td>{{ $item->siswa->nama }}</td>
-                                    <td>{{ $item->siswa->nisn }}</td>
-                                    <td>{{ $item->siswa->dataKelas[0]->kelas }}</td>
-                                    <td>{{ $item->materi }}</td>
+
+                <!-- Tambahkan div table-responsive di sini -->
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Tanggal</th>
+                                <th>Nama</th>
+                                <th>Nama Instansi</th>
+                                <th>Jabatan</th>
+                                <th>Tujuan</th>
+                                <th>Keterangan</th>
+                                <th>No Handphone</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($industri as $item)
+                            <tr>
+                                <td><input class="form-control" disabled type="date" value="{{ $item->created_at->format('Y-m-d') }}"></td>
+                                <td>{{ $item->nama }}</td>
+                                <td>{{ $item->nama_instansi }}</td>
+                                <td>{{ $item->tujuan }}</td>
+                                <td>{{ $item->keterangan }}</td>
+                                <td>{{ $item->keterangan }}</td>
+                                <td>{{ $item->no_hp }}</td>
+                                <td>
                                     <td>
-                                        <a href="{{ route('industri.edit', $item->id) }}">
+                                        <a href="{{ route('kunjungan.industri.update', $item->id) }}">
                                             <i
                                                 class="fa-regular fa-pen-to-square text-white text-xl bg-yellow p-2 rounded"></i>
                                         </a>
-                                    </td>
-                                    <td>
-                                        <a href="#" data-bs-toggle="modal"
-                                            data-bs-target="#modal-danger-{{ $item->id }}">
+                                        <a href="#" class="" data-bs-toggle="modal" data-bs-target="#modal-danger-{{ $item->id }}">
                                             <i class="far fa-trash-alt text-white text-xl bg-red p-2 rounded"></i>
                                         </a>
                                     </td>
-                                </tr>
-                                @empty
-                                <tr>
-                                    <td colspan="10" class="text-center">
-                                        Tidak ada Data
-                                    </td>
-                                </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="d-flex justify-content-center mt-4">
-                        {{ $industri->appends(request()->input())->links('vendor.pagination.bootstrap-5') }}
-                    </div>
+
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
+                <div class="d-flex justify-content-center mt-4">
+                    {{ $industri->appends(request()->input())->links('vendor.pagination.bootstrap-5') }}                </div>
+                <!-- Akhir dari div table-responsive -->
             </div>
         </div>
     </div>
 </div>
 
-{{-- Danger Modal --}}
 @foreach ($industri as $item)
-<form action="{{ route('industri.delete', $item->id) }}" method="post">
+<form action="{{ route('kunjungan.industri.delete', $item->id) }}" method="post">
     @csrf
     @method('DELETE')
     <div class="modal modal-blur fade" id="modal-danger-{{ $item->id }}" tabindex="-1" role="dialog" aria-hidden="true">
@@ -140,21 +132,16 @@
                         <path d="M12 16h.01"></path>
                     </svg>
                     <h3>Are you sure?</h3>
-                    <div class="text-secondary">Do you really want to remove this files? What you've done cannot
-                        be
-                        undone.</div>
+                    <div class="text-secondary">Do you really want to remove this file? This action cannot be undone.</div>
                 </div>
                 <div class="modal-footer">
                     <div class="w-100">
                         <div class="row">
-                            <div class="col"><a href="#" class="btn w-100" data-bs-dismiss="modal">
-                                    Cancel
-                                </a>
+                            <div class="col">
+                                <a href="#" class="btn w-100" data-bs-dismiss="modal">Cancel</a>
                             </div>
                             <div class="col">
-                                <button href="#" type="submit" class="btn btn-danger w-100" data-bs-dismiss="modal">
-                                    Delete
-                                </button>
+                                <button type="submit" class="btn btn-danger w-100">Delete</button>
                             </div>
                         </div>
                     </div>

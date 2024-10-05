@@ -31,7 +31,7 @@
                                     </div>
                                     {{-- Materi --}}
                                     <div class="mb-3">
-                                        <label class="form-label">Nama Materi</label>
+                                        <label class="form-label">Nama Instansi</label>
                                         <input type='text' class="form-control" name="materi"
                                             placeholder="Masukan Materi" value="{{ $industri->materi }}">
                                         @error('materi')

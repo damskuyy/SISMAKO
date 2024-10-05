@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\keasramaan\KunjunganController;
 use App\Http\Controllers\WhatsAppController;
 use App\Http\Controllers\database\ZipController;
 use App\Http\Controllers\database\GuruController;
@@ -460,51 +460,37 @@ Route::controller(LabController::class)->group(function () {
 Route::controller(AlumniController::class)->group(function () {
     Route::get('/sekolah-keasramaan/kunjungan/alumni', 'index')->name('alumni');
     Route::get('/sekolah-keasramaan/kunjungan/alumni/create', 'create')->name('alumni.create');
-    Route::post('/sekolah-keasramaan/kunjungan/alumni/store', 'store')->name('alumni.store');
-    Route::get('/sekolah-keasramaan/kunjungan/alumni/edit', 'edit')->name('alumni.edit');
-    Route::put('/sekolah-keasramaan/kunjungan/alumni/update', 'update')->name('alumni.update');
-    Route::delete('/sekolah-keasramaan/kunjungan/alumni/delete', 'destroy')->name('alumni.delete');
 });
 
 Route::controller(OrtuController::class)->group(function () {
     Route::get('/sekolah-keasramaan/kunjungan/ortu', 'index')->name('ortu');
     Route::get('/sekolah-keasramaan/kunjungan/ortu/create', 'create')->name('ortu.create');
-    Route::post('/sekolah-keasramaan/kunjungan/ortu/store', 'store')->name('ortu.store');
-    Route::get('/sekolah-keasramaan/kunjungan/ortu/edit', 'edit')->name('ortu.edit');
-    Route::put('/sekolah-keasramaan/kunjungan/ortu/update', 'update')->name('ortu.update');
-    Route::delete('/sekolah-keasramaan/kunjungan/ortu/delete', 'destroy')->name('ortu.delete');
 });
 
 Route::controller(DinasController::class)->group(function () {
     Route::get('/sekolah-keasramaan/kunjungan/dinas', 'index')->name('dinas');
     Route::get('/sekolah-keasramaan/kunjungan/dinas/create', 'create')->name('dinas.create');
-    Route::post('/sekolah-keasramaan/kunjungan/dinas/store', 'store')->name('dinas.store');
-    Route::get('/sekolah-keasramaan/kunjungan/dinas/edit', 'edit')->name('dinas.edit');
-    Route::put('/sekolah-keasramaan/kunjungan/dinas/update', 'update')->name('dinas.update');
-    Route::delete('/sekolah-keasramaan/kunjungan/dinas/delete', 'destroy')->name('dinas.delete');
 });
 
 Route::controller(IndustriController::class)->group(function () {
     Route::get('/sekolah-keasramaan/kunjungan/industri', 'index')->name('industri');
     Route::get('/sekolah-keasramaan/kunjungan/industri/create', 'create')->name('industri.create');
-    Route::post('/sekolah-keasramaan/kunjungan/industri/store', 'store')->name('industri.store');
-    Route::get('/sekolah-keasramaan/kunjungan/industri/edit', 'edit')->name('industri.edit');
-    Route::put('/sekolah-keasramaan/kunjungan/industri/update', 'update')->name('industri.update');
-    Route::delete('/sekolah-keasramaan/kunjungan/industri/delete', 'destroy')->name('industri.delete');
 });
 
 Route::controller(TamuController::class)->group(function () {
     Route::get('/sekolah-keasramaan/kunjungan/tamu', 'index')->name('tamu');
     Route::get('/sekolah-keasramaan/kunjungan/tamu/create', 'create')->name('tamu.create');
-    Route::post('/sekolah-keasramaan/kunjungan/tamu/store', 'store')->name('tamu.store');
-    Route::get('/sekolah-keasramaan/kunjungan/tamu/edit', 'edit')->name('tamu.edit');
-    Route::put('/sekolah-keasramaan/kunjungan/tamu/update', 'update')->name('tamu.update');
-    Route::delete('/sekolah-keasramaan/kunjungan/tamu/delete', 'destroy')->name('tamu.delete');
 });
 
+Route::get('/sekolah-keasramaan/kunjungan/pdf', [KunjunganController::class, 'exportPdf'])->name('kunjungan.export');
+Route::get('/sekolah-keasramaan/kunjungan/alumniOrtuTamu/edit/{id}', [KunjunganController::class, 'editOrtuTamuAlumni'])->name('ortu.edit');
+Route::get('/sekolah-keasramaan/kunjungan/IndustriDinas/edit/{id}', [KunjunganController::class, 'editIndustriDinas'])->name('kunjungan.industri.update');
+
+Route::post('/sekolah-keasramaan/kunjungan/store/{status_kunjungan}', [KunjunganController::class, 'store'])->name('kunjungan.store');
+Route::put('/sekolah-keasramaan/kunjungan/update/{id}', [KunjunganController::class, 'update'])->name('kunjungan.update');
+Route::delete('/sekolah-keasramaan/kunjungan/delete/{id}', [KunjunganController::class, 'destroy'])->name('kunjungan.industri.delete');
+
 Route::get('/progres-siswa/{nisn}', [ProgresSiswaController::class, 'index'])->name('progres-siswa.index');
-
-
 
 
 // korespondensi

@@ -5,12 +5,13 @@ namespace App\Http\Controllers\keasramaan;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\keasramaan\KunjunganRequest;
 use App\Models\keasramaan\kunjungan;
+use App\Models\keasramaan\Kunjungan as KeasramaanKunjungan;
 
 class AlumniController extends Controller
 {
     public function index()
     {
-        $alumni = kunjungan::paginate(10);
+        $alumni = KeasramaanKunjungan::where('status_kunjungan', operator: 'Alumni')->paginate(10);
         return view('keasramaan.kunjungan.alumni.alumni', compact('alumni'));
     }
 

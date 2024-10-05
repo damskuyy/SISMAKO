@@ -2,72 +2,69 @@
 
 @section('content')
 
-    <div class="py-5">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="col container">
-                <div class="row row-cards">
-                    <div class="col-12">
-                        <div class="mb-4 col">
-                            <a href="/sekolah-keasramaan/kunjungan/ortu" class="btn btn-secondary">
-                                Back
-                            </a>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <form action="{{ route('ortu.store') }}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="mb-3">
-                                        <label class="form-label">Tanggal</label>
-                                        <input type='date' class="form-control datepicker"
-                                            placeholder="Masukan Tanggal" id="datepicker-icon-1" name="tanggal"
-                                            autocomplete='off'>
-                                        @error('tanggal')
-                                            <div class="text-danger mt-2"> {{ $message }} </div>
-                                        @enderror
-                                    </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Angkatan</label>
-                                            <select class="form-control" name="angkatan" id="angkatan-select">
-                                                <option value="">Pilih Angkatan</option>
-                                                @foreach ($angkatan as $data)
-                                                    <option value="{{ $data }}"
-                                                        {{ old('angkatan') == $data ? 'selected' : '' }}>
-                                                        {{ $data }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('angkatan')
-                                                <div class="text-danger mt-2">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    <!-- Nama Filter -->
-                                        <div class="mb-3">
-                                            <label class="form-label">Nama</label>
-                                            <select class="form-control" name="siswa_id" id="nama-select">
-                                                <option value="">Pilih Nama</option>
-                                                <!-- Options will be populated dynamically -->
-                                            </select>
-                                            @error('siswa_id')
-                                                <div class="text-danger mt-2">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    <div class="mb-3">
-                                        <label for="materi" class="form-label">Nama materi</label>
-                                        <input type="text"
-                                            class="form-control @error('materi') is-invalid @enderror" id="materi"
-                                            name="materi" value="{{ old('materi') }}">
-                                        @error('materi')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="card-footer text-end">
-                                        <button type="submit" class="btn btn-primary">Add Data</button>
-                                    </div>
-                                </form>
-                            </div>
+<div class="py-5">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="col container">
+            <div class="row row-cards">
+                <div class="col-12">
+                    <div class="mb-4 col">
+                        <a href="/sekolah-keasramaan/kunjungan/dinas" class="btn btn-secondary">
+                            Back
+                        </a>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="{{ route('kunjungan.store', ['status_kunjungan' => 'Ortu']) }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="mb-3">
+                                    <label for="nama" class="form-label">Nama</label>
+                                    <input type="text" class="form-control @error('nama') is-invalid @enderror"
+                                        id="nama" name="nama" value="{{ old('nama') }}">
+                                    @error('nama')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label for="asal" class="form-label">Asal</label>
+                                    <input type="text" class="form-control @error('asal') is-invalid @enderror"
+                                        id="asal" name="asal" value="{{ old('asal') }}">
+                                    @error('asal')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label for="tujuan" class="form-label">Tujuan</label>
+                                    <input type="text" class="form-control @error('tujuan') is-invalid @enderror"
+                                        id="tujuan" name="tujuan" value="{{ old('tujuan') }}">
+                                    @error('tujuan')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label for="keterangan" class="form-label">Keterangan</label>
+                                    <input type="text" class="form-control @error('keterangan') is-invalid @enderror"
+                                        id="keterangan" name="keterangan" value="{{ old('keterangan') }}">
+                                    @error('keterangan')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label for="no_hp" class="form-label">No Handphone</label>
+                                    <input type="number" class="form-control @error('no_hp') is-invalid @enderror"
+                                        id="no_hp" name="no_hp" value="{{ old('no_hp') }}">
+                                    @error('no_hp')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="card-footer text-end">
+                                    <button type="submit" class="btn btn-primary">Add Data</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        @include('database.js.getNameByAngkatan')
-@endsection
+    </div>
+    @include('database.js.getNameByAngkatan')
+    @endsection

@@ -69,9 +69,10 @@
                                 <tr>
                                     <th>Tanggal</th>
                                     <th>Nama</th>
-                                    <th>Nisn</th>
-                                    <th>Kelas</th>
-                                    <th>Materi</th>
+                                    <th>asal</th>
+                                    <th>Tujuan</th>
+                                    <th>Keterangan</th>
+                                    <th>Nomor Handphone</th>
                                     <th></th>
                                     <th></th>
                             </thead>
@@ -82,10 +83,11 @@
                                 @forelse ($ortu as $item)
                                 <tr>
                                     <td>{{ $item->tanggal }}</td>
-                                    <td>{{ $item->siswa->nama }}</td>
-                                    <td>{{ $item->siswa->nisn }}</td>
-                                    <td>{{ $item->siswa->dataKelas[0]->kelas }}</td>
-                                    <td>{{ $item->materi }}</td>
+                                    <td>{{ $item->nama }}</td>
+                                    <td>{{ $item->asal }}</td>
+                                    <td>{{ $item->tujuan }}</td>
+                                    <td>{{ $item->keterangan }}</td>
+                                    <td>{{ $item->no_hp }}</td>
                                     <td>
                                         <a href="{{ route('ortu.edit', $item->id) }}">
                                             <i
@@ -120,7 +122,7 @@
 
 {{-- Danger Modal --}}
 @foreach ($ortu as $item)
-<form action="{{ route('ortu.delete', $item->id) }}" method="post">
+<form action="{{ route('kunjungan.industri.delete', $item->id) }}" method="post">
     @csrf
     @method('DELETE')
     <div class="modal modal-blur fade" id="modal-danger-{{ $item->id }}" tabindex="-1" role="dialog" aria-hidden="true">

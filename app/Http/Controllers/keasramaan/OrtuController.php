@@ -6,14 +6,17 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\keasramaan\kunjungan;
 use App\Http\Requests\keasramaan\KunjunganRequest;
+use App\Models\keasramaan\Kunjungan as KeasramaanKunjungan;
 
 class OrtuController extends Controller
 {
     public function index()
     {
-        $ortu = kunjungan::paginate(10);
+        $ortu = KeasramaanKunjungan::where('status_kunjungan', 'Ortu')->paginate(10);
         return view('keasramaan.kunjungan.ortu.ortu', compact('ortu'));
     }
+
+
 
     public function create()
     {
@@ -27,10 +30,7 @@ class OrtuController extends Controller
         return redirect('/sekolah-keasramaan/kunjungan/ortu')->with('success', 'Data berhasil ditambahkan!');
     }
 
-    public function edit()
-    {
-        return view('keasramaan.kunjungan.ortu.edit');
-    }
+   
 
     public function update(KunjunganRequest $request, $id)
     {
