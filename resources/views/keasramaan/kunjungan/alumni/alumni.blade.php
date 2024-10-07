@@ -28,14 +28,6 @@
                                     <input type="date" name="end_date" class="form-control" placeholder="End Date">
                                 </div>
                                 <div class="col-md-2">
-                                    <input type="text" name="search_name" class="form-control"
-                                        placeholder="Search by Name">
-                                </div>
-                                <div class="col-md-2">
-                                    <input type="text" name="search_kelas" class="form-control"
-                                        placeholder="Search by Kelas">
-                                </div>
-                                <div class="col-md-2">
                                     <button type="submit" class="btn btn-success">Filter</button>
                                 </div>
                             </div>
@@ -64,7 +56,7 @@
                 </div>
                 <div class="card">
                     <div class="table-responsive">
-                        <table class="table table-vcenter table-mobile-md card-table">
+                        <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th>Tanggal</th>

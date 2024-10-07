@@ -149,7 +149,7 @@
         }
 
         .gh-header {
-            width: 70%;
+            width: 75%;
         }
 
         .gh-width {
@@ -244,8 +244,8 @@
                                 <td class="kkm" style="padding: 2px;">75</td>
                                 <td class="grade" style="padding: 2px;">{{ $rpts->pai }}</td>
                                 <td class="predicate" style="padding: 2px;">
-                                    @if ($rpts->pai >= 90 && $rpts->pai <= 100) A @elseif ($rpts->pai >= 80 &&
-                                        $rpts->pai <= 89) B @elseif ($rpts->pai >= 70 && $rpts->pai <= 79) C @else D
+                                    @if ($rpts->pai >= 93 && $rpts->pai <= 100) A @elseif ($rpts->pai >= 84 &&
+                                        $rpts->pai <= 92) B @elseif ($rpts->pai >= 75 && $rpts->pai <= 83) C @else D
                                                 @endif </td>
                             </tr>
                             @endif
@@ -257,8 +257,8 @@
                                 <td class="kkm" style="padding: 2px;">75</td>
                                 <td class="grade" style="padding: 2px;">{{ $rpts->pkn }}</td>
                                 <td class="predicate" style="padding: 2px;">
-                                    @if ($rpts->pkn >= 90 && $rpts->pkn <= 100) A @elseif ($rpts->pkn >= 80 &&
-                                        $rpts->pkn <= 89) B @elseif ($rpts->pkn >= 70 && $rpts->pkn <= 79) C @else D
+                                    @if ($rpts->pkn >= 93 && $rpts->pkn <= 100) A @elseif ($rpts->pkn >= 84 &&
+                                        $rpts->pkn <= 92) B @elseif ($rpts->pkn >= 75 && $rpts->pkn <= 83) C @else D
                                                 @endif </td>
                             </tr>
                             @endif
@@ -270,8 +270,8 @@
                                 <td class="kkm" style="padding: 2px;">75</td>
                                 <td class="grade" style="padding: 2px;">{{ $rpts->indo }}</td>
                                 <td class="predicate" style="padding: 2px;">
-                                    @if ($rpts->indo >= 90 && $rpts->indo <= 100) A @elseif ($rpts->indo >= 80 &&
-                                        $rpts->indo <= 89) B @elseif ($rpts->indo >= 70 && $rpts->indo <= 79) C @else D
+                                    @if ($rpts->indo >= 93 && $rpts->indo <= 100) A @elseif ($rpts->indo >= 84 &&
+                                        $rpts->indo <= 92) B @elseif ($rpts->indo >= 75 && $rpts->indo <= 83) C @else D
                                                 @endif </td>
                             </tr>
                             @endif
@@ -279,12 +279,12 @@
                             @if (!empty($rpts->mtk))
                             <tr>
                                 <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
-                                <td style="padding: 2px;">Bahasa Inggris</td>
+                                <td style="padding: 2px;">Matematika</td>
                                 <td class="kkm" style="padding: 2px;">75</td>
                                 <td class="grade" style="padding: 2px;">{{ $rpts->mtk }}</td>
                                 <td class="predicate" style="padding: 2px;">
-                                    @if ($rpts->mtk >= 90 && $rpts->mtk <= 100) A @elseif ($rpts->mtk >= 80 &&
-                                        $rpts->mtk <= 89) B @elseif ($rpts->mtk >= 70 && $rpts->mtk <= 79) C @else D
+                                    @if ($rpts->mtk >= 93 && $rpts->mtk <= 100) A @elseif ($rpts->mtk >= 84 &&
+                                        $rpts->mtk <= 92) B @elseif ($rpts->mtk >= 75 && $rpts->mtk <= 83) C @else D
                                                 @endif </td>
                             </tr>
                             @endif
@@ -292,51 +292,38 @@
                             @if (!empty($rpts->sejindo))
                             <tr>
                                 <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
-                                <td style="padding: 2px;">Matematika</td>
+                                <td style="padding: 2px;">Sejarah Indonesia</td>
                                 <td class="kkm" style="padding: 2px;">75</td>
                                 <td class="grade" style="padding: 2px;">{{ $rpts->sejindo }}</td>
                                 <td class="predicate" style="padding: 2px;">
-                                    @if ($rpts->sejindo >= 90 && $rpts->sejindo <= 100) A @elseif ($rpts->sejindo >= 80
-                                        && $rpts->sejindo <= 89) B @elseif ($rpts->sejindo >= 70 && $rpts->sejindo <=
-                                                79) C @else D @endif </td>
+                                    @if ($rpts->sejindo >= 93 && $rpts->sejindo <= 100) A @elseif ($rpts->sejindo >= 84
+                                        && $rpts->sejindo <= 92) B @elseif ($rpts->sejindo >= 75 && $rpts->sejindo <=
+                                                83) C @else D @endif </td>
                             </tr>
                             @endif
 
                             @if (!empty($rpts->bhs_asing))
                             <tr>
                                 <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
-                                <td style="padding: 2px;">Ilmu Pengetahuan Alam</td>
+                                <td style="padding: 2px;">Bahasa Inggris</td>
                                 <td class="kkm" style="padding: 2px;">75</td>
                                 <td class="grade" style="padding: 2px;">{{ $rpts->bhs_asing }}</td>
                                 <td class="predicate" style="padding: 2px;">
-                                    @if ($rpts->bhs_asing >= 90 && $rpts->bhs_asing <= 100) A @elseif ($rpts->bhs_asing
-                                        >= 80 && $rpts->bhs_asing <= 89) B @elseif ($rpts->bhs_asing >= 70 &&
-                                            $rpts->bhs_asing <= 79) C @else D @endif </td>
+                                    @if ($rpts->bhs_asing >= 93 && $rpts->bhs_asing <= 100) A @elseif ($rpts->bhs_asing
+                                        >= 84 && $rpts->bhs_asing <= 92) B @elseif ($rpts->bhs_asing >= 75 &&
+                                            $rpts->bhs_asing <= 83) C @else D @endif </td>
                             </tr>
                             @endif
 
                             @if (!empty($rpts->sbd))
                             <tr>
                                 <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
-                                <td style="padding: 2px;">Ilmu Pengetahuan Sosial</td>
+                                <td style="padding: 2px;">Seni Budaya</td>
                                 <td class="kkm" style="padding: 2px;">75</td>
                                 <td class="grade" style="padding: 2px;">{{ $rpts->sbd }}</td>
                                 <td class="predicate" style="padding: 2px;">
-                                    @if ($rpts->sbd >= 90 && $rpts->sbd <= 100) A @elseif ($rpts->sbd >= 80 &&
-                                        $rpts->sbd <= 89) B @elseif ($rpts->sbd >= 70 && $rpts->sbd <= 79) C @else D
-                                                @endif </td>
-                            </tr>
-                            @endif
-
-                            @if (!empty($rpts->pjok))
-                            <tr>
-                                <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
-                                <td style="padding: 2px;">Seni Budaya</td>
-                                <td class="kkm" style="padding: 2px;">75</td>
-                                <td class="grade" style="padding: 2px;">{{ $rpts->pjok }}</td>
-                                <td class="predicate" style="padding: 2px;">
-                                    @if ($rpts->pjok >= 90 && $rpts->pjok <= 100) A @elseif ($rpts->pjok >= 80 &&
-                                        $rpts->pjok <= 89) B @elseif ($rpts->pjok >= 70 && $rpts->pjok <= 79) C @else D
+                                    @if ($rpts->sbd >= 93 && $rpts->sbd <= 100) A @elseif ($rpts->sbd >= 84 &&
+                                        $rpts->sbd <= 92) B @elseif ($rpts->sbd >= 75 && $rpts->sbd <= 83) C @else D
                                                 @endif </td>
                             </tr>
                             @endif
@@ -348,8 +335,8 @@
                                 <td class="kkm" style="padding: 2px;">75</td>
                                 <td class="grade" style="padding: 2px;">{{ $rpts->pjok }}</td>
                                 <td class="predicate" style="padding: 2px;">
-                                    @if ($rpts->pjok >= 90 && $rpts->pjok <= 100) A @elseif ($rpts->pjok >= 80 &&
-                                        $rpts->pjok <= 89) B @elseif ($rpts->pjok >= 70 && $rpts->pjok <= 79) C @else D
+                                    @if ($rpts->pjok >= 93 && $rpts->pjok <= 100) A @elseif ($rpts->pjok >= 84 &&
+                                        $rpts->pjok <= 92) B @elseif ($rpts->pjok >= 75 && $rpts->pjok <= 83) C @else D
                                                 @endif </td>
                             </tr>
                             @endif
@@ -361,8 +348,8 @@
                                 <td class="kkm" style="padding: 2px;">75</td>
                                 <td class="grade" style="padding: 2px;">{{ $rpts->simdig }}</td>
                                 <td class="predicate" style="padding: 2px;">
-                                    @if ($rpts->simdig >= 90 && $rpts->simdig <= 100) A @elseif ($rpts->simdig >= 80 &&
-                                        $rpts->simdig <= 89) B @elseif ($rpts->simdig >= 70 && $rpts->simdig <= 79) C
+                                    @if ($rpts->simdig >= 93 && $rpts->simdig <= 100) A @elseif ($rpts->simdig >= 84 &&
+                                        $rpts->simdig <= 92) B @elseif ($rpts->simdig >= 75 && $rpts->simdig <= 83) C
                                                 @else D @endif </td>
                             </tr>
                             @endif
@@ -373,8 +360,8 @@
                                 <td class="kkm" style="padding: 2px;">75</td>
                                 <td class="grade" style="padding: 2px;">{{ $rpts->fis }}</td>
                                 <td class="predicate" style="padding: 2px;">
-                                    @if ($rpts->fis >= 90 && $rpts->fis <= 100) A @elseif ($rpts->fis >= 80 &&
-                                        $rpts->fis <= 89) B @elseif ($rpts->fis >= 70 && $rpts->fis <= 79) C @else D
+                                    @if ($rpts->fis >= 93 && $rpts->fis <= 100) A @elseif ($rpts->fis >= 84 &&
+                                        $rpts->fis <= 92) B @elseif ($rpts->fis >= 75 && $rpts->fis <= 83) C @else D
                                                 @endif </td>
                             </tr>
                             @endif
@@ -385,8 +372,8 @@
                                 <td class="kkm" style="padding: 2px;">75</td>
                                 <td class="grade" style="padding: 2px;">{{ $rpts->kim }}</td>
                                 <td class="predicate" style="padding: 2px;">
-                                    @if ($rpts->kim >= 90 && $rpts->kim <= 100) A @elseif ($rpts->kim >= 80 &&
-                                        $rpts->kim <= 89) B @elseif ($rpts->kim >= 70 && $rpts->kim <= 79) C @else D
+                                    @if ($rpts->kim >= 93 && $rpts->kim <= 100) A @elseif ($rpts->kim >= 84 &&
+                                        $rpts->kim <= 92) B @elseif ($rpts->kim >= 75 && $rpts->kim <= 83) C @else D
                                                 @endif </td>
                             </tr>
                             @endif
@@ -397,9 +384,9 @@
                                 <td class="kkm" style="padding: 2px;">75</td>
                                 <td class="grade" style="padding: 2px;">{{ $rpts->sis_kom }}</td>
                                 <td class="predicate" style="padding: 2px;">
-                                    @if ($rpts->sis_kom >= 90 && $rpts->sis_kom <= 100) A @elseif ($rpts->sis_kom >= 80
-                                        && $rpts->sis_kom <= 89) B @elseif ($rpts->sis_kom >= 70 && $rpts->sis_kom <=
-                                                79) C @else D @endif </td>
+                                    @if ($rpts->sis_kom >= 93 && $rpts->sis_kom <= 100) A @elseif ($rpts->sis_kom >= 84
+                                        && $rpts->sis_kom <= 92) B @elseif ($rpts->sis_kom >= 75 && $rpts->sis_kom <=
+                                                83) C @else D @endif </td>
                             </tr>
                             @endif
                             @if (!empty($rpts->komjar))
@@ -409,8 +396,8 @@
                                 <td class="kkm" style="padding: 2px;">75</td>
                                 <td class="grade" style="padding: 2px;">{{ $rpts->komjar }}</td>
                                 <td class="predicate" style="padding: 2px;">
-                                    @if ($rpts->komjar >= 90 && $rpts->komjar <= 100) A @elseif ($rpts->komjar >= 80 &&
-                                        $rpts->komjar <= 89) B @elseif ($rpts->komjar >= 70 && $rpts->komjar <= 79) C
+                                    @if ($rpts->komjar >= 93 && $rpts->komjar <= 100) A @elseif ($rpts->komjar >= 84 &&
+                                        $rpts->komjar <= 92) B @elseif ($rpts->komjar >= 75 && $rpts->komjar <= 83) C
                                                 @else D @endif </td>
                             </tr>
                             @endif
@@ -421,9 +408,9 @@
                                 <td class="kkm" style="padding: 2px;">75</td>
                                 <td class="grade" style="padding: 2px;">{{ $rpts->progdas }}</td>
                                 <td class="predicate" style="padding: 2px;">
-                                    @if ($rpts->progdas >= 90 && $rpts->progdas <= 100) A @elseif ($rpts->progdas >= 80
-                                        && $rpts->progdas <= 89) B @elseif ($rpts->progdas >= 70 && $rpts->progdas <=
-                                                79) C @else D @endif </td>
+                                    @if ($rpts->progdas >= 93 && $rpts->progdas <= 100) A @elseif ($rpts->progdas >= 84
+                                        && $rpts->progdas <= 92) B @elseif ($rpts->progdas >= 75 && $rpts->progdas <=
+                                                83) C @else D @endif </td>
                             </tr>
                             @endif
                             @if (!empty($rpts->ddg))
@@ -433,8 +420,8 @@
                                 <td class="kkm" style="padding: 2px;">75</td>
                                 <td class="grade" style="padding: 2px;">{{ $rpts->ddg }}</td>
                                 <td class="predicate" style="padding: 2px;">
-                                    @if ($rpts->ddg >= 90 && $rpts->ddg <= 100) A @elseif ($rpts->ddg >= 80 &&
-                                        $rpts->ddg <= 89) B @elseif ($rpts->ddg >= 70 && $rpts->ddg <= 79) C @else D
+                                    @if ($rpts->ddg >= 93 && $rpts->ddg <= 100) A @elseif ($rpts->ddg >= 84 &&
+                                        $rpts->ddg <= 92) B @elseif ($rpts->ddg >= 75 && $rpts->ddg <= 83) C @else D
                                                 @endif </td>
                             </tr>
                             @endif
@@ -445,8 +432,8 @@
                                 <td class="kkm" style="padding: 2px;">75</td>
                                 <td class="grade" style="padding: 2px;">{{ $rpts->iaas }}</td>
                                 <td class="predicate" style="padding: 2px;">
-                                    @if ($rpts->iaas >= 90 && $rpts->iaas <= 100) A @elseif ($rpts->iaas >= 80 &&
-                                        $rpts->iaas <= 89) B @elseif ($rpts->iaas >= 70 && $rpts->iaas <= 79) C @else D
+                                    @if ($rpts->iaas >= 93 && $rpts->iaas <= 100) A @elseif ($rpts->iaas >= 84 &&
+                                        $rpts->iaas <= 92) B @elseif ($rpts->iaas >= 75 && $rpts->iaas <= 83) C @else D
                                                 @endif </td>
                             </tr>
                             @endif
@@ -457,8 +444,8 @@
                                 <td class="kkm" style="padding: 2px;">75</td>
                                 <td class="grade" style="padding: 2px;">{{ $rpts->paas }}</td>
                                 <td class="predicate" style="padding: 2px;">
-                                    @if ($rpts->paas >= 90 && $rpts->paas <= 100) A @elseif ($rpts->paas >= 80 &&
-                                        $rpts->paas <= 89) B @elseif ($rpts->paas >= 70 && $rpts->paas <= 79) C @else D
+                                    @if ($rpts->paas >= 93 && $rpts->paas <= 100) A @elseif ($rpts->paas >= 84 &&
+                                        $rpts->paas <= 92) B @elseif ($rpts->paas >= 75 && $rpts->paas <= 83) C @else D
                                                 @endif </td>
                             </tr>
                             @endif
@@ -469,8 +456,8 @@
                                 <td class="kkm" style="padding: 2px;">75</td>
                                 <td class="grade" style="padding: 2px;">{{ $rpts->saas }}</td>
                                 <td class="predicate" style="padding: 2px;">
-                                    @if ($rpts->saas >= 90 && $rpts->saas <= 100) A @elseif ($rpts->saas >= 80 &&
-                                        $rpts->saas <= 89) B @elseif ($rpts->saas >= 70 && $rpts->saas <= 79) C @else D
+                                    @if ($rpts->saas >= 93 && $rpts->saas <= 100) A @elseif ($rpts->saas >= 84 &&
+                                        $rpts->saas <= 92) B @elseif ($rpts->saas >= 75 && $rpts->saas <= 83) C @else D
                                                 @endif </td>
                             </tr>
                             @endif
@@ -481,8 +468,8 @@
                                 <td class="kkm" style="padding: 2px;">75</td>
                                 <td class="grade" style="padding: 2px;">{{ $rpts->siot }}</td>
                                 <td class="predicate" style="padding: 2px;">
-                                    @if ($rpts->siot >= 90 && $rpts->siot <= 100) A @elseif ($rpts->siot >= 80 &&
-                                        $rpts->siot <= 89) B @elseif ($rpts->siot >= 70 && $rpts->siot <= 79) C @else D
+                                    @if ($rpts->siot >= 93 && $rpts->siot <= 100) A @elseif ($rpts->siot >= 84 &&
+                                        $rpts->siot <= 92) B @elseif ($rpts->siot >= 75 && $rpts->siot <= 83) C @else D
                                                 @endif </td>
                             </tr>
                             @endif
@@ -493,8 +480,8 @@
                                 <td class="kkm" style="padding: 2px;">75</td>
                                 <td class="grade" style="padding: 2px;">{{ $rpts->skj }}</td>
                                 <td class="predicate" style="padding: 2px;">
-                                    @if ($rpts->skj >= 90 && $rpts->skj <= 100) A @elseif ($rpts->skj >= 80 &&
-                                        $rpts->skj <= 89) B @elseif ($rpts->skj >= 70 && $rpts->skj <= 79) C @else D
+                                    @if ($rpts->skj >= 93 && $rpts->skj <= 100) A @elseif ($rpts->skj >= 84 &&
+                                        $rpts->skj <= 92) B @elseif ($rpts->skj >= 75 && $rpts->skj <= 83) C @else D
                                                 @endif </td>
                             </tr>
                             @endif
@@ -505,8 +492,8 @@
                                 <td class="kkm" style="padding: 2px;">75</td>
                                 <td class="grade" style="padding: 2px;">{{ $rpts->pkk }}</td>
                                 <td class="predicate" style="padding: 2px;">
-                                    @if ($rpts->pkk >= 90 && $rpts->pkk <= 100) A @elseif ($rpts->pkk >= 80 &&
-                                        $rpts->pkk <= 89) B @elseif ($rpts->pkk >= 70 && $rpts->pkk <= 79) C @else D
+                                    @if ($rpts->pkk >= 93 && $rpts->pkk <= 100) A @elseif ($rpts->pkk >= 84 &&
+                                        $rpts->pkk <= 92) B @elseif ($rpts->pkk >= 75 && $rpts->pkk <= 83) C @else D
                                                 @endif </td>
                             </tr>
                             @endif
@@ -524,23 +511,23 @@
                         <tbody>
                             <tr>
                                 <td style="width: 20%; text-align:center; padding: 2px;">A</td>
-                                <td style="width: 50%; padding: 2px; text-align:center;">Amat Baik</td>
-                                <td style="width: 30%; text-align:center; padding: 2px;">90-100</td>
+                                <td style="width: 55%; padding: 2px;">Amat Baik</td>
+                                <td style="width: 25%; text-align:center; padding: 2px;">93-100</td>
                             </tr>
                             <tr>
                                 <td style="width: 20%; text-align:center; padding: 2px;">B</td>
-                                <td style="width: 50%; padding: 2px; text-align:center;">Baik</td>
-                                <td style="width: 30%; text-align:center; padding: 2px;">80-89</td>
+                                <td style="width: 55%; padding: 2px;">Baik</td>
+                                <td style="width: 25%; text-align:center; padding: 2px;">84-92</td>
                             </tr>
                             <tr>
                                 <td style="width: 20%; text-align:center; padding: 2px;">C</td>
-                                <td style="width: 50%; padding: 2px; text-align:center;">Cukup</td>
-                                <td style="width: 30%; text-align:center; padding: 2px;">70-79</td>
+                                <td style="width: 55%; padding: 2px;">Cukup</td>
+                                <td style="width: 25%; text-align:center; padding: 2px;">75-83</td>
                             </tr>
                             <tr>
                                 <td style="width: 20%; text-align:center; padding: 2px;">D</td>
-                                <td style="width: 50%; padding: 2px; text-align:center;">Kurang</td>
-                                <td style="width: 30%; text-align:center; padding: 2px;">0-69</td>
+                                <td style="width: 55%; padding: 2px;">Perlu dimaksimalkan</td>
+                                <td style="width: 25%; text-align:center; padding: 2px;">0-74</td>
                             </tr>
                         </tbody>
                     </table>
@@ -552,20 +539,20 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td style="width: 70%; padding: 2px;">Total Pertemuan</td>
-                                <td style="width: 30%; text-align:center; padding: 2px;">{{ $rpts->kehadiran }}</td>
+                                <td style="width: 75%; padding: 2px;">Total Pertemuan</td>
+                                <td style="width: 25%; text-align:center; padding: 2px;">{{ $rpts->kehadiran }}</td>
                             </tr>
                             <tr>
-                                <td style="width: 70%; padding: 2px;">Sakit</td>
-                                <td style="width: 30%; text-align:center; padding: 2px;">{{ $rpts->sakit }}</td>
+                                <td style="width: 75%; padding: 2px;">Sakit</td>
+                                <td style="width: 25%; text-align:center; padding: 2px;">{{ $rpts->sakit }}</td>
                             </tr>
                             <tr>
-                                <td style="width: 70%; padding: 2px;">Izin</td>
-                                <td style="width: 30%; text-align:center; padding: 2px;">{{ $rpts->izin }}</td>
+                                <td style="width: 75%; padding: 2px;">Izin</td>
+                                <td style="width: 25%; text-align:center; padding: 2px;">{{ $rpts->izin }}</td>
                             </tr>
                             <tr>
-                                <td style="width: 70%; padding: 2px;">Alpha</td>
-                                <td style="width: 30%; text-align:center; padding: 2px;">{{ $rpts->alpha }}</td>
+                                <td style="width: 75%; padding: 2px;">Alpha</td>
+                                <td style="width: 25%; text-align:center; padding: 2px;">{{ $rpts->alpha }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -584,12 +571,7 @@
                     <td colspan="1" style="font-size: 13px"><strong>Catatan</strong></td>
                 </tr>
                 <tr style="font-size: 13px;">
-                    <td>Nilai yang dicantumkan adalah nilai murni Peserta Didik dalam mengerjakan soal PTS Ganjil
-                        TP 2022/2023 (nilai remedi tidak dicantumkan).</td>
-                </tr>
-                <tr style="font-size: 13px;">
-                    <td>Nilai yang ditujukan pada PTS Ganjil TP 2022/2023 adalah aspek pengetahuan dan praktik yang
-                        telah dikumulasi.</td>
+                    <td>{{ $rpts->note }}</td>
                 </tr>
             </tbody>
         </table>

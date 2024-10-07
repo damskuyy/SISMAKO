@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rpts', function (Blueprint $table) {
+        Schema::create('pts', function (Blueprint $table) {
             $table->id();
             $table->string('tahun_ajaran');
             $table->string('kelas');
@@ -64,7 +64,7 @@ return new class extends Migration
             $table->integer('skj')->nullable();
             $table->integer('pkk')->nullable();
 
-            $table->integer('note')->nullable();
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }
@@ -74,6 +74,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('rpts');
+        Schema::dropIfExists('pts');
     }
 };

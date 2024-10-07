@@ -57,6 +57,7 @@ class RptsRequest extends FormRequest
             'izin' => 'nullable|integer|min:0',
             'sakit' => 'nullable|integer|min:0',
             'alpha' => 'nullable|integer|min:0',
+            'note' => 'nullable|string|min:0',
         ];
     }
 

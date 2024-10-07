@@ -67,7 +67,7 @@
                 <!-- Data Table -->
                 <div class="card mt-4">
                     <div class="table-responsive">
-                        <table id="dataTable" class="table table-vcenter table-mobile-md card-table">
+                        <table id="dataTable" class="table table-striped">
                             <thead>
                                 <tr>
                                     <th>Tahun Ajaran</th>

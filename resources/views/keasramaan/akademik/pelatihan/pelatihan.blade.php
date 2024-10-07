@@ -44,7 +44,7 @@
                 </div>
                 <div class="card">
                     <div class="table-responsive">
-                        <table class="table table-vcenter table-mobile-md card-table">
+                        <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th>Tanggal</th>

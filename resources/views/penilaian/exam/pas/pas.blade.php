@@ -19,7 +19,7 @@
                             </div>
                             <form method="GET" action="{{ route('pas') }}" class="mb-4">
                                 <div class="row">
-                                    <div class="col-md-2">
+                                    <div class="col-12 col-md-3 mb-2 mb-md-0">
                                         <select name="tahun_ajaran" class="form-select" aria-label="Filter by Tahun Ajaran">
                                             <option value="">Pilih Tahun Ajaran</option>
                                             @for ($i = 0; $i < 10; $i++)
@@ -34,15 +34,13 @@
                                             @endfor
                                         </select>
                                     </div>
-                                    <div class="col-md-2">
-                                        <input type="text" name="kelas" class="form-control" value="{{ request('kelas') }}"
-                                            placeholder="Search by Kelas">
+                                    <div class="col-12 col-md-3 mb-2 mb-md-0">
+                                        <input type="text" name="kelas" class="form-control" value="{{ request('kelas') }}" placeholder="Search by Kelas">
                                     </div>
-                                    <div class="col-md-2">
-                                        <input type="text" name="mapel" class="form-control" value="{{ request('mapel') }}"
-                                            placeholder="Search by Mapel">
+                                    <div class="col-12 col-md-3 mb-2 mb-md-0">
+                                        <input type="text" name="mapel" class="form-control" value="{{ request('mapel') }}" placeholder="Search by Mapel">
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-12 col-md-3">
                                         <button type="submit" class="btn btn-success">Filter</button>
                                     </div>
                                 </div>
@@ -70,7 +68,7 @@
                     </div>
                     <div class="card">
                         <div class="table-responsive">
-                            <table class="table table-center table-mobile-md card-table">
+                            <table class="table table-striped">
                                 <thead>
                                     <th>Tahun Ajaran</th>
                                     <th>Kelas</th>

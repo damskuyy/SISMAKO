@@ -14,7 +14,7 @@
 
         <form action="{{ route('panitia') }}" method="GET" class="mb-4">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-12 col-md-4 mb-2 mb-md-0">
                     <select name="tahun_ajaran" class="form-select" aria-label="Filter by Tahun Ajaran">
                         <option value="">Pilih Tahun Ajaran</option>
                         @for ($i = 0; $i < 10; $i++)
@@ -29,11 +29,12 @@
                         @endfor
                     </select>
                 </div>
-                <div class="col-md-2">
+                <div class="col-12 col-md-2">
                     <button type="submit" class="btn btn-primary">Filter</button>
                 </div>
             </div>
         </form>
+
 
         @if (session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">

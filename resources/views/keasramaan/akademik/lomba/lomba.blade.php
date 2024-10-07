@@ -17,19 +17,18 @@
                                 Tambah
                             </a>
                         </div>
-                        <form method="GET" action="{{ route('pelatihan.index') }}" class="mb-4">
+                        <form method="GET" action="{{ route('lomba.index') }}" class="mb-4">
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-12 col-md-3 mb-2 mb-md-0">
                                     <input type="date" name="start_date" class="form-control" placeholder="Start Date">
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-12 col-md-3 mb-2 mb-md-0">
                                     <input type="date" name="end_date" class="form-control" placeholder="End Date">
                                 </div>
-                                <div class="col-md-3">
-                                    <input type="text" name="search_name" class="form-control"
-                                        placeholder="Search by Name">
+                                <div class="col-12 col-md-3 mb-2 mb-md-0">
+                                    <input type="text" name="search_name" class="form-control" placeholder="Search by Name">
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-12 col-md-2">
                                     <button type="submit" class="btn btn-success">Filter</button>
                                 </div>
                             </div>
@@ -44,7 +43,7 @@
                 </div>
                 <div class="card">
                     <div class="table-responsive">
-                        <table class="table table-vcenter table-mobile-md card-table">
+                        <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th>Tanggal</th>

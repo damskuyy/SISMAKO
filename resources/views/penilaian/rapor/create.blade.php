@@ -140,452 +140,215 @@
                             <div class="card-body">
                                 <h3 class="card-title">Nilai Sikap</h3>
                                 <div class="row row-cards">
+                                    @foreach([
+                                        'Beriman, bertakwa kepada Tuhan Yang Maha Esa, dan berakhlak mulia' => 'beriman',
+                                        'Mandiri' => 'mandiri',
+                                        'Bergotong royong' => 'gotong_royong'
+                                    ] as $label => $name)
                                     <div class="col-sm-6 col-md-6">
                                         <div class="mb-3">
-                                            <label class="form-label">Beriman, bertakwa kepada Tuhan Yang Maha Esa, dan
-                                                berakhlak mulia</label>
-                                            <textarea name="attitude[beriman][deskripsi]" id="beriman_deskripsi"
-                                                class="form-control">{{ old('attitude.beriman.deskripsi') }}</textarea>
+                                            <label class="form-label">{{ $label }}</label>
+                                            <textarea name="attitude[{{ $name }}][deskripsi]" id="{{ $name }}_deskripsi" class="form-control">{{ old('attitude.'.$name.'.deskripsi') }}</textarea>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6 col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Mandiri</label>
-                                            <textarea name="attitude[mandiri][deskripsi]" id="mandiri_deskripsi"
-                                                class="form-control">{{ old('attitude.mandiri.deskripsi') }}</textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Bergotong royong</label>
-                                            <textarea name="attitude[gotong_royong][deskripsi]"
-                                                id="gotong_royong_deskripsi"
-                                                class="form-control">{{ old('attitude.gotong_royong.deskripsi') }}</textarea>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
+
                         <div id="step4">
                             <div class="card-body">
                                 <h3 class="card-title">Muatan Nasional</h3>
                                 <div class="row row-cards">
+                                    @foreach([
+                                        'Pendidikan Agama Islam dan Budi Pekerti' => 'pai',
+                                        'Pendidikan Pancasila dan Kewarganegaraan' => 'pkn',
+                                        'Bahasa Indonesia' => 'bindo',
+                                        'Matematika' => 'mtk',
+                                        'Sejarah Indonesia' => 'sejindo',
+                                        'Bahasa Asing' => 'bhsAsing'
+                                    ] as $label => $name)
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
-                                            <label class="form-label">Pendidikan Agama Islam dan Budi Pekerti</label>
-                                            <input type="number" name="muatan_nasional[pai][nilai]" id="pai_nilai"
-                                                class="form-control" value="{{ old('muatan_nasional.pai.nilai') }}">
+                                            <label class="form-label">{{ $label }}</label>
+                                            <input type="number" name="muatan_nasional[{{ $name }}][nilai]" id="{{ $name }}_nilai" class="form-control" value="{{ old('muatan_nasional.'.$name.'.nilai') }}">
                                         </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
-                                            <label class="form-label">Pendidikan Pancasila dan Kewarganegaraan</label>
-                                            <input type="number" name="muatan_nasional[pkn][nilai]" id="pkn_nilai"
-                                                class="form-control" value="{{ old('muatan_nasional.pkn.nilai') }}"
-                                                >
+                                            <label class="form-label">Deskripsi {{ $label }}</label>
+                                            <textarea name="muatan_nasional[{{ $name }}][deskripsi]" id="{{ $name }}_deskripsi" class="form-control">{{ old('muatan_nasional.'.$name.'.deskripsi') }}</textarea>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Bahasa Indonesia</label>
-                                            <input type="number" name="muatan_nasional[bindo][nilai]" id="bindo_nilai"
-                                                class="form-control" value="{{ old('muatan_nasional.bindo.nilai') }}"
-                                                >
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Deskripsi Pendidikan Agama Islam dan Budi
-                                                Pekerti</label>
-                                            <textarea name="muatan_nasional[pai][deskripsi]" id="pai_deskripsi"
-                                                class="form-control">{{ old('muatan_nasional.pai.deskripsi') }}</textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Deskripsi Pendidikan Pancasila dan
-                                                Kewarganegaraan</label>
-                                            <textarea name="muatan_nasional[pkn][deskripsi]" id="pkn_deskripsi"
-                                                class="form-control">{{ old('muatan_nasional.pkn.deskripsi') }}</textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Deskripsi Bahasa Indonesia</label>
-                                            <textarea name="muatan_nasional[bindo][deskripsi]" id="bindo_deskripsi"
-                                                class="form-control">{{ old('muatan_nasional.bindo.deskripsi') }}</textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Matematika</label>
-                                            <input type="number" name="muatan_nasional[mtk][nilai]" id="mtk_nilai"
-                                                class="form-control" value="{{ old('muatan_nasional.mtk.nilai') }}"
-                                                >
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Sejarah Indonesia</label>
-                                            <input type="number" name="muatan_nasional[sejindo][nilai]"
-                                                id="sejindo_nilai" class="form-control"
-                                                value="{{ old('muatan_nasional.sejindo.nilai') }}" >
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Bahasa Asing</label>
-                                            <input type="number" name="muatan_nasional[bhsAsing][nilai]"
-                                                id="bhsAsing_nilai" class="form-control"
-                                                value="{{ old('muatan_nasional.bhsAsing.nilai') }}" >
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Deskripsi Matematika</label>
-                                            <textarea name="muatan_nasional[mtk][deskripsi]" id="mtk_deskripsi"
-                                                class="form-control">{{ old('muatan_nasional.mtk.deskripsi') }}</textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Deskripsi Sejarah Indonesia</label>
-                                            <textarea name="muatan_nasional[sejindo][deskripsi]" id="sejindo_deskripsi"
-                                                class="form-control">{{ old('muatan_nasional.sejindo.deskripsi') }}</textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Deskripsi Bahasa Asing</label>
-                                            <textarea name="muatan_nasional[bhsAsing][deskripsi]"
-                                                id="bhsAsing_deskripsi"
-                                                class="form-control">{{ old('muatan_nasional.bhsAsing.deskripsi') }}</textarea>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
+
                         <div id="step5">
                             <div class="card-body">
                                 <h3 class="card-title">Muatan Kewilayahan</h3>
                                 <div class="row row-cards">
+                                    @foreach([
+                                        'Seni Budaya' => 'sbd',
+                                        'PJOK' => 'pjok'
+                                    ] as $label => $name)
                                     <div class="col-sm-6 col-md-6">
                                         <div class="mb-3">
-                                            <label class="form-label">Seni Budaya</label>
-                                            <input type="number" name="muatan_kewilayahan[sbd][nilai]"
-                                                id="bhsAsing_nilai" class="form-control"
-                                                value="{{ old('muatan_kewilayahan.sbd.nilai') }}" >
+                                            <label class="form-label">{{ $label }}</label>
+                                            <input type="number" name="muatan_kewilayahan[{{ $name }}][nilai]" id="{{ $name }}_nilai" class="form-control" value="{{ old('muatan_kewilayahan.'.$name.'.nilai') }}">
                                         </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-6">
                                         <div class="mb-3">
-                                            <label class="form-label">PJOK</label>
-                                            <input type="number" name="muatan_kewilayahan[pjok][nilai]"
-                                                id="bhsAsing_nilai" class="form-control"
-                                                value="{{ old('muatan_kewilayahan.pjok.nilai') }}" >
+                                            <label class="form-label">Deskripsi {{ $label }}</label>
+                                            <textarea name="muatan_kewilayahan[{{ $name }}][deskripsi]" id="{{ $name }}_deskripsi" class="form-control">{{ old('muatan_kewilayahan.'.$name.'.deskripsi') }}</textarea>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6 col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Deskripsi Seni Budaya</label>
-                                            <textarea name="muatan_kewilayahan[sbd][deskripsi]" id="sbd_deskripsi"
-                                                class="form-control">{{ old('muatan_kewilayahan.sbd.deskripsi') }}</textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Deskripsi PJOK</label>
-                                            <textarea name="muatan_kewilayahan[pjok][deskripsi]" id="pjok_deskripsi"
-                                                class="form-control">{{ old('muatan_kewilayahan.pjok.deskripsi') }}</textarea>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
+
                         <div id="step6">
                             <div class="card-body">
                                 <h3 class="card-title">C1. Dasar Bidang Keahlian</h3>
                                 <div class="row row-cards">
+                                    @foreach([
+                                        'Simulasi dan Komunikasi Digital' => 'simdig',
+                                        'Fisika' => 'fisika',
+                                        'Kimia' => 'kimia'
+                                    ] as $label => $name)
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
-                                            <label class="form-label">Simulasi dan Komunikasi Digital</label>
-                                            <input type="number" name="muatan_peminatan[simdig][nilai]"
-                                                id="simdig_nilai" class="form-control"
-                                                value="{{ old('muatan_peminatan.simdig.nilai') }}" >
+                                            <label class="form-label">{{ $label }}</label>
+                                            <input type="number" name="muatan_peminatan[{{ $name }}][nilai]" id="{{ $name }}_nilai" class="form-control" value="{{ old('muatan_peminatan.'.$name.'.nilai') }}">
                                         </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
-                                            <label class="form-label">Fisika</label>
-                                            <input type="number" name="muatan_peminatan[fisika][nilai]"
-                                                id="fisika_nilai" class="form-control"
-                                                value="{{ old('muatan_peminatan.fisika.nilai') }}" >
+                                            <label class="form-label">Deskripsi {{ $label }}</label>
+                                            <textarea name="muatan_peminatan[{{ $name }}][deskripsi]" id="{{ $name }}_deskripsi" class="form-control">{{ old('muatan_peminatan.'.$name.'.deskripsi') }}</textarea>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Kimia</label>
-                                            <input type="number" name="muatan_peminatan[kimia][nilai]" id="kimia_nilai"
-                                                class="form-control" value="{{ old('muatan_peminatan.kimia.nilai') }}"
-                                                >
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Deskripsi Simulasi dan Komunikasi Digital</label>
-                                            <textarea name="muatan_peminatan[simdig][deskripsi]" id="simdig_deskripsi"
-                                                class="form-control">{{ old('muatan_peminatan.simdig.deskripsi') }}</textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Deskripsi Fisika</label>
-                                            <textarea name="muatan_peminatan[fisika][deskripsi]" id="fisika_deskripsi"
-                                                class="form-control">{{ old('muatan_peminatan.fisika.deskripsi') }}</textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Deskripsi Kimia</label>
-                                            <textarea name="muatan_peminatan[kimia][deskripsi]" id="kimia_deskripsi"
-                                                class="form-control">{{ old('muatan_peminatan.kimia.deskripsi') }}</textarea>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
+
                         <div id="step7">
                             <div class="card-body">
                                 <h3 class="card-title">C2. Dasar Program Keahlian</h3>
                                 <div class="row row-cards">
-                                    <div class="col-sm-6 col-md-3">
-                                        <div class="mb-3">
-                                            <label class="form-label">Sistem Komputer</label>
-                                            <input type="number" name="muatan_peminatan[siskom][nilai]"
-                                                id="siskom_nilai" class="form-control"
-                                                value="{{ old('muatan_peminatan.siskom.nilai') }}" >
+                                    @php
+                                        $subjects = [
+                                            ['label' => 'Sistem Komputer', 'name' => 'siskom'],
+                                            ['label' => 'Komputer dan Jaringan', 'name' => 'komjar'],
+                                            ['label' => 'Pemrograman Dasar', 'name' => 'progdas'],
+                                            ['label' => 'Dasar Design Grafis', 'name' => 'ddg'],
+                                        ];
+                                    @endphp
+
+                                    @foreach ($subjects as $subject)
+                                        <div class="col-sm-6 col-md-3">
+                                            <div class="mb-3">
+                                                <label class="form-label">{{ $subject['label'] }}</label>
+                                                <input type="number" name="muatan_peminatan[{{ $subject['name'] }}][nilai]"
+                                                    id="{{ $subject['name'] }}_nilai" class="form-control"
+                                                    value="{{ old('muatan_peminatan.' . $subject['name'] . '.nilai') }}">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-3">
-                                        <div class="mb-3">
-                                            <label class="form-label">Komputer dan Jaringan</label>
-                                            <input type="number" name="muatan_peminatan[komjar][nilai]"
-                                                id="komjar_nilai" class="form-control"
-                                                value="{{ old('muatan_peminatan.komjar.nilai') }}" >
+                                    @endforeach
+
+                                    @foreach ($subjects as $subject)
+                                        <div class="col-sm-6 col-md-3">
+                                            <div class="mb-3">
+                                                <label class="form-label">Deskripsi {{ $subject['label'] }}</label>
+                                                <textarea name="muatan_peminatan[{{ $subject['name'] }}][deskripsi]"
+                                                    id="{{ $subject['name'] }}_deskripsi" class="form-control">
+                                                    {{ old('muatan_peminatan.' . $subject['name'] . '.deskripsi') }}
+                                                </textarea>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-3">
-                                        <div class="mb-3">
-                                            <label class="form-label">Pemograman Dasar</label>
-                                            <input type="number" name="muatan_peminatan[progdas][nilai]"
-                                                id="progdas_nilai" class="form-control"
-                                                value="{{ old('muatan_peminatan.progdas.nilai') }}" >
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-3">
-                                        <div class="mb-3">
-                                            <label class="form-label">Dasar Design Grafis</label>
-                                            <input type="number" name="muatan_peminatan[ddg][nilai]" id="ddg_nilai"
-                                                class="form-control" value="{{ old('muatan_peminatan.ddg.nilai') }}"
-                                                >
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-3">
-                                        <div class="mb-3">
-                                            <label class="form-label">Deskripsi Sistem Komputer</label>
-                                            <textarea name="muatan_peminatan[siskom][deskripsi]" id="siskom_deskripsi"
-                                                class="form-control">{{ old('muatan_peminatan.siskom.deskripsi') }}</textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-3">
-                                        <div class="mb-3">
-                                            <label class="form-label">Deskripsi Komputer dan Jaringan</label>
-                                            <textarea name="muatan_peminatan[komjar][deskripsi]" id="komjar_deskripsi"
-                                                class="form-control">{{ old('muatan_peminatan.komjar.deskripsi') }}</textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-3">
-                                        <div class="mb-3">
-                                            <label class="form-label">Deskripsi Pemograman Dasar</label>
-                                            <textarea name="muatan_peminatan[progdas][deskripsi]" id="progdas_deskripsi"
-                                                class="form-control">{{ old('muatan_peminatan.progdas.deskripsi') }}</textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-3">
-                                        <div class="mb-3">
-                                            <label class="form-label">Deskripsi Dasar Design Grafis</label>
-                                            <textarea name="muatan_peminatan[ddg][deskripsi]" id="ddg_deskripsi"
-                                                class="form-control">{{ old('muatan_peminatan.ddg.deskripsi') }}</textarea>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
+
                         <div id="step8">
                             <div class="card-body">
                                 <h3 class="card-title">C3. Kompetensi Keahlian</h3>
                                 <div class="row row-cards">
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Infrastruktur Komputasi Awan</label>
-                                            <input type="number" name="muatan_peminatan[iaas][nilai]" id="iaas_nilai"
-                                                class="form-control" value="{{ old('muatan_peminatan.iaas.nilai') }}"
-                                                >
+                                    @php
+                                        $competencies = [
+                                            ['label' => 'Infrastruktur Komputasi Awan', 'name' => 'iaas'],
+                                            ['label' => 'Platform Komputasi Awan', 'name' => 'paas'],
+                                            ['label' => 'Layanan Komputasi Awan', 'name' => 'saas'],
+                                            ['label' => 'Sistem Internet of Things', 'name' => 'siot'],
+                                            ['label' => 'Sistem Keamanan Jaringan', 'name' => 'skj'],
+                                            ['label' => 'Produk Kreatif dan Kewirausahaan', 'name' => 'pkk'],
+                                        ];
+                                    @endphp
+
+                                    @foreach ($competencies as $competency)
+                                        <div class="col-sm-6 col-md-4">
+                                            <div class="mb-3">
+                                                <label class="form-label">{{ $competency['label'] }}</label>
+                                                <input type="number" name="muatan_peminatan[{{ $competency['name'] }}][nilai]"
+                                                    id="{{ $competency['name'] }}_nilai" class="form-control"
+                                                    value="{{ old('muatan_peminatan.' . $competency['name'] . '.nilai') }}">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Platform Komputasi Awan</label>
-                                            <input type="number" name="muatan_peminatan[paas][nilai]" id="paas_nilai"
-                                                class="form-control" value="{{ old('muatan_peminatan.paas.nilai') }}"
-                                                >
+                                    @endforeach
+
+                                    @foreach ($competencies as $competency)
+                                        <div class="col-sm-6 col-md-4">
+                                            <div class="mb-3">
+                                                <label class="form-label">Deskripsi {{ $competency['label'] }}</label>
+                                                <textarea name="muatan_peminatan[{{ $competency['name'] }}][deskripsi]"
+                                                    id="{{ $competency['name'] }}_deskripsi" class="form-control">
+                                                    {{ old('muatan_peminatan.' . $competency['name'] . '.deskripsi') }}
+                                                </textarea>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Layanan Komputasi Awan</label>
-                                            <input type="number" name="muatan_peminatan[saas][nilai]" id="saas_nilai"
-                                                class="form-control" value="{{ old('muatan_peminatan.saas.nilai') }}"
-                                                >
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Deskripsi Infrastruktur Komputasi Awan</label>
-                                            <textarea name="muatan_peminatan[iaas][deskripsi]" id="iaas_deskripsi"
-                                                class="form-control">{{ old('muatan_peminatan.iaas.deskripsi') }}</textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Deskripsi Platform Komputasi Awan</label>
-                                            <textarea name="muatan_peminatan[paas][deskripsi]" id="paas_deskripsi"
-                                                class="form-control">{{ old('muatan_peminatan.paas.deskripsi') }}</textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Deskripsi Layanan Komputasi Awan</label>
-                                            <textarea name="muatan_peminatan[saas][deskripsi]" id="saas_deskripsi"
-                                                class="form-control">{{ old('muatan_peminatan.saas.deskripsi') }}</textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Sistem Internet of Things</label>
-                                            <input type="number" name="muatan_peminatan[siot][nilai]" id="siot_nilai"
-                                                class="form-control" value="{{ old('muatan_peminatan.siot.nilai') }}"
-                                                >
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Sistem Keamanan Jaringan</label>
-                                            <input type="number" name="muatan_peminatan[skj][nilai]" id="skj_nilai"
-                                                class="form-control" value="{{ old('muatan_peminatan.skj.nilai') }}"
-                                                >
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Produk Kreatif dan Kewirausahaan</label>
-                                            <input type="number" name="muatan_peminatan[pkk][nilai]" id="pkk_nilai"
-                                                class="form-control" value="{{ old('muatan_peminatan.pkk.nilai') }}"
-                                                >
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Deskripsi Sistem Internet of Things</label>
-                                            <textarea name="muatan_peminatan[siot][deskripsi]" id="siot_deskripsi"
-                                                class="form-control">{{ old('muatan_peminatan.siot.deskripsi') }}</textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Deskripsi Sistem Keamanan Jaringan</label>
-                                            <textarea name="muatan_peminatan[skj][deskripsi]" id="skj_deskripsi"
-                                                class="form-control">{{ old('muatan_peminatan.skj.deskripsi') }}</textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Deskripsi Produk Kreatif dan
-                                                Kewirausahaan</label>
-                                            <textarea name="muatan_peminatan[pkk][deskripsi]" id="pkk_deskripsi"
-                                                class="form-control">{{ old('muatan_peminatan.pkk.deskripsi') }}</textarea>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
+
                         <div id="step9">
                             <div class="card-body">
                                 <h3 class="card-title">Ekstrakurikuler</h3>
                                 <div class="row row-cards">
-                                    <div class="col-sm-6 col-md-3">
-                                        <div class="mb-3">
-                                            <label class="form-label">Pramuka</label>
-                                            <input type="text" name="extracurricular[pramuka][nilai]" id="pramuka_nilai"
-                                                class="form-control" value="{{ old('extracurricular.pramuka.nilai') }}"
-                                                >
+                                    @php
+                                        $extracurriculars = [
+                                            ['label' => 'Pramuka', 'name' => 'pramuka'],
+                                            ['label' => 'Bulu Tangkis', 'name' => 'bultang'],
+                                            ['label' => 'Futsal', 'name' => 'futsal'],
+                                            ['label' => 'Silat', 'name' => 'silat'],
+                                        ];
+                                    @endphp
+
+                                    @foreach ($extracurriculars as $extra)
+                                        <div class="col-sm-6 col-md-3">
+                                            <div class="mb-3">
+                                                <label class="form-label">{{ $extra['label'] }}</label>
+                                                <input type="text" name="extracurricular[{{ $extra['name'] }}][nilai]"
+                                                    id="{{ $extra['name'] }}_nilai" class="form-control"
+                                                    value="{{ old('extracurricular.' . $extra['name'] . '.nilai') }}">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-3">
-                                        <div class="mb-3">
-                                            <label class="form-label">Bulu Tangkis</label>
-                                            <input type="text" name="extracurricular[bultang][nilai]" id="bultang_nilai"
-                                                class="form-control" value="{{ old('extracurricular.bultang.nilai') }}"
-                                                >
+                                    @endforeach
+
+                                    @foreach ($extracurriculars as $extra)
+                                        <div class="col-sm-6 col-md-3">
+                                            <div class="mb-3">
+                                                <label class="form-label">Deskripsi {{ $extra['label'] }}</label>
+                                                <textarea name="extracurricular[{{ $extra['name'] }}][deskripsi]"
+                                                    id="{{ $extra['name'] }}_deskripsi" class="form-control">
+                                                    {{ old('extracurricular.' . $extra['name'] . '.deskripsi') }}
+                                                </textarea>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-3">
-                                        <div class="mb-3">
-                                            <label class="form-label">Futsal</label>
-                                            <input type="text" name="extracurricular[futsal][nilai]" id="futsal_nilai"
-                                                class="form-control" value="{{ old('extracurricular.futsal.nilai') }}"
-                                                >
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-3">
-                                        <div class="mb-3">
-                                            <label class="form-label">Silat</label>
-                                            <input type="text" name="extracurricular[silat][nilai]" id="silat_nilai"
-                                                class="form-control" value="{{ old('extracurricular.silat.nilai') }}"
-                                                >
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-3">
-                                        <div class="mb-3">
-                                            <label class="form-label">Deskripsi Pramuka</label>
-                                            <textarea name="extracurricular[pramuka][deskripsi]" id="pramuka_deskripsi"
-                                                class="form-control">{{ old('extracurricular.pramuka.deskripsi') }}</textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-3">
-                                        <div class="mb-3">
-                                            <label class="form-label">Deskripsi Bulu Tangkis</label>
-                                            <textarea name="extracurricular[bultang][deskripsi]" id="bultang_deskripsi"
-                                                class="form-control">{{ old('extracurricular.bultang.deskripsi') }}</textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-3">
-                                        <div class="mb-3">
-                                            <label class="form-label">Deskripsi Futsal</label>
-                                            <textarea name="extracurricular[futsal][deskripsi]" id="futsal_deskripsi"
-                                                class="form-control">{{ old('extracurricular.futsal.deskripsi') }}</textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-3">
-                                        <div class="mb-3">
-                                            <label class="form-label">Deskripsi Silat</label>
-                                            <textarea name="extracurricular[silat][deskripsi]" id="silat_deskripsi"
-                                                class="form-control">{{ old('extracurricular.silat.deskripsi') }}</textarea>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
+
                         <div id="step10">
                             <div class="card-body">
                                 <h3 class="card-title">Kehadiran (Walas)</h3>
@@ -618,99 +381,43 @@
                             <div class="card-body">
                                 <h3 class="card-title">Prestasi Siswa</h3>
                                 <div class="row row-cards">
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Prestasi 1</label>
-                                            <input type="text" name="achievements[one][nilai]" id="one_nilai"
-                                                class="form-control" value="{{ old('achievements.one.nilai') }}"
-                                                >
+                                    @php
+                                        $achievements = [
+                                            ['label' => 'Prestasi 1', 'name' => 'one'],
+                                            ['label' => 'Prestasi 2', 'name' => 'two'],
+                                            ['label' => 'Prestasi 3', 'name' => 'three'],
+                                            ['label' => 'Prestasi 4', 'name' => 'four'],
+                                            ['label' => 'Prestasi 5', 'name' => 'five'],
+                                            ['label' => 'Prestasi 6', 'name' => 'six'],
+                                        ];
+                                    @endphp
+
+                                    @foreach ($achievements as $achievement)
+                                        <div class="col-sm-6 col-md-4">
+                                            <div class="mb-3">
+                                                <label class="form-label">{{ $achievement['label'] }}</label>
+                                                <input type="text" name="achievements[{{ $achievement['name'] }}][nilai]"
+                                                    id="{{ $achievement['name'] }}_nilai" class="form-control"
+                                                    value="{{ old('achievements.' . $achievement['name'] . '.nilai') }}">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Prestasi 2</label>
-                                            <input type="text" name="achievements[two][nilai]" id="two_nilai"
-                                                class="form-control" value="{{ old('achievements.two.nilai') }}"
-                                                >
+                                    @endforeach
+
+                                    @foreach ($achievements as $achievement)
+                                        <div class="col-sm-6 col-md-4">
+                                            <div class="mb-3">
+                                                <label class="form-label">Deskripsi {{ $achievement['label'] }}</label>
+                                                <textarea name="achievements[{{ $achievement['name'] }}][deskripsi]"
+                                                    id="{{ $achievement['name'] }}_deskripsi" class="form-control">
+                                                    {{ old('achievements.' . $achievement['name'] . '.deskripsi') }}
+                                                </textarea>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Prestasi 3</label>
-                                            <input type="text" name="achievements[three][nilai]" id="three_nilai"
-                                                class="form-control" value="{{ old('achievements.three.nilai') }}"
-                                                >
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Deskripsi Prestasi 1</label>
-                                            <textarea name="achievements[one][deskripsi]" id="one_deskripsi"
-                                                class="form-control">{{ old('achievements.one.deskripsi') }}</textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Deskripsi Prestasi 2</label>
-                                            <textarea name="achievements[two][deskripsi]" id="two_deskripsi"
-                                                class="form-control">{{ old('achievements.two.deskripsi') }}</textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Deskripsi Prestasi 3</label>
-                                            <textarea name="achievements[three][deskripsi]" id="three_deskripsi"
-                                                class="form-control">{{ old('achievements.three.deskripsi') }}</textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Prestasi 4</label>
-                                            <input type="text" name="achievements[four][nilai]" id="four_nilai"
-                                                class="form-control" value="{{ old('achievements.four.nilai') }}"
-                                                >
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Prestasi 5</label>
-                                            <input type="text" name="achievements[five][nilai]" id="five_nilai"
-                                                class="form-control" value="{{ old('achievements.five.nilai') }}"
-                                                >
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Prestasi 6</label>
-                                            <input type="text" name="achievements[six][nilai]" id="six_nilai"
-                                                class="form-control" value="{{ old('achievements.six.nilai') }}"
-                                                >
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Deskripsi Prestasi 4</label>
-                                            <textarea name="achievements[four][deskripsi]" id="four_deskripsi"
-                                                class="form-control">{{ old('achievements.four.deskripsi') }}</textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Deskripsi Prestasi 5</label>
-                                            <textarea name="achievements[five][deskripsi]" id="five_deskripsi"
-                                                class="form-control">{{ old('achievements.five.deskripsi') }}</textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Deskripsi Prestasi 6</label>
-                                            <textarea name="achievements[six][deskripsi]" id="six_deskripsi"
-                                                class="form-control">{{ old('achievements.six.deskripsi') }}</textarea>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
+
                         <div id="step12">
                             <div class="card-body">
                                 <h3 class="card-title">Catatan Wali Kelas</h3>

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class rpts extends Model
 {
-    protected $table = 'rpts';
+    protected $table = 'pts';
     protected $fillable = [
         'tahun_ajaran',
         'kelas',
@@ -44,6 +44,7 @@ class rpts extends Model
         'siot',
         'skj',
         'pkk',
+        'note',
     ];
     use HasFactory;
 }

@@ -19,21 +19,18 @@
                             </div>
                             <form method="GET" action="{{ route('rpts') }}" class="mb-4">
                                 <div class="row">
-                                    <div class="col-md-2">
-                                        <!-- Ganti "search_name" menjadi "nama" agar sesuai dengan controller -->
-                                        <input type="text" name="nama" class="form-control" value="{{ request('nama') }}"
-                                            placeholder="Search by Name">
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-2">
+                                        <input type="text" name="nama" class="form-control" value="{{ request('nama') }}" placeholder="Search by Name">
                                     </div>
-                                    <div class="col-md-2">
-                                        <!-- Ganti "search_kelas" menjadi "kelas" agar sesuai dengan controller -->
-                                        <input type="text" name="kelas" class="form-control" value="{{ request('kelas') }}"
-                                            placeholder="Search by Kelas">
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-2">
+                                        <input type="text" name="kelas" class="form-control" value="{{ request('kelas') }}" placeholder="Search by Kelas">
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-12 col-md-4 col-lg-2 mb-2">
                                         <button type="submit" class="btn btn-success">Filter</button>
                                     </div>
                                 </div>
                             </form>
+
                             @if (session('success'))
                                 <div class="alert alert-important alert-success alert-dismissible" role="alert">
                                     <div class="d-flex">
@@ -58,7 +55,7 @@
                     </div>
                     <div class="card">
                         <div class="table-responsive">
-                            <table class="table table-vcenter table-mobile-md card-table">
+                            <table class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th>Tahun Ajaran</th>

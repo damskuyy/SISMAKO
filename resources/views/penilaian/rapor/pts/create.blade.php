@@ -152,7 +152,7 @@
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label">{{ $label }}</label>
-                                            <input type="number" class="form-control" name="{{ $name }}"
+                                            <input type="number" class="form-control" name="{{ $name }}" value="{{ old($name) }}"
                                                 placeholder="Masukan Nilai">
                                         </div>
                                     </div>
@@ -173,7 +173,7 @@
                                     <div class="col-sm-6 col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label">{{ $label }}</label>
-                                            <input type="number" class="form-control" name="{{ $name }}"
+                                            <input type="number" class="form-control" name="{{ $name }}" value="{{ old($name) }}"
                                                 placeholder="Masukan Nilai">
                                         </div>
                                     </div>
@@ -195,7 +195,7 @@
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label">{{ $label }}</label>
-                                            <input type="number" class="form-control" name="{{ $name }}"
+                                            <input type="number" class="form-control" name="{{ $name }}" value="{{ old($name) }}"
                                                 placeholder="Masukan Nilai">
                                         </div>
                                     </div>
@@ -218,7 +218,7 @@
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label">{{ $label }}</label>
-                                            <input type="number" class="form-control" name="{{ $name }}"
+                                            <input type="number" class="form-control" name="{{ $name }}" value="{{ old($name) }}"
                                                 placeholder="Masukan Nilai">
                                         </div>
                                     </div>
@@ -243,7 +243,7 @@
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label">{{ $label }}</label>
-                                            <input type="number" class="form-control" name="{{ $name }}"
+                                            <input type="number" class="form-control" name="{{ $name }}" value="{{ old($name) }}"
                                                 placeholder="Masukan Nilai">
                                         </div>
                                     </div>
@@ -266,7 +266,7 @@
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label">{{ $label }}</label>
-                                            <input type="number" class="form-control" name="{{ $name }}"
+                                            <input type="number" class="form-control" name="{{ $name }}" value="{{ old($name) }}"
                                                 placeholder="Masukan Nilai">
                                         </div>
                                     </div>
@@ -274,6 +274,22 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Step 9: Catatan Walas -->
+                        <div id="step9">
+                            <div class="card-body">
+                                <h3 class="card-title">Catatan Wali Kelas</h3>
+                                <div class="row row-cards">
+                                    <div class="col-sm-6 col-md-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Catatan</label>
+                                            <textarea rows="5" class="form-control" placeholder="Deskripsi" name="note">{{ old('note') }}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
 
                         <!-- Navigation Buttons -->
                         <div class="card-footer text-end">
@@ -291,7 +307,7 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-            const steps = ['step1', 'step2', 'step3', 'step4', 'step5', 'step6', 'step7', 'step8'];
+            const steps = ['step1', 'step2', 'step3', 'step4', 'step5', 'step6', 'step7', 'step8', 'step9'];
             let currentStep = 0;
 
             const nextButton = document.getElementById('nextButton');

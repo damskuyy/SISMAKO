@@ -138,7 +138,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="step4">
+                        <div id="step3">
                             <div class="card-body">
                                 <h3 class="card-title">Muatan Nasional</h3>
                                 <div class="row row-cards">
@@ -189,7 +189,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="step5">
+                        <div id="step4">
                             <div class="card-body">
                                 <h3 class="card-title">Muatan Kewilayahan</h3>
                                 <div class="row row-cards">
@@ -210,7 +210,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="step6">
+                        <div id="step5">
                             <div class="card-body">
                                 <h3 class="card-title">C1. Dasar Bidang Keahlian</h3>
                                 <div class="row row-cards">
@@ -238,7 +238,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="step7">
+                        <div id="step6">
                             <div class="card-body">
                                 <h3 class="card-title">C2. Dasar Program Keahlian</h3>
                                 <div class="row row-cards">
@@ -273,7 +273,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="step8">
+                        <div id="step7">
                             <div class="card-body">
                                 <h3 class="card-title">C3. Kompetensi Keahlian</h3>
                                 <div class="row row-cards">
@@ -322,7 +322,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="step9">
+                        <div id="step8">
                             <div class="card-body">
                                 <h3 class="card-title">Kehadiran (Walas)</h3>
                                 <div class="row row-cards">
@@ -369,6 +369,19 @@
                                 </div>
                             </div>
                         </div>
+                        <div id="step9">
+                            <div class="card-body">
+                                <h3 class="card-title">Catatan Wali Kelas</h3>
+                                <div class="row row-cards">
+                                    <div class="col-sm-6 col-md-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Catatan</label>
+                                            <textarea class="form-control" name="note">{{ $rpts->note }}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="card-footer text-end">
                             <button type="button" class="btn btn-secondary" id="prevButton"
                                 style="display: none;">Previous</button>
@@ -409,7 +422,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            const steps = ['step1', 'step2', 'step4', 'step5', 'step6', 'step7', 'step8', 'step9'];
+            const steps = ['step1', 'step2', 'step3', 'step4', 'step5', 'step6', 'step7', 'step8', 'step9'];
             let currentStep = 0;
 
             const nextButton = document.getElementById('nextButton');

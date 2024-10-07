@@ -8,7 +8,7 @@
                 <div class="mb-4">
                     <div class="col-12 row">
                         <div class="mb-4 col">
-                            <a href="/sekolah-keasramaan" class="btn btn-secondary">
+                            <a href="/sekolah-keasramaan/kunjungan" class="btn btn-secondary">
                                 Back
                             </a>
                         </div>
@@ -17,24 +17,15 @@
                                 Tambah
                             </a>
                         </div>
-                        <form method="GET" action="{{ route('lab.index') }}" class="mb-4">
+                        <form method="GET" action="{{ route('tamu') }}" class="mb-4">
                             <div class="row">
-                                <div class="col-md-2">
+                                <div class="col-12 col-md-3 mb-2 mb-md-0">
                                     <input type="date" name="start_date" class="form-control" placeholder="Start Date">
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-12 col-md-3 mb-2 mb-md-0">
                                     <input type="date" name="end_date" class="form-control" placeholder="End Date">
                                 </div>
-                                <div class="col-md-2">
-                                    <input type="text" name="search_guru" class="form-control" placeholder="Search Guru">
-                                </div>
-                                <div class="col-md-2">
-                                    <input type="text" name="search_kelas" class="form-control" placeholder="Search Kelas">
-                                </div>
-                                <div class="col-md-2">
-                                    <input type="text" name="search_siswa" class="form-control" placeholder="Search Siswa">
-                                </div>
-                                <div class="col-md-2">
+                                <div class="col-12 col-md-2">
                                     <button type="submit" class="btn btn-success">Filter</button>
                                 </div>
                             </div>
@@ -63,7 +54,7 @@
 
                 <!-- Tambahkan div table-responsive di sini -->
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>Tanggal</th>

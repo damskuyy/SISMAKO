@@ -19,22 +19,25 @@
                         </div>
                         <form method="GET" action="{{ route('lab.index') }}" class="mb-4">
                             <div class="row">
-                                <div class="col-md-2">
+                                <div class="col-12 col-md-2 mb-2 mb-md-0">
                                     <input type="date" name="start_date" class="form-control" placeholder="Start Date">
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-12 col-md-2 mb-2 mb-md-0">
                                     <input type="date" name="end_date" class="form-control" placeholder="End Date">
                                 </div>
-                                <div class="col-md-2">
-                                    <input type="text" name="search_guru" class="form-control" placeholder="Search Guru">
+                                <div class="col-12 col-md-2 mb-2 mb-md-0">
+                                    <input type="text" name="search_guru" class="form-control"
+                                        placeholder="Search Guru">
                                 </div>
-                                <div class="col-md-2">
-                                    <input type="text" name="search_kelas" class="form-control" placeholder="Search Kelas">
+                                <div class="col-12 col-md-2 mb-2 mb-md-0">
+                                    <input type="text" name="search_kelas" class="form-control"
+                                        placeholder="Search Kelas">
                                 </div>
-                                <div class="col-md-2">
-                                    <input type="text" name="search_siswa" class="form-control" placeholder="Search Siswa">
+                                <div class="col-12 col-md-2 mb-2 mb-md-0">
+                                    <input type="text" name="search_siswa" class="form-control"
+                                        placeholder="Search Siswa">
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-12 col-md-2">
                                     <button type="submit" class="btn btn-success">Filter</button>
                                 </div>
                             </div>
@@ -63,7 +66,7 @@
 
                 <!-- Tambahkan div table-responsive di sini -->
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>Tanggal</th>
@@ -87,7 +90,8 @@
                                 <td>{{ $aksesLab->start }}</td>
                                 <td>{{ $aksesLab->end }}</td>
                                 <td>
-                                    <a href="#" class="" data-bs-toggle="modal" data-bs-target="#modal-danger-{{ $aksesLab->id }}">
+                                    <a href="#" class="" data-bs-toggle="modal"
+                                        data-bs-target="#modal-danger-{{ $aksesLab->id }}">
                                         <i class="far fa-trash-alt text-white text-xl bg-red p-2 rounded"></i>
                                     </a>
                                 </td>
@@ -97,7 +101,7 @@
                     </table>
                 </div>
                 <div class="d-flex justify-content-center mt-4">
-                    {{ $labs->appends(request()->input())->links('vendor.pagination.bootstrap-5') }}                </div>
+                    {{ $labs->appends(request()->input())->links('vendor.pagination.bootstrap-5') }} </div>
                 <!-- Akhir dari div table-responsive -->
             </div>
         </div>
@@ -125,7 +129,8 @@
                         <path d="M12 16h.01"></path>
                     </svg>
                     <h3>Are you sure?</h3>
-                    <div class="text-secondary">Do you really want to remove this file? This action cannot be undone.</div>
+                    <div class="text-secondary">Do you really want to remove this file? This action cannot be undone.
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <div class="w-100">
