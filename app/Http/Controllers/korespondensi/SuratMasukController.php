@@ -5,17 +5,17 @@ namespace App\Http\Controllers\korespondensi;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Models\korespondensi\SuratMasuk;
-use App\Http\Requests\korespondensi\SuratMasukRequest;
+use App\Http\Requests\korespondensi\SuratMasukRequests;
 
 class SuratMasukController extends Controller
 {
     /**
      * Display a listing of the resource.
-     */
+    //  */
     public function index()
     {
         $suratMasuk = SuratMasuk::all();
-        return view('korespondensi.index', compact('suratMasuk'));
+        return view('korespondensi.index', compact(var_name: 'suratMasuk'));
     }
 
     /**
@@ -25,7 +25,7 @@ class SuratMasukController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(SuratMasukRequest $request)
+    public function store(SuratMasukRequests $request)
     {
 
 
@@ -63,7 +63,7 @@ class SuratMasukController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(SuratMasukRequest $request, $id)
+    public function update(SuratMasukRequests $request, $id)
     {
         $validated= $request->validated();
         $suratMasuk=SuratMasuk::findOrFail($id);

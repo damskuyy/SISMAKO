@@ -16,16 +16,17 @@ class indexController extends Controller
 {
     public function index()
     {
-        $suratmasuk = SuratMasuk::all();
-        $suratkeluar = SuratKeluar::all();
-        $suratperingatan = SuratPeringatan::all();
-        $nomorsurat = NomorSurat::all();
-        $notulensi = Notulensi::all();
-        $suratpengajuan = SuratPengajuan::all();
+        $suratmasuk = SuratMasuk::orderBy('tanggal', 'desc')->get();;
+        $suratkeluar = SuratKeluar::orderBy('tanggal', 'desc')->get();
+        $suratperingatan = SuratPeringatan::orderBy('tanggal', 'desc')->get();
+        $nomorsurat = NomorSurat::orderBy('tanggal', 'desc')->get();
+        $notulensi = Notulensi::orderBy('tanggal', 'desc')->get();
+        $suratpengajuan = SuratPengajuan::orderBy('tanggal', 'desc')->get();
 
         $suratMasukBaru = SuratMasuk::where('created_at', '>=', now()->subDays(30))->get();
         $suratKeluarBaru = SuratKeluar::where('created_at', '>=', now()->subDays(30))->get();
         $suratPengajuanBaru = SuratPengajuan::where('created_at', '>=', now()->subDays(30))->get();
+        $nomorsuratBaru = NomorSurat::where('created_at', '>=', now()->subDays(30))->get();
         $suratPeringatanBaru = SuratPeringatan::where('created_at', '>=', now()->subDays(30))->get();
         $notulensiBaru = Notulensi::where('created_at', '>=', now()->subDays(30))->get();
 
@@ -34,6 +35,7 @@ class indexController extends Controller
             ->merge($suratKeluarBaru)
             ->merge($suratPengajuanBaru)
             ->merge($suratPeringatanBaru)
+            ->merge($nomorsuratBaru)
             ->merge($notulensiBaru);
 
         return view('korespondensi.index', compact('suratmasuk', 'suratkeluar', 'nomorsurat', 'suratperingatan', 'suratpengajuan', 'notulensi', 'suratBaru'));

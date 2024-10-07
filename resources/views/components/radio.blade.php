@@ -412,7 +412,8 @@
                         <div class="col-6">
                             <label class="form-selectgroup-item flex-fill">
                                 <input type="radio" name="subjek" value="siswa"
-                                    class="form-selectgroup-input radio-inbox">
+                                    class="form-selectgroup-input radio-inbox"
+                                    onchange="toggleInputFields(this.value)">
                                 <div class="form-selectgroup-label d-flex align-items-center p-3">
                                     <div class="me-3">
                                         <span class="form-selectgroup-check"></span>
@@ -432,7 +433,8 @@
                         <div class="col-6">
                             <label class="form-selectgroup-item flex-fill">
                                 <input type="radio" name="subjek" value="guru"
-                                    class="form-selectgroup-input radio-inbox">
+                                    class="form-selectgroup-input radio-inbox"
+                                    onchange="toggleInputFields(this.value)">
                                 <div class="form-selectgroup-label d-flex align-items-center p-3">
                                     <div class="me-3">
                                         <span class="form-selectgroup-check"></span>
@@ -896,6 +898,22 @@
 
 
 <script>
+    function toggleInputFields(selectedValue) {
+        const siswaInput = document.querySelector('input[name="siswa"]');
+        const guruInput = document.querySelector('input[name="guru"]');
+
+
+
+        if (selectedValue === 'siswa') {
+            guruInput.value = '';
+            guruInput.disabled = true;
+            siswaInput.disabled = false;
+        } else if (selectedValue === 'guru') {
+            siswaInput.value = '';
+            siswaInput.disabled = true;
+            guruInput.disabled = false;
+        }
+    }
     document.addEventListener('DOMContentLoaded', function() {
         const modals = document.querySelectorAll('[id^="modalUpdate"]');
 
@@ -975,10 +993,13 @@
                     }
                     const dataTargetReport = this.getAttribute('data-target-report');
                     submitButton.setAttribute('data-bs-target', dataTargetReport);
+
+                    // Pastikan fungsi ini dipanggil
                     toggleInputFields(this.value);
                 }
             });
         });
+
 
         function initializeDataTables() {
             tableIds.forEach(id => {
@@ -989,19 +1010,7 @@
             });
         }
 
-        function toggleInputFields(selectedValue) {
-            const siswaInput = document.querySelector('input[name="siswa"]');
-            const guruInput = document.querySelector('input[name="guru"]');
 
-            siswaInput.disabled = selectedValue !== 'siswa';
-            guruInput.disabled = selectedValue !== 'guru';
-
-            if (selectedValue === 'siswa') {
-                guruInput.value = '';
-            } else if (selectedValue === 'guru') {
-                siswaInput.value = '';
-            }
-        }
 
         // Menggunakan Litepicker untuk field tanggal
         document.querySelectorAll('[id^="datepicker"]').forEach(datepicker => {
