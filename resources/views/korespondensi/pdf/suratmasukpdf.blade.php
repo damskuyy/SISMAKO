@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Surat Masuk</title>
     <style>
-          body {
+        body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -29,14 +30,16 @@
             border-collapse: collapse;
             margin: 20px 0;
             font-size: 16px;
-            border: 1px solid #343a40; /* Add border to the table */
+            border: 1px solid #343a40;
+            /* Add border to the table */
         }
 
         table th,
         table td {
             padding: 12px;
             text-align: center;
-            border: 1px solid #343a40; /* Add border to table cells */
+            border: 1px solid #343a40;
+            /* Add border to table cells */
         }
 
         table th {
@@ -49,7 +52,8 @@
         }
 
         table tbody tr:hover {
-            background-color: #e9ecef;a
+            background-color: #e9ecef;
+            a
         }
 
         .footer {
@@ -62,21 +66,22 @@
         }
     </style>
 </head>
+
 <body>
     <h1>Daftar Surat Masuk</h1>
-    <table class="table card-table table-vcenter text-nowrap datatable" style="width: 100%">
+    <table class="table card-table table-vcenter text-nowrap" style="width: 100%">
         <thead>
             <tr>
-                <th>Tahun Ajaran</th>
+                <th>Tahun ajaran</th>
                 <th>Tanggal</th>
-                <th>No. Surat</th>
+                <th>No. surat</th>
                 <th>Jenis Surat</th>
                 <th>Perihal</th>
-                <th>Dari</th>
+                <th>dari</th>
             </tr>
         </thead>
         <tbody>
-            @forelse ($data as $item)
+            @foreach ($data as $item)
                 <tr>
                     <td>{{ $item->tp }}</td>
                     <td>{{ $item->tanggal }}</td>
@@ -85,11 +90,7 @@
                     <td>{{ $item->perihal }}</td>
                     <td>{{ $item->dari }}</td>
                 </tr>
-            @empty
-                <tr>
-                    <td colspan="6">Tidak ada data</td>
-                </tr>
-            @endforelse
+            @endforeach
         </tbody>
     </table>
     <div class="footer">

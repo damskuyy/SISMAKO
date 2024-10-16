@@ -62,6 +62,8 @@ class GeneratePdfController extends Controller
     $modelClass = $models[$model]['model'];
     $query = $modelClass::query();
 
+
+    
     if ($model === 'suratperingatan' && $request->has('subjek') && !empty($request->subjek)) {
         $query->where('subjek', $request->subjek);
     }
@@ -74,7 +76,7 @@ class GeneratePdfController extends Controller
         $query->where('tanggal', '<=', $endDate);
     }
 
-    $filteredData = $query->orderBy('tanggal', 'ASC')->limit(1000)->get(); 
+    $filteredData = $query->orderBy('tanggal', 'DESC')->limit(1000)->get(); 
 
     $filename = $request->input('filename', $models[$model]['default_filename']);
 

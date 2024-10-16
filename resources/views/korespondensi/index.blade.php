@@ -483,7 +483,7 @@
                         <thead>
                             <tr>
                                 <th>Tahun ajaran</th>
-                                {{-- <th>Tanggal</th> --}}
+                                <th>Tanggal</th>
                                 <th>No. surat</th>
                                 <th>Jenis Surat</th>
                                 <th>Perihal</th>
@@ -495,7 +495,7 @@
                             @foreach ($suratkeluar as $item)
                                 <tr>
                                     <td>{{ $item->tp }}</td>
-                                    {{-- <td>{{ $item->tanggal }}</td> --}}
+                                    <td>{{ $item->tanggal }}</td>
                                     <td>{{ $item->no_surat }}</td>
                                     <td>{{ Str::limit($item->jenis_surat, 15) }}</td>
                                     <td>{{ Str::limit($item->perihal, 15) }}</td>
@@ -1773,7 +1773,7 @@
                                 <div class="col-6">
                                     <div class="mb-3">
                                         <label class="form-label ">No. Surat</label>
-                                        <input type="number" class="form-control" id="no_surat" name="no_surat"
+                                        <input type="text" class="form-control" id="no_surat" name="no_surat"
                                             placeholder="Kolom wajib diisi"
                                             value="{{ old('no_surat', $item->no_surat) }}">
                                     </div>
