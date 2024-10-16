@@ -26,6 +26,7 @@ class Password
             'inbox.index',
             'patroli.asrama.index',
             'lab.index',
+            'ortu.edit'
         ];
 
         $currentRouteName = Route::currentRouteName();

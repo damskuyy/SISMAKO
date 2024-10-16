@@ -91,6 +91,7 @@ Route::middleware('password')->group(function () {
     Route::get('/patroli/asrama', [App\Http\Controllers\keasramaan\PatroliAsramaController::class, 'index'])->name('patroli.asrama.index');
     Route::get('/sekolah-keasramaan/akses-lab', [App\Http\Controllers\keasramaan\LabController::class, 'index'])->name('lab.index');
 });
+Route::get('/sekolah-keasramaan/kunjungan/alumniOrtuTamu/edit/{id}', [KunjunganController::class, 'editOrtuTamuAlumni'])->name('ortu.edit');
 
 
 // Penilaian Controller Routes
@@ -483,7 +484,6 @@ Route::controller(TamuController::class)->group(function () {
 });
 
 Route::get('/sekolah-keasramaan/kunjungan/pdf', [KunjunganController::class, 'exportPdf'])->name('kunjungan.export');
-Route::get('/sekolah-keasramaan/kunjungan/alumniOrtuTamu/edit/{id}', [KunjunganController::class, 'editOrtuTamuAlumni'])->name('ortu.edit');
 Route::get('/sekolah-keasramaan/kunjungan/IndustriDinas/edit/{id}', [KunjunganController::class, 'editIndustriDinas'])->name('kunjungan.industri.update');
 
 Route::post('/sekolah-keasramaan/kunjungan/store/{status_kunjungan}', [KunjunganController::class, 'store'])->name('kunjungan.store');

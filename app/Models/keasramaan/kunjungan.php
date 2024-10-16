@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Kunjungan extends Model
 {
     use HasFactory;
-    protected $table = 'kunjungan';
+    protected $table = 'visiting';
     protected $fillable = [
         'nama',
         'asal',
@@ -17,6 +17,8 @@ class Kunjungan extends Model
         'no_hp',
         'nama_instansi',
         'jabatan',
+        'start',
+        'end',
         'status_kunjungan',
     ];
     protected $casts = [

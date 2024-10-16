@@ -85,7 +85,7 @@
                 'title' => 'Sarpras',
                 'color' => 'card-custom-red',
                 ],
-                [   
+                [
                 'id' => 'finance',
                 'url' => '/finance',
                 'img' =>
@@ -100,6 +100,14 @@
                 'https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/Icons%2F360-feedback.gif?alt=media&token=63220144-e26a-4e26-a32d-49434ed8380d',
                 'title' => 'Penilaian Kinerja Guru (PKG)',
                 'color' => 'card-custom-red',
+                ],
+                [
+                'id' => 'keasramaan',
+                'url' => '/sekolah-keasramaan',
+                'img' =>
+                'https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/Icons%2Fquran.gif?alt=media&token=c69149c5-73e5-4a8e-929f-e51a1b1b38d3',
+                'title' => 'Sekolah dan Keasramaan',
+                'color' => 'card-custom-green',
                 ],
                 ];
                 @endphp
@@ -116,18 +124,6 @@
                     </a>
                 </div>
                 @endforeach
-
-                <div class="col-12 col-sm-6 col-md-4 text-center">
-                    <a href="{{ route('keasramaan') }}" class="text-decoration-none">
-                        <div class="card shadow-sm mb-4 hover-shadow" style="background-color: rgba(0, 128, 0, 0.25);">
-                            <div class="card-body d-flex align-items-center justify-content-center">
-                                <img src="https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/Icons%2Fquran.gif?alt=media&token=c69149c5-73e5-4a8e-929f-e51a1b1b38d3"
-                                    alt="" class="img-fluid img-custom">
-                                <h2 class="card-title">Sekolah dan Keasramaan</h2>
-                            </div>
-                        </div>
-                    </a>
-                </div>
 
                 <div class="col-12 col-sm-6 col-md-4 text-center">
                     <a href="{{ route('created-by') }}" class="text-decoration-none">

@@ -22,9 +22,11 @@ class DatabaseSeeder extends Seeder
             ['url' => '/sarpras', 'password' => 'bazma1992'],
             ['url' => '/finance', 'password' => 'bazma1992'],
             ['url' => '/pkg', 'password' => '190924'],
+            ['url' => '/sekolah-keasramaan', 'password' => '122333'],
             ['url' => '/jamaah', 'password' => '170845'],
             ['url' => '/patroli/asrama', 'password' => '170845'],
             ['url' => '/sekolah-keasramaan/akses-lab', 'password' => '170845'],
+            // ['url' => '/sekolah-keasramaan/kunjungan/alumniOrtuTamu/edit/', 'password' => '140721'],
         ];
 
         foreach ($cards as $card) {

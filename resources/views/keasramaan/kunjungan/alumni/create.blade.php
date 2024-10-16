@@ -8,7 +8,7 @@
             <div class="row row-cards">
                 <div class="col-12">
                     <div class="mb-4 col">
-                        <a href="/sekolah-keasramaan/kunjungan/dinas" class="btn btn-secondary">
+                        <a href="/sekolah-keasramaan/kunjungan/alumni" class="btn btn-secondary">
                             Back
                         </a>
                     </div>

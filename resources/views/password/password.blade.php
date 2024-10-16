@@ -9,23 +9,28 @@
                 Please enter your password to proceed.
             </p>
         </div>
-
         <div class="col-md-6">
             <form action="{{ route('checkPw') }}" method="POST">
                 @csrf
                 <div class="input-group">
-                    <input type="password" class="form-control me-3" id="exampleInputPassword1" name="password"
-                        placeholder="Enter your password" aria-label="Enter your password"
-                        aria-describedby="button-addon2" autofocus style="max-width: 500px;">
+                    <input type="password" class="form-control me-3 @error('password') is-invalid @enderror"
+                        id="exampleInputPassword1" name="password" placeholder="Enter your password"
+                        aria-label="Enter your password" aria-describedby="button-addon2" autofocus style="max-width: 500px;">
                     <button class="btn btn-primary rounded" type="submit" id="button-addon2">Submit</button>
                 </div>
+                @error('password')
+                    <div class="invalid-feedback d-block">
+                        {{ $message }}
+                    </div>
+                @enderror
                 <input type="hidden" name="redirect_url" value="{{ request('redirect_url') }}">
                 <p class="mt-3 text-muted">
-                    No spam, unsubscribe at any time.
+                    Masukan Password
                 </p>
                 <a href="/" class="btn btn-secondary mt-2" id="backButton">Back</a>
             </form>
         </div>
+
     </div>
 </div>
 <script>

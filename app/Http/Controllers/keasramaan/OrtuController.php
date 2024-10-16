@@ -16,8 +16,6 @@ class OrtuController extends Controller
         return view('keasramaan.kunjungan.ortu.ortu', compact('ortu'));
     }
 
-
-
     public function create()
     {
         return view('keasramaan.kunjungan.ortu.create');
@@ -30,7 +28,7 @@ class OrtuController extends Controller
         return redirect('/sekolah-keasramaan/kunjungan/ortu')->with('success', 'Data berhasil ditambahkan!');
     }
 
-   
+
 
     public function update(KunjunganRequest $request, $id)
     {

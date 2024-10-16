@@ -28,6 +28,8 @@ class KunjunganRequest extends FormRequest
             'keterangan' => 'required|string',
             'no_hp' => 'required|string|max:50',
             'nama_instansi' => 'nullable|string|max:100',
+            'start' => 'nullable',
+            'end' => 'nullable',
             'jabatan' => 'nullable|string|max:100',
         ];
     }

@@ -26,7 +26,7 @@ class PanitiaController extends Controller
         }
 
         // Paginate the results
-        $panitia = $query->take(500)->paginate(10);
+        $panitia = $query->take(500)->paginate(20);
 
         // Return the view with filtered data
         return view('penilaian.exam.panitia.panitia', compact('panitia', 'tahunAjaran'));
@@ -44,24 +44,20 @@ class PanitiaController extends Controller
 
         // Menyimpan file-file yang di-upload dengan nama asli
         $fileFields = [
-            'kisi_kisi',
-            'soal',
-            'jawaban',
-            'proker',
-            'kehadiran',
-            'jawaban',
             'proker',
             'ba',
             'sk_panitia',
-            'tatib',
-            'surat_pemberitahuan',
+            'tatib_pengawas',
+            'tatib_peserta',
+            'surat_pemberitahuan_guru',
+            'surat_pemberitahuan_ortu',
             'jadwal',
+            'denah_ruangan',
+            'denah_duduk',
             'daftar_nilai',
             'tanda_terima_dan_penerimaan_soal',
             'kehadiran_panitia',
-            'denah',
-            'kehadiran_panitia',
-            'tanda_terima_dan_penerimaan_soal',
+            'keterangan',
         ];
 
         foreach ($fileFields as $fileField) {
@@ -89,24 +85,20 @@ class PanitiaController extends Controller
         $panitia = pas::findOrFail($id);
 
         $fileFields = [
-            'kisi_kisi',
-            'soal',
-            'jawaban',
-            'proker',
-            'kehadiran',
-            'jawaban',
             'proker',
             'ba',
             'sk_panitia',
-            'tatib',
-            'surat_pemberitahuan',
+            'tatib_pengawas',
+            'tatib_peserta',
+            'keterangan',
+            'surat_pemberitahuan_guru',
+            'surat_pemberitahuan_ortu',
             'jadwal',
+            'denah_ruangan',
+            'denah_duduk',
             'daftar_nilai',
             'tanda_terima_dan_penerimaan_soal',
-            'kehadiran_panitia',
-            'denah',
-            'kehadiran_panitia',
-            'tanda_terima_dan_penerimaan_soal',
+            'kehadiran_panitia'
         ];
 
         foreach ($fileFields as $fileField) {
@@ -142,16 +134,20 @@ class PanitiaController extends Controller
         }
 
         $fileFields = [
-            'jawaban',
             'proker',
             'ba',
             'sk_panitia',
-            'tatib',
-            'surat_pemberitahuan',
+            'tatib_pengawas',
+            'tatib_peserta',
+            'keterangan',
+            'surat_pemberitahuan_guru',
+            'surat_pemberitahuan_ortu',
             'jadwal',
-            'denah',
-            'kehadiran_panitia',
+            'denah_ruangan',
+            'denah_duduk',
+            'daftar_nilai',
             'tanda_terima_dan_penerimaan_soal',
+            'kehadiran_panitia'
         ];
 
         foreach ($fileFields as $fileField) {
@@ -175,24 +171,20 @@ class PanitiaController extends Controller
         $panitia = pas::findOrFail($id);
 
         $directories = [
-            'kisi_kisi',
-            'soal',
-            'jawaban',
-            'proker',
-            'kehadiran',
-            'jawaban',
             'proker',
             'ba',
             'sk_panitia',
-            'tatib',
-            'surat_pemberitahuan',
+            'tatib_pengawas',
+            'tatib_peserta',
+            'keterangan',
+            'surat_pemberitahuan_guru',
+            'surat_pemberitahuan_ortu',
             'jadwal',
+            'denah_ruangan',
+            'denah_duduk',
             'daftar_nilai',
             'tanda_terima_dan_penerimaan_soal',
-            'kehadiran_panitia',
-            'denah',
-            'kehadiran_panitia',
-            'tanda_terima_dan_penerimaan_soal',
+            'kehadiran_panitia'
         ];
 
         // Create a temporary file to store the zip
@@ -245,4 +237,3 @@ class PanitiaController extends Controller
         }
     }
 }
-

@@ -29,11 +29,10 @@
                                 @error('tahun_ajaran')
                                     <div class="text-danger mt-2"> {{ $message }} </div>
                                 @enderror
-                                @error('tahun_ajaran')
-                                    <div class="text-danger mt-2">{{ $message }}</div>
-                                @enderror
                             </div>
-                            @foreach (['proker', 'ba', 'sk_panitia', 'tatib', 'surat_pemberitahuan', 'jadwal', 'denah', 'tanda_terima_dan_penerimaan_soal', 'kehadiran_panitia'] as $fileField)
+                            @foreach (['proker', 'ba', 'sk_panitia', 'tatib_pengawas', 'tatib_peserta', 'keterangan',
+                                 'surat_pemberitahuan_guru', 'surat_pemberitahuan_ortu', 'jadwal', 'denah_ruangan',
+                                 'denah_duduk', 'daftar_nilai', 'tanda_terima_dan_penerimaan_soal', 'kehadiran_panitia'] as $fileField)
                                 <div class="col-sm-6 col-md-4 mb-3">
                                     <label class="form-label">
                                         {{ $fileField === 'ba' ? 'Berita Acara' : ucwords(str_replace('_', ' ', $fileField)) }}
@@ -82,10 +81,9 @@
                 }
             };
 
-            const fileFields = ['kisi_kisi', 'soal', 'jawaban', 'proker', 'kehadiran', 'ba', 'sk_panitia', 'tatib',
-                'surat_pemberitahuan', 'jadwal', 'denah', 'daftar_nilai', 'tanda_terima_dan_penerimaan_soal',
-                'kehadiran_panitia'
-            ];
+            const fileFields = ['proker', 'ba', 'sk_panitia', 'tatib_pengawas', 'tatib_peserta', 'keterangan',
+            'surat_pemberitahuan_guru', 'surat_pemberitahuan_ortu', 'jadwal', 'denah_ruangan',
+            'denah_duduk', 'daftar_nilai', 'tanda_terima_dan_penerimaan_soal', 'kehadiran_panitia'];
             fileFields.forEach(v => {
                 setFileInput(data[v], v);
             });

@@ -8,7 +8,7 @@
             <div class="row row-cards">
                 <div class="col-12">
                     <div class="mb-4 col">
-                        <a href="/sekolah-keasramaan/kunjungan/dinas" class="btn btn-secondary">
+                        <a href="/sekolah-keasramaan/kunjungan" class="btn btn-secondary">
                             Back
                         </a>
                     </div>
@@ -54,6 +54,14 @@
                                     <input type="number" value="{{$kunjungan->no_hp}}" class="form-control @error('no_hp') is-invalid @enderror"
                                         id="no_hp" name="no_hp" value="{{ old('no_hp') }}">
                                     @error('no_hp')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label for="end" class="form-label">Jam Kepulangan</label>
+                                    <input type="time" value="{{$kunjungan->end}}" class="form-control @error('end') is-invalid @enderror"
+                                        id="end" name="end" value="{{ old('end') }}">
+                                    @error('end')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>

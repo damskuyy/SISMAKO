@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="py-5">
-    <div class="container custom-container">
+    <div class="container xl-custom-container">
         <div class="row mb-4">
             <div class="col">
                 <a href="/penilaian" class="btn btn-secondary">Back</a>
@@ -12,28 +12,26 @@
             </div>
         </div>
 
-        <form action="{{ route('panitia') }}" method="GET" class="mb-4">
+        {{-- <form action="{{ route('panitia') }}" method="GET" class="mb-4">
             <div class="row">
                 <div class="col-12 col-md-4 mb-2 mb-md-0">
                     <select name="tahun_ajaran" class="form-select" aria-label="Filter by Tahun Ajaran">
                         <option value="">Pilih Tahun Ajaran</option>
-                        @for ($i = 0; $i < 10; $i++)
-                            @php
-                                $startYear = 2022 + $i; // Starting from 2022
-                                $endYear = $startYear + 1; // Next year
-                                $yearRange = "{$startYear}-{$endYear}"; // Format as "YYYY-YYYY"
-                            @endphp
-                            <option value="{{ $yearRange }}" {{ request('tahun_ajaran') == $yearRange ? 'selected' : '' }}>
-                                {{ $yearRange }}
+                        @for ($i = 0; $i < 10; $i++) @php $startYear=2022 + $i; // Starting from 2022
+                            $endYear=$startYear + 1; // Next year $yearRange="{$startYear}-{$endYear}" ; // Format
+                            as "YYYY-YYYY" @endphp <option value="{{ $yearRange }}" {{
+                            request('tahun_ajaran')==$yearRange ? 'selected' : '' }}>
+                            {{ $yearRange }}
                             </option>
-                        @endfor
+                            @endfor
                     </select>
+
                 </div>
                 <div class="col-12 col-md-2">
                     <button type="submit" class="btn btn-primary">Filter</button>
                 </div>
             </div>
-        </form>
+        </form> --}}
 
 
         @if (session('success'))
@@ -52,12 +50,17 @@
                             <th>Proker</th>
                             <th>Berita Acara</th>
                             <th>SK Panitia</th>
-                            <th>Tatib</th>
-                            <th>Surat Pemberitahuan</th>
+                            <th>Tatib Pengawas</th>
+                            <th>Tatib Peserta</th>
+                            <th>Surat Pemberitahuan Guru</th>
+                            <th>Surat Pemberitahuan Siswa</th>
+                            <th>Keterangan</th>
                             <th>Jadwal</th>
-                            <th>Denah</th>
-                            <th>Daftar Hadir Panitia</th>
+                            <th>Denah Ruangan</th>
+                            <th>Denah Duduk</th>
+                            <th>Daftar Nilai</th>
                             <th>Tanda Terima dan Penyerahan Soal</th>
+                            <th>Daftar Hadir Panitia</th>
                             <th></th>
                             <th></th>
                             <th></th>
@@ -67,16 +70,20 @@
                         @forelse ($panitia as $item)
                         <tr>
                             <td>{{ $item->tahun_ajaran }}</td>
-                            <td>{{ Str::limit(Str::afterLast($item->proker, '/'), 10, '...') }}</td>
-                            <td>{{ Str::limit(Str::afterLast($item->ba, '/'), 10, '...') }}</td>
-                            <td>{{ Str::limit(Str::afterLast($item->sk_panitia, '/'), 10, '...') }}</td>
-                            <td>{{ Str::limit(Str::afterLast($item->tatib, '/'), 10, '...') }}</td>
-                            <td>{{ Str::limit(Str::afterLast($item->surat_pemberitahuan, '/'), 10, '...') }}</td>
-                            <td>{{ Str::limit(Str::afterLast($item->jadwal, '/'), 10, '...') }}</td>
-                            <td>{{ Str::limit(Str::afterLast($item->denah, '/'), 10, '...') }}</td>
+                            <td>{{ Str::limit(Str::afterLast($item->proker, '/'), 7, '...') }}</td>
+                            <td>{{ Str::limit(Str::afterLast($item->ba, '/'), 7, '...') }}</td>
+                            <td>{{ Str::limit(Str::afterLast($item->sk_panitia, '/'), 7, '...') }}</td>
+                            <td>{{ Str::limit(Str::afterLast($item->tatib_pengawas, '/'), 7, '...') }}</td>
+                            <td>{{ Str::limit(Str::afterLast($item->tatib_peserta, '/'), 7, '...') }}</td>
+                            <td>{{ Str::limit(Str::afterLast($item->surat_pemberitahuan_guru, '/'), 18, '...') }}</td>
+                            <td>{{ Str::limit(Str::afterLast($item->surat_pemberitahuan_ortu, '/'), 18, '...') }}</td>
+                            <td>{{ Str::limit(Str::afterLast($item->keterangan, '/'), 7, '...') }}</td>
+                            <td>{{ Str::limit(Str::afterLast($item->jadwal, '/'), 7, '...') }}</td>
+                            <td>{{ Str::limit(Str::afterLast($item->denah_ruangan, '/'), 7, '...') }}</td>
+                            <td>{{ Str::limit(Str::afterLast($item->denah_duduk, '/'), 7, '...') }}</td>
+                            <td>{{ Str::limit(Str::afterLast($item->daftar_nilai, '/'), 7, '...') }}</td>
+                            <td>{{ Str::limit(Str::afterLast($item->tanda_terima_dan_penerimaan_soal, '/'), 25, '...') }}</td>
                             <td>{{ Str::limit(Str::afterLast($item->kehadiran_panitia, '/'), 10, '...') }}</td>
-                            <td>{{ Str::limit(Str::afterLast($item->tanda_terima_dan_penerimaan_soal, '/'), 10, '...')
-                                }}</td>
                             <td>
                                 <a href="{{ route('panitia.edit', $item->id) }}">
                                     <i class="fa-regular fa-pen-to-square text-white text-xl bg-yellow p-2 rounded"></i>
@@ -102,7 +109,8 @@
                 </table>
             </div>
             <div class="d-flex justify-content-center mt-4">
-                {{ $panitia->links('vendor.pagination.bootstrap-5') }} <!-- Tambahkan ini untuk menampilkan tautan pagination -->
+                {{ $panitia->links('vendor.pagination.bootstrap-5') }}
+                <!-- Tambahkan ini untuk menampilkan tautan pagination -->
             </div>
         </div>
     </div>
@@ -130,7 +138,8 @@
                         <path d="M12 16h.01"></path>
                     </svg>
                     <h3>Are you sure?</h3>
-                    <div class="text-secondary">Do you really want to remove this file? This action cannot be undone.</div>
+                    <div class="text-secondary">Do you really want to remove this file? This action cannot be undone.
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <div class="w-100">

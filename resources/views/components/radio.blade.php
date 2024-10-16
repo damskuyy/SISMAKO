@@ -278,7 +278,7 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="mb-3">
-                                <label class="form-label required">No. Surat</label>
+                                <label class="form-label requied">No. Surat</label>
                                 <input type="text" class="form-control" id="no_surat2" name="no_surat"
                                     placeholder="Kolom wajib diisi">
                                 @error('no_surat')

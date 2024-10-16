@@ -64,6 +64,8 @@
                                     <th>Tujuan</th>
                                     <th>Keterangan</th>
                                     <th>Nomor Handphone</th>
+                                    <th>Jam Kedatangan</th>
+                                    <th>Jam Kepulangan</th>
                                     <th></th>
                                     <th></th>
                             </thead>
@@ -79,6 +81,8 @@
                                     <td>{{ $item->tujuan }}</td>
                                     <td>{{ $item->keterangan }}</td>
                                     <td>{{ $item->no_hp }}</td>
+                                    <td>{{ $item->start }}</td>
+                                    <td>{{ $item->end }}</td>
                                     <td>
                                         <a href="{{ route('ortu.edit', $item->id) }}">
                                             <i
