@@ -93,28 +93,28 @@
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label">Bahasa Indonesia</label>
-                                            <input type='number ' class="form-control" name="indo"
+                                            <input type='number' class="form-control" name="indo"
                                                 placeholder="Masukan Nilai" value="{{$average->indo}}">
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label">Matematika</label>
-                                            <input type='number ' class="form-control" name="mtk"
+                                            <input type='number' class="form-control" name="mtk"
                                                 placeholder="Masukan Nilai" value="{{$average->mtk}}">
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label">Sejarah Indonesia</label>
-                                            <input type='number ' class="form-control" name="sejindo"
+                                            <input type='number' class="form-control" name="sejindo"
                                                 placeholder="Masukan Nilai" value="{{$average->sejindo}}">
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
-                                            <label class="form-label">Bahasa Asing</label>
-                                            <input type='number ' class="form-control" name="bhs_asing"
+                                            <label class="form-label">Bahasa Inggris</label>
+                                            <input type='number' class="form-control" name="bhs_asing"
                                                 placeholder="Masukan Nilai" value="{{$average->bhs_asing}}">
                                         </div>
                                     </div>
@@ -128,14 +128,14 @@
                                     <div class="col-sm-6 col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label">Seni Budaya</label>
-                                            <input type='number ' class="form-control" name="sbd"
+                                            <input type='number' class="form-control" name="sbd"
                                                 placeholder="Masukan Nilai" value="{{$average->sbd}}">
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label">PJOK</label>
-                                            <input type='number ' class="form-control" name="pjok"
+                                            <input type='number' class="form-control" name="pjok"
                                                 placeholder="Masukan Nilai" value="{{$average->pjok}}">
                                         </div>
                                     </div>
@@ -148,22 +148,22 @@
                                 <div class="row row-cards">
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
-                                            <label class="form-label">Simulasi dan Komunikasi Digital</label>
-                                            <input type='number ' class="form-control" name="simdig"
+                                            <label class="form-label">Informatika</label>
+                                            <input type='number' class="form-control" name="simdig"
                                                 placeholder="Masukan Nilai" value="{{$average->simdig}}">
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
-                                            <label class="form-label">Fisika</label>
-                                            <input type='number ' class="form-control" name="fis"
+                                            <label class="form-label">IPAS</label>
+                                            <input type='number' class="form-control" name="fis"
                                                 placeholder="Masukan Nilai" value="{{$average->fis}}">
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
-                                            <label class="form-label">Kimia</label>
-                                            <input type='number ' class="form-control" name="kim"
+                                            <label class="form-label">DDPK</label>
+                                            <input type='number' class="form-control" name="kim"
                                                 placeholder="Masukan Nilai" value="{{$average->kim}}">
                                         </div>
                                     </div>
@@ -177,28 +177,28 @@
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label">Sistem Komputer</label>
-                                            <input type='number ' class="form-control" name="sis_kom"
+                                            <input type='number' class="form-control" name="sis_kom"
                                                 placeholder="Masukan Nilai" value="{{$average->sis_kom}}">
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label">Komputer dan Jaringan</label>
-                                            <input type='number ' class="form-control" name="komjar"
+                                            <input type='number' class="form-control" name="komjar"
                                                 placeholder="Masukan Nilai" value="{{$average->komjar}}">
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label">Pemograman Dasar</label>
-                                            <input type='number ' class="form-control" name="progdas"
+                                            <input type='number' class="form-control" name="progdas"
                                                 placeholder="Masukan Nilai" value="{{$average->progdas}}">
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label">Dasar Design Grafis</label>
-                                            <input type='number ' class="form-control" name="ddg"
+                                            <input type='number' class="form-control" name="ddg"
                                                 placeholder="Masukan Nilai" value="{{$average->ddg}}">
                                         </div>
                                     </div>
@@ -212,42 +212,42 @@
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label">Infrastruktur Komputasi Awan </label>
-                                            <input type='number ' class="form-control" name="iaas"
+                                            <input type='number' class="form-control" name="iaas"
                                                 placeholder="Masukan Nilai" value="{{$average->iaas}}">
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label">Platform Komputasi Awan</label>
-                                            <input type='number ' class="form-control" name="paas"
+                                            <input type='number' class="form-control" name="paas"
                                                 placeholder="Masukan Nilai" value="{{$average->paas}}">
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label">Layanan Komputasi Awan</label>
-                                            <input type='number ' class="form-control" name="saas"
+                                            <input type='number' class="form-control" name="saas"
                                                 placeholder="Masukan Nilai" value="{{$average->saas}}">
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label">Sistem Internet of Things</label>
-                                            <input type='number ' class="form-control" name="siot"
+                                            <input type='number' class="form-control" name="siot"
                                                 placeholder="Masukan Nilai" value="{{$average->siot}}">
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label">Sistem Keamanan Jaringan</label>
-                                            <input type='number ' class="form-control" name="skj"
+                                            <input type='number' class="form-control" name="skj"
                                                 placeholder="Masukan Nilai" value="{{$average->skj}}">
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label">Produk Kreatif dan Kewirausahaan</label>
-                                            <input type='number ' class="form-control" name="pkk"
+                                            <input type='number' class="form-control" name="pkk"
                                                 placeholder="Masukan Nilai" value="{{$average->pkk}}">
                                         </div>
                                     </div>

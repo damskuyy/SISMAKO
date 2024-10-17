@@ -4,7 +4,7 @@
 
 <div class="py-5">
     <div class="max-w-12xl mx-auto sm:px-6 lg:px-8">
-        <div class="container custom-container">
+        <div class="container xl-custom-container">
             <div class="col-12">
                 <div class="mb-4">
                     <div class="col-12 row">
@@ -81,9 +81,9 @@
                                     <th>B.Ingg</th>
                                     <th>SBD</th>
                                     <th>PJOK</th>
-                                    <th>SimDig</th>
-                                    <th>Fisika</th>
-                                    <th>Kimia</th>
+                                    <th>Informatika</th>
+                                    <th>IPAS</th>
+                                    <th>DDPK</th>
                                     <th>SisKom</th>
                                     <th>KomJar</th>
                                     <th>ProgDas</th>

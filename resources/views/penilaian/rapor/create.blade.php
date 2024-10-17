@@ -166,7 +166,7 @@
                                         'Bahasa Indonesia' => 'bindo',
                                         'Matematika' => 'mtk',
                                         'Sejarah Indonesia' => 'sejindo',
-                                        'Bahasa Asing' => 'bhsAsing'
+                                        'Bahasa Inggris' => 'bhsAsing'
                                     ] as $label => $name)
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
@@ -211,9 +211,9 @@
                                 <h3 class="card-title">C1. Dasar Bidang Keahlian</h3>
                                 <div class="row row-cards">
                                     @foreach([
-                                        'Simulasi dan Komunikasi Digital' => 'simdig',
-                                        'Fisika' => 'fisika',
-                                        'Kimia' => 'kimia'
+                                        'Informatika' => 'simdig',
+                                        'IPAS' => 'fisika',
+                                        'DDPK' => 'kimia'
                                     ] as $label => $name)
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">

@@ -344,7 +344,7 @@
                             @if (!empty($rpts->simdig))
                             <tr>
                                 <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
-                                <td style="padding: 2px;">Simulasi dan Komunikasi Digital</td>
+                                <td style="padding: 2px;">Informatika</td>
                                 <td class="kkm" style="padding: 2px;">75</td>
                                 <td class="grade" style="padding: 2px;">{{ $rpts->simdig }}</td>
                                 <td class="predicate" style="padding: 2px;">
@@ -356,7 +356,7 @@
                             @if (!empty($rpts->fis))
                             <tr>
                                 <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
-                                <td style="padding: 2px;">Fisika</td>
+                                <td style="padding: 2px;">Ilmu Pengetahuan Alam dan Sosial</td>
                                 <td class="kkm" style="padding: 2px;">75</td>
                                 <td class="grade" style="padding: 2px;">{{ $rpts->fis }}</td>
                                 <td class="predicate" style="padding: 2px;">
@@ -368,7 +368,7 @@
                             @if (!empty($rpts->kim))
                             <tr>
                                 <td style="padding: 2px;  text-align: center;">{{ $i++ }}</td>
-                                <td style="padding: 2px;">Kimia</td>
+                                <td style="padding: 2px;">Dasar Dasar Program Keahlian</td>
                                 <td class="kkm" style="padding: 2px;">75</td>
                                 <td class="grade" style="padding: 2px;">{{ $rpts->kim }}</td>
                                 <td class="predicate" style="padding: 2px;">

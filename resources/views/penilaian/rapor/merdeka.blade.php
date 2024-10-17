@@ -394,7 +394,7 @@
                 <tr>
                     @if (!empty($rapor->muatan_peminatan['simdig']['nilai']))
                         <td style="text-align: center;">{{ $i++ }}</td>
-                        <td>Simulasi dan Komunikasi Digital</td>
+                        <td>Informatika</td>
                         <td style="text-align: center;">{{ $rapor->muatan_peminatan['simdig']['nilai'] }}</td>
                         <td>{{ $rapor->muatan_peminatan['simdig']['deskripsi'] }}</td>
                     @endif
@@ -402,7 +402,7 @@
                 <tr>
                     @if (!empty($rapor->muatan_peminatan['fisika']['nilai']))
                         <td style="text-align: center;">{{ $i++ }}</td>
-                        <td>Fisika</td>
+                        <td>Ilmu Pengetahuan Alam dan Sosial</td>
                         <td style="text-align: center;">{{ $rapor->muatan_peminatan['fisika']['nilai'] }}</td>
                         <td>{{ $rapor->muatan_peminatan['fisika']['deskripsi'] }}</td>
                     @endif
@@ -410,7 +410,7 @@
                 <tr>
                     @if (!empty($rapor->muatan_peminatan['simdig']['nilai']))
                         <td style="text-align: center;">{{ $i++ }}</td>
-                        <td>Kimia</td>
+                        <td>Dasar Dasar Program Keahlian</td>
                         <td style="text-align: center;">{{ $rapor->muatan_peminatan['simdig']['nilai'] }}</td>
                         <td>{{ $rapor->muatan_peminatan['simdig']['nilai'] }}</td>
                     @endif

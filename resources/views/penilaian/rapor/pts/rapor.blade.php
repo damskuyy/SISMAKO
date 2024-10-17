@@ -68,11 +68,11 @@
                                         <th>MTK</th>
                                         <th>Sejindo</th>
                                         <th>B.Ingg</th>
-                                        <th>SBD</th>
+                                        <th>Seni</th>
                                         <th>PJOK</th>
-                                        <th>SimDig</th>
-                                        <th>Fisika</th>
-                                        <th>Kimia</th>
+                                        <th>Informatika</th>
+                                        <th>IPAS</th>
+                                        <th>DDPK</th>
                                         <th>SisKom</th>
                                         <th>KomJar</th>
                                         <th>ProgDas</th>
@@ -138,7 +138,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="26" class="text-center">
+                                            <td colspan="28" class="text-center">
                                                 Tidak ada Data
                                             </td>
                                         </tr>

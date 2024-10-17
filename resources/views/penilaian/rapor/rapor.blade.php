@@ -44,7 +44,7 @@
                     <thead>
                         <tr>
                             @foreach (['Tahun Ajaran', 'Kelas', 'Nama', 'PAI', 'PKN', 'B.Indo', 'MTK', 'Sejindo',
-                            'B.Ingg', 'SBD', 'PJOK', 'Fisika', 'Kimia', 'SimDig', 'SisKom', 'KomJar', 'ProgDas', 'DDG',
+                            'B.Ingg', 'SBD', 'PJOK', 'Informatika', 'IPAS', 'DDPK', 'SisKom', 'KomJar', 'ProgDas', 'DDG',
                             'IaaS', 'PaaS', 'SaaS', 'SIoT', 'SKJ', 'PKK', '', '', ''] as $header)
                             <th>{{ $header }}</th>
                             @endforeach
@@ -99,7 +99,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="25" class="text-center">Tidak ada Data</td>
+                            <td colspan="28" class="text-center">Tidak ada Data</td>
                         </tr>
                         @endforelse
                     </tbody>

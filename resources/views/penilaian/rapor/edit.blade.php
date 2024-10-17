@@ -242,10 +242,10 @@
                                                 required>
                                         </div>
                                     </div>
-                                    <!-- Bahasa Asing -->
+                                    <!-- Bahasa Inggris -->
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
-                                            <label for="bhsAsing_nilai" class="form-label">Bahasa Asing</label>
+                                            <label for="bhsAsing_nilai" class="form-label">Bahasa Inggris</label>
                                             <input type="number" name="muatan_nasional[bhsAsing][nilai]"
                                                 id="bhsAsing_nilai" class="form-control"
                                                 value="{{ $rapor->muatan_nasional['bhsAsing']['nilai'] ?? '' }}"
@@ -269,11 +269,11 @@
                                                 class="form-control">{{ $rapor->muatan_nasional['sejindo']['deskripsi'] ?? '' }}</textarea>
                                         </div>
                                     </div>
-                                    <!-- Deskripsi Bahasa Asing -->
+                                    <!-- Deskripsi Bahasa Inggris -->
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
                                             <label for="bhsAsing_deskripsi" class="form-label">Deskripsi Bahasa
-                                                Asing</label>
+                                                Inggris</label>
                                             <textarea name="muatan_nasional[bhsAsing][deskripsi]"
                                                 id="bhsAsing_deskripsi"
                                                 class="form-control">{{ $rapor->muatan_nasional['bhsAsing']['deskripsi'] ?? '' }}</textarea>
@@ -336,7 +336,7 @@
                                     <!-- Simulasi dan Komunikasi Digital -->
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
-                                            <label class="form-label">Simulasi dan Komunikasi Digital</label>
+                                            <label class="form-label">Informatika</label>
                                             <input type="number" name="muatan_peminatan[simdig][nilai]"
                                                 id="simdig_nilai" class="form-control"
                                                 value="{{ $rapor->muatan_peminatan['simdig']['nilai'] ?? '' }}"
@@ -346,7 +346,7 @@
                                     <!-- Fisika -->
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
-                                            <label class="form-label">Fisika</label>
+                                            <label class="form-label">IPAS</label>
                                             <input type="number" name="muatan_peminatan[fisika][nilai]"
                                                 id="fisika_nilai" class="form-control"
                                                 value="{{ $rapor->muatan_peminatan['fisika']['nilai'] ?? '' }}"
@@ -356,7 +356,7 @@
                                     <!-- Kimia -->
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
-                                            <label class="form-label">Kimia</label>
+                                            <label class="form-label">DDPK</label>
                                             <input type="number" name="muatan_peminatan[kimia][nilai]" id="kimia_nilai"
                                                 class="form-control"
                                                 value="{{ $rapor->muatan_peminatan['kimia']['nilai'] ?? '' }}" required>

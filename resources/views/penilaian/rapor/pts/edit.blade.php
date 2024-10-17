@@ -181,7 +181,7 @@
                                     </div>
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
-                                            <label class="form-label">Bahasa Asing</label>
+                                            <label class="form-label">Bahasa Inggris</label>
                                             <input type='number' class="form-control" name="bhs_asing"
                                                 placeholder="Masukan Nilai" value="{{ $rpts->bhs_asing }}">
                                         </div>
@@ -216,21 +216,21 @@
                                 <div class="row row-cards">
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
-                                            <label class="form-label">Simulasi dan Komunikasi Digital</label>
+                                            <label class="form-label">Informatika</label>
                                             <input type="number" class="form-control" name="simdig"
                                                 placeholder="Masukan Nilai" value="{{ $rpts->simdig }}">
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
-                                            <label class="form-label">Fisika</label>
+                                            <label class="form-label">IPAS</label>
                                             <input type="number" class="form-control" name="fis"
                                                 placeholder="Masukan Nilai" value="{{ $rpts->fis }}">
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
-                                            <label class="form-label">Kimia</label>
+                                            <label class="form-label">DDPK</label>
                                             <input type="number" class="form-control" name="kim"
                                                 placeholder="Masukan Nilai" value="{{ $rpts->kim }}">
                                         </div>

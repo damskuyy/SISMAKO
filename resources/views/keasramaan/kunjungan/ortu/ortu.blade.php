@@ -84,7 +84,8 @@
                                     <td>{{ $item->start }}</td>
                                     <td>{{ $item->end }}</td>
                                     <td>
-                                        <a href="{{ route('ortu.edit', $item->id) }}">
+                                        <a href="#" class="text-decoration-none" data-bs-toggle="modal"
+                                            data-bs-target="#passwordModal-{{ $item->id }}">
                                             <i
                                                 class="fa-regular fa-pen-to-square text-white text-xl bg-yellow p-2 rounded"></i>
                                         </a>
@@ -161,4 +162,52 @@
     </div>
 </form>
 @endforeach
+
+{{-- Password Modal --}}
+@foreach ($ortu as $item)
+<div class="modal fade" id="passwordModal-{{ $item->id }}" tabindex="-1" aria-labelledby="passwordModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="passwordModalLabel">Enter Password</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="passwordForm-{{ $item->id }}">
+                    <div class="mb-3">
+                        <label for="passwordInput-{{ $item->id }}" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="passwordInput-{{ $item->id }}"
+                            placeholder="Enter your password">
+                    </div>
+                    <div id="passwordError-{{ $item->id }}" class="alert alert-danger d-none" role="alert">
+                        Password salah. Silakan coba lagi.
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="submitPassword-{{ $item->id }}"
+                    onclick="checkPassword({{ $item->id }})">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
+
+{{-- Password Logic --}}
+<script>
+    function checkPassword(id) {
+        var password = document.getElementById('passwordInput-' + id).value;
+        var correctPassword = '140721'; // Ganti dengan password yang benar jika diperlukan
+
+        if (password === correctPassword) {
+            // Password benar, arahkan ke halaman edit
+            window.location.href = '/sekolah-keasramaan/kunjungan/alumniOrtuTamu/edit/' + id;
+        } else {
+            // Tampilkan pesan kesalahan
+            document.getElementById('passwordError-' + id).classList.remove('d-none');
+        }
+    }
+</script>
 @endsection
