@@ -26,4 +26,9 @@ class Lab extends Model
     {
         return $this->belongsTo(Siswa::class, 'siswa_id');
     }
+
+    public function kelas()
+    {
+        return $this->belongsTo(DataKelas::class, 'siswa_id');
+    }
 }

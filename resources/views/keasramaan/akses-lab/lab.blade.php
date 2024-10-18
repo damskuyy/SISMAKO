@@ -11,6 +11,7 @@
                             <a href="/sekolah-keasramaan" class="btn btn-secondary">
                                 Back
                             </a>
+
                         </div>
                         <div class="mb-4 col d-flex justify-content-end">
                             <a href="{{ route('lab.create') }}" class="btn btn-primary">
@@ -83,9 +84,9 @@
                             @foreach ($labs as $aksesLab)
                             <tr>
                                 <td>{{ $aksesLab->tanggal }}</td>
-                                <td>{{ $aksesLab->guru_id->name ?? 'N/A' }}</td>
-                                <td>{{ $aksesLab->kelas_id->name ?? 'N/A' }}</td>
-                                <td>{{ $aksesLab->siswa_id->name ?? 'N/A' }}</td>
+                                <td>{{ $aksesLab->guru->nama ?? 'N/A' }}</td>
+                                <td>{{ $aksesLab->kelas->kelas ?? 'N/A' }}</td>
+                                <td>{{ $aksesLab->siswa->nama ?? 'N/A' }}</td>
                                 <td>{{ $aksesLab->keterangan }}</td>
                                 <td>{{ $aksesLab->start }}</td>
                                 <td>{{ $aksesLab->end }}</td>
@@ -107,6 +108,10 @@
         </div>
     </div>
 </div>
+<script>
+    const data = @json($labs);
+    console.log(data);
+</script>
 
 @foreach ($labs as $item)
 <form action="{{ route('lab.delete', $item->id) }}" method="post">
