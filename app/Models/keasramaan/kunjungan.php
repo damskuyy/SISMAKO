@@ -5,7 +5,7 @@ namespace App\Models\keasramaan;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class kunjungan extends Model
+class Kunjungan extends Model
 {
     use HasFactory;
     protected $table = 'visiting';
