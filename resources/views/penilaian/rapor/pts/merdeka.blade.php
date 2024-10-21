@@ -22,6 +22,7 @@
         .head tr,
         .head td {
             border: none;
+            font-weight: bold
         }
 
         .p {
@@ -85,11 +86,6 @@
         table.achievements th {
             font-weight: bold;
         }
-
-        /* .attendance th,
-        .attendance td {
-            width: 20%;
-        } */
 
         .achievements th,
         .achievements td {
@@ -201,7 +197,7 @@
             <tr>
                 <td>
                     <span>LAPORAN HASIL PENILAIAN TENGAH SEMESTER {{$rpts->semester}}<br>TAHUN
-                        PELAJARAN {{$rpts->tahun_ajaran}}</span>
+                        AJARAN {{$rpts->tahun_ajaran}}</span>
                 </td>
                 <td>
                     <?php
@@ -591,7 +587,6 @@
                 <td class='left-signature'>Wali Kelas</td>
             </tr>
             <tr>
-                <td><br><br><br><br></td>
                 <td><br><br><br><br></td>
                 <td><br><br><br><br></td>
             </tr>

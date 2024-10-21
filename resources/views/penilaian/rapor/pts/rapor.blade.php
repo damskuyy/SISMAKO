@@ -58,6 +58,9 @@
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
                                         <th>Tahun Ajaran</th>
                                         <th>Kelas</th>
                                         <th>Semester</th>
@@ -83,9 +86,6 @@
                                         <th>SIoT</th>
                                         <th>SKJ</th>
                                         <th>PKK</th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
                                 </thead>
                                 <tbody>
                                     @php
@@ -93,6 +93,23 @@
                                     @endphp
                                     @forelse ($rpts as $item)
                                         <tr>
+                                            <td>
+                                                <a href="{{ route('rpts.edit', $item->id) }}">
+                                                    <i
+                                                        class="fa-regular fa-pen-to-square text-white text-xl bg-yellow p-2 rounded"></i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('rpts.pdf', $item->id) }}">
+                                                    <i
+                                                        class="fa-solid fa-file-export text-white text-xl bg-green p-2 rounded"></i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal-danger-{{ $item->id }}">
+                                                    <i class="far fa-trash-alt text-white text-xl bg-red p-2 rounded"></i>
+                                                </a>
+                                            </td>
                                             <td>{{ $item->tahun_ajaran }}</td>
                                             <td>{{ $item->kelas }}</td>
                                             <td>{{ $item->semester }}</td>
@@ -118,23 +135,6 @@
                                             <td>{{ $item->siot }}</td>
                                             <td>{{ $item->skj }}</td>
                                             <td>{{ $item->pkk }}</td>
-                                            <td>
-                                                <a href="{{ route('rpts.edit', $item->id) }}">
-                                                    <i
-                                                        class="fa-regular fa-pen-to-square text-white text-xl bg-yellow p-2 rounded"></i>
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('rpts.pdf', $item->id) }}">
-                                                    <i
-                                                        class="fa-solid fa-file-export text-white text-xl bg-green p-2 rounded"></i>
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal-danger-{{ $item->id }}">
-                                                    <i class="far fa-trash-alt text-white text-xl bg-red p-2 rounded"></i>
-                                                </a>
-                                            </td>
                                         </tr>
                                     @empty
                                         <tr>

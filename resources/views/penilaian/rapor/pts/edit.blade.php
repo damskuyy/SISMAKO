@@ -330,16 +330,8 @@
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label">Total Kehadiran</label>
-                                            <input type="number" name="izin" id="izin" class="form-control"
-                                                value="{{ $rpts->izin }}" required>
-                                        </div>
-                                    </div>
-                                    <!-- Izin -->
-                                    <div class="col-sm-6 col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Izin</label>
-                                            <input type="number" name="izin" id="izin" class="form-control"
-                                                value="{{ $rpts->izin }}" required>
+                                            <input type="number" name="kehadiran" id="izin" class="form-control"
+                                                value="{{ $rpts->kehadiran }}" required>
                                         </div>
                                     </div>
                                     <!-- Izin -->

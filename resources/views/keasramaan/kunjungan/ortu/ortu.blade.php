@@ -174,7 +174,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="passwordForm-{{ $item->id }}">
+                <form id="passwordForm-{{ $item->id }}" onsubmit="return false;">
                     <div class="mb-3">
                         <label for="passwordInput-{{ $item->id }}" class="form-label">Password</label>
                         <input type="password" class="form-control" id="passwordInput-{{ $item->id }}"
@@ -197,17 +197,21 @@
 
 {{-- Password Logic --}}
 <script>
-    function checkPassword(id) {
-        var password = document.getElementById('passwordInput-' + id).value;
-        var correctPassword = '140721'; // Ganti dengan password yang benar jika diperlukan
+    // Function to check password and redirect if correct
+function checkPassword(id) {
+    var passwordInput = document.getElementById('passwordInput-' + id);
+    var password = passwordInput.value;
+    var correctPassword = '140721'; // Replace with the correct password if needed
 
-        if (password === correctPassword) {
-            // Password benar, arahkan ke halaman edit
-            window.location.href = '/sekolah-keasramaan/kunjungan/alumniOrtuTamu/edit/' + id;
-        } else {
-            // Tampilkan pesan kesalahan
-            document.getElementById('passwordError-' + id).classList.remove('d-none');
-        }
+    if (password === correctPassword) {
+        // Password correct, redirect to the edit page
+        window.location.href = '/sekolah-keasramaan/kunjungan/alumniOrtuTamu/edit/' + id;
+    } else {
+        // Show error message
+        document.getElementById('passwordError-' + id).classList.remove('d-none');
+        passwordInput.focus(); // Refocus the input if password is wrong
     }
+}
 </script>
+
 @endsection
