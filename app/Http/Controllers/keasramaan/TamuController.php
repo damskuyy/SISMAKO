@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers\keasramaan;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\keasramaan\kunjungan;
 use App\Http\Requests\keasramaan\KunjunganRequest;
-use App\Models\keasramaan\Kunjungan as KeasramaanKunjungan;
+use App\Models\keasramaan\Kunjungan;
 
 class TamuController extends Controller
 {
     public function index()
     {
-        $tamu = KeasramaanKunjungan::where('status_kunjungan', operator: 'Tamu')->paginate(10);
+        $tamu = Kunjungan::where('status_kunjungan', operator: 'Tamu')->paginate(10);
         return view('keasramaan.kunjungan.tamu.tamu', compact('tamu'));
     }
 
@@ -24,7 +22,7 @@ class TamuController extends Controller
     public function store(KunjunganRequest $request)
     {
         $request->validated();
-        kunjungan::create($request->all());
+        Kunjungan::create($request->all());
         return redirect('/sekolah-keasramaan/kunjungan/tamu')->with('success', 'Data berhasil ditambahkan!');
     }
 
@@ -35,14 +33,14 @@ class TamuController extends Controller
 
     public function update(KunjunganRequest $request, $id)
     {
-        $data = kunjungan::findOrFail($id);
+        $data = Kunjungan::findOrFail($id);
         $data->update($request->all());
         return redirect('/sekolah-keasramaan/kunjungan/tamu')->with('success', 'Data berhasil diupdate!');
     }
 
     public function destroy($id)
     {
-        $data = kunjungan::findOrFail($id);
+        $data = Kunjungan::findOrFail($id);
         $data->delete();
         return redirect('/sekolah-keasramaan/kunjungan/tamu')->with('success', 'Data berhasil dihapus!');
     }
