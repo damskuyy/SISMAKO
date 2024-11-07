@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\keasramaan\UksController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\keasramaan\KunjunganController;
 use App\Http\Controllers\WhatsAppController;
 use App\Http\Controllers\database\ZipController;
 use App\Http\Controllers\database\GuruController;
@@ -25,6 +25,8 @@ use App\Http\Controllers\keasramaan\AlumniController;
 use App\Http\Controllers\keasramaan\tafsirController;
 use App\Http\Controllers\keasramaan\tahsinController;
 use App\Http\Controllers\keasramaan\tajwidController;
+use App\Http\Controllers\keasramaan\IzinKeluarSiswaController;
+use App\Http\Controllers\keasramaan\CatatanGroomingController;
 use App\Http\Controllers\penilaian\AverageController;
 use App\Http\Controllers\penilaian\PanitiaController;
 use App\Http\Controllers\administrasi\MapelController;
@@ -36,6 +38,7 @@ use App\Http\Controllers\database\PunishmentController;
 use App\Http\Controllers\keasramaan\eventualController;
 use App\Http\Controllers\keasramaan\IndustriController;
 use App\Http\Controllers\korespondensi\indexController;
+use App\Http\Controllers\keasramaan\KunjunganController;
 use App\Http\Controllers\keasramaan\pelatihanController;
 use App\Http\Controllers\sarpras\DormPurchaseController;
 use App\Http\Controllers\database\DataPrestasiController;
@@ -56,6 +59,7 @@ use App\Http\Controllers\korespondensi\GeneratePdfController;
 use App\Http\Controllers\korespondensi\suratKeluarController;
 use App\Http\Controllers\administrasi\WakaKesiswaanController;
 use App\Http\Controllers\administrasi\WakaKurikulumController;
+use App\Http\Controllers\schoolwebsite\SaranMasukanController;
 use App\Http\Controllers\korespondensi\SuratPengajuanController;
 use App\Http\Controllers\database\PklAdministrasiSiswaController;
 use App\Http\Controllers\korespondensi\SuratPeringatanController;
@@ -72,7 +76,7 @@ Route::view('sekolah-keasramaan/kunjungan', 'keasramaan.kunjungan.kunjungan')->n
 Route::view('created-by', 'home.createdBy')->name('created-by');
 
 Route::get('/api/send-whatsapp', [WhatsAppController::class, 'sendMessage']);
-
+Route::post('/api/saran-masukan', [SaranMasukanController::class, 'store']);
 
 Route::middleware('password')->group(function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -458,6 +462,7 @@ Route::controller(LabController::class)->group(function () {
     Route::delete('/sekolah-keasramaan/akses-lab/delete', 'destroy')->name('lab.delete');
 });
 
+
 Route::controller(AlumniController::class)->group(function () {
     Route::get('/sekolah-keasramaan/kunjungan/alumni', 'index')->name('alumni');
     Route::get('/sekolah-keasramaan/kunjungan/alumni/create', 'create')->name('alumni.create');
@@ -490,8 +495,34 @@ Route::post('/sekolah-keasramaan/kunjungan/store/{status_kunjungan}', [Kunjungan
 Route::put('/sekolah-keasramaan/kunjungan/update/{id}', [KunjunganController::class, 'update'])->name('kunjungan.update');
 Route::delete('/sekolah-keasramaan/kunjungan/delete/{id}', [KunjunganController::class, 'destroy'])->name('kunjungan.industri.delete');
 
-Route::get('/progres-siswa/{nisn}', [ProgresSiswaController::class, 'index'])->name('progres-siswa.index');
+Route::controller(IzinKeluarSiswaController::class)->group(function () {
+    Route::get('/sekolah-keasramaan/izin-keluar', 'index')->name('izin.keluar.index');
+    Route::get('/sekolah-keasramaan/izin-keluar/create', 'create')->name('izin.keluar.create');
+    Route::post('/sekolah-keasramaan/izin-keluar/store', 'store')->name('izin.keluar.store');
+    Route::get('/sekolah-keasramaan/izin-keluar/{id}/edit', 'edit')->name('izin.keluar.edit');
+    Route::put('/sekolah-keasramaan/izin-keluar/{id}', 'update')->name('izin.keluar.update');
+    Route::delete('/sekolah-keasramaan/izin-keluar/delete/{id}', 'destroy')->name('izin.keluar.delete');
+});
 
+Route::controller(UksController::class)->group(function () {
+    Route::get('/sekolah-keasramaan/uks', 'index')->name('uks.index');
+    Route::get('/sekolah-keasramaan/uks/create', 'create')->name('uks.create');
+    Route::post('/sekolah-keasramaan/uks/store', 'store')->name('uks.store');
+    Route::get('/sekolah-keasramaan/uks/{id}/edit', 'edit')->name('uks.edit');
+    Route::put('/sekolah-keasramaan/uks/{id}', 'update')->name('uks.update');
+    Route::delete('/sekolah-keasramaan/uks/delete/{id}', 'destroy')->name('uks.delete');
+});
+
+Route::controller(CatatanGroomingController::class)->group(function () {
+    Route::get('/sekolah-keasramaan/catatan-grooming', 'index')->name('catatan.grooming.index');
+    Route::get('/sekolah-keasramaan/catatan-grooming/create', 'create')->name('catatan.grooming.create');
+    Route::post('/sekolah-keasramaan/catatan-grooming/store', 'store')->name('catatan.grooming.store');
+    Route::get('/sekolah-keasramaan/catatan-grooming/{id}/edit', 'edit')->name('catatan.grooming.edit');
+    Route::put('/sekolah-keasramaan/catatan-grooming/{id}', 'update')->name('catatan.grooming.update');
+    Route::delete('/sekolah-keasramaan/catatan-grooming/delete/{id}', 'destroy')->name('catatan.grooming.delete');
+});
+
+Route::get('/progres-siswa/{nisn}', [ProgresSiswaController::class, 'index'])->name('progres-siswa.index');
 
 // korespondensi
 Route::get('/pdf/{model}', [GeneratePdfController::class, 'generatepdf'])->name('pdf');

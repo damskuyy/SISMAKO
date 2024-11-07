@@ -14,17 +14,14 @@ class LabController extends Controller
 {
     public function index(Request $request)
     {
-        // Ambil filter dari input
         $startDate = $request->input('start_date');
         $endDate = $request->input('end_date');
         $searchGuru = $request->input('search_guru');
         $searchKelas = $request->input('search_kelas');
         $searchSiswa = $request->input('search_siswa');
 
-        // Mulai dengan query dasar
         $labs = Lab::query();
 
-        // Filter berdasarkan tanggal jika ada input
         if ($startDate) {
             $labs->where('tanggal', '>=', $startDate);
         }
@@ -32,33 +29,32 @@ class LabController extends Controller
             $labs->where('tanggal', '<=', $endDate);
         }
 
-        // Filter berdasarkan guru jika ada input
         if ($searchGuru) {
             $labs->whereHas('guru', function ($query) use ($searchGuru) {
                 $query->where('nama', 'like', '%' . $searchGuru . '%');
             });
         }
 
-        // Filter berdasarkan kelas jika ada input
         if ($searchKelas) {
             $labs->whereHas('kelas', function ($query) use ($searchKelas) {
                 $query->where('nama', 'like', '%' . $searchKelas . '%');
             });
         }
 
-        // Filter berdasarkan siswa jika ada input
         if ($searchSiswa) {
             $labs->whereHas('siswa', function ($query) use ($searchSiswa) {
                 $query->where('nama', 'like', '%' . $searchSiswa . '%');
             });
         }
 
-        // Ambil data dengan pagination
         $labs = $labs->with([
-            'guru:id,nama', // Hanya mengambil kolom id dan nama dari guru
-            'kelas:id,kelas',        // Memuat semua data dari kelas
-            'siswa:id,nama' // Hanya mengambil kolom id dan nama dari siswa
-        ])->paginate(10);
+            'siswa:id,nama',
+            'kelas:id,kelas',
+            'guru:id,nama'
+        ])->orderBy('tanggal', 'desc') 
+          ->paginate(10);
+
+
         return view('keasramaan.akses-lab.lab', compact('labs'));
     }
 
@@ -67,7 +63,7 @@ class LabController extends Controller
     public function create()
     {
         $guru = Guru::select('nama', 'id')->get();
-        return view('keasramaan.akses-lab.create', compact('guru')); // Buat view untuk form tambah
+        return view('keasramaan.akses-lab.create', compact('guru'));
     }
 
     public function edit(Lab $aksesLab)

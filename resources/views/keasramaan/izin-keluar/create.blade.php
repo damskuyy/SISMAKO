@@ -7,29 +7,40 @@
                 <div class="row row-cards">
                     <div class="col-12">
                         <div class="mb-4 col">
-                            <a href="/sekolah-keasramaan/akademik/pelatihan" class="btn btn-secondary">
+                            <a href="{{route('izin.keluar.index')}}" class="btn btn-secondary">
                                 Back
                             </a>
                         </div>
-                        <form class="card" action="{{ route('lab.store') }}" method="POST" enctype="multipart/form-data">
+                        <form class="card" action="{{ route('izin.keluar.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
-                                <h3 class="card-title">Data Siswa</h3>
+                                <h3 class="card-title">Izin Keluar</h3>
                                 <div class="row row-cards">
                                     <div class="col-sm-4 col-md-4">
                                         <div class="mb-3">
-                                            <label class="form-label">Tanggal</label>
-                                            <input type='date' class="form-control datepicker"
-                                                placeholder="Masukan Tanggal" id="datepicker-icon-1" name="tanggal"
+                                            <label class="form-label">Tanggal Keluar</label>
+                                            <input type='datetime-local' class="form-control datepicker"
+                                                placeholder="Masukan Tanggal" id="datepicker-icon-1" name="tanggal_keluar"
                                                 autocomplete='off'>
-                                            @error('tanggal')
+                                            @error('tanggal_keluar')
                                                 <div class="text-danger mt-2"> {{ $message }} </div>
                                             @enderror
                                         </div>
                                     </div>
                                     <div class="col-sm-4 col-md-4">
                                         <div class="mb-3">
-                                            <label class="form-label">Guru</label>
+                                            <label class="form-label">Tanggal Kembali</label>
+                                            <input type='datetime-local' class="form-control datepicker"
+                                                placeholder="Masukan Tanggal" id="datepicker-icon-1" name="tanggal_kembali"
+                                                autocomplete='off'>
+                                            @error('tanggal_kembali')
+                                                <div class="text-danger mt-2"> {{ $message }} </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label">Guru Piket</label>
                                             <select class="form-control" name="guru_id" id="guru_id">
                                                 <option value="">Pilih Nama Guru</option>
                                                 @foreach ($guru as $item)
@@ -68,30 +79,10 @@
                                     </div>
                                     <div class="col-sm-12 col-md-12">
                                         <div class="mb-3">
-                                            <label for="keterangan" class="form-label">Keterangan</label>
-                                            <textarea class="form-control @error('keterangan') is-invalid @enderror" id="keterangan" name="keterangan"
-                                                placeholder="Masukan Keterangan">{{ old('keterangan') }}</textarea>
-                                            @error('keterangan')
-                                                <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-6">
-                                        <div class="mb-3">
-                                            <label for="start">Jam Mulai</label>
-                                            <input type="time" class="form-control" id="start" name="start"
-                                                required>
-                                            @error('dokumentasi')
-                                                <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-md-6">
-                                        <div class="mb-3">
-                                            <label for="end">Jam Selesai</label>
-                                            <input type="time" class="form-control" id="end" name="end"
-                                                required>
-                                            @error('undangan')
+                                            <label for="keterangan" class="form-label">Alasan</label>
+                                            <textarea class="form-control @error('keterangan') is-invalid @enderror" id="keterangan" name="alasan"
+                                                placeholder="Masukan alasan">{{ old('alasan') }}</textarea>
+                                            @error('alasan')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -107,33 +98,6 @@
             </div>
         </div>
     </div>
-    {{-- <script>
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const kelasSelect = document.getElementById('kelas_id');
-            const namesSelect = document.getElementById('siswa_id');
-
-            if (kelasSelect && namesSelect) {
-                kelasSelect.addEventListener('change', function() {
-                    const angkatan = this.value;
-
-                    fetch(`/api/siswa/kelas?kelas=${angkatan}`)
-                        .then(response => response.json())
-                        .then(data => {
-                            console.log(data)
-                            data.forEach(siswa => {
-                                const option = document.createElement('option');
-                                console.log(siswa)
-                                option.value = siswa.id_siswa;
-                                option.textContent = siswa.siswa.nama;
-                                namesSelect.appendChild(option);
-                            });
-                        })
-                        .catch(error => console.error('Error fetching names:', error));
-                });
-            }
-        });
-    </script> --}}
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

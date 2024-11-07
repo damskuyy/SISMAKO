@@ -13,9 +13,26 @@ class SaranMasukanController extends Controller
     {
         return view('schoolwebsite.saranmasukan.create', compact('SaranMasukan.create'));
     }
-    public function store(SaranMasukanRequest $request)
-    {
-        SaranMasukan::create($request->validated());
-        return redirect("/smktibazma/saran/masukan/add")->with("success", "Berhasil disimpan");
-    }
+    public function store(Request $request)
+{
+    // Validasi secara manual jika belum menggunakan Form Request
+    $validatedData = $request->validate([
+        'nama' => 'required|string|max:255',
+        'status' => 'required|string',
+        'email' => 'required|email',
+        'pesan' => 'required|string',
+    ]);
+
+    // Simpan data
+    $saranMasukan = SaranMasukan::create($validatedData);
+
+    // Mengembalikan respons JSON dengan pesan sukses
+    return response()->json([
+        'success' => true,
+        'message' => 'Berhasil disimpan',
+        'data' => $saranMasukan
+    ], 201);
+}
+
+
 }

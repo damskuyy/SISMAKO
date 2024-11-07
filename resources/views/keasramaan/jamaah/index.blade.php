@@ -100,7 +100,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($dataMutasi as $data)
+                    @forelse ($dataJamaahSiswa as $data)
                         <tr>
                             <td>{{ \Carbon\Carbon::parse($data->tanggal)->format('d-m-Y') }}</td>
                             <td>{{ $data->kelas }}</td>

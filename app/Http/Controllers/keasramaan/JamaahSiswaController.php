@@ -19,12 +19,10 @@ class JamaahSiswaController extends Controller
 {
     public function index(Request $request)
     {
-        // Retrieve filter parameters from the request
         $tanggal = $request->input('tanggal');
         $kelas = $request->input('kelas');
         $sholat = $request->input('sholat');
 
-        // Initialize the query
         $query = JamaahSiswa::select(
             'dokumentasi_jamaah_siswa.id',
             'dokumentasi_jamaah_siswa.tanggal',
@@ -41,7 +39,6 @@ class JamaahSiswaController extends Controller
                 'dokumentasi_jamaah_siswa.path_dokumentasi'
             );
 
-        // Apply filters if provided
         if ($tanggal) {
             $query->where('dokumentasi_jamaah_siswa.tanggal', $tanggal);
         }
@@ -54,11 +51,11 @@ class JamaahSiswaController extends Controller
             $query->where('dokumentasi_jamaah_siswa.sholat', $sholat);
         }
 
-        // Execute the query and get the results
-        $dataMutasi = $query->get();
+        $query->orderBy('dokumentasi_jamaah_siswa.tanggal', 'desc');
 
-        // Return the view with the filtered data
-        return view('keasramaan.jamaah.index', compact('dataMutasi'));
+        $dataJamaahSiswa = $query->get();
+
+        return view('keasramaan.jamaah.index', compact('dataJamaahSiswa'));
     }
 
     // Show the form for creating a new resource

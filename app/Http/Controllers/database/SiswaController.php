@@ -19,7 +19,7 @@ class SiswaController extends Controller
     {
         $angkatanFilter = $request->query('angkatan', '');
         $query = Siswa::query()->orderBy(column: 'angkatan');
-        $angkatanData = Siswa::select('angkatan')->orderBy('angkatan', 'asc')->get();
+        $angkatanData = Siswa::select('angkatan')->distinct()->orderBy('angkatan', 'asc')->get();
 
         if ($angkatanFilter) {
             $query->where('angkatan', $angkatanFilter);

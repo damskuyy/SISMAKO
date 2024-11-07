@@ -9,7 +9,7 @@
             <div class="col-lg-4 col-12">
                 <div class="form-group">
                     <label for="angkatan">Filter Angkatan:</label>
-                    <select id="angkatan" name="angkatan" class="form-control" onchange="this.form.submit()">
+                    <select id="angkatan" name="angkatan" class="form-control mt-1" onchange="this.form.submit()">
                         <option value="">Semua</option>
                         @foreach ($angkatanData as $data)
                             <option value="{{ $data->angkatan }}"
