@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('izin_keluar_siswa', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger ('guru_id');
+            $table->unsignedBigInteger (column: 'guru_id');
             $table->unsignedBigInteger ('siswa_id');
             $table->text('alasan');
-            $table->timestamp(column: 'tanggal_keluar');
-            $table->timestamp(column: 'tanggal_kembali');
-            $table->foreign(columns: 'guru_id')->references('id')->on('guru')->cascadeOnDelete();
+            $table->timestamp(column: 'tanggal_keluar')->nullable();
+            $table->timestamp(column: 'tanggal_kembali')->nullable();
+            $table->foreign('guru_id')->references('id')->on('guru')->cascadeOnDelete();
             $table->foreign('siswa_id')->references('id')->on('siswa')->cascadeOnDelete();
             $table->timestamps();
         });
