@@ -11,12 +11,12 @@
                                 <a href="/sekolah-keasramaan" class="btn btn-secondary">
                                     Back
                                 </a>
-                                <a href="{{ route('izin.keluar.export') }}" class="btn btn-success">
+                                <a href="{{route('izin.keluar.export')}}" class="btn btn-success">
                                     Export
                                 </a>
                             </div>
                             <div class="mb-4 col d-flex justify-content-end">
-                                <a href="{{ route('izin.keluar.create') }}" class="btn btn-primary">
+                                <a href="{{ route('uks.create') }}" class="btn btn-primary">
                                     Tambah
                                 </a>
                             </div>
@@ -29,8 +29,8 @@
                                     <input type="date" name="end_date" class="form-control" placeholder="End Date">
                                 </div>
                                 <div class="col-12 col-md-2 mb-2 mb-md-0">
-                                    <input type="text" name="search_guru" class="form-control"
-                                        placeholder="Search Guru">
+                                    <input type="text" name="search_uks" class="form-control"
+                                        placeholder="Search uks">
                                 </div>
                                 <div class="col-12 col-md-2 mb-2 mb-md-0">
                                     <input type="text" name="search_kelas" class="form-control"
@@ -72,25 +72,25 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Guru</th>
-                                    <th>Kelas</th>
+                                    <th>Tanggal</th>
                                     <th>Siswa</th>
-                                    <th>Keterangan</th>
-                                    <th>Tanggal Keluar</th>
-                                    <th>Tanggal Kembali</th>
+                                    <th>Kelas</th>
+                                    <th>Keluhan</th>
+                                    <th>Penanganan</th>
+                                    <th>Guru</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($izinKeluarSiswa as $data)
+                                @foreach ($uks as $data)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $data->guru->nama ?? 'N/A' }}</td>
+                                        <td>{{$loop->iteration}}</td>
+                                        <td>{{ \Carbon\Carbon::parse($data->tanggal)->format('d-m-Y') }}</td>
+                                        <td>{{ $data->siswa->nama }}</td>
                                         <td>{{ $data->siswa->dataKelas[0]->kelas }}</td>
-                                        <td>{{ $data->siswa->nama ?? 'N/A' }}</td>
-                                        <td>{{ $data->alasan }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($data->tanggal_keluar)->format('d-m-y H:i') }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($data->tanggal_kembali)->format('d-m-y H:i') }}</td>
+                                        <td>{{ $data->keluhan }}</td>
+                                        <td>{{ $data->penanganan }}</td>
+                                        <td>{{$data->guru->nama}}</td>
                                         <td>
                                             <a href="{{ route('izin.keluar.edit', $data->id) }}" class="">
                                                 <i class="far fa-pencil-alt text-white text-xl bg-blue p-2 rounded"></i>
@@ -106,14 +106,14 @@
                         </table>
                     </div>
                     <div class="d-flex justify-content-center mt-4">
-                        {{ $izinKeluarSiswa->appends(request()->input())->links('vendor.pagination.bootstrap-5') }} </div>
+                        {{ $uks->appends(request()->input())->links('vendor.pagination.bootstrap-5') }} </div>
                 </div>
             </div>
         </div>
     </div>
 
-    @foreach ($izinKeluarSiswa as $item)
-        <form action="{{ route('izin.keluar.delete', $item->id) }}" method="post">
+    @foreach ($uks as $item)
+        <form action="{{ route('uks.delete', $item->id) }}" method="post">
             @csrf
             @method('DELETE')
             <div class="modal modal-blur fade" id="modal-danger-{{ $item->id }}" tabindex="-1" role="dialog"

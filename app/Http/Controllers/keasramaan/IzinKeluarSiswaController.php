@@ -7,14 +7,10 @@ use App\Models\database\Guru;
 use App\Models\keasramaan\IzinKeluarSiswa;
 use Illuminate\Http\Request;
 use App\Http\Requests\keasramaan\IzinSiswaRequest;
-use App\Models\database\Siswa;
+use Illuminate\Support\Facades\View;
 
 class IzinKeluarSiswaController extends Controller
 {
-    // with([
-    //     'siswa:id,nama',
-    //     'guru:id,nama'
-    // ])->
     public function index()
     {
         $izinKeluarSiswa = IzinKeluarSiswa::with([
@@ -25,14 +21,12 @@ class IzinKeluarSiswaController extends Controller
         return view('keasramaan.izin-keluar.index', compact(var_name: 'izinKeluarSiswa'));
     }
 
-    // Menampilkan form untuk membuat izin keluar siswa
     public function create()
     {
         $guru = Guru::select('nama', 'id')->get();
         return view('keasramaan.izin-keluar.create', compact('guru'));
     }
 
-    // Menyimpan izin keluar siswa yang baru
     public function store(IzinSiswaRequest $request)
     {
         // dd($request->all());
@@ -53,8 +47,7 @@ class IzinKeluarSiswaController extends Controller
             'guru:id,nama'
         ])->findOrFail($id);
 
-        $guru = Guru::all(); // ambil data guru untuk opsi select
-        // $siswa = Siswa::all(); // ambil data siswa untuk opsi select
+        $guru = Guru::all();
 
         return view('keasramaan.izin-keluar.edit', compact('izinKeluar', 'guru'));
     }
@@ -77,5 +70,32 @@ class IzinKeluarSiswaController extends Controller
         $data->delete();
 
         return redirect()->route('izin.keluar.index')->with('success', 'Izin keluar siswa berhasil dihapus.');
+    }
+
+    public function exportPdf()
+    {
+        $dataCatatanGrooming = IzinKeluarSiswa::with([
+            'siswa:id,nama',
+            'siswa.dataKelas:id,id_siswa,kelas',
+            'guru:id,nama'
+        ])->get();
+
+        $html = View::make('keasramaan.izin-keluar.export', compact(var_name: 'dataCatatanGrooming'))->render();
+
+        // Mengatur opsi DomPDF
+        $options = new \Dompdf\Options();
+        $options->set('isRemoteEnabled', true);
+        $options->set('isHtml5ParserEnabled', true);
+
+        // Membuat instance DomPDF
+        $dompdf = new \Dompdf\Dompdf($options);
+
+        // Memuat HTML ke DomPDF
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'landscape');
+        $dompdf->render();
+
+        // Mengembalikan stream PDF
+        return $dompdf->stream(filename: 'dataCatatanGrooming.pdf');
     }
 }

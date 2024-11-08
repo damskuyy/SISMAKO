@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\keasramaan\CatatanGrooming;
 use App\Models\database\Guru;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 class CatatanGroomingController extends Controller
 {
@@ -75,5 +76,32 @@ class CatatanGroomingController extends Controller
         $catatan = CatatanGrooming::findOrFail($id);
         $catatan->delete();
         return redirect()->route('catatan.grooming.index')->with('success', 'Catatan Grooming siswa berhasil dihapus.');
+    }
+
+    public function exportPdf()
+    {
+        $dataCatatanGrooming = CatatanGrooming::with([
+            'siswa:id,nama',
+            'siswa.dataKelas:id,id_siswa,kelas',
+            'guruPiket:id,nama'
+        ])->get();
+
+        $html = View::make('keasramaan.catatan-grooming.export', compact(var_name: 'dataCatatanGrooming'))->render();
+
+        // Mengatur opsi DomPDF
+        $options = new \Dompdf\Options();
+        $options->set('isRemoteEnabled', true);
+        $options->set('isHtml5ParserEnabled', true);
+
+        // Membuat instance DomPDF
+        $dompdf = new \Dompdf\Dompdf($options);
+
+        // Memuat HTML ke DomPDF
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'landscape');
+        $dompdf->render();
+
+        // Mengembalikan stream PDF
+        return $dompdf->stream(filename: 'dataCatatanGrooming.pdf');
     }
 }

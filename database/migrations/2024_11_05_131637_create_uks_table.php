@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('uks', function (Blueprint $table) {
             $table->id();
             $table->date('tanggal');
-            $table->string('nama');
-            $table->string('status', 25);
             $table->text('keluhan');
             $table->text('penanganan');
             $table->unsignedBigInteger ('guru_id');
+            $table->unsignedBigInteger ('siswa_id');
+            $table->foreign('siswa_id')->references('id')->on('siswa')->cascadeOnDelete();
             $table->foreign(columns: 'guru_id')->references('id')->on('guru')->cascadeOnDelete();
             $table->timestamps();
         });

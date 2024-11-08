@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\keasramaan;
 
 use App\Models\database\Guru;
+use App\Models\database\Siswa;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,14 +22,16 @@ class Uks extends Model
         'keluhan',
         'penanganan',
         'guru_id',
+        'siswa_id'
     ];
 
-    /**
-     * Relasi dengan model Guru.
-     * Menghubungkan 'guru_id' dengan id di tabel guru.
-     */
     public function guru()
     {
-        return $this->belongsTo(Guru::class);
+        return $this->belongsTo(Guru::class, 'guru_id');
+    }
+
+    public function siswa()
+    {
+        return $this->belongsTo(Siswa::class, 'siswa_id');
     }
 }

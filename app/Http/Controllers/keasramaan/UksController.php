@@ -3,40 +3,36 @@
 namespace App\Http\Controllers\keasramaan;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\keasramaan\UksRequest;
 use App\Models\database\Guru;
-use App\Models\Uks;
+use App\Models\keasramaan\Uks;
 use Illuminate\Http\Request;
 
 class UksController extends Controller
 {
     public function index()
     {
-        $Uks = Uks::with('guru')->get();
-        return response()->json($Uks);
+
+        $uks = Uks::with([
+            'siswa:id,nama',
+            'siswa.dataKelas:id,id_siswa,kelas',
+            'guru:id,nama'
+        ])->paginate(10);
+        return view('keasramaan.uks.index', compact(var_name: 'uks'));
     }
 
-    /**
-     * Menyimpan data baru ke dalam tabel UK.
-     */
 
      public function create()
      {
         $guru = Guru::select('nama', 'id')->get();
         return view('keasramaan.uks.create', compact('guru'));
      }
-    public function store(Request $request)
+    public function store(UksRequest $request)
     {
-        $validatedData = $request->validate([
-            'tanggal' => 'required|date',
-            'nama' => 'required|string|max:255',
-            'status' => 'required|string|max:25',
-            'keluhan' => 'required|string',
-            'penanganan' => 'required|string',
-            'guru_id' => 'required|exists:guru,id',
-        ]);
-
-        $Uks = Uks::create($validatedData);
-        return response()->json($Uks, 201);
+        // dd($request->all());
+        $request->validated();
+        $Uks = Uks::create(attributes: $request->all());
+        return redirect()->route('uks.index')->with('success', 'Data Uks berhasil dibuat.');
     }
 
     /**
@@ -64,7 +60,7 @@ class UksController extends Controller
 
         $Uks = Uks::findOrFail($id);
         $Uks->update($validatedData);
-        return response()->json($Uks);
+        return redirect()->route('uks.index')->with('success', 'Data Uks berhasil di update.');
     }
 
     /**
@@ -74,6 +70,6 @@ class UksController extends Controller
     {
         $Uks = Uks::findOrFail($id);
         $Uks->delete();
-        return response()->json(['message' => 'Data berhasil dihapus']);
+        return redirect()->route('uks.index')->with('success', 'Data Uks berhasil dihapus.');
     }
 }

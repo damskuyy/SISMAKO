@@ -11,7 +11,9 @@
                                 <a href="/sekolah-keasramaan" class="btn btn-secondary">
                                     Back
                                 </a>
-
+                                <a href="{{route('catatan.grooming.export')}}" class="btn btn-success">
+                                    Export
+                                </a>
                             </div>
                             <div class="mb-4 col d-flex justify-content-end">
                                 <a href="{{ route('catatan.grooming.create') }}" class="btn btn-primary">
@@ -80,7 +82,7 @@
                             <tbody>
                                 @foreach ($catatanGrooming as $data)
                                     <tr>
-                                        <td>{{ $data->tanggal ?? 'N/A' }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($data->tanggal_keluar)->format('d-m-y') }}</td>
                                         <td>{{ $data->siswa->dataKelas[0]->kelas }}</td>
                                         <td>{{ $data->siswa->nama ?? 'N/A' }}</td>
                                         <td>{{ $data->catatan }}</td>

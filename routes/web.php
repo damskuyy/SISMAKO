@@ -502,6 +502,7 @@ Route::controller(IzinKeluarSiswaController::class)->group(function () {
     Route::get('/sekolah-keasramaan/izin-keluar/{id}/edit', 'edit')->name('izin.keluar.edit');
     Route::put('/sekolah-keasramaan/izin-keluar/{id}', 'update')->name('izin.keluar.update');
     Route::delete('/sekolah-keasramaan/izin-keluar/delete/{id}', 'destroy')->name('izin.keluar.delete');
+    Route::get('/sekolah-keasramaan/izin-keluar/pdf', [IzinKeluarSiswaController::class, 'exportPdf'])->name(name: 'izin.keluar.export');
 });
 
 Route::controller(UksController::class)->group(function () {
@@ -511,6 +512,7 @@ Route::controller(UksController::class)->group(function () {
     Route::get('/sekolah-keasramaan/uks/{id}/edit', 'edit')->name('uks.edit');
     Route::put('/sekolah-keasramaan/uks/{id}', 'update')->name('uks.update');
     Route::delete('/sekolah-keasramaan/uks/delete/{id}', 'destroy')->name('uks.delete');
+    Route::get('/sekolah-keasramaan/uks/pdf', [UksController::class, 'exportPdf'])->name(name: 'uk.sexport');
 });
 
 Route::controller(CatatanGroomingController::class)->group(function () {
@@ -520,6 +522,7 @@ Route::controller(CatatanGroomingController::class)->group(function () {
     Route::get('/sekolah-keasramaan/catatan-grooming/{id}/edit', 'edit')->name('catatan.grooming.edit');
     Route::put('/sekolah-keasramaan/catatan-grooming/{id}', 'update')->name('catatan.grooming.update');
     Route::delete('/sekolah-keasramaan/catatan-grooming/delete/{id}', 'destroy')->name('catatan.grooming.delete');
+    Route::get('/sekolah-keasramaan/catatan-grooming/pdf', [CatatanGroomingController::class, 'exportPdf'])->name(name: 'catatan.grooming.export');
 });
 
 Route::get('/progres-siswa/{nisn}', [ProgresSiswaController::class, 'index'])->name('progres-siswa.index');
