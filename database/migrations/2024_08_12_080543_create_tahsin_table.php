@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->date('tanggal');
             $table->bigInteger('siswa_id')->unsigned(); // Ensure this is bigInteger
-            $table->foreign('siswa_id')->references('id')->on('siswa')->cascadeOnDelete();            $table->string('surat');
+            $table->foreign('siswa_id')->references('id')->on('siswa')->cascadeOnDelete();
+            $table->string('surat');
             $table->string('ayat');
             $table->string('predikat');
             $table->string('pengajar');

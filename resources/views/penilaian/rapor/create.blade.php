@@ -37,13 +37,13 @@
                                             <label class="form-label">Kelas</label>
                                             <select class="form-control form-select" name="kelas" required>
                                                 <option value="">Pilih Kelas</option>
-                                                <option value="X" {{ old('kelas')=='X' ? 'selected' : '' }}>X
+                                                <option value="X-PPLG" {{ old('kelas')=='X-PPLG' ? 'selected' : '' }}>X
                                                 </option>
-                                                <option value="XI" {{ old('kelas')=='XI' ? 'selected' : '' }}>XI
+                                                <option value="XI-SIJA" {{ old('kelas')=='XI-SIJA' ? 'selected' : '' }}>XI
                                                 </option>
-                                                <option value="XII" {{ old('kelas')=='XII' ? 'selected' : '' }}>
+                                                <option value="XII-SIJA" {{ old('kelas')=='XII-SIJA' ? 'selected' : '' }}>
                                                     XII</option>
-                                                <option value="XIII" {{ old('kelas')=='XIII' ? 'selected' : '' }}>
+                                                <option value="XIII-SIJA" {{ old('kelas')=='XIII-SIJA' ? 'selected' : '' }}>
                                                     XIII</option>
                                             </select>
                                             @error('kelas')

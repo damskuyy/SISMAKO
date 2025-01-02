@@ -11,6 +11,7 @@ use App\Models\database\RapotSiswa;
 use App\Models\keasramaan\pelatihan;
 use App\Models\keasramaan\sertifikat;
 use App\Models\keasramaan\JamaahSiswa;
+use App\Models\penilaian\rasrama;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -103,5 +104,10 @@ class Siswa extends Model
     public function jurnalAsramaSiswa()
     {
         return $this->hasMany(akhlak::class, 'siswa_id', 'id');
+    }
+
+    public function rasrama()
+    {
+        return $this->hasMany(rasrama::class, 'siswa_id');
     }
 }

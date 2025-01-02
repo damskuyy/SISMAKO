@@ -14,7 +14,7 @@
                     ['title' => 'Rapor', 'text' => 'Melihat dan mengelola rapor siswa.', 'links' => [
                         ['route' => 'rapor', 'label' => 'Pergi ke Rapor'],
                         ['route' => 'rpts', 'label' => 'Pergi ke Rapor PTS'],
-                        ['route' => 'finance', 'label' => 'Pergi ke Rapor Asrama'],
+                        ['route' => 'rasrama', 'label' => 'Pergi ke Rapor Asrama'],
                     ]]
                 ] as $card)
                     <div class="col-12 col-md-6 mb-4">

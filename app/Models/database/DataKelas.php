@@ -1,6 +1,7 @@
 <?php
 namespace App\Models\database;
 use App\Models\database\Siswa;
+use App\Models\penilaian\rasrama;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -25,6 +26,11 @@ class DataKelas extends Model
     public function siswa()
     {
         return $this->belongsTo(Siswa::class, 'id_siswa'); // Ensure 'id_siswa' matches the column name
+    }
+
+    public function rasrama()
+    {
+        return $this->hasMany(rasrama::class, 'siswa_id');
     }
 }
 

@@ -38,7 +38,7 @@
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label">Kelas</label>
-                                            <select class="form-control form-select" name="kelas">
+                                            <select class="form-control form-select" name="kelas" required>
                                                 <option value="">Pilih Kelas</option>
                                                 <option value="X" {{ old('kelas', $rapor->kelas) == 'X' ? 'selected' :
                                                     '' }}>X
@@ -58,7 +58,7 @@
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label">Semester</label>
-                                            <select class="form-control form-select" name="semester">
+                                            <select class="form-control form-select" name="semester" required>
                                                 <option value="">Pilih Semester</option>
                                                 <option value="1 (Ganjil)" {{ old('semester', $rapor->semester) == '1 (Ganjil)' ? 'selected' : '' }}>
                                                     1 (Ganjil)
@@ -193,7 +193,7 @@
                                             <label for="bindo_nilai" class="form-label">Bahasa Indonesia</label>
                                             <input type="number" name="muatan_nasional[bindo][nilai]" id="bindo_nilai"
                                                 class="form-control"
-                                                value="{{ $rapor->muatan_nasional['bindo']['nilai'] ?? '' }}" required>
+                                                value="{{ $rapor->muatan_nasional['bindo']['nilai'] ?? '' }}">
                                         </div>
                                     </div>
                                     <!-- Deskripsi Pendidikan Agama Islam dan Budi Pekerti -->
@@ -229,7 +229,7 @@
                                             <label for="mtk_nilai" class="form-label">Matematika</label>
                                             <input type="number" name="muatan_nasional[mtk][nilai]" id="mtk_nilai"
                                                 class="form-control"
-                                                value="{{ $rapor->muatan_nasional['mtk']['nilai'] ?? '' }}" required>
+                                                value="{{ $rapor->muatan_nasional['mtk']['nilai'] ?? '' }}">
                                         </div>
                                     </div>
                                     <!-- Sejarah Indonesia -->
@@ -239,7 +239,7 @@
                                             <input type="number" name="muatan_nasional[sejindo][nilai]"
                                                 id="sejindo_nilai" class="form-control"
                                                 value="{{ $rapor->muatan_nasional['sejindo']['nilai'] ?? '' }}"
-                                                required>
+                                                >
                                         </div>
                                     </div>
                                     <!-- Bahasa Inggris -->
@@ -249,7 +249,7 @@
                                             <input type="number" name="muatan_nasional[bhsAsing][nilai]"
                                                 id="bhsAsing_nilai" class="form-control"
                                                 value="{{ $rapor->muatan_nasional['bhsAsing']['nilai'] ?? '' }}"
-                                                required>
+                                                >
                                         </div>
                                     </div>
                                     <!-- Deskripsi Matematika -->
@@ -294,7 +294,7 @@
                                             <label for="sbd_nilai" class="form-label">Seni Budaya</label>
                                             <input type="number" name="muatan_kewilayahan[sbd][nilai]" id="sbd_nilai"
                                                 class="form-control"
-                                                value="{{ $rapor->muatan_kewilayahan['sbd']['nilai'] ?? '' }}" required>
+                                                value="{{ $rapor->muatan_kewilayahan['sbd']['nilai'] ?? '' }}" >
                                         </div>
                                     </div>
                                     <!-- PJOK -->
@@ -304,7 +304,7 @@
                                             <input type="number" name="muatan_kewilayahan[pjok][nilai]" id="pjok_nilai"
                                                 class="form-control"
                                                 value="{{ $rapor->muatan_kewilayahan['pjok']['nilai'] ?? '' }}"
-                                                required>
+                                                >
                                         </div>
                                     </div>
                                     <!-- Deskripsi Seni Budaya -->
@@ -340,7 +340,7 @@
                                             <input type="number" name="muatan_peminatan[simdig][nilai]"
                                                 id="simdig_nilai" class="form-control"
                                                 value="{{ $rapor->muatan_peminatan['simdig']['nilai'] ?? '' }}"
-                                                required>
+                                                >
                                         </div>
                                     </div>
                                     <!-- Fisika -->
@@ -350,7 +350,7 @@
                                             <input type="number" name="muatan_peminatan[fisika][nilai]"
                                                 id="fisika_nilai" class="form-control"
                                                 value="{{ $rapor->muatan_peminatan['fisika']['nilai'] ?? '' }}"
-                                                required>
+                                                >
                                         </div>
                                     </div>
                                     <!-- Kimia -->
@@ -359,7 +359,7 @@
                                             <label class="form-label">DDPK</label>
                                             <input type="number" name="muatan_peminatan[kimia][nilai]" id="kimia_nilai"
                                                 class="form-control"
-                                                value="{{ $rapor->muatan_peminatan['kimia']['nilai'] ?? '' }}" required>
+                                                value="{{ $rapor->muatan_peminatan['kimia']['nilai'] ?? '' }}" >
                                         </div>
                                     </div>
                                     <!-- Deskripsi Simulasi dan Komunikasi Digital -->
@@ -401,7 +401,7 @@
                                             <input type="number" name="muatan_peminatan[siskom][nilai]"
                                                 id="siskom_nilai" class="form-control"
                                                 value="{{ $rapor->muatan_peminatan['siskom']['nilai'] ?? '' }}"
-                                                required>
+                                                >
                                         </div>
                                     </div>
                                     <!-- Komputer dan Jaringan -->
@@ -411,7 +411,7 @@
                                             <input type="number" name="muatan_peminatan[komjar][nilai]"
                                                 id="komjar_nilai" class="form-control"
                                                 value="{{ $rapor->muatan_peminatan['komjar']['nilai'] ?? '' }}"
-                                                required>
+                                                >
                                         </div>
                                     </div>
                                     <!-- Pemograman Dasar -->
@@ -421,7 +421,7 @@
                                             <input type="number" name="muatan_peminatan[progdas][nilai]"
                                                 id="progdas_nilai" class="form-control"
                                                 value="{{ $rapor->muatan_peminatan['progdas']['nilai'] ?? '' }}"
-                                                required>
+                                                >
                                         </div>
                                     </div>
                                     <!-- Dasar Design Grafis -->
@@ -430,7 +430,7 @@
                                             <label class="form-label">Dasar Design Grafis</label>
                                             <input type="number" name="muatan_peminatan[ddg][nilai]" id="ddg_nilai"
                                                 class="form-control"
-                                                value="{{ $rapor->muatan_peminatan['ddg']['nilai'] ?? '' }}" required>
+                                                value="{{ $rapor->muatan_peminatan['ddg']['nilai'] ?? '' }}" >
                                         </div>
                                     </div>
                                     <!-- Deskripsi Sistem Komputer -->
@@ -479,7 +479,7 @@
                                             <label class="form-label">Infrastruktur Komputasi Awan</label>
                                             <input type="number" name="muatan_peminatan[iaas][nilai]" id="iaas_nilai"
                                                 class="form-control"
-                                                value="{{ $rapor->muatan_peminatan['iaas']['nilai'] ?? '' }}" required>
+                                                value="{{ $rapor->muatan_peminatan['iaas']['nilai'] ?? '' }}" >
                                         </div>
                                     </div>
                                     <!-- Platform Komputasi Awan -->
@@ -488,7 +488,7 @@
                                             <label class="form-label">Platform Komputasi Awan</label>
                                             <input type="number" name="muatan_peminatan[paas][nilai]" id="paas_nilai"
                                                 class="form-control"
-                                                value="{{ $rapor->muatan_peminatan['paas']['nilai'] ?? '' }}" required>
+                                                value="{{ $rapor->muatan_peminatan['paas']['nilai'] ?? '' }}" >
                                         </div>
                                     </div>
                                     <!-- Layanan Komputasi Awan -->
@@ -497,7 +497,7 @@
                                             <label class="form-label">Layanan Komputasi Awan</label>
                                             <input type="number" name="muatan_peminatan[saas][nilai]" id="saas_nilai"
                                                 class="form-control"
-                                                value="{{ $rapor->muatan_peminatan['saas']['nilai'] ?? '' }}" required>
+                                                value="{{ $rapor->muatan_peminatan['saas']['nilai'] ?? '' }}" >
                                         </div>
                                     </div>
                                     <!-- Deskripsi Infrastruktur Komputasi Awan -->
@@ -530,7 +530,7 @@
                                             <label class="form-label">Sistem Internet of Things</label>
                                             <input type="number" name="muatan_peminatan[siot][nilai]" id="siot_nilai"
                                                 class="form-control"
-                                                value="{{ $rapor->muatan_peminatan['siot']['nilai'] ?? '' }}" required>
+                                                value="{{ $rapor->muatan_peminatan['siot']['nilai'] ?? '' }}" >
                                         </div>
                                     </div>
                                     <!-- Sistem Keamanan Jaringan -->
@@ -539,7 +539,7 @@
                                             <label class="form-label">Sistem Keamanan Jaringan</label>
                                             <input type="number" name="muatan_peminatan[skj][nilai]" id="skj_nilai"
                                                 class="form-control"
-                                                value="{{ $rapor->muatan_peminatan['skj']['nilai'] ?? '' }}" required>
+                                                value="{{ $rapor->muatan_peminatan['skj']['nilai'] ?? '' }}" >
                                         </div>
                                     </div>
                                     <!-- Produk Kreatif dan Kewirausahaan -->
@@ -548,7 +548,7 @@
                                             <label class="form-label">Produk Kreatif dan Kewirausahaan</label>
                                             <input type="number" name="muatan_peminatan[pkk][nilai]" id="pkk_nilai"
                                                 class="form-control"
-                                                value="{{ $rapor->muatan_peminatan['pkk']['nilai'] ?? '' }}" required>
+                                                value="{{ $rapor->muatan_peminatan['pkk']['nilai'] ?? '' }}" >
                                         </div>
                                     </div>
                                     <!-- Deskripsi Sistem Internet of Things -->
@@ -591,7 +591,7 @@
                                             <input type="text" name="extracurricular[pramuka][nilai]" id="pramuka_nilai"
                                                 class="form-control"
                                                 value="{{ $rapor->extracurricular['pramuka']['nilai'] ?? '' }}"
-                                                required>
+                                                >
                                         </div>
                                     </div>
                                     <!-- Bulu Tangkis -->
@@ -601,7 +601,7 @@
                                             <input type="text" name="extracurricular[bultang][nilai]" id="bultang_nilai"
                                                 class="form-control"
                                                 value="{{ $rapor->extracurricular['bultang']['nilai'] ?? '' }}"
-                                                required>
+                                                >
                                         </div>
                                     </div>
                                     <!-- Futsal -->
@@ -610,7 +610,7 @@
                                             <label class="form-label">Futsal</label>
                                             <input type="text" name="extracurricular[futsal][nilai]" id="futsal_nilai"
                                                 class="form-control"
-                                                value="{{ $rapor->extracurricular['futsal']['nilai'] ?? '' }}" required>
+                                                value="{{ $rapor->extracurricular['futsal']['nilai'] ?? '' }}" >
                                         </div>
                                     </div>
                                     <!-- Silat -->
@@ -619,7 +619,7 @@
                                             <label class="form-label">Silat</label>
                                             <input type="text" name="extracurricular[silat][nilai]" id="silat_nilai"
                                                 class="form-control"
-                                                value="{{ $rapor->extracurricular['silat']['nilai'] ?? '' }}" required>
+                                                value="{{ $rapor->extracurricular['silat']['nilai'] ?? '' }}" >
                                         </div>
                                     </div>
                                     <!-- Deskripsi Pramuka -->
@@ -668,7 +668,7 @@
                                         <div class="mb-3">
                                             <label class="form-label">Izin</label>
                                             <input type="number" name="izin" id="izin" class="form-control"
-                                                value="{{ $rapor->izin }}" required>
+                                                value="{{ $rapor->izin }}" >
                                         </div>
                                     </div>
                                     <!-- Sakit -->
@@ -676,7 +676,7 @@
                                         <div class="mb-3">
                                             <label class="form-label">Sakit</label>
                                             <input type="number" name="sakit" id="sakit" class="form-control"
-                                                value="{{ $rapor->sakit }}" required>
+                                                value="{{ $rapor->sakit }}" >
                                         </div>
                                     </div>
                                     <!-- Alpha -->
@@ -684,7 +684,7 @@
                                         <div class="mb-3">
                                             <label class="form-label">Alpha</label>
                                             <input type="number" name="alpha" id="alpha" class="form-control"
-                                                value="{{ $rapor->alpha }}" required>
+                                                value="{{ $rapor->alpha }}" >
                                         </div>
                                     </div>
                                 </div>
@@ -701,7 +701,7 @@
                                             <label class="form-label">Prestasi 1</label>
                                             <input type="text" name="achievements[one][nilai]" id="one_nilai"
                                                 class="form-control"
-                                                value="{{ $rapor->achievements['one']['nilai'] ?? '' }}" required>
+                                                value="{{ $rapor->achievements['one']['nilai'] ?? '' }}" >
                                         </div>
                                     </div>
                                     <!-- Prestasi 2 -->
@@ -710,7 +710,7 @@
                                             <label class="form-label">Prestasi 2</label>
                                             <input type="text" name="achievements[two][nilai]" id="two_nilai"
                                                 class="form-control"
-                                                value="{{ $rapor->achievements['two']['nilai'] ?? '' }}" required>
+                                                value="{{ $rapor->achievements['two']['nilai'] ?? '' }}" >
                                         </div>
                                     </div>
                                     <!-- Prestasi 3 -->
@@ -719,7 +719,7 @@
                                             <label class="form-label">Prestasi 3</label>
                                             <input type="text" name="achievements[three][nilai]" id="three_nilai"
                                                 class="form-control"
-                                                value="{{ $rapor->achievements['three']['nilai'] ?? '' }}" required>
+                                                value="{{ $rapor->achievements['three']['nilai'] ?? '' }}" >
                                         </div>
                                     </div>
                                     <!-- Deskripsi 1 -->
@@ -752,7 +752,7 @@
                                             <label class="form-label">Prestasi 4</label>
                                             <input type="text" name="achievements[four][nilai]" id="four_nilai"
                                                 class="form-control"
-                                                value="{{ $rapor->achievements['four']['nilai'] ?? '' }}" required>
+                                                value="{{ $rapor->achievements['four']['nilai'] ?? '' }}" >
                                         </div>
                                     </div>
                                     <!-- Prestasi 5 -->
@@ -761,7 +761,7 @@
                                             <label class="form-label">Prestasi 5</label>
                                             <input type="text" name="achievements[five][nilai]" id="five_nilai"
                                                 class="form-control"
-                                                value="{{ $rapor->achievements['five']['nilai'] ?? '' }}" required>
+                                                value="{{ $rapor->achievements['five']['nilai'] ?? '' }}" >
                                         </div>
                                     </div>
                                     <!-- Prestasi 6 -->
@@ -770,7 +770,7 @@
                                             <label class="form-label">Prestasi 6</label>
                                             <input type="text" name="achievements[six][nilai]" id="six_nilai"
                                                 class="form-control"
-                                                value="{{ $rapor->achievements['six']['nilai'] ?? '' }}" required>
+                                                value="{{ $rapor->achievements['six']['nilai'] ?? '' }}" >
                                         </div>
                                     </div>
                                     <!-- Deskripsi 4 -->
