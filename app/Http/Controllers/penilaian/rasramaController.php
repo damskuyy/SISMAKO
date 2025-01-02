@@ -231,7 +231,7 @@ class rasramaController extends Controller
             'prayers' => $prayers,
             'studentDetails' => $studentDetails,
         ];
-        // return response()->json($data);
+        return response()->json($data);
         $pdf = Pdf::loadView('penilaian.rapor.asrama.pdf', compact('data', 'rasrama'))
             ->setPaper([0, 0, 595, 935], 'portrait'); // Ukuran kertas
         return $pdf->stream('asrama.pdf');

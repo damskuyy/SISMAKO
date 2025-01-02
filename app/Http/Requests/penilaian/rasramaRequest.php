@@ -27,6 +27,7 @@ class rasramaRequest extends FormRequest
             // 'kelas' => 'required|string|max:5',
             'siswa_id' => 'required|string|max:40', // memastikan siswa_id ada di tabel siswa
             'semester' => 'required|string|max:10',
+            'nik' => 'required|string|max:50',
             'released' => 'nullable|string',
             'wname' => 'nullable|string|max:100',
             'keterangan' => 'nullable|string|max:18',

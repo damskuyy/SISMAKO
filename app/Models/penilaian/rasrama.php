@@ -21,6 +21,7 @@ class rasrama extends Model
         'semester',
         'released',
         'wname',
+        'nik',
         'keterangan',
         'tahfidz',
         'tahsin',
