@@ -91,8 +91,15 @@ Route::middleware('password')->group(function () {
     Route::get('/jamaah', [App\Http\Controllers\keasramaan\JamaahSiswaController::class, 'index'])->name('jamaah.index');
     Route::get('/patroli/asrama', [App\Http\Controllers\keasramaan\PatroliAsramaController::class, 'index'])->name('patroli.asrama.index');
     Route::get('/sekolah-keasramaan/akses-lab', [App\Http\Controllers\keasramaan\LabController::class, 'index'])->name('lab.index');
+    Route::get('penilaian/rapor', [RaporController::class,'index'])->name('rapor');
+    Route::get('penilaian/rpts', [RaporController::class,'index'])->name('rpts');
+    Route::get('penilaian/rasrama', [RaporController::class,'index'])->name('rasrama');
+    Route::get('penilaian/pat', [RaporController::class,'index'])->name('pat');
+    Route::get('penilaian/pts', [RaporController::class,'index'])->name('pts');
+    Route::get('penilaian/pas', [RaporController::class,'index'])->name('pas');
+    Route::get('penilaian/panitia', [RaporController::class,'index'])->name('panitia');
+    Route::get('/sekolah-keasramaan/kunjungan/alumniOrtuTamu/edit/{id}', [KunjunganController::class, 'editOrtuTamuAlumni'])->name('ortu.edit');
 });
-Route::get('/sekolah-keasramaan/kunjungan/alumniOrtuTamu/edit/{id}', [KunjunganController::class, 'editOrtuTamuAlumni'])->name('ortu.edit');
 
 
 // Penilaian Controller Routes
@@ -105,7 +112,7 @@ Route::controller(AverageController::class)->group(function () {
     Route::delete('/penilaian/rapor/rerata/delete/{id}', 'destroy')->name('average.destroy');
 });
 Route::controller(RaporController::class)->group(function () {
-    Route::get('/penilaian/rapor', 'index')->name('rapor');
+
     Route::get('/penilaian/rapor/create', 'create')->name('rapor.create');
     Route::post('/penilaian/rapor/store', 'store')->name('rapor.perform');
     Route::get('/penilaian/rapor/edit/{id}', 'edit')->name('rapor.edit');
@@ -114,7 +121,6 @@ Route::controller(RaporController::class)->group(function () {
     Route::get('/penilaian/rapor/pdf/{id}', 'pdf')->name('rapor.pdf');
 });
 Route::controller(RptsController::class)->group(function () {
-    Route::get('/penilaian/rpts', 'index')->name('rpts');
     Route::get('/penilaian/rpts/create', 'create')->name('rpts.create');
     Route::post('/penilaian/rpts/store', 'store')->name('rpts.perform');
     Route::get('/penilaian/rpts/edit/{id}', 'edit')->name('rpts.edit');
@@ -124,7 +130,6 @@ Route::controller(RptsController::class)->group(function () {
 });
 
 Route::controller(rasramaController::class)->group(function () {
-    Route::get('/penilaian/rapor/asrama', 'index')->name('rasrama');
     Route::get('/penilaian/rapor/asrama/create', 'create')->name('rasrama.create');
     Route::post('/penilaian/rapor/asrama/store', 'store')->name('rasrama.perform');
     Route::get('/penilaian/rapor/asrama/edit/{id}', 'edit')->name('rasrama.edit');
@@ -134,7 +139,6 @@ Route::controller(rasramaController::class)->group(function () {
 });
 
 Route::controller(PasController::class)->group(function () {
-    Route::get('/penilaian/pas', 'index')->name('pas');
     Route::get('/penilaian/pas/create', 'create')->name('pas.create');
     Route::post('/penilaian/pas/store', 'store')->name('pas.perform');
     Route::get('/penilaian/pas/edit/{id}', 'edit')->name('pas.edit');
@@ -144,7 +148,6 @@ Route::controller(PasController::class)->group(function () {
 });
 
 Route::controller(PatController::class)->group(function () {
-    Route::get('/penilaian/pat', 'index')->name('pat');
     Route::get('/penilaian/pat/create', 'create')->name('pat.create');
     Route::post('/penilaian/pat/store', 'store')->name('pat.perform');
     Route::get('/penilaian/pat/edit/{id}', 'edit')->name('pat.edit');
@@ -154,7 +157,6 @@ Route::controller(PatController::class)->group(function () {
 });
 
 Route::controller(PtsController::class)->group(function () {
-    Route::get('/penilaian/pts', 'index')->name('pts');
     Route::get('/penilaian/pts/create', 'create')->name('pts.create');
     Route::post('/penilaian/pts/store', 'store')->name('pts.perform');
     Route::get('/penilaian/pts/edit/{id}', 'edit')->name('pts.edit');
@@ -164,7 +166,6 @@ Route::controller(PtsController::class)->group(function () {
 });
 
 Route::controller(PanitiaController::class)->group(function () {
-    Route::get('/penilaian/panitia', 'index')->name('panitia');
     Route::get('/penilaian/panitia/create', 'create')->name('panitia.create');
     Route::post('/penilaian/panitia/store', 'store')->name('panitia.perform');
     Route::get('/penilaian/panitia/edit/{id}', 'edit')->name('panitia.edit');

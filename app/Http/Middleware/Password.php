@@ -26,7 +26,14 @@ class Password
             'inbox.index',
             'patroli.asrama.index',
             'lab.index',
-            'ortu.edit'
+            'ortu.edit',
+            'rapor',
+            'rpts',
+            'rasrama',
+            'pat',
+            'pts',
+            'pas',
+            'panitia',
         ];
 
         $currentRouteName = Route::currentRouteName();

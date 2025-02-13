@@ -98,7 +98,7 @@
                                 </label>
                             </div>
 
-                            <div class="col-md-6 col-lg-4 ">
+                            {{-- <div class="col-md-6 col-lg-4 ">
                                 <label
                                     class="form-selectgroup-item flex-fill bg-danger-subtle border border-danger-subtle rounded-3">
                                     <div class="card-stamp">
@@ -137,7 +137,7 @@
                                         </div>
                                     </div>
                                 </label>
-                            </div>
+                            </div> --}}
 
                             <div class="col-md-6 col-lg-4 ">
                                 <label
