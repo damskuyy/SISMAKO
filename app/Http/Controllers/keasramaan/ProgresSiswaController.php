@@ -73,8 +73,12 @@ class ProgresSiswaController extends Controller
         // Add the combined data to the siswa object
         $siswa->jurnalAsramaSiswa = $combinedData;
 
+        return response()->json([
+            'status' => 'success',
+            'data' => $siswa
+        ]);
         // Return the combined data to the view
-        return view('keasramaan.progresSiswa', compact('siswa', 'start_date', 'end_date'));
+        // return view('keasramaan.progresSiswa', compact('siswa', 'start_date', 'end_date'));
     }
 
     public function getData(Request $request, $nisn)
