@@ -502,6 +502,7 @@ Route::middleware('password')->group(function () {
     Route::delete('/sekolah-keasramaan/kunjungan/delete/{id}', [KunjunganController::class, 'destroy'])->name('kunjungan.industri.delete');
 
     Route::get('/progres-siswa/{nisn}', [ProgresSiswaController::class, 'index'])->name('progres-siswa.index');
+    Route::get('/api/progress/data/{nisn}', [ProgresSiswaController::class, 'getData']);
 
 
     // korespondensi
