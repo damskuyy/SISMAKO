@@ -19,7 +19,7 @@
             <ul class="navbar-nav ms-auto">
                 <!-- Authentication Links -->
                 <li class="nav-item">
-                    <a href="/smktibazma.sch.id" class="text-black nav-item {{ Request::is('smktibazma.sch.id') ? 'hidden' : '' }}">Klik Progres Kemajuan Peserta Didik</a>
+                    <a href="/progres-siswa" class="text-black nav-item {{ Request::is('progres-siswa') ? 'hidden' : '' }}">Klik Progres Kemajuan Peserta Didik</a>
                 </li>
 
                 @guest

@@ -125,7 +125,7 @@
                         </div>
                     @endforeach
 
-                    <div class="col-12 col-sm-6 col-md-4 text-center">
+                    {{-- <div class="col-12 col-sm-6 col-md-4 text-center">
                         <a href="{{ route('created-by') }}" class="text-decoration-none">
                             <div class="card shadow-sm mb-4 hover-shadow" style="background-color: rgba(0, 128, 0, 0.25);">
                                 <div class="card-body d-flex align-items-center justify-content-center">
@@ -135,7 +135,7 @@
                                 </div>
                             </div>
                         </a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
