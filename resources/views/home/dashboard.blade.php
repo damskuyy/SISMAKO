@@ -147,7 +147,7 @@
                                 <h1 class="text-center">{{ $totalSiswaTidakAktif }}</h1>
                             </div>
                         </div>
-                    </div
+                    </div>
                 </div>
             </div>
             <div class="col-lg-3">
