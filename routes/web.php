@@ -61,10 +61,16 @@ use App\Http\Controllers\korespondensi\SuratPengajuanController;
 use App\Http\Controllers\database\PklAdministrasiSiswaController;
 use App\Http\Controllers\korespondensi\SuratPeringatanController;
 use App\Http\Controllers\database\PklAdministrasiSekolahController;
+use App\Http\Controllers\ProgresController;
 
 Route::get('/progres-siswa', function () {
     return view('progres');
 });
+Route::get('/progres-siswa', [ProgresController::class, 'showForm']);
+Route::post('/progres-siswa/hasil', [ProgresController::class, 'hasilProgres'])->name('progres.hasil');
+Route::get('/progres-siswa/hasil', [ProgresController::class, 'hasilProgres'])->name('progres.hasil');
+Route::post('/progres-siswa/hasil', [ProgresController::class, 'hasilProgres']);
+
 Route::middleware('password')->group(function () {
 });
 Route::view('sekolah-keasramaan', 'home.keasramaan')->name('keasramaan');
@@ -218,10 +224,6 @@ Route::controller(DormPurchaseController::class)->group(function () {
 });
 
 Route::get('sarpras/zip-file', [SchoolPurchaseController::class, 'zip']);
-
-
-
-
 
 // Database
 Route::controller(PklAdministrasiSekolahController::class)->group(function () {

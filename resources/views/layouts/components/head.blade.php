@@ -6,6 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>SISMAKO - SMK TI BAZMA</title>
+    <link rel="shortcut icon" type="image/x-icon" href="https://wallpapercave.com/uwp/uwp4887529.jpeg   ">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">

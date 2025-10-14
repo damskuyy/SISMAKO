@@ -110,4 +110,8 @@ class Siswa extends Model
     {
         return $this->hasMany(rasrama::class, 'siswa_id');
     }
+    public function jurnalAsrama()
+    {
+        return $this->hasMany(JurnalAsrama::class, 'siswa_id');
+    }
 }

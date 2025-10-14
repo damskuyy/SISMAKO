@@ -68,7 +68,7 @@
                                     <th>Tanggal</th>
                                     <th>Nama</th>
                                     <th>Nisn</th>
-                                    <th>Kelas</th>
+                                    <th>Keterangan</th>
                                     <th>Materi</th>
                                     <th></th>
                                     <th></th>

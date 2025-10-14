@@ -4,10 +4,12 @@
     <!-- Button to Open Modal -->
     <div class="container my-5">
         <div class="row">
-            <div class="col-md-2">
-                <a href="/" class="text-decoration-none text-dark" data-bs-toggle="modal" data-bs-target="#dateNisnModal">Cek progres
-                    kemajuan siswa
-                </a>
+            <div class="col-md-4">
+                <button class="btn btn-primary btn-lg w-100 d-flex align-items-center justify-content-center gap-2 shadow" 
+                    data-bs-toggle="modal" data-bs-target="#dateNisnModal" style="font-size:1.15rem;">
+                    <i class="bi bi-bar-chart-line-fill" style="font-size:1.5rem;"></i>
+                    Cek Progres Kemajuan Siswa
+                </button>
             </div>
         </div>
     </div>
@@ -21,7 +23,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="progresSiswaForm">
+                    <form id="progresSiswaForm" action="{{ route('progres.hasil') }}" method="POST">
+                        @csrf
                         <div class="mb-3">
                             <label for="nisn" class="form-label">NISN</label>
                             <input type="text" class="form-control" id="nisn" name="nisn" required>
@@ -44,23 +47,59 @@
         </div>
     </div>
 
-    <!-- JavaScript untuk Mengarahkan Pengguna -->
-    <script>
-        document.getElementById('progresSiswaForm').addEventListener('submit', function(e) {
-            e.preventDefault(); // Mencegah submit default
-
-            var nisn = document.getElementById('nisn').value;
-            var start_date = document.getElementById('start_date').value;
-            var end_date = document.getElementById('end_date').value;
-
-            if (nisn && start_date && end_date) {
-                // Membuat URL dengan parameter yang sesuai
-                var url = "{{ url('/progres-siswa') }}/" + nisn + "?start_date=" + start_date +
-                    "&end_date=" + end_date;
-                window.location.href = url; // Mengarahkan ke URL baru
-            } else {
-                alert("Semua field harus diisi!");
-            }
-        });
-    </script>
+    <div class="container my-5">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <b>Progres Kemajuan Siswa</b>
+            </div>
+            <div class="card-body">
+                @if(isset($data))
+                    <div class="mb-3">
+                        <b>Nama:</b> {{ $data['nama'] ?? '-' }}<br>
+                        <b>NISN:</b> {{ $data['nisn'] ?? '-' }}<br>
+                        <b>Tahun Pelajaran:</b> {{ $data['tahun_pelajaran'] ?? '-' }}
+                    </div>
+                @endif
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Tanggal</th>
+                                <th>Materi</th>
+                                <th>Jenis</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if(isset($data))
+                                @forelse($data['akhlak'] as $item)
+                                    <tr>
+                                        <td>{{ $item->tanggal }}</td>
+                                        <td>{{ $item->materi }}</td>
+                                        <td>{{ $item->type }}</td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="3" class="text-center">Tidak ada data progres.</td>
+                                    </tr>
+                                @endforelse
+                            @else
+                                <tr>
+                                    <td colspan="3" class="text-center">Silahkan Klik Tombol Cek Diatas.</td>
+                                </tr>
+                            @endif
+                        </tbody>
+                    </table>
+                </div>
+                @if(isset($data))
+                    <div class="d-flex justify-content-center mt-4">
+                        {{ $data['akhlak']->links('vendor.pagination.bootstrap-5') }}
+                    </div>
+                @endif
+            </div>
+        </div>
+    </div>
 @endsection
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+
