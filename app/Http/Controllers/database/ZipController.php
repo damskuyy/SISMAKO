@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\database;
 
-use ZipArchive;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use App\Http\Controllers\Controller;
-use App\Models\database\PklAdministrasiSiswa;
-use App\Models\database\PklAdministrasiSekolah;
+use App\Models\database\PklAdministrasiSekolah as DatabasePklAdministrasiSekolah;
+use App\Models\database\PklAdministrasiSiswa as DatabasePklAdministrasiSiswa;
+use App\Models\PklAdministrasiSekolah;
+use App\Models\PklAdministrasiSiswa;
+use ZipArchive;
 
 class ZipController extends Controller
 {
@@ -59,33 +61,46 @@ class ZipController extends Controller
         return $response;
     }
 
-    public function zipFileSiswa($nama)
+    public function zipFileSiswa($name)
     {
-        $zip = new ZipArchive;
-        $fileName = $nama . '.zip';
-        $folderPath = public_path('img/siswa/' . str_replace(' ', '_', $nama));
+        // decode URL dan normalisasi nama folder
+        $nameDecoded = urldecode($name);
+        $dirName = str_replace(' ', '_', $nameDecoded);
+        $fullPath = public_path("img/Siswa/{$dirName}");
 
-        // Cek apakah folder ada
-        if (!file_exists($folderPath) || !is_dir($folderPath)) {
+        if (!File::exists($fullPath) || !File::isDirectory($fullPath)) {
             return response()->json(['error' => 'Folder tidak ditemukan'], 404);
         }
 
-        if ($zip->open($fileName, ZipArchive::CREATE)) {
-            $this->addFolderToZip($folderPath, $zip, strlen(public_path()) + 1);
-            $zip->close();
+        $zipName = "{$dirName}.zip";
+        $zipPath = public_path("zip/{$zipName}");
+
+        // pastikan folder zip ada
+        if (!File::exists(public_path('zip'))) {
+            File::makeDirectory(public_path('zip'), 0755, true);
         }
 
-        $response = response()->download($fileName);
+        // buat zip (sederhana)
+        $zip = new ZipArchive;
+        if ($zip->open($zipPath, ZipArchive::CREATE | ZipArchive::OVERWRITE) === TRUE) {
+            $files = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($fullPath));
+            foreach ($files as $file) {
+                if (!$file->isDir()) {
+                    $filePath = $file->getRealPath();
+                    $relativePath = substr($filePath, strlen($fullPath) + 1);
+                    $zip->addFile($filePath, $relativePath);
+                }
+            }
+            $zip->close();
+            return response()->download($zipPath)->deleteFileAfterSend(true);
+        }
 
-        // Hapus file setelah selesai diunduh
-        $response->deleteFileAfterSend(true);
-
-        return $response;
+        return response()->json(['error' => 'Gagal membuat zip'], 500);
     }
 
     public function zipFilePklSekolah($id)
     {
-        $sekolah = PklAdministrasiSekolah::findOrFail($id);
+        $sekolah = DatabasePklAdministrasiSekolah::findOrFail($id);
         $zip = new ZipArchive;
         $fileName = 'sekolah_' . $id . '.zip';
 
@@ -124,7 +139,7 @@ class ZipController extends Controller
     public function zipFilePklSiswa($id)
     {
         // Ambil data siswa berdasarkan ID
-        $siswa = PklAdministrasiSiswa::findOrFail($id);
+        $siswa = DatabasePklAdministrasiSiswa::findOrFail($id);
         $zip = new ZipArchive;
         $fileName = 'siswa_' . $id . '.zip';
 

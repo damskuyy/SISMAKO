@@ -41,22 +41,22 @@
                             <td><span class="badge bg-success me-1"></span>{{ $data->status_kepegawaian }}</td>
                             <td>
                                 <div class="btn-list flex-nowrap">
-                                    <button class="btn"><a href="{{route('guru.exportPdf', $data->id)}}" style="text-decoration: none" target="_blank">Export</a></button>
-                                    <button class="btn rounded bg-success"><a href="{{route('file.guru', $data->nama)}}"><i class="bi bi-box-arrow-right text-white"></i></a></button>
-                                    <button class="btn rounded bg-yellow"><a href="{{route('guru.edit', $data->id)}}"><i class="bi bi-pencil-square text-white"></i></a></button>
-                                    <form id="deleteForm" action="{{ route('guru.destory', $data->id) }}" method="POST">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="button" id="btnDelete" class="btn btn-danger" onclick="showModalDelete()">
-                                            <i class="bi bi-x-lg text-white"></i>
-                                        </button>
-                                    </form>
+                                    <a class="btn" href="{{ route('guru.exportPdf', $data->id) }}" style="text-decoration: none" target="_blank">Export</a>
+                                    <a class="btn rounded bg-success" href="{{ route('file.guru', $data->nama) }}"><i class="bi bi-box-arrow-right text-white"></i></a>
+                                    <a class="btn rounded bg-yellow" href="{{ route('guru.edit', $data->id) }}"><i class="bi bi-pencil-square text-white"></i></a>
+
+                                    <!-- Delete button: open modal and pass action (no per-row form) -->
+                                    <button type="button"
+                                        class="btn btn-danger"
+                                        onclick="openDeleteModal('{{ route('guru.destroy', $data->id) }}')">
+                                        <i class="bi bi-x-lg text-white"></i>
+                                    </button>
                                 </div>
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="13">No data available</td>
+                            <td colspan="13" class="text-center">Tidak ada data guru yang tersedia.</td>
                         </tr>
                     @endforelse
                 </tbody>
@@ -64,7 +64,8 @@
         </div>
     </div>
     @if (session('success'))
-    <div class="alert alert-success alert-dismissible position-absolute bottom-0 end-0 me-3" role="alert" id="alertSuccess">
+    <div class="alert alert-success alert-dismissible position-fixed" role="alert" id="alertSuccess"
+        style="bottom:20px; right:20px; z-index:1080; min-width:240px;">
         <div class="d-flex">
             <div>
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon" width="24" height="24"
@@ -78,29 +79,45 @@
                 {{ session('success') }}
             </div>
         </div>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close" onclick="disabledAlert()" style="cursor: pointer;"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"
+            onclick="disabledAlert()" style="cursor: pointer;"></button>
     </div>
-@endif
+    @endif
 
-<div class="modal modal-blur fade show" id="modal-danger" tabindex="-1" style="display: none;" aria-modal="true" role="dialog">
+
+<!-- single hidden delete form used by modal -->
+<form id="deleteForm" method="POST" style="display:none;">
+    @csrf
+    @method('DELETE')
+</form>
+
+<!-- modal (standard bootstrap markup) -->
+<div class="modal modal-blur fade" id="modal-danger" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
         <div class="modal-content">
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="disabledModalDelete()"></button>
             <div class="modal-status bg-danger"></div>
             <div class="modal-body text-center py-4">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon mb-2 text-danger icon-lg"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 9v4"></path><path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z"></path><path d="M12 16h.01"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon mb-2 text-danger icon-lg">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M12 9v4"></path>
+                    <path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z"></path>
+                    <path d="M12 16h.01"></path>
+                </svg>
                 <h3>Are you sure?</h3>
                 <div class="text-secondary">Apakah kamu yakin ingin menghapus data ini? Data ini akan dihapus secara permanen dan tidak bisa dikembalikan.</div>
             </div>
             <div class="modal-footer">
                 <div class="w-100">
                     <div class="row">
-                        <div class="col"><a href="#" class="btn w-100" data-bs-dismiss="modal" onclick="disabledModalDelete()">
-                            Cancel
-                        </a></div>
-                        <div class="col"><a href="#" class="btn btn-danger w-100" onclick="submitDeleteForm()">
-                            Delete Data
-                        </a></div>
+                        <div class="col">
+                            <button type="button" class="btn w-100" data-bs-dismiss="modal" onclick="disabledModalDelete()">Cancel</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-danger w-100" onclick="submitDeleteForm()">Delete Data</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -108,20 +125,33 @@
     </div>
 </div>
 
-
 <script>
     function disabledAlert() {
         document.getElementById('alertSuccess').style.display = 'none';
     }
-    function showModalDelete() {
-    document.getElementById('modal-danger').style.display = 'block';
-}
-function submitDeleteForm() {
-    document.getElementById('deleteForm').submit();
-}
+    function openDeleteModal(action) {
+        const form = document.getElementById('deleteForm');
+        if (!form) return console.error('Delete form not found');
+        form.action = action;
+
+        // show bootstrap modal
+        const modalEl = document.getElementById('modal-danger');
+        const modal = new bootstrap.Modal(modalEl);
+        modal.show();
+    }
+
+    function submitDeleteForm() {
+        const form = document.getElementById('deleteForm');
+        if (!form || !form.action) {
+            return console.error('Delete form action not set.');
+        }
+        form.submit();
+    }
 
     function disabledModalDelete() {
-        document.getElementById('modal-danger').style.display = 'none';
+        const modalEl = document.getElementById('modal-danger');
+        const instance = bootstrap.Modal.getInstance(modalEl);
+        if (instance) instance.hide();
     }
 </script>
 

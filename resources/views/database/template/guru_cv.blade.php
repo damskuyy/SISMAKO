@@ -249,18 +249,22 @@
                 </table>
             </div>
             <div class="profile-img">
-                <?php
-                if (!empty($guru->fotoguru[0]->path_file)) {
-                    $path = public_path($guru->fotoguru[0]->path_file);
-                    $type = pathinfo($path, PATHINFO_EXTENSION);
-                    $data = file_get_contents($path);
-                    $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
-                }else {
-                    $base64 = 'https://cdn-icons-png.flaticon.com/512/7484/7484918.png';
+                @php
+                $base64 = 'https://cdn-icons-png.flaticon.com/512/7484/7484918.png';
+                if (!empty($guru->fotoguru) && isset($guru->fotoguru[0]->path_file)) {
+                    $relativePath = $guru->fotoguru[0]->path_file;
+                    $fullPath = public_path($relativePath);
+                    if (file_exists($fullPath)) {
+                        $type = pathinfo($fullPath, PATHINFO_EXTENSION) ?: 'jpeg';
+                        $data = @file_get_contents($fullPath);
+                        if ($data !== false) {
+                            $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+                        }
+                    }
                 }
-                ?>
-                <p>{{$guru->fotoguru[0]->path_file}}</p>
-                <img src="{{ $base64 }}" alt="Profile Image">
+                @endphp
+
+                <img src="{{ $base64 }}" alt="Profile Image" style="max-width:120px;">
             </div>
         </div>
     </div>

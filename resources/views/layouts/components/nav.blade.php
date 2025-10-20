@@ -18,8 +18,11 @@
             <!-- Right Side of Navbar -->
             <ul class="navbar-nav ms-auto">
                 <!-- Authentication Links -->
-                <li class="nav-item">
-                    <a href="/progres-siswa" class="text-black nav-item {{ Request::is('progres-siswa') ? 'hidden' : '' }}">Klik Progres Kemajuan Peserta Didik</a>
+                <li class="nav-item d-flex align-items-center">
+                    <a href="{{ url('/progres-siswa') }}" class="btn btn-primary d-flex align-items-center gap-2"role="button" style="color:#fff; padding:0.45rem 1rem; border-radius:0.6rem; text-decoration:none;" aria-label="Cek Progres Kemajuan Peserta Didik" @if(Request::is('progres-siswa')) hidden @endif>
+                        <i class="bi bi-bar-chart-line-fill" style="font-size:1.1rem;"></i>
+                        <span style="font-weight:500;">Cek Progres Kemajuan Peserta Didik</span>
+                    </a>
                 </li>
 
                 @guest

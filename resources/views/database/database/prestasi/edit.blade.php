@@ -53,7 +53,7 @@
             </div>
             <div class="col-lg-6">
                 <div class="mb-3">
-                    <label class="form-label">Peringkat</label>
+                    <label class="form-label">Juara</label>
                     <input type="text" class="form-control" name="peringkat" value="{{old('peringkat', $prestasi->peringkat)}}">
                     @error('peringkat')
                         <div class="text-danger mt-2">{{$message}}</div>

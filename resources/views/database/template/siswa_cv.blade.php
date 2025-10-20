@@ -256,17 +256,26 @@
                 </table>
             </div>
             <div class="profile-img">
-                <?php
-                if (!empty($siswa->fotoSiswa[0]->path_file)) {
-                    $path = public_path($siswa->fotoSiswa[0]->path_file);
-                    $type = pathinfo($path, PATHINFO_EXTENSION);
-                    $data = file_get_contents($path);
-                    $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
-                } else {
+                @php
+                    // default image kalau tidak ada file
                     $base64 = 'https://cdn-icons-png.flaticon.com/512/7484/7484918.png';
-                }
-                ?>
-                <img src="{{ $base64 }}" alt="Profile Image">
+
+                    if (!empty($siswa->fotoSiswa) && isset($siswa->fotoSiswa[0]->path_file)) {
+                        // normalisasi path (hilangkan leading slash jika ada)
+                        $relativePath = ltrim($siswa->fotoSiswa[0]->path_file, '/');
+                        $fullPath = public_path($relativePath);
+
+                        if (file_exists($fullPath) && is_readable($fullPath)) {
+                            $type = pathinfo($fullPath, PATHINFO_EXTENSION) ?: 'png';
+                            $data = @file_get_contents($fullPath);
+                            if ($data !== false) {
+                                $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+                            }
+                        }
+                    }
+                @endphp
+
+                <img src="{{ $base64 }}" alt="Foto Siswa" style="max-width:120px;">
             </div>
 
         </div>

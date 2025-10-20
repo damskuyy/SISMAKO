@@ -6,7 +6,7 @@
     <div class="container mt-3">
         <div class="row">
             <div class="col-lg-4">
-                <a href="{{route('dashboard')}}" class="btn btn-secondary">Back</a>
+                <a href="{{route('pkl')}}" class="btn btn-secondary">Back</a>
                 <a href="{{ route('pkl.siswa.create') }}" class="btn btn-primary">Tambah Data Kelas</a>
             </div>
         </div>

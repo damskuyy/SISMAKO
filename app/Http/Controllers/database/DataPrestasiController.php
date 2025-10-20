@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\View;
 use App\Models\database\DataPrestasi;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\database\prestasiRequest;
-
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class DataPrestasiController extends Controller
 {
@@ -89,7 +89,7 @@ class DataPrestasiController extends Controller
 
         if ($file) {
             $oldNameFile = basename($data->nama_file);
-            dd($oldNameFile);
+            ($oldNameFile);
             $newFileName = $file->getClientOriginalName();
 
             // Check if the new file name is the same as the old one
@@ -132,5 +132,18 @@ class DataPrestasiController extends Controller
         }
         $prestasi->delete();
         return redirect()->route('prestasi.index')->with('success', 'Data berhasil dihapus');
+    }
+
+    public function downloadFile($id)
+    {
+        $prestasi = DataPrestasi::findOrFail($id);
+        $relative = $prestasi->nama_file; // stored path like '/files/prestasi/...'
+        $full = public_path(ltrim($relative, '/'));
+
+        if (!File::exists($full) || !is_file($full)) {
+            return redirect()->back()->with('error', 'File dokumentasi tidak ditemukan.');
+        }
+
+        return response()->download($full, basename($full));
     }
 }

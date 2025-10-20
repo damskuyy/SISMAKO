@@ -295,7 +295,7 @@
                         @php
                             $creators = [
                                 ['name' => 'Ahmad Dahlan, S.Ag', 'role' => 'Kepala SMK TI BAZMA (Inisiator & Pembuat Skema Alur Kerja)', 'img' => 'https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/created-by%2Fdragon_1.png?alt=media&token=d4e30b62-b0fd-4925-9372-d501a3b80968'],
-                                ['name' => 'I Gde Bayu Priyambada M. S.Kom', 'role' => 'Guru IT Th. ', 'img' => 'https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/created-by%2Fdragon_2.png?alt=media&token=caf4ccc0-205b-490e-95b0-ca6c0c182845'],
+                                ['name' => 'I Gde Bayu Priyambada M. S.Kom', 'role' => 'Guru IT SMK TI BAZMA', 'img' => 'https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/created-by%2Fdragon_2.png?alt=media&token=caf4ccc0-205b-490e-95b0-ca6c0c182845'],
                                 ['name' => 'Fadhil Rabbani', 'role' => 'Angkatan II SMK TI BAZMA', 'img' => 'https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/created-by%2Fdragon_3.png?alt=media&token=99493e4a-07c6-49f8-a061-e2125f2a1d49'],
                                 ['name' => 'Mufiz Ihsanulhaq', 'role' => 'Angkatan II SMK TI BAZMA', 'img' => 'https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/created-by%2Fdragon_4.png?alt=media&token=7b2bf226-27e7-4962-b994-5812a48f1674'],
                                 ['name' => 'Attar Rifai', 'role' => 'Angkatan II SMK TI BAZMA', 'img' => 'https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/created-by%2Fdragon_5.png?alt=media&token=a8029e9c-1729-4a65-8990-1be31fbff31b'],
@@ -308,7 +308,6 @@
                                 ['name' => 'Damar Nugroho Utomo', 'role' => 'Angkatan XXIV SMKN 1 Cibinong', 'img' => 'https://wallpapercave.com/uwp/uwp4887476.jpeg'],
                                 ['name' => 'Rizki Zikrillah', 'role' => 'Angkatan XXIV SMKN 1 Cibinong', 'img' => 'https://wallpapercave.com/uwp/uwp4887508.jpeg'],
                             ];
-                            // Tampilkan semua card tanpa batasan
                         @endphp
                         @foreach ($creators as $creator)
                             <div class="creator-card">

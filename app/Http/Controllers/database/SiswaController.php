@@ -17,19 +17,27 @@ class SiswaController extends Controller
 {
     public function index(Request $request)
     {
-        $angkatanFilter = $request->query('angkatan', '');
-        $query = Siswa::query()->orderBy(column: 'angkatan');
-        $angkatanData = Siswa::select('angkatan')->distinct()->orderBy('angkatan', 'asc')->get();
+        $angkatanFilter = $request->input('angkatan');
 
-        if ($angkatanFilter) {
-            $query->where('angkatan', $angkatanFilter);
+        $query = Siswa::query();
+
+        // jika ada filter angkatan, apply where
+        if (!empty($angkatanFilter)) {
+            $query->where('angkatan', $angkatanFilter)
+                ->orderBy('nama', 'asc'); // urutkan nama saat filter dipakai
+        } else {
+            // saat "Semua" - urutkan berdasarkan angkatan (1,2,3...) lalu nama alfabet
+            $query->orderBy('angkatan', 'asc')
+                ->orderBy('nama', 'asc');
         }
 
-        $siswa = $query->paginate(20);
+        $siswa = $query->paginate(20)->appends($request->query());
 
-        return view('database.database.siswa.index', compact('siswa', 'angkatanFilter', 'angkatanData'));
+        // ambil data angkatan untuk dropdown seperti sebelumnya
+        $angkatanData = Siswa::select('angkatan')->distinct()->orderBy('angkatan')->get();
+
+        return view('database.database.siswa.index', compact('siswa','angkatanData','angkatanFilter'));
     }
-
     public function fileSetup($file, $nama, $prefix, $namaDir, $path = '')
     {
         $imageFileName = $prefix . str_replace(' ', '_', $nama) . '.' . $file->getClientOriginalExtension();

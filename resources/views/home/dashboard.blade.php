@@ -9,8 +9,47 @@
         <style>
             /* Styling for images */
             .img-icons {
-                width: 75px;
+                width: 70px;
+                height: auto;
                 background: transparent;
+                display: block;
+            }
+
+            .row.g-3 { 
+                align-items: stretch; 
+            }
+            .row.g-3 .col-lg-3 { 
+                display: flex; 
+            }
+
+            .card.card-bordered {
+                flex: 1 1 auto;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding: 18px;
+                border-radius: 12px;
+                box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+                color: #fff;
+                min-height: 170px;
+            }
+
+            .card.card-bordered .card-body {
+                display: flex;
+                align-items: center;
+                gap: 18px;
+                width: 100%;
+                flex: 1 1 auto;
+            }
+
+            .card .content-body-1 h2,
+            .card .content-body-2-1 h1,
+            .card .content-body-2-2 h1 {
+                margin: 0;
+            }
+
+            .card .content-body-2 { 
+                display:flex; align-items:center; width:100%; 
             }
 
 
@@ -84,22 +123,22 @@
 
 
             .card-tendik {
-                background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+                background-image: linear-gradient(to top, #4da0ff 0%, #005bea 100%);
             }
 
 
             .card-kelas {
-                background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+                background-image: linear-gradient(120deg, #6dd5fa 0%, #2980b9 100%);
             }
 
 
             .card-kelulusan {
-                background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+                background-image: linear-gradient(120deg, #ffb347 0%, #ffcc33 100%);
             }
 
 
             .card-pkl {
-                background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+                background-image: linear-gradient(120deg, #7ee8fa 0%, #4ac29a 100%);
             }
         </style>
     </head>
@@ -154,7 +193,7 @@
                 <div class="card card-bordered card-mutasi" style="cursor: pointer" onclick="toHref('/data-mutasi')">
                     <div class="card-body d-flex" style="gap: 25px">
                         <div class="content-body-1" style="width: 35%">
-                            <img src="https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/Icons%2Fexit-unscreen.gif?alt=media&token=3564a9ba-6be5-4635-8917-653e104136ac" alt="" class="img-icons">
+                            <img src="https://res.cloudinary.com/dqzc35nrh/image/upload/v1760928566/notebook-unscreen_jhjz8d.gif" alt="" class="img-icons">
                             <h2>Mutasi</h2>
                         </div>
                         <div class="content-body-2 d-flex justify-content-center align-items-center"

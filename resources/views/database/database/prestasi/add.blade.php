@@ -52,7 +52,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-3">
-                        <label class="form-label">Peringkat</label>
+                        <label class="form-label">Juara</label>
                         <input type="text" class="form-control" name="peringkat" value="{{old('peringkat')}}">
                         @error('peringkat')
                             <div class="text-danger mt-2">{{$message}}</div>
@@ -88,13 +88,32 @@
         document.addEventListener('DOMContentLoaded', function() {
             const statusSelect = document.getElementById('status');
             const kelasDiv = document.getElementById('kelasDiv');
+            const kelasSelect = document.getElementById('kelas');
+            const form = document.querySelector('form');
 
             function toggleKelas() {
                 if (statusSelect.value === 'Guru') {
                     kelasDiv.style.display = 'none';
+                    // disable the select so browser won't submit its value
+                    if (kelasSelect) kelasSelect.disabled = true;
+                    // also clear its value to be safe
+                    if (kelasSelect) kelasSelect.value = '';
                 } else {
                     kelasDiv.style.display = 'block';
+                    if (kelasSelect) kelasSelect.disabled = false;
+                    // if no value set a default
+                    if (kelasSelect && !kelasSelect.value) kelasSelect.value = 'X';
                 }
+            }
+
+            // Ensure before submit that kelas is empty when status Guru
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    if (statusSelect.value === 'Guru' && kelasSelect) {
+                        kelasSelect.disabled = true;
+                        kelasSelect.value = '';
+                    }
+                });
             }
 
             statusSelect.addEventListener('change', toggleKelas);

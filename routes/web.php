@@ -181,7 +181,6 @@ Route::controller(PanitiaController::class)->group(function () {
 });
 
 
-
 // Sarpras
 Route::controller(SchoolPurchaseController::class)->group(function () {
     Route::get('/sarpras/school-purchase', 'index')->name('school-purchases.index');
@@ -244,6 +243,7 @@ Route::controller(PklAdministrasiSiswaController::class)->group(function () {
     Route::delete('pkl/adm-siswa/delete/{id}', 'destroy')->name('pkl.siswa.destroy');
 });
 
+Route::resource('guru', GuruController::class);
 Route::controller(GuruController::class)->group(function () {
     Route::get('/guru', 'index')->name('guru.index');
     Route::get('/guru/create', 'create')->name('guru.create');
@@ -274,6 +274,8 @@ Route::controller(DataPrestasiController::class)->group(function () {
     Route::post('/data-prestasi/update/{id}', 'update')->name('prestasi.update');
     Route::delete('/data-prestasi/delete/{id}', 'destroy')->name('prestasi.destroy');
     Route::get('/data-prestasi/export-pdf', [DataPrestasiController::class, 'exportPdf'])->name('prestasi.exportPdf');
+    Route::get('prestasi/file/{id}', [DataPrestasiController::class, 'downloadFile'])->name('prestasi.file');
+
 });
 
 Route::controller(SiswaController::class)->group(function () {
@@ -569,10 +571,6 @@ Route::controller(SuratPengajuanController::class)->group(function () {
     Route::delete('/pengajuan/delete/{id}', 'destroy')->name('pengajuan.destroy');
 });
 
-
-
-
-
 // Administrasi
 // Routes for Mapel
 Route::prefix('administrasi-keguruan/mapel')->group(function () {
@@ -674,3 +672,5 @@ Route::prefix('administrasi-keguruan/supervisi')->group(function () {
     Route::put('/{id}', [SupervisiController::class, 'update'])->name('supervisi.update');
     Route::delete('/{id}', [SupervisiController::class, 'destroy'])->name('supervisi.destroy');
 });
+
+// tambahkan (jika belum ada)
