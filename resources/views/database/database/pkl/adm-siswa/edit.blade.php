@@ -28,10 +28,30 @@
                                 @enderror
                             </div>
                         </div>
+                        {{-- <div class="col-sm-4 col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label">Angkatan</label>
+                                <select name="angkatan" class="form-control">
+                                    <option value="">-- Pilih Angkatan --</option>
+                                    <option value="1" {{ (old('angkatan', $data->angkatan) == '1') ? 'selected' : '' }}>1</option>
+                                    <option value="2" {{ (old('angkatan', $data->angkatan) == '2') ? 'selected' : '' }}>2</option>
+                                    <option value="3" {{ (old('angkatan', $data->angkatan) == '3') ? 'selected' : '' }}>3</option>
+                                    <option value="4" {{ (old('angkatan', $data->angkatan) == '4') ? 'selected' : '' }}>4</option>
+                                </select>
+                                @error('angkatan')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div> --}}
                         <div class="col-sm-4 col-md-4">
                             <div class="mb-3">
                                 <label class="form-label">Tempat PKL</label>
-                                <input type="text" class="form-control" name="tempat_pkl" placeholder="PT. Pertamina" value="{{ old('tempat_pkl', $data->tempat_pkl) }}">
+                                <select name="tempat_pkl" class="form-control">
+                                    <option value="">-- Pilih Perusahaan --</option>
+                                    @foreach($perusahaanList as $p)
+                                        <option value="{{ $p }}" {{ (old('tempat_pkl', $data->tempat_pkl) == $p) ? 'selected' : '' }}>{{ $p }}</option>
+                                    @endforeach
+                                </select>
                                 @error('tempat_pkl')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror

@@ -94,4 +94,37 @@
                 .catch(error => console.error('Error fetching names:', error));
         });
     </script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form');
+    const namaSelect = document.getElementById('nama-select');
+    
+    form.addEventListener('submit', function(e) {
+        if (!namaSelect.value) {
+            e.preventDefault();
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'text-danger mt-2';
+            errorDiv.textContent = 'Silahkan pilih nama siswa terlebih dahulu';
+            
+            // Remove any existing error message
+            const existingError = namaSelect.parentNode.querySelector('.text-danger');
+            if (existingError) {
+                existingError.remove();
+            }
+            
+            namaSelect.parentNode.appendChild(errorDiv);
+            return false;
+        }
+    });
+
+    // Enable/disable submit button based on nama selection
+    const submitButton = document.querySelector('button[type="submit"]');
+    namaSelect.addEventListener('change', function() {
+        submitButton.disabled = !this.value;
+    });
+    
+    // Initially disable submit button
+    submitButton.disabled = true;
+});
+</script>
 @endsection

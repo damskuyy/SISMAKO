@@ -7,14 +7,13 @@
             <div class="col-lg">
                 <div class="card">
                     <div class="card-header">
-                        Korespondensi
+                        <h3>Korespondensi</h3>
                     </div>
-                    <div class="card-body">
-
-                        <div class="row g-5 align-items-center mx-auto  ">
+                    <div class="card-body"> 
+                        <div class="row g-5 align-items-center mx-auto">
+                            {{-- CARD SURAT MASUK --}}
                             <div class="col-md-6 col-lg-4 ">
-                                <label
-                                    class="form-selectgroup-item flex-fill bg-primary-subtle border border-primary-subtle rounded-3">
+                                <label class="form-selectgroup-item flex-fill bg-primary-subtle border border-primary-subtle rounded-3">
                                     <div class="card-stamp">
                                         <div class="card-stamp-icon bg-info">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -55,9 +54,9 @@
                                     </div>
                                 </label>
                             </div>
+                            {{-- CARD SURAT KELUAR --}}
                             <div class="col-md-6 col-lg-4 ">
-                                <label
-                                    class="form-selectgroup-item flex-fill bg-primary-subtle border border-primary-subtle rounded-3">
+                                <label class="form-selectgroup-item flex-fill bg-primary-subtle border border-primary-subtle rounded-3">
                                     <div class="card-stamp">
                                         <div class="card-stamp-icon bg-info">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -97,10 +96,9 @@
                                     </div>
                                 </label>
                             </div>
-
-                            {{-- <div class="col-md-6 col-lg-4 ">
-                                <label
-                                    class="form-selectgroup-item flex-fill bg-danger-subtle border border-danger-subtle rounded-3">
+                            {{-- CARD SURAT PERINGATAN --}}
+                            <div class="col-md-6 col-lg-4 ">
+                                <label class="form-selectgroup-item flex-fill bg-danger-subtle border border-danger-subtle rounded-3">
                                     <div class="card-stamp">
                                         <div class="card-stamp-icon bg-danger">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -137,11 +135,10 @@
                                         </div>
                                     </div>
                                 </label>
-                            </div> --}}
-
+                            </div>
+                            {{-- CARD NOMOR SURAT --}}
                             <div class="col-md-6 col-lg-4 ">
-                                <label
-                                    class="form-selectgroup-item flex-fill bg-warning-subtle border border-warning-subtle rounded-3">
+                                <label class="form-selectgroup-item flex-fill bg-warning-subtle border border-warning-subtle rounded-3">
                                     <div class="card-stamp">
                                         <div class="card-stamp-icon bg-yellow">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -181,9 +178,9 @@
                                     </div>
                                 </label>
                             </div>
+                            {{-- CARD NOTULENSI RAPAT & PELATIHAN GURU --}}
                             <div class="col-md-6 col-lg-4 ">
-                                <label
-                                    class="form-selectgroup-item flex-fill bg-warning-subtle border border-warning-subtle rounded-3">
+                                <label class="form-selectgroup-item flex-fill bg-warning-subtle border border-warning-subtle rounded-3">
                                     <div class="card-stamp">
                                         <div class="card-stamp-icon bg-warning">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -226,9 +223,9 @@
                                     </div>
                                 </label>
                             </div>
+                            {{-- CARD SURAT PENGAJUAN --}}
                             <div class="col-md-6 col-lg-4 ">
-                                <label
-                                    class="form-selectgroup-item flex-fill bg-success-subtle border border-success-subtle rounded-3">
+                                <label class="form-selectgroup-item flex-fill bg-success-subtle border border-success-subtle rounded-3">
                                     <div class="card-stamp">
                                         <div class="card-stamp-icon bg-success">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -272,32 +269,8 @@
                             </div>
                         </div>
                     </div>
+                    {{-- BUTTON VIEW & INPUT --}}
                     <div class="card-footer ">
-                        {{-- <div class="col-md-6 col-lg-4 mb-3 d-flex ">
-
-                        <select id="tp" class="form-select me-3" onchange="showInputField()">
-                            <option value="Selected">Pilih Tahun Ajaran</option>
-                            <option value="2022/2023">2022/2023</option>
-                            <option value="2023/2024">2023/2024</option>
-                            <option value="2024/2025">2024/2025</option>
-                            <option value="2025/2026">2025/2026</option>
-                            <option value="2026/2027">2026/2027</option>
-                        </select>
-
-                        <select id="js" class="form-select me-3" onchange="showInputField()">
-                            <option selected>Pilih Jenis Surat</option>
-                            <option value="Surat Tugas">Surat Tugas</option>
-                            <option value="Surat permohonan">Surat permohonan</option>
-                            <option value="Surat Peringatan">Surat Peringatan</option>
-                            <option value="Surat Studi Banding">Surat Studi Banding</option>
-                            <option value="Surat Persetujuan">Surat Persetujuan</option>
-                            <option value="Surat Edaran">Surat Edaran</option>
-                            <option value="Surat Undangan">Surat Undangan</option>
-                            <option value="Surat Pemberitahuan">Surat Pemberitahuan</option>
-                            <option value="Surat Izin">Surat Izin</option>
-                            <option value="Lainnya">Surat Lainnya</option>
-                        </select>
-                    </div> --}}
                         <div class="text-end">
                             <button type="button" class="btn" id='btnView' data-bs-toggle="modal">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -313,20 +286,17 @@
                                 </svg>
                                 View
                             </button>
-                            <button id="submitButton" class="btn btn-primary" data-bs-toggle="modal"
-                                disabled>Input</button>
+                            <button id="submitButton" class="btn btn-primary" data-bs-toggle="modal" disabled>
+                                Input
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Tambahkan card lainnya di sini jika diperlukan -->
         </div>
     </div>
 
-
-
     <div class="container-view1 container-xl" id="view1" hidden>
-
         <div class="col-12">
             <div class="card">
                 <div class="table-responsive p-3">
@@ -410,71 +380,71 @@
                     </table>
                 </div>
             </div>
-            <div class="card-footer justify-content-between">
-                <form action="{{ route('pdf', ['model' => 'suratmasuk']) }}" id="filterdate">
-                    <div class="row d-flex justify-content-between w-100">
-                        <div class="col-8 d-flex g-2">
-                            <div class="col-4 me-2">
-                                <div class="input-icon mb-2">
-                                    <input class="form-control" placeholder="Select a start date" id="datepicker-1"
-                                        name="start_date">
-                                    @error('start_date')
-                                        <div class="text-danger">{{ $message }}</div>
-                                    @enderror
-                                    <span class="input-icon-addon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
-                                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <path
-                                                d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
-                                            </path>
-                                            <path d="M16 3v4"></path>
-                                            <path d="M8 3v4"></path>
-                                            <path d="M4 11h16"></path>
-                                            <path d="M11 15h1"></path>
-                                            <path d="M12 15v3"></path>
-                                        </svg>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="input-icon mb-2 me-2">
-                                    <input class="form-control" placeholder="Select an end date" id="datepicker-2"
-                                        name="end_date">
-                                    @error('end_date')
-                                        <div class="text-danger">{{ $message }}</div>
-                                    @enderror
-                                    <span class="input-icon-addon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
-                                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <path
-                                                d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
-                                            </path>
-                                            <path d="M16 3v4"></path>
-                                            <path d="M8 3v4"></path>
-                                            <path d="M4 11h16"></path>
-                                            <path d="M11 15h1"></path>
-                                            <path d="M12 15v3"></path>
-                                        </svg>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="col-2  align-items-end">
-
-                                <button type="submit" class="btn btn-primary">Cetak Laporan</button>
-
+        </div>
+        <div class="card-footer justify-content-between">
+            <form action="{{ route('pdf', ['model' => 'suratmasuk']) }}" id="filterdate">
+                <div class="row d-flex justify-content-between w-100">
+                    <div class="col-8 d-flex g-2">
+                        <div class="col-4 me-2">
+                            <div class="input-icon mb-2">
+                                <input class="form-control" placeholder="Select a start date" id="datepicker-1"
+                                    name="start_date">
+                                @error('start_date')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                                <span class="input-icon-addon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
+                                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path
+                                            d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
+                                        </path>
+                                        <path d="M16 3v4"></path>
+                                        <path d="M8 3v4"></path>
+                                        <path d="M4 11h16"></path>
+                                        <path d="M11 15h1"></path>
+                                        <path d="M12 15v3"></path>
+                                    </svg>
+                                </span>
                             </div>
                         </div>
+                        <div class="col-4">
+                            <div class="input-icon mb-2 me-2">
+                                <input class="form-control" placeholder="Select an end date" id="datepicker-2"
+                                    name="end_date">
+                                @error('end_date')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                                <span class="input-icon-addon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
+                                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path
+                                            d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
+                                        </path>
+                                        <path d="M16 3v4"></path>
+                                        <path d="M8 3v4"></path>
+                                        <path d="M4 11h16"></path>
+                                        <path d="M11 15h1"></path>
+                                        <path d="M12 15v3"></path>
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-2  align-items-end">
+
+                            <button type="submit" class="btn btn-primary">Cetak Laporan</button>
+
+                        </div>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
-    <div class="container-view2 container-xl" id="view2" hidden>
 
+    <div class="container-view2 container-xl" id="view2" hidden>
         <div class="col-12">
             <div class="card">
                 <div class="table-responsive p-3">
@@ -502,22 +472,6 @@
                                     <td>{{ Str::limit($item->kepada, 15) }}</td>
                                     <td>
                                         <div class="btn-group">
-                                            {{-- <form action="{{ route('outbox.download', $item->id) }}" method="POST">
-                                        @csrf
-                                        @method('GET')
-                                        <button type="submit" class="btn btn-icon btn-sm btn-outline-primary"
-                                            role="button">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                                                stroke-linecap="round" stroke-linejoin="round"
-                                                class="icon icon-tabler icons-tabler-outline icon-tabler-download">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
-                                                <path d="M7 11l5 5l5 -5" />
-                                                <path d="M12 4l0 12" />
-                                            </svg>
-                                        </button>
-                                    </form> --}}
                                             <button type="button" class="btn btn-icon btn-sm btn-outline-success"
                                                 role="button" data-bs-target="#modalUpdate2{{ $item->id }}"
                                                 data-bs-toggle="modal" data-bs-dismiss="modal">
@@ -558,71 +512,71 @@
                     </table>
                 </div>
             </div>
-            <div class="card-footer justify-content-between">
-                <form action="{{ route('pdf', ['model' => 'suratkeluar']) }}" id="filterdate">
-                    <div class="row d-flex justify-content-between w-100">
-                        <div class="col-8 d-flex g-2">
-                            <div class="col-4 me-2">
-                                <div class="input-icon mb-2">
-                                    <input class="form-control" placeholder="Select a start date" id="datepicker-1"
-                                        name="start_date">
-                                    @error('start_date')
-                                        <div class="text-danger">{{ $message }}</div>
-                                    @enderror
-                                    <span class="input-icon-addon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
-                                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <path
-                                                d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
-                                            </path>
-                                            <path d="M16 3v4"></path>
-                                            <path d="M8 3v4"></path>
-                                            <path d="M4 11h16"></path>
-                                            <path d="M11 15h1"></path>
-                                            <path d="M12 15v3"></path>
-                                        </svg>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="input-icon mb-2 me-2">
-                                    <input class="form-control" placeholder="Select an end date" id="datepicker-2"
-                                        name="end_date">
-                                    @error('end_date')
-                                        <div class="text-danger">{{ $message }}</div>
-                                    @enderror
-                                    <span class="input-icon-addon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
-                                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <path
-                                                d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
-                                            </path>
-                                            <path d="M16 3v4"></path>
-                                            <path d="M8 3v4"></path>
-                                            <path d="M4 11h16"></path>
-                                            <path d="M11 15h1"></path>
-                                            <path d="M12 15v3"></path>
-                                        </svg>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="col-2  align-items-end">
-
-                                <button type="submit" class="btn btn-primary">Cetak Laporan</button>
-
+        </div>
+        <div class="card-footer justify-content-between">
+            <form action="{{ route('pdf', ['model' => 'suratkeluar']) }}" id="filterdate">
+                <div class="row d-flex justify-content-between w-100">
+                    <div class="col-8 d-flex g-2">
+                        <div class="col-4 me-2">
+                            <div class="input-icon mb-2">
+                                <input class="form-control" placeholder="Select a start date" id="datepicker-1"
+                                    name="start_date">
+                                @error('start_date')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                                <span class="input-icon-addon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
+                                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path
+                                            d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
+                                        </path>
+                                        <path d="M16 3v4"></path>
+                                        <path d="M8 3v4"></path>
+                                        <path d="M4 11h16"></path>
+                                        <path d="M11 15h1"></path>
+                                        <path d="M12 15v3"></path>
+                                    </svg>
+                                </span>
                             </div>
                         </div>
+                        <div class="col-4">
+                            <div class="input-icon mb-2 me-2">
+                                <input class="form-control" placeholder="Select an end date" id="datepicker-2"
+                                    name="end_date">
+                                @error('end_date')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                                <span class="input-icon-addon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
+                                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path
+                                            d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
+                                        </path>
+                                        <path d="M16 3v4"></path>
+                                        <path d="M8 3v4"></path>
+                                        <path d="M4 11h16"></path>
+                                        <path d="M11 15h1"></path>
+                                        <path d="M12 15v3"></path>
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-2  align-items-end">
+
+                            <button type="submit" class="btn btn-primary">Cetak Laporan</button>
+
+                        </div>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
-    <div class="container-view3 container-xl" id="view3" hidden>
 
+    <div class="container-view3 container-xl" id="view3" hidden>
         <div class="col-12">
             <div class="card">
                 <div class="table-responsive p-3">
@@ -710,78 +664,78 @@
                     </table>
                 </div>
             </div>
-            <div class="card-footer justify-content-between">
-                <form action="{{ route('pdf', ['model' => 'suratperingatan']) }}" id="filterdate">
-                    <div class="row d-flex justify-content-between w-100">
-                        <div class="col-8 d-flex g-2">
-                            <div class="col-4 me-2">
-                                <div class="input-icon mb-2">
-                                    <input class="form-control" placeholder="Select a start date" id="datepicker-1"
-                                        name="start_date">
-                                    @error('start_date')
-                                        <div class="text-danger">{{ $message }}</div>
-                                    @enderror
-                                    <span class="input-icon-addon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
-                                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <path
-                                                d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
-                                            </path>
-                                            <path d="M16 3v4"></path>
-                                            <path d="M8 3v4"></path>
-                                            <path d="M4 11h16"></path>
-                                            <path d="M11 15h1"></path>
-                                            <path d="M12 15v3"></path>
-                                        </svg>
-                                    </span>
-                                </div>
+        </div>
+        <div class="card-footer justify-content-between">
+            <form action="{{ route('pdf', ['model' => 'suratperingatan']) }}" id="filterdate">
+                <div class="row d-flex justify-content-between w-100">
+                    <div class="col-8 d-flex g-2">
+                        <div class="col-4 me-2">
+                            <div class="input-icon mb-2">
+                                <input class="form-control" placeholder="Select a start date" id="datepicker-1"
+                                    name="start_date">
+                                @error('start_date')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                                <span class="input-icon-addon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
+                                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path
+                                            d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
+                                        </path>
+                                        <path d="M16 3v4"></path>
+                                        <path d="M8 3v4"></path>
+                                        <path d="M4 11h16"></path>
+                                        <path d="M11 15h1"></path>
+                                        <path d="M12 15v3"></path>
+                                    </svg>
+                                </span>
                             </div>
-                            <div class="col-4">
-                                <div class="input-icon mb-2 me-2">
-                                    <input class="form-control" placeholder="Select an end date" id="datepicker-2"
-                                        name="end_date">
-                                    @error('end_date')
-                                        <div class="text-danger">{{ $message }}</div>
-                                    @enderror
-                                    <span class="input-icon-addon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
-                                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <path
-                                                d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
-                                            </path>
-                                            <path d="M16 3v4"></path>
-                                            <path d="M8 3v4"></path>
-                                            <path d="M4 11h16"></path>
-                                            <path d="M11 15h1"></path>
-                                            <path d="M12 15v3"></path>
-                                        </svg>
-                                    </span>
-                                </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="input-icon mb-2 me-2">
+                                <input class="form-control" placeholder="Select an end date" id="datepicker-2"
+                                    name="end_date">
+                                @error('end_date')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                                <span class="input-icon-addon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
+                                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path
+                                            d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
+                                        </path>
+                                        <path d="M16 3v4"></path>
+                                        <path d="M8 3v4"></path>
+                                        <path d="M4 11h16"></path>
+                                        <path d="M11 15h1"></path>
+                                        <path d="M12 15v3"></path>
+                                    </svg>
+                                </span>
                             </div>
-                            <div class="col-2">
-                                <select name="subjek" id="subjekFilter" class="form-control me-2">
+                        </div>
+                        <div class="col-4">
+                            <div class="input-icon mb-2 me-2">
+                                <select name="subjek" id="subjekFilter" class="form-control mb-2 me-2">
                                     <option selected>Pilih subjek</option>
                                     <option value="siswa">siswa</option>
                                     <option value="guru">guru</option>
                                 </select>
                             </div>
-                            <div class="col-2 align-items-end">
-
-                                <button type="submit" class="btn btn-primary">Cetak Laporan</button>
-
-                            </div>
+                        </div>
+                        <div class="col-2">
+                            <button type="submit" class="btn btn-primary">Cetak Laporan</button>
                         </div>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
-    <div class="container-view4 container-xl" id="view4" hidden>
 
+    <div class="container-view4 container-xl" id="view4" hidden>
         <div class="col-12">
             <div class="card">
                 <div class="table-responsive p-3">
@@ -924,6 +878,7 @@
             </form>
         </div>
     </div>
+
     <div class="container-view5 container-xl" id="view5" hidden>
         <div class="col-12">
             <div class="card">
@@ -934,8 +889,6 @@
                             <tr>
                                 <th>Tahun ajaran</th>
                                 <th>Tanggal</th>
-
-
                                 <th>status</th>
                                 <th>materi</th>
                                 <th>peserta</th>
@@ -1082,17 +1035,15 @@
                             </div>
                         </div>
                         <div class="col-2  align-items-end">
-
                             <button type="submit" class="btn btn-primary">Cetak Laporan</button>
-
                         </div>
                     </div>
                 </div>
             </form>
         </div>
     </div>
-    <div class="container-view6 container-xl" id="view6" hidden>
 
+    <div class="container-view6 container-xl" id="view6" hidden>
         <div class="col-12">
             <div class="card">
                 <div class="table-responsive p-3">
@@ -1230,16 +1181,12 @@
                             </div>
                         </div>
                         <div class="col-2  align-items-end">
-
                             <button type="submit" class="btn btn-primary">Cetak Laporan</button>
-
                         </div>
                     </div>
                 </div>
             </form>
         </div>
-    </div>
-    </div>
     </div>
 
     @foreach ($suratmasuk as $item)

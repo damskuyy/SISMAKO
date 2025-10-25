@@ -19,6 +19,8 @@ class PklAdministrasiSekolahController extends Controller
         // Ambil daftar perusahaan tempat PKL yang unik
         $perusahaanList = PklAdministrasiSekolah::select('nama_perusahaan')->distinct()->pluck('nama_perusahaan');
 
+        $tahunList = PklAdministrasiSekolah::select('tahun_ajaran')->distinct()->orderBy('tahun_ajaran','desc')->pluck('tahun_ajaran');
+
         // dd($perusahaanList);
         $query = PklAdministrasiSekolah::query();
 
@@ -27,9 +29,13 @@ class PklAdministrasiSekolahController extends Controller
             $query->where('nama_perusahaan', $request->filter_perusahaan);
         }
 
+        if ($request->filled('filter_tahun')) {
+            $query->where('tahun_ajaran', $request->filter_tahun);
+        }
+
         $dataPklSekolah = $query->get();
 
-        return view('database.database.pkl.adm-sklh.index', compact('dataPklSekolah', 'perusahaanList'));
+        return view('database.database.pkl.adm-sklh.index', compact('dataPklSekolah', 'perusahaanList', 'tahunList'));
     }
 
 

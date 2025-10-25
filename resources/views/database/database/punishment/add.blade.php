@@ -22,7 +22,7 @@
                 <div class="col-lg-8">
                     <div class="mb-3">
                         <label class="form-label">Nama</label>
-                        <select class="form-control" name="id_siswa" id="nama-select">
+                        <select class="form-control" name="id_siswa" id="nama-select" value="{{ old('id_siswa') }}">
                             <option value="">-- Pilih Nama --</option>
                             <!-- Options will be populated dynamically -->
                         </select>

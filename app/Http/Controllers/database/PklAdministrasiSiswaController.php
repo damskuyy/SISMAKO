@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\File;
 use App\Models\database\PklAdministrasiSiswa;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\database\PklAdminSiswaRequest;
+use App\Models\database\PklAdministrasiSekolah;
 
 class PklAdministrasiSiswaController extends Controller
 {
@@ -15,7 +16,7 @@ class PklAdministrasiSiswaController extends Controller
     public function index(Request $request)
     {
         // Ambil daftar perusahaan tempat PKL yang unik
-        $perusahaanList = PklAdministrasiSiswa::select('tempat_pkl')->distinct()->pluck('tempat_pkl');
+        $perusahaanList = PklAdministrasiSekolah::select('nama_perusahaan')->distinct()->pluck('nama_perusahaan');
 
         $query = PklAdministrasiSiswa::query();
 
@@ -32,8 +33,9 @@ class PklAdministrasiSiswaController extends Controller
     // Show the form for creating a new resource
     public function create()
     {
-        // Return view to create a new record if needed
-        return view('database.database.pkl.adm-siswa.add');
+        // ambil daftar perusahaan dari tabel administrasi sekolah
+        $perusahaanList = PklAdministrasiSekolah::select('nama_perusahaan')->distinct()->pluck('nama_perusahaan');
+        return view('database.database.pkl.adm-siswa.add', compact('perusahaanList'));
     }
 
     // Store a newly created resource in storage
@@ -79,7 +81,8 @@ class PklAdministrasiSiswaController extends Controller
     public function edit($id)
     {
         $data = PklAdministrasiSiswa::findOrFail($id);
-        return view('database.database.pkl.adm-siswa.edit', compact('data'));
+        $perusahaanList = PklAdministrasiSekolah::select('nama_perusahaan')->distinct()->pluck('nama_perusahaan');
+        return view('database.database.pkl.adm-siswa.edit', compact('data','perusahaanList'));
         // Return view to edit the record if needed
     }
 

@@ -210,7 +210,7 @@
             <div class="col-lg-3">
                 <div class="card card-bordered card-award" style="cursor: pointer">
                     <div class="card-body d-flex" style="gap: 25px">
-                        <div class="content-body-1" style="width: 35%" onclick="toHref('/data-prestasi')">
+                        <div class="content-body-1" style="width: 35% display: grid; justify-items: center" onclick="toHref('/data-prestasi')">
                             <img src="https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/Icons%2Ftrophy-unscreen.gif?alt=media&token=006d9110-a018-4cc1-a730-785acfa81bc7" alt="" class="img-icons">
                             <h2>Award</h2>
                         </div>
@@ -229,18 +229,18 @@
                     <div class="card-body d-flex" style="gap: 25px">
                         <div class="content-body-1">
                             <img src="https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/Icons%2Fprofessor.gif?alt=media&token=7fe89df6-94d3-4db7-86a5-c865cf2fb1ac" alt="" class="img-icons">
-                            <h2 class="text-black">Tendik</h2>
+                            <h2 class="">Tendik</h2>
                         </div>
                         <div class="content-body-2 d-flex justify-content-center align-items-center"
                             style="gap: 20px; width: 100%">
                             <div class="content-body-2 d-flex" style="gap: 20px; width: 100%">
                                 <div class="content-body-2-1" style="width: 50%">
-                                    <h3 class="text-center text-black">Active</h3>
-                                    <h1 class="text-center text-black">{{ $totalTendikAktif }}</h1>
+                                    <h3 class="text-center ">Active</h3>
+                                    <h1 class="text-center ">{{ $totalTendikAktif }}</h1>
                                 </div>
                                 <div class="content-body-2-2" style="width: 50%">
-                                    <h3 class="text-center text-black">Off</h3>
-                                    <h1 class="text-center text-black">{{ $totalTendikTidakAktif }}</h1>
+                                    <h3 class="text-center ">Off</h3>
+                                    <h1 class="text-center ">{{ $totalTendikTidakAktif }}</h1>
                                 </div>
                             </div>
                         </div>
@@ -269,12 +269,12 @@
                     <div class="card-body d-flex" style="gap: 25px">
                         <div class="content-body-1" style="width: 35%">
                             <img src="https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/Icons%2Feducation.gif?alt=media&token=3a16b136-b068-479d-bfbb-ee4cbe544e50" alt="" class="img-icons">
-                            <h2 style="margin: 0">Lulusan</h2>
+                            <h3>Lulusan</h3>
                         </div>
                         <div class="content-body-2 d-flex justify-content-center align-items-center"
                             style="gap: 20px; width: 100%">
                             <div class="content-body-2-1">
-                                <h2 class="text-center">Data Kelulusan {{ $totalKelulusanSiswa }} Orang</h2>
+                                <h2 class="text-center">Data Kelulusan {{ $totalKelulusanSiswa }}</h2>
                             </div>
                         </div>
                     </div>

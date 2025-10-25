@@ -22,7 +22,7 @@ class KelasRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id_siswa' => 'required|unique:data_kelas,id_siswa',
+            'id_siswa' => 'required|exists:siswa,id',
             'tahun_pelajaran' => 'required',
             'kelas' => 'nullable|in:X,XI,XII,XIII',
             'jurusan' => 'required',
@@ -33,7 +33,12 @@ class KelasRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'id_siswa.unique' => 'Nama siswa sudah digunakan pada kelas lain',
+            'id_siswa.required' => 'Silahkan pilih nama siswa terlebih dahulu',
+            'id_siswa.exists' => 'Data siswa tidak valid',
+            'angkatan.required' => 'Angkatan harus diisi',
+            'tahun_pelajaran.required' => 'Tahun pelajaran harus diisi',
+            'jurusan.required' => 'Jurusan harus diisi',
+            'kelas.required' => 'Kelas harus dipilih',
         ];
     }
 }

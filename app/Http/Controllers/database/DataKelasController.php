@@ -80,51 +80,43 @@ class DataKelasController extends Controller
     }
     public function exportPdf(Request $request)
     {
-        // Define filters
+        // Define filters from request
         $tahunPelajaranFilter = $request->query('tahun_pelajaran', '');
         $kelasFilter = $request->query('kelas', '');
         $angkatanFilter = $request->query('angkatan', '');
 
-        // Create query for DataKelas with applied filters
-        $query = DataKelas::query();
+        // Start query with relationship to siswa
+        $query = DataKelas::with('siswa');
 
+        // Apply filters if they exist
         if ($tahunPelajaranFilter) {
             $query->where('tahun_pelajaran', $tahunPelajaranFilter);
         }
-
         if ($kelasFilter) {
             $query->where('kelas', $kelasFilter);
         }
-
         if ($angkatanFilter) {
             $query->where('angkatan', $angkatanFilter);
         }
 
-        // Fetch the required data including only No Urut and Nama columns
-        // Order by 'no_urut'
-        $dataKelas = $query->with('siswa:id,nama')
-            ->orderBy('no_urut')
-            ->get(['no_urut', 'id_siswa', 'kelas']);
-        // Generate HTML for the PDF
+        // Exclude 'Lulus' class like in index
+        $query->where('kelas', '!=', 'Lulus');
+
+        // Get data
+        $dataKelas = $query->get();
+
+        // Generate PDF
         $html = View::make('database.template.dataKelas', compact('dataKelas'))->render();
 
-        // Instantiate Dompdf
         $options = new Options();
         $options->set('isRemoteEnabled', true);
         $options->set('isHtml5ParserEnabled', true);
 
         $dompdf = new Dompdf($options);
-
-        // Load HTML content
         $dompdf->loadHtml($html);
-
-        // Set paper size and orientation
         $dompdf->setPaper('A4', 'landscape');
-
-        // Render PDF
         $dompdf->render();
 
-        // Stream the PDF
         return $dompdf->stream('data_kelas.pdf');
     }
     /**
@@ -256,4 +248,5 @@ class DataKelasController extends Controller
 
         return redirect()->route('kelas.index')->with('success', 'Data berhasil di hapus');
     }
+
 }

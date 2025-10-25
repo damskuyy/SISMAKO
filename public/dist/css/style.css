@@ -25,7 +25,8 @@ body::before {
     height: 93%;
     transform: translateX(0);
     content: '';
-    background-image: url('https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/created-by%2Fbg.jpg?alt=media&token=4fde1d9d-7518-47e0-b035-e3fb0adb39db');    background-size: cover;
+    background-image: url('https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/created-by%2Fbg.jpg?alt=media&token=4fde1d9d-7518-47e0-b035-e3fb0adb39db');    
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: top center;
     pointer-events: none;
@@ -41,8 +42,8 @@ body::before {
 
 .banner .slider {
     position: absolute;
-    width: 200px;
-    height: 250px;
+    width: 160px;
+    height: 200px;
     top: 20%;
     left: calc(50% - 100px);
     transform-style: preserve-3d;
@@ -65,11 +66,11 @@ body::before {
     position: absolute;
     inset: 0 0 0 0;
     transform:
-        rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(550px);
+        rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(490px);
 }
 
 .banner .slider .item img {
-    width: 500%;
+    width: 450%;
     height: 100%;
     object-fit: cover;
 }
@@ -140,9 +141,9 @@ body::before {
 
 @media screen and (max-width: 1023px) {
     .banner .slider {
-        width: 160px;
-        height: 200px;
-        left: calc(50% - 80px);
+        width: 120px;
+        height: 160px;
+        left: calc(50% - 100px);
     }
 
     .banner .slider .item {
@@ -171,13 +172,13 @@ body::before {
 
 @media screen and (max-width: 767px) {
     .banner .slider {
-        width: 100px;
-        height: 150px;
-        left: calc(50% - 50px);
+        width: 80px;
+        height: 120px;
+        left: calc(50% - 100px);
     }
 
     .banner .slider .item {
-        transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(180px);
+        transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(140px);
     }
 
     .banner .content h1 {

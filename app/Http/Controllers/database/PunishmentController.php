@@ -152,6 +152,11 @@ class PunishmentController extends Controller
             $filePath = '/files/punishment/';
             $file->move(public_path($filePath), $namaFile);
             $validatedData['path_dokumen'] = $filePath . $namaFile;
+        } else {
+            // kalau file belum diupload
+            return back()
+                ->withErrors(['path_dokumen' => 'Dokumen wajib diunggah!'])
+                ->withInput(); // supaya input lain tetap terisi
         }
 
         // Retrieve the student

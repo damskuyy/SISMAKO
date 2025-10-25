@@ -317,6 +317,7 @@ Route::controller(DataKelasController::class)->group(function () {
     Route::get('/kelas/export/{id}', 'exportPdfCv')->name('kelas.export.data');
     Route::get('/kelas/export-pdf', 'exportPdf')->name('kelas.export');
     Route::get('/kelas/upgrade', 'upgrade')->name('kelas.upgrade');
+    Route::post('kelas/upgrade', [DataKelasController::class, 'upgrade'])->name('kelas.upgrade');
 });
 Route::get('/kelas', [DataKelasController::class, 'index'])->name('kelas.index');
 

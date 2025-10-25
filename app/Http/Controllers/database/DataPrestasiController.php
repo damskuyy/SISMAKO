@@ -64,7 +64,12 @@ class DataPrestasiController extends Controller
 
         // Handle file upload
         $file = $request->file('path_sertifikat');
-        $namaFile =  Str::random(30) . '.' . $file->getClientOriginalExtension();
+        if (!$file) {
+            return back()
+                ->withErrors(['path_sertifikat' => 'File dokumentasi wajib diunggah!'])
+                ->withInput(); // supaya input lama tetap muncul
+        }
+        $namaFile = Str::random(30) . '.' . $file->getClientOriginalExtension();
         $file->move(public_path('/files/prestasi/' . $request->status . '/'), $namaFile);
 
         // Create a new DataPrestasi record with file path

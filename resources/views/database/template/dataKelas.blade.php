@@ -23,32 +23,33 @@
             text-align: center;
             margin-bottom: 20px;
         }
-        /* Define widths for specific columns */
-        .no-urut {
-            width:5%;
-        }
-        .nama {
-            width: 80%;
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>Data Kelas {{$dataKelas[0]->kelas}} Tahun Pelajaran {{date('Y')}}-{{date('Y')+1}}</h1>
+            <h1>Data Kelas</h1>
         </div>
         <table>
             <thead>
                 <tr>
-                    <th class="no-urut">No</th>
-                    <th class="nama">Nama</th>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Tahun Pelajaran</th>
+                    <th>Kelas</th>
+                    <th>Jurusan</th>
+                    <th>Angkatan</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($dataKelas as $data)
+                @foreach ($dataKelas as $index => $data)
                     <tr>
-                        <td class="no-urut">{{ $data->no_urut }}</td>
-                        <td class="nama">{{ $data->siswa->nama ?? 'Tidak ada data' }}</td>
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $data->siswa->nama ?? 'Tidak ada data' }}</td>
+                        <td>{{ $data->tahun_pelajaran }}</td>
+                        <td>{{ $data->kelas }}</td>
+                        <td>{{ $data->jurusan }}</td>
+                        <td>{{ $data->angkatan }}</td>
                     </tr>
                 @endforeach
             </tbody>
