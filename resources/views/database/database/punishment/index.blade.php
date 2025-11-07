@@ -78,10 +78,10 @@
                                     </a>
                                 </button>
                                 <button type="button"
-                                        class="btn btn-danger"
-                                        onclick="openDeleteModal('{{ route('punishment.destroy', $data->id) }}')">
-                                        <i class="bi bi-x-lg text-white"></i>
-                                    </button>
+                                    class="btn btn-danger"
+                                    onclick="openDeleteModal('{{ route('punishment.destroy', $data->id) }}')">
+                                    <i class="bi bi-x-lg text-white"></i>
+                                </button>
                             </div>
                         </td>
                     </tr>

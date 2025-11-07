@@ -6,9 +6,7 @@
             <div class="d-flex justify-content-between p-4">
                 <div>
                     <a href="/administrasi" class="btn btn-primary">Kembali</a>
-                </div>
-                <div>
-                    <a href="{{ route('kepsek.create') }}" class="btn btn-primary">Tambah</a>
+                    <a href="{{ route('kepsek.create') }}" class="btn btn-success">Tambah</a>
                 </div>
             </div>
             <div class="d-flex justify-content-center mb-3">
@@ -46,11 +44,11 @@
                                             <tr>
                                                 <th>No</th>
                                                 <th>Tahun Ajaran</th>
-                                                <th>Proker</th>
+                                                {{-- <th>Proker</th>
                                                 <th>RKTS</th>
                                                 <th>RKJM</th>
                                                 <th>Prog. Jangka Panjang</th>
-                                                <th>RKAS</th>
+                                                <th>RKAS</th> --}}
                                                 <th>Nomor Penilaian</th>
                                                 <th>Nama Guru</th>
                                                 <th>Nilai Tepat Waktu</th>
@@ -73,11 +71,11 @@
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $data->tahun_ajaran }}</td>
-                                                    <td>{{ Str::limit($data->proker_kepsek, 10, '...') }}</td>
+                                                    {{-- <td>{{ Str::limit($data->proker_kepsek, 10, '...') }}</td>
                                                     <td>{{ Str::limit($data->rkts, 10, '...') }}</td>
                                                     <td>{{ Str::limit($data->rkjm, 10, '...') }}</td>
                                                     <td>{{ Str::limit($data->prog_jangka_panjang, 10, '...') }}</td>
-                                                    <td>{{ Str::limit($data->rkas, 10, '...') }}</td>
+                                                    <td>{{ Str::limit($data->rkas, 10, '...') }}</td> --}}
                                                     <td>{{ $data->nomor_penilaian }}</td>
                                                     <td>{{ $data->nama_guru }}</td>
                                                     <td>{{ $data->nilai_tepat_waktu }}</td>
@@ -174,10 +172,10 @@
                                                     </td>
                                                 </tr>
                                             @empty
-                                                <tr>
-                                                    <td colspan="18" class="text-center">No data available</td>
-                                                </tr>
-                                            @endforelse
+                                            <tr>
+                                                <td colspan="14" class="text-center">Tidak ada data kepala sekolah yang tersedia.</td>
+                                            </tr>
+                                        @endforelse
                                         </tbody>
                                     </table>
                                 </div>

@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('layouts.livewire.header')
+    {{-- @include('layouts.livewire.header') --}}
     <div class="container pb-5">
         <div class="row">
             <div class="col-lg-12">
-                <div class="mb-4">
+                <div class="mb-4 mt-4">
                     <a href="/sarpras/school-purchase" class="btn btn-secondary">Back</a>
                 </div>
                 <div class="card">
@@ -177,8 +177,11 @@
 
         document.addEventListener("DOMContentLoaded", function() {
             @if ($errors->any())
-                var myModal = new bootstrap.Modal(document.getElementById('modal-update'));
-                myModal.show();
+                var updateEl = document.getElementById('modal-update');
+                if (updateEl) {
+                    var myModal = new bootstrap.Modal(updateEl);
+                    myModal.show();
+                }
             @endif
         });
     </script>

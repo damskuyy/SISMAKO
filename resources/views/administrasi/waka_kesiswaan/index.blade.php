@@ -6,9 +6,7 @@
             <div class="d-flex justify-content-between p-4">
                 <div>
                     <a href="/administrasi" class="btn btn-primary">Kembali</a>
-                </div>
-                <div>
-                    <a href="{{ route('waka_kesiswaan.create') }}" class="btn btn-primary">Tambah</a>
+                    <a href="{{ route('waka_kesiswaan.create') }}" class="btn btn-success">Tambah</a>
                 </div>
             </div>
             <div class="d-flex justify-content-center mb-3">
@@ -38,7 +36,6 @@
                         <div class="card">
                             <div class="card-header d-flex justify-content-between align-items-center">
                                 <h3 class="card-title">Daftar Waka Kesiswaan</h3>
-
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -197,7 +194,7 @@
                                                 </tr>
                                             @empty
                                                 <tr>
-                                                    <td colspan="18" class="text-center">No data available</td>
+                                                    <td colspan="14" class="text-center">Tidak ada data waka kesiswaan yang tersedia.</td>
                                                 </tr>
                                             @endforelse
                                         </tbody>

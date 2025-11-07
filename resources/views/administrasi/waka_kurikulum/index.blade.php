@@ -6,9 +6,7 @@
             <div class="d-flex justify-content-between p-4">
                 <div>
                     <a href="/administrasi" class="btn btn-primary">Kembali</a>
-                </div>
-                <div>
-                    <a href="{{ route('waka_kurikulum.create') }}" class="btn btn-primary">Tambah</a>
+                    <a href="{{ route('waka_kurikulum.create') }}" class="btn btn-success">Tambah</a>
                 </div>
             </div>
             <div class="d-flex justify-content-center mb-3">
@@ -170,7 +168,7 @@
                                                 </tr>
                                             @empty
                                                 <tr>
-                                                    <td colspan="19" class="text-center">No data available</td>
+                                                    <td colspan="11" class="text-center">Tidak ada data waka kurikulum yang tersedia.</td>
                                                 </tr>
                                             @endforelse
                                         </tbody>

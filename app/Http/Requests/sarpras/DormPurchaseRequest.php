@@ -21,17 +21,29 @@ class DormPurchaseRequest extends FormRequest
      */
     public function rules(): array
     {
+        // Try a few possible route parameter names for robustness
+        $id = $this->route('dorm_purchase') ?? $this->route('dormPurchase') ?? $this->route('id');
+
+        // If this is an update request (PUT/PATCH) exempt the current record from unique check
+        if ($this->isMethod('PUT') || $this->isMethod('PATCH')) {
+            $kodeRule = 'required|unique:dorm_purchases,kode,' . $id;
+            $gambarRule = 'nullable|mimes:jpg,jpeg,png';
+        } else {
+            $kodeRule = 'required|unique:dorm_purchases,kode';
+            $gambarRule = 'required|mimes:jpg,jpeg,png';
+        }
+
         return [
             "tanggal_pembelian" => "required",
             "nama_barang" => "required",
-            "kode" => "required|unique:dorm_purchases,kode",
+            "kode" => $kodeRule,
             "harga_satuan" => "required",
             "jumlah_baik" => "required",
             "total_harga" => "required",
             "pembeli" => "required",
             "toko" => "required",
             "deskripsi" => "required",
-            "gambar.*" => "required|mimes:jpg,jpeg,png",
+            "gambar.*" => $gambarRule,
         ];
     }
 

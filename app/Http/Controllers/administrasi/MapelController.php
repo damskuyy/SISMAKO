@@ -54,9 +54,6 @@ class MapelController extends Controller
         return view('administrasi.mapel.index', compact('mapels', 'tahunAjaranFilter', 'kelasFilter', 'mapelFilter', 'tahunAjaranOptions', 'kelasOptions', 'mapelOptions'));
     }
 
-
-
-
     public function create()
     {
         // $startYear = 2024;
@@ -81,28 +78,39 @@ class MapelController extends Controller
         // Validasi input
         $validateData = $request->validated();
 
+        // Map certain form file field names to DB column names (keep as file-mapping)
+        $fieldMapping = [
+            'KodeEtikGuru' => 'kode_etik',
+            'Prosem' => 'program_semester',
+            'Prota' => 'program_tahunan',
+            'Kaldik' => 'kaldik_sekolah',
+            'JurnalAgendaGuru' => 'jurnal_guru',
+            'AlokasiWaktu' => 'alokasi_waktu',
+            'DaftarHadirSiswa' => 'daftar_hadir_siswa',
+            'JadwalMengajarGuru' => 'jadwal_pelajaran',
+        ];
 
         $fileFields = [
-            'CapaianPembelajaran',
-            'TPATP',
-            'KKTP',
-            'KodeEtikGuru',
-            'IkrarGuru',
-            'TatibGuru',
-            'PembiasaanGuru',
-            'Kaldik',
-            'AlokasiWaktu',
-            'Prota',
-            'Prosem',
-            'JurnalAgendaGuru',
-            'DaftarHadirSiswa',
-            'DaftarNilaiSiswa',
-            'PSS',
-            'AnalisisHasilPenilaian',
-            'PRP',
-            'JadwalMengajarGuru',
-            'TugasTerstruktur',
-            'TugasTidakTerstruktur',
+            'kode_etik',
+            'ikrar_guru',
+            'tatib_guru',
+            'pembiasaan_guru',
+            'program_semester',
+            'program_tahunan',
+            'kaldik_sekolah',
+            'jurnal_guru',
+            'alokasi_waktu',
+            'daftar_hadir_siswa',
+            'daftar_nilai_siswa',
+            'jadwal_pelajaran',
+            'penilaian_sikap',
+            'analisis_hasil_penilaian',
+            'program_remedial',
+            'tugas_terstruktur',
+            'tugas_tidak_terstruktur',
+            'dedkg',
+            'ptlkg',
+            'kisi_kisi_soal_kartu_soal',
             'rpp_1',
             'pendukung_rpp_1',
             'rpp_2',
@@ -132,6 +140,16 @@ class MapelController extends Controller
         ];
 
 
+        // Handle file uploads with field mapping
+        foreach ($fieldMapping as $oldField => $newField) {
+            if ($request->file($oldField)) {
+                $file = $request->file($oldField);
+                $originalName = $file->getClientOriginalName();
+                $validateData[$newField] = $file->storeAs($newField, $originalName);
+            }
+        }
+
+        // Handle RPP and related files
         foreach ($fileFields as $fileField) {
             if ($request->file($fileField)) {
                 $file = $request->file($fileField);
@@ -139,6 +157,22 @@ class MapelController extends Controller
                 $validateData[$fileField] = $file->storeAs($fileField, $originalName);
             }
         }
+
+        // Create the record
+        // Map textual fields from legacy form keys (if present) to DB columns.
+        if (isset($validateData['pkg'])) {
+            $validateData['capaian_pembelajaran'] = $validateData['pkg'];
+            unset($validateData['pkg']);
+        }
+        if (isset($validateData['silabus'])) {
+            $validateData['tp_atp'] = $validateData['silabus'];
+            unset($validateData['silabus']);
+        }
+        if (isset($validateData['ki_kd_skl'])) {
+            $validateData['kktp'] = $validateData['ki_kd_skl'];
+            unset($validateData['ki_kd_skl']);
+        }
+
         Mapel::create($validateData);
 
 
@@ -150,6 +184,8 @@ class MapelController extends Controller
     {
         // $tahunAjaran = TahunAjaranHelper::generateTahunAjaran();
         $mapel = Mapel::findOrFail($id);
+        // If needed, expose legacy attributes; prefer using new column names
+        // $mapel->makeVisible(['pkg', 'silabus', 'ki_kd_skl']);
         return view('administrasi.mapel.edit', compact('mapel'));
     }
 
@@ -162,27 +198,27 @@ class MapelController extends Controller
         $validateData = $request->validated();
 
 
+        // Only handle file fields (legacy/form names are mapped separately in store)
         $fileFields = [
-            'CapaianPembelajaran',
-            'TPATP',
-            'KKTP',
-            'KodeEtikGuru',
-            'IkrarGuru',
-            'TatibGuru',
-            'PembiasaanGuru',
-            'Kaldik',
-            'AlokasiWaktu',
-            'Prota',
-            'Prosem',
-            'JurnalAgendaGuru',
-            'DaftarHadirSiswa',
-            'DaftarNilaiSiswa',
-            'PSS',
-            'AnalisisHasilPenilaian',
-            'PRP',
-            'JadwalMengajarGuru',
-            'TugasTerstruktur',
-            'TugasTidakTerstruktur',
+            'kode_etik',
+            'ikrar_guru',
+            'tatib_guru',
+            'pembiasaan_guru',
+            'program_semester',
+            'program_tahunan',
+            'kaldik_sekolah',
+            'jurnal_guru',
+            'alokasi_waktu',
+            'daftar_hadir_siswa',
+            'daftar_nilai_siswa',
+            'jadwal_pelajaran',
+            'penilaian_sikap',
+            'analisis_hasil_penilaian',
+            'program_remedial',
+            'tugas_terstruktur',
+            'tugas_tidak_terstruktur',
+            'dedkg',
+            'ptlkg',
             'rpp_1',
             'pendukung_rpp_1',
             'rpp_2',
@@ -212,21 +248,43 @@ class MapelController extends Controller
         ];
 
 
+        // Map for legacy form file fields (same mapping used in store)
+        $fieldMapping = [
+            'KodeEtikGuru' => 'kode_etik',
+            'Prosem' => 'program_semester',
+            'Prota' => 'program_tahunan',
+            'Kaldik' => 'kaldik_sekolah',
+            'JurnalAgendaGuru' => 'jurnal_guru',
+            'AlokasiWaktu' => 'alokasi_waktu',
+            'DaftarHadirSiswa' => 'daftar_hadir_siswa',
+            'JadwalMengajarGuru' => 'jadwal_pelajaran',
+        ];
+
+        // Handle mapped legacy form file fields first (if provided)
+        foreach ($fieldMapping as $oldField => $newField) {
+            if ($request->hasFile($oldField)) {
+                // delete old
+                if ($mapel->$newField && Storage::exists($mapel->$newField)) {
+                    Storage::delete($mapel->$newField);
+                }
+                $file = $request->file($oldField);
+                $originalName = $file->getClientOriginalName();
+                $validateData[$newField] = $file->storeAs($newField, $originalName);
+            } else {
+                $validateData[$newField] = $mapel->$newField;
+            }
+        }
+
+        // Handle direct file fields (snake_case DB columns)
         foreach ($fileFields as $fileField) {
             if ($request->hasFile($fileField)) {
-                // Jika ada file baru, hapus file lama jika ada
-                if (isset($validateData[$fileField])) {
-                    $oldFile = $validateData[$fileField];
-                    if ($oldFile && Storage::exists($oldFile)) {
-                        Storage::delete($oldFile);
-                    }
+                if ($mapel->$fileField && Storage::exists($mapel->$fileField)) {
+                    Storage::delete($mapel->$fileField);
                 }
-                // Simpan file baru
                 $file = $request->file($fileField);
                 $originalName = $file->getClientOriginalName();
                 $validateData[$fileField] = $file->storeAs($fileField, $originalName);
             } else {
-                // Jika tidak ada file baru, pertahankan data lama
                 $validateData[$fileField] = $mapel->$fileField;
             }
         }
@@ -246,27 +304,28 @@ class MapelController extends Controller
 
 
         // Define file fields
+        // directories to scan for downloads (only snake_case/storage folders)
         $fileFields = [
-            'CapaianPembelajaran',
-            'TPATP',
-            'KKTP',
-            'KodeEtikGuru',
-            'IkrarGuru',
-            'TatibGuru',
-            'PembiasaanGuru',
-            'Kaldik',
-            'AlokasiWaktu',
-            'Prota',
-            'Prosem',
-            'JurnalAgendaGuru',
-            'DaftarHadirSiswa',
-            'DaftarNilaiSiswa',
-            'PSS',
-            'AnalisisHasilPenilaian',
-            'PRP',
-            'JadwalMengajarGuru',
-            'TugasTerstruktur',
-            'TugasTidakTerstruktur',
+            'kode_etik',
+            'ikrar_guru',
+            'tatib_guru',
+            'pembiasaan_guru',
+            'program_semester',
+            'program_tahunan',
+            'kaldik_sekolah',
+            'jurnal_guru',
+            'alokasi_waktu',
+            'daftar_hadir_siswa',
+            'daftar_nilai_siswa',
+            'jadwal_pelajaran',
+            'penilaian_sikap',
+            'analisis_hasil_penilaian',
+            'program_remedial',
+            'tugas_terstruktur',
+            'tugas_tidak_terstruktur',
+            'dedkg',
+            'ptlkg',
+            'kisi_kisi_soal_kartu_soal',
             'rpp_1',
             'pendukung_rpp_1',
             'rpp_2',
@@ -316,28 +375,28 @@ class MapelController extends Controller
         $mapel = Mapel::findOrFail($id);
 
 
-        // Daftar direktori file yang ingin didownload
+        // Daftar direktori file yang ingin didownload (snake_case sesuai migration/storage)
         $directories = [
-            'CapaianPembelajaran',
-            'TPATP',
-            'KKTP',
-            'KodeEtikGuru',
-            'IkrarGuru',
-            'TatibGuru',
-            'PembiasaanGuru',
-            'Kaldik',
-            'AlokasiWaktu',
-            'Prota',
-            'Prosem',
-            'JurnalAgendaGuru',
-            'DaftarHadirSiswa',
-            'DaftarNilaiSiswa',
-            'PSS',
-            'AnalisisHasilPenilaian',
-            'PRP',
-            'JadwalMengajarGuru',
-            'TugasTerstruktur',
-            'TugasTidakTerstruktur',
+            'kode_etik',
+            'program_semester',
+            'program_tahunan',
+            'kaldik_sekolah',
+            'jurnal_guru',
+            'alokasi_waktu',
+            'daftar_hadir_siswa',
+            'daftar_nilai_siswa',
+            'penilaian_sikap',
+            'analisis_hasil_penilaian',
+            'program_remedial',
+            'jadwal_pelajaran',
+            'tugas_terstruktur',
+            'tugas_tidak_terstruktur',
+            'dedkg',
+            'ptlkg',
+            'ikrar_guru',
+            'tatib_guru',
+            'pembiasaan_guru',
+            'kisi_kisi_soal_kartu_soal',
             'rpp_1',
             'pendukung_rpp_1',
             'rpp_2',
@@ -370,8 +429,12 @@ class MapelController extends Controller
         // Cek apakah ada file yang tersedia untuk didownload
         $filesAvailable = false;
 
-
         foreach ($directories as $dir) {
+            $filePath = $mapel->{$dir};
+            if ($filePath && Storage::exists($dir . '/' . basename($filePath))) {
+                $filesAvailable = true;
+                break;
+            }
             if ($mapel->$dir) {
                 // Mendapatkan path file dari public directory
                 $filePath = public_path($mapel->$dir);
@@ -404,12 +467,21 @@ class MapelController extends Controller
         $zip = new ZipArchive;
         if ($zip->open($zipFilePath, ZipArchive::CREATE | ZipArchive::OVERWRITE) === TRUE) {
             foreach ($directories as $dir) {
-                if ($mapel->$dir) {
-                    $filePath = public_path($mapel->$dir); // Mengambil file dari public
-                    if (file_exists($filePath)) {
-                        $zip->addFile($filePath, basename($filePath)); // Tambahkan file ke zip
-                    } else {
-                        Log::error('File tidak ditemukan: ' . $filePath);
+                $filePath = $mapel->{$dir};
+                // cek di storage terlebih dahulu
+                if ($filePath && Storage::exists($dir . '/' . basename($filePath))) {
+                    $fullPath = Storage::path($dir . '/' . basename($filePath));
+                    $relativePath = basename($dir) . '/' . basename($filePath);
+                    $zip->addFile($fullPath, $relativePath);
+                } else {
+                    // cek di public path
+                    if ($mapel->$dir) {
+                        $publicFile = public_path($mapel->$dir); // Mengambil file dari public
+                        if (file_exists($publicFile)) {
+                            $zip->addFile($publicFile, basename($publicFile)); // Tambahkan file ke zip
+                        } else {
+                            Log::error('File tidak ditemukan: ' . $publicFile);
+                        }
                     }
                 }
             }

@@ -6,9 +6,7 @@
             <div class="d-flex justify-content-between p-4">
                 <div>
                     <a href="/administrasi" class="btn btn-primary">Kembali</a>
-                </div>
-                <div>
-                    <a href="{{ route('walas.create') }}" class="btn btn-primary">Tambah</a>
+                    <a href="{{ route('walas.create') }}" class="btn btn-success">Tambah</a>
                 </div>
             </div>
             <div class="d-flex justify-content-center mb-3">
@@ -50,7 +48,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($walas as $item)
+                                        @forelse ($walas as $item)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $item->tahun_ajaran }}</td>
@@ -124,7 +122,11 @@
                                                     </form>
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        @empty
+                                            <tr>
+                                                <td colspan="11" class="text-center">Tidak ada data walas yang tersedia.</td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>

@@ -6,9 +6,7 @@
             <div class="d-flex justify-content-between p-4">
                 <div>
                     <a href="/administrasi" class="btn btn-primary">Kembali</a>
-                </div>
-                <div>
-                    <a href="{{ route('kepalaLabKom.create') }}" class="btn btn-primary">Tambah</a>
+                    <a href="{{ route('kepalaLabKom.create') }}" class="btn btn-success">Tambah</a>
                 </div>
             </div>
             <div class="d-flex justify-content-center mb-3">
@@ -56,7 +54,7 @@
                                         @php
                                             $i = 1;
                                         @endphp
-                                        @foreach ($kepalaLabKom as $item)
+                                        @forelse ($kepalaLabKom as $item)
                                             <tr>
                                                 <td>
                                                     {{ $i++ }}
@@ -119,7 +117,7 @@
                                                                         <div class="w-100">
                                                                             <div class="row">
                                                                                 <div class="col">
-                                                                                     <button type="button" class="btn w-100"
+                                                                                    <button type="button" class="btn w-100"
                                                                                         data-bs-dismiss="modal">Cancel</button>
                                                                                 </div>
                                                                                 <div class="col">
@@ -135,7 +133,11 @@
                                                     </form>
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        @empty
+                                            <tr>
+                                                <td colspan="11" class="text-center">Tidak ada data kepala LabKom yang tersedia.</td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>

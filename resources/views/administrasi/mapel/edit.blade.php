@@ -95,47 +95,22 @@
                                 <div class="row row-cards">
                                     <div class="col-md-4 mb-3">
                                         <label class="form-label fw-bold">Capaian Pembelajaran</label>
-                                        <div class="input-group">
-                                            <input type="file" class="form-control" name="CapaianPembelajaran"
-                                                accept="all">
-                                            <div class="input-group-append">
-                                                <button type="button" class="btn" style="height: 100%"
-                                                    id="btn-remove-CapaianPembelajaran"
-                                                    onclick="removeFile('CapaianPembelajaran')"><i
-                                                        class="fa-solid fa-x"></i></button>
-                                            </div>
-                                        </div>
-                                        @error('CapaianPembelajaran')
+                                        <textarea class="form-control" name="capaian_pembelajaran" rows="4">{{ $mapel->capaian_pembelajaran }}</textarea>
+                                        @error('capaian_pembelajaran')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <label class="form-label fw-bold">Tujuan Pembelajaran & Alur Tujuan Pembelajaran
-                                            (TPATP)</label>
-                                        <div class="input-group">
-                                            <input type="file" class="form-control" name="TPATP" accept="all">
-                                            <div class="input-group-append">
-                                                <button type="button" class="btn" style="height: 100%"
-                                                    id="btn-remove-TPATP" onclick="removeFile('TPATP')"><i
-                                                        class="fa-solid fa-x"></i></button>
-                                            </div>
-                                        </div>
-                                        @error('TPATP')
+                                        <label class="form-label fw-bold">Tujuan Pembelajaran & Silabus</label>
+                                        <textarea class="form-control" name="tp_atp" rows="4">{{ $mapel->tp_atp }}</textarea>
+                                        @error('tp_atp')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="col-md-4 mb-3">
-                                        <label class="form-label fw-bold">Kriteria Ketuntasan Tujuan Pembelajaran
-                                            (KKTP)</label>
-                                        <div class="input-group">
-                                            <input type="file" class="form-control" name="KKTP" accept="all">
-                                            <div class="input-group-append">
-                                                <button type="button" class="btn" style="height: 100%"
-                                                    id="btn-remove-KKTP" onclick="removeFile('KKTP')"><i
-                                                        class="fa-solid fa-x"></i></button>
-                                            </div>
-                                        </div>
-                                        @error('KKTP')
+                                                                        <div class="col-md-4 mb-3">
+                                        <label class="form-label fw-bold">KI, KD & SKL</label>
+                                        <textarea class="form-control" name="kktp" rows="4">{{ $mapel->kktp }}</textarea>
+                                        @error('kktp')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -193,129 +168,129 @@
                                     <div class="col-md-4 mb-3">
                                         <label class="form-label fw-bold">Kode Etik Guru</label>
                                         <div class="input-group">
-                                            <input type="file" class="form-control" name="KodeEtikGuru" accept="all">
+                                            <input type="file" class="form-control" name="kode_etik" accept="all">
                                             <div class="input-group-append">
                                                 <button type="button" class="btn" style="height: 100%"
-                                                    id="btn-remove-KodeEtikGuru" onclick="removeFile('KodeEtikGuru')"><i
+                                                    id="btn-remove-kode_etik" onclick="removeFile('kode_etik')"><i
                                                         class="fa-solid fa-x"></i></button>
                                             </div>
                                         </div>
-                                        @error('KodeEtikGuru')
+                                        @error('kode_etik')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <label class="form-label fw-bold">Ikrar Guru</label>
                                         <div class="input-group">
-                                            <input type="file" class="form-control" name="IkrarGuru" accept="all">
+                                            <input type="file" class="form-control" name="ikrar_guru" accept="all">
                                             <div class="input-group-append">
                                                 <button type="button" class="btn" style="height: 100%"
-                                                    id="btn-remove-IkrarGuru" onclick="removeFile('IkrarGuru')"><i
+                                                    id="btn-remove-ikrar_guru" onclick="removeFile('ikrar_guru')"><i
                                                         class="fa-solid fa-x"></i></button>
                                             </div>
                                         </div>
-                                        @error('IkrarGuru')
+                                        @error('ikrar_guru')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <label class="form-label fw-bold">Tata Tertib Guru</label>
                                         <div class="input-group">
-                                            <input type="file" class="form-control" name="TatibGuru" accept="all">
+                                            <input type="file" class="form-control" name="tatib_guru" accept="all">
                                             <div class="input-group-append">
                                                 <button type="button" class="btn" style="height: 100%"
-                                                    id="btn-remove-TatibGuru" onclick="removeFile('TatibGuru')"><i
+                                                    id="btn-remove-tatib_guru" onclick="removeFile('tatib_guru')"><i
                                                         class="fa-solid fa-x"></i></button>
                                             </div>
                                         </div>
-                                        @error('TatibGuru')
+                                        @error('tatib_guru')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <label class="form-label fw-bold">Pembiasaan Guru</label>
                                         <div class="input-group">
-                                            <input type="file" class="form-control" name="PembiasaanGuru" accept="all">
+                                            <input type="file" class="form-control" name="pembiasaan_guru" accept="all">
                                             <div class="input-group-append">
                                                 <button type="button" class="btn" style="height: 100%"
-                                                    id="btn-remove-PembiasaanGuru"
-                                                    onclick="removeFile('PembiasaanGuru')"><i
+                                                    id="btn-remove-pembiasaan_guru"
+                                                    onclick="removeFile('pembiasaan_guru')"><i
                                                         class="fa-solid fa-x"></i></button>
                                             </div>
                                         </div>
-                                        @error('PembiasaanGuru')
+                                        @error('pembiasaan_guru')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <label class="form-label fw-bold">Kalender Pendidikan (KALDIK)</label>
                                         <div class="input-group">
-                                            <input type="file" class="form-control" name="Kaldik" accept="all">
+                                            <input type="file" class="form-control" name="kaldik_sekolah" accept="all">
                                             <div class="input-group-append">
                                                 <button type="button" class="btn" style="height: 100%"
-                                                    id="btn-remove-Kaldik" onclick="removeFile('Kaldik')"><i
+                                                    id="btn-remove-kaldik_sekolah" onclick="removeFile('kaldik_sekolah')"><i
                                                         class="fa-solid fa-x"></i></button>
                                             </div>
                                         </div>
-                                        @error('Kaldik')
+                                        @error('kaldik_sekolah')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <label class="form-label fw-bold">Alokasi Waktu</label>
                                         <div class="input-group">
-                                            <input type="file" class="form-control" name="AlokasiWaktu" accept="all">
+                                            <input type="file" class="form-control" name="alokasi_waktu" accept="all">
                                             <div class="input-group-append">
                                                 <button type="button" class="btn" style="height: 100%"
-                                                    id="btn-remove-AlokasiWaktu" onclick="removeFile('AlokasiWaktu')"><i
+                                                    id="btn-remove-alokasi_waktu" onclick="removeFile('alokasi_waktu')"><i
                                                         class="fa-solid fa-x"></i></button>
                                             </div>
                                         </div>
-                                        @error('AlokasiWaktu')
+                                        @error('alokasi_waktu')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <label class="form-label fw-bold">Program Tahunan (PROTA)</label>
                                         <div class="input-group">
-                                            <input type="file" class="form-control" name="Prota" accept="all">
+                                            <input type="file" class="form-control" name="program_tahunan" accept="all">
                                             <div class="input-group-append">
                                                 <button type="button" class="btn" style="height: 100%"
-                                                    id="btn-remove-Prota" onclick="removeFile('Prota')"><i
+                                                    id="btn-remove-program_tahunan" onclick="removeFile('program_tahunan')"><i
                                                         class="fa-solid fa-x"></i></button>
                                             </div>
                                         </div>
-                                        @error('Prota')
+                                        @error('program_tahunan')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <label class="form-label fw-bold">Program Semester (PROSEM)</label>
                                         <div class="input-group">
-                                            <input type="file" class="form-control" name="Prosem" accept="all">
+                                            <input type="file" class="form-control" name="program_semester" accept="all">
                                             <div class="input-group-append">
                                                 <button type="button" class="btn" style="height: 100%"
-                                                    id="btn-remove-Prosem" onclick="removeFile('Prosem')"><i
+                                                    id="btn-remove-program_semester" onclick="removeFile('program_semester')"><i
                                                         class="fa-solid fa-x"></i></button>
                                             </div>
                                         </div>
-                                        @error('Prosem')
+                                        @error('program_semester')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <label class="form-label fw-bold">Jurnal Agenda Guru</label>
                                         <div class="input-group">
-                                            <input type="file" class="form-control" name="jurnal-agenda-guru"
+                                            <input type="file" class="form-control" name="jurnal_guru"
                                                 accept="all">
                                             <div class="input-group-append">
                                                 <button type="button" class="btn" style="height: 100%"
-                                                    id="btn-remove-jurnal-agenda-guru"
-                                                    onclick="removeFile('jurnal-agenda-guru')"><i
+                                                    id="btn-remove-jurnal_guru"
+                                                    onclick="removeFile('jurnal_guru')"><i
                                                         class="fa-solid fa-x"></i></button>
                                             </div>
                                         </div>
-                                        @error('jurnal-agenda-guru')
+                                        @error('jurnal_guru')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -332,124 +307,124 @@
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label fw-bold">Daftar Hadir Siswa</label>
                                         <div class="input-group">
-                                            <input type="file" class="form-control" name="DaftarHadirSiswa"
+                                            <input type="file" class="form-control" name="daftar_hadir_siswa"
                                                 accept="all">
                                             <div class="input-group-append">
                                                 <button type="button" class="btn" style="height: 100%"
-                                                    id="btn-remove-DaftarHadirSiswa"
-                                                    onclick="removeFile('DaftarHadirSiswa')"><i
+                                                    id="btn-remove-daftar_hadir_siswa"
+                                                    onclick="removeFile('daftar_hadir_siswa')"><i
                                                         class="fa-solid fa-x"></i></button>
                                             </div>
                                         </div>
-                                        @error('DaftarHadirSiswa')
+                                        @error('daftar_hadir_siswa')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label fw-bold">Daftar Nilai Siswa</label>
                                         <div class="input-group">
-                                            <input type="file" class="form-control" name="DaftarNilaiSiswa"
+                                            <input type="file" class="form-control" name="daftar_nilai_siswa"
                                                 accept="all">
                                             <div class="input-group-append">
                                                 <button type="button" class="btn" style="height: 100%"
-                                                    id="btn-remove-DaftarNilaiSiswa"
-                                                    onclick="removeFile('DaftarNilaiSiswa')"><i
+                                                    id="btn-remove-daftar_nilai_siswa"
+                                                    onclick="removeFile('daftar_nilai_siswa')"><i
                                                         class="fa-solid fa-x"></i></button>
                                             </div>
                                         </div>
-                                        @error('DaftarNilaiSiswa')
+                                        @error('daftar_nilai_siswa')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label fw-bold">Penilaian Sikap & Spiritual (PSS)</label>
                                         <div class="input-group">
-                                            <input type="file" class="form-control" name="PSS" accept="all">
+                                            <input type="file" class="form-control" name="penilaian_sikap" accept="all">
                                             <div class="input-group-append">
                                                 <button type="button" class="btn" style="height: 100%"
-                                                    id="btn-remove-PSS" onclick="removeFile('PSS')"><i
+                                                    id="btn-remove-penilaian_sikap" onclick="removeFile('penilaian_sikap')"><i
                                                         class="fa-solid fa-x"></i></button>
                                             </div>
                                         </div>
-                                        @error('PSS')
+                                        @error('penilaian_sikap')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label fw-bold">Analisis Hasil Penilaian</label>
                                         <div class="input-group">
-                                            <input type="file" class="form-control" name="AnalisisHasilPenilaian"
+                                            <input type="file" class="form-control" name="analisis_hasil_penilaian"
                                                 accept="all">
                                             <div class="input-group-append">
                                                 <button type="button" class="btn" style="height: 100%"
-                                                    id="btn-remove-AnalisisHasilPenilaian"
-                                                    onclick="removeFile('AnalisisHasilPenilaian')"><i
+                                                    id="btn-remove-analisis_hasil_penilaian"
+                                                    onclick="removeFile('analisis_hasil_penilaian')"><i
                                                         class="fa-solid fa-x"></i></button>
                                             </div>
                                         </div>
-                                        @error('AnalisisHasilPenilaian')
+                                        @error('analisis_hasil_penilaian')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label fw-bold">Program Remedial & Pengayaan (PRP)</label>
                                         <div class="input-group">
-                                            <input type="file" class="form-control" name="PRP" accept="all">
+                                            <input type="file" class="form-control" name="program_remedial" accept="all">
                                             <div class="input-group-append">
                                                 <button type="button" class="btn" style="height: 100%"
-                                                    id="btn-remove-PRP" onclick="removeFile('PRP')"><i
+                                                    id="btn-remove-program_remedial" onclick="removeFile('program_remedial')"><i
                                                         class="fa-solid fa-x"></i></button>
                                             </div>
                                         </div>
-                                        @error('PRP')
+                                        @error('program_remedial')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label fw-bold">Jadwal Mengajar Guru</label>
                                         <div class="input-group">
-                                            <input type="file" class="form-control" name="JadwalMengajarGuru"
+                                            <input type="file" class="form-control" name="jadwal_pelajaran"
                                                 accept="all">
                                             <div class="input-group-append">
                                                 <button type="button" class="btn" style="height: 100%"
-                                                    id="btn-remove-JadwalMengajarGuru"
-                                                    onclick="removeFile('JadwalMengajarGuru')"><i
+                                                    id="btn-remove-jadwal_pelajaran"
+                                                    onclick="removeFile('jadwal_pelajaran')"><i
                                                         class="fa-solid fa-x"></i></button>
                                             </div>
                                         </div>
-                                        @error('JadwalMengajarGuru')
+                                        @error('jadwal_pelajaran')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label fw-bold">Tugas Terstruktur</label>
                                         <div class="input-group">
-                                            <input type="file" class="form-control" name="TugasTerstruktur"
+                                            <input type="file" class="form-control" name="tugas_terstruktur"
                                                 accept="all">
                                             <div class="input-group-append">
                                                 <button type="button" class="btn" style="height: 100%"
-                                                    id="btn-remove-TugasTerstruktur"
-                                                    onclick="removeFile('TugasTerstruktur')"><i
+                                                    id="btn-remove-tugas_terstruktur"
+                                                    onclick="removeFile('tugas_terstruktur')"><i
                                                         class="fa-solid fa-x"></i></button>
                                             </div>
                                         </div>
-                                        @error('TugasTerstruktur')
+                                        @error('tugas_terstruktur')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label fw-bold">Tugas Tidak Terstruktur</label>
                                         <div class="input-group">
-                                            <input type="file" class="form-control" name="TugasTidakTerstruktur"
+                                            <input type="file" class="form-control" name="tugas_tidak_terstruktur"
                                                 accept="all">
                                             <div class="input-group-append">
                                                 <button type="button" class="btn" style="height: 100%"
-                                                    id="btn-remove-TugasTidakTerstruktur"
-                                                    onclick="removeFile('TugasTidakTerstruktur')"><i
+                                                    id="btn-remove-tugas_tidak_terstruktur"
+                                                    onclick="removeFile('tugas_tidak_terstruktur')"><i
                                                         class="fa-solid fa-x"></i></button>
                                             </div>
                                         </div>
-                                        @error('TugasTidakTerstruktur')
+                                        @error('tugas_tidak_terstruktur')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -467,14 +442,14 @@
                                         <label class="form-label fw-bold">Daftar Evaluasi Diri Kerja Guru
                                             (DEDKG)</label>
                                         <div class="input-group">
-                                            <input type="file" class="form-control" name="DEDKG" accept="all">
+                                            <input type="file" class="form-control" name="dedkg" accept="all">
                                             <div class="input-group-append">
                                                 <button type="button" class="btn" style="height: 100%"
-                                                    id="btn-remove-DEDKG" onclick="removeFile('DEDKG')"><i
+                                                    id="btn-remove-dedkg" onclick="removeFile('dedkg')"><i
                                                         class="fa-solid fa-x"></i></button>
                                             </div>
                                         </div>
-                                        @error('DEDKG')
+                                        @error('dedkg')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -482,14 +457,14 @@
                                         <label class="form-label fw-bold">Program Tindak Lanjut Kerja Guru
                                             (PTLKG)</label>
                                         <div class="input-group">
-                                            <input type="file" class="form-control" name="PTLKG" accept="all">
+                                            <input type="file" class="form-control" name="ptlkg" accept="all">
                                             <div class="input-group-append">
                                                 <button type="button" class="btn" style="height: 100%"
-                                                    id="btn-remove-PTLKG" onclick="removeFile('PTLKG')"><i
+                                                    id="btn-remove-ptlkg" onclick="removeFile('ptlkg')"><i
                                                         class="fa-solid fa-x"></i></button>
                                             </div>
                                         </div>
-                                        @error('PTLKG')
+                                        @error('ptlkg')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>

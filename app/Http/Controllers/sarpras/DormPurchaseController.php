@@ -108,27 +108,113 @@ class DormPurchaseController extends Controller
     }
     public function damaged(Request $request, $id)
     {
+        Log::info('Damaged items request (dorm):', [
+            'method' => $request->method(),
+            'data' => $request->all()
+        ]);
+
         // Validasi input
-        $request->validate([
+        $validated = $request->validate([
             'jumlah_rusak' => 'required|integer|min:1',
             'keterangan' => 'required|string|max:255',
         ]);
 
-        // Temukan data pembelian sekolah
+        // Temukan data pembelian asrama
         $dormPurchase = DormPurchase::findOrFail($id);
 
+        if ($request->method() === 'DELETE') {
+            // Jika method DELETE, kembalikan semua barang rusak menjadi baik
+            $dormPurchase->jumlah_baik += $dormPurchase->jumlah_rusak;
+            $dormPurchase->jumlah_rusak = 0;
+            $dormPurchase->keterangan = null;
+            $dormPurchase->save();
+
+            return redirect('/sarpras/damaged-items-dorm')
+                ->with('success', 'Barang berhasil dipulihkan ke kondisi baik.');
+        }
+
+        // Untuk POST/PUT, proses perubahan status rusak
         // Pastikan jumlah rusak yang dimasukkan tidak melebihi jumlah baik yang tersedia
-        if ($request->jumlah_rusak > $dormPurchase->jumlah_baik) {
+        if ($request->method() === 'POST' && $request->jumlah_rusak > $dormPurchase->jumlah_baik) {
             return redirect()->back()->withErrors(['jumlah_rusak' => 'Jumlah rusak tidak boleh melebihi jumlah baik yang tersedia.']);
         }
 
-        // Kurangi jumlah baik dengan jumlah rusak yang dimasukkan
-        $dormPurchase->jumlah_baik -= $request->jumlah_rusak;
-        $dormPurchase->jumlah_rusak += $request->jumlah_rusak;
+        if ($request->method() === 'PUT') {
+            // Untuk edit, kembalikan dulu jumlah lama ke stok baik
+            $dormPurchase->jumlah_baik += $dormPurchase->jumlah_rusak;
+            // Lalu cek apakah jumlah baru valid
+            if ($request->jumlah_rusak > $dormPurchase->jumlah_baik) {
+                return redirect()->back()->withErrors(['jumlah_rusak' => 'Jumlah rusak tidak boleh melebihi jumlah baik yang tersedia.']);
+            }
+        }
+
+        // Update jumlah baik/rusak
+        if ($request->method() === 'POST') {
+            $dormPurchase->jumlah_baik -= $request->jumlah_rusak;
+            $dormPurchase->jumlah_rusak += $request->jumlah_rusak;
+        } else if ($request->method() === 'PUT') {
+            $dormPurchase->jumlah_baik -= $request->jumlah_rusak;
+            $dormPurchase->jumlah_rusak = $request->jumlah_rusak;
+        }
+
         $dormPurchase->keterangan = $request->keterangan;
         $dormPurchase->save();
 
-        return redirect('/damaged-items-dorm')->with('success', 'Data barang rusak berhasil diperbarui.');
+        return redirect('/sarpras/damaged-items-dorm')
+            ->with('success', 'Data barang rusak berhasil ' .
+                ($request->method() === 'PUT' ? 'diperbarui.' : 'ditambahkan.'));
+    }
+    /**
+     * Return JSON details for a dorm item (used by AJAX on the damaged items modal).
+     */
+    public function getItemDetails($id)
+    {
+        $dormPurchase = DormPurchase::find($id);
+
+        if (! $dormPurchase) {
+            return response()->json(['status' => 'error', 'message' => 'Item not found'], 404);
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'data' => [
+                'id' => $dormPurchase->id,
+                'nama_barang' => $dormPurchase->nama_barang,
+                'jumlah_baik' => $dormPurchase->jumlah_baik,
+                'jumlah_rusak' => $dormPurchase->jumlah_rusak,
+                'keterangan' => $dormPurchase->keterangan,
+            ],
+        ]);
+    }
+
+    /**
+     * Restore damaged items back into good stock (set jumlah_rusak to 0 and add back to jumlah_baik).
+     * Supports AJAX (JSON) and non-AJAX (redirect) clients.
+     */
+    public function restoreDamaged(Request $request, $id)
+    {
+        $dormPurchase = DormPurchase::findOrFail($id);
+
+        // move damaged back to good
+        $restored = $dormPurchase->jumlah_rusak;
+        $dormPurchase->jumlah_baik += $dormPurchase->jumlah_rusak;
+        $dormPurchase->jumlah_rusak = 0;
+        $dormPurchase->keterangan = null;
+        $dormPurchase->save();
+
+        if ($request->expectsJson() || $request->wantsJson() || $request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => "Berhasil mengembalikan $restored item ke jumlah baik.",
+                'data' => [
+                    'id' => $dormPurchase->id,
+                    'jumlah_baik' => $dormPurchase->jumlah_baik,
+                    'jumlah_rusak' => $dormPurchase->jumlah_rusak,
+                ],
+            ]);
+        }
+
+        return redirect('/sarpras/dorm-purchase')->with('success', 'Berhasil mengembalikan barang menjadi baik.');
     }
     public function destroy($id)
     {

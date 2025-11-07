@@ -64,31 +64,9 @@ class SchoolPurchaseController extends Controller
 
     public function update(SchoolPurchaseRequest $request, $id)
     {
-        $request->validate([
-            "tanggal_pembelian" => "required",
-            "nama_barang" => "required",
-            "kode" => "required|unique:school_purchases,kode," . $id,
-            "harga_satuan" => "required",
-            "jumlah_baik" => "required",
-            "total_harga" => "required",
-            "pembeli" => "required",
-            "toko" => "required",
-            "deskripsi" => "required",
-            'gambar.*' => "nullable|mimes:jpg,jpeg,png|max:2048",
-        ], [
-            "tanggal_pembelian.required" => "Tanggal Pembelian harus diisi",
-            "nama_barang.required" => "Nama Barang harus diisi",
-            "kode.required" => "Kode harus diisi",
-            "kode.unique" => "Kode sudah digunakan",
-            "harga_satuan.required" => "Harga Satuan harus diisi",
-            "jumlah_baik.required" => "Jumlah harus diisi",
-            "total_harga.required" => "Total Harga harus diisi",
-            "pembeli.required" => "Pembeli harus diisi",
-            "toko.required" => "Toko harus diisi",
-            "deskripsi.required" => "Deskripsi harus diisi",
-            "gambar.mimes" => "Gambar harus berupa file dengan format: jpg, jpeg, png",
-            "gambar.max" => "Ukuran gambar maksimal adalah 2MB",
-        ]);
+        // Use the validated data from the FormRequest. The FormRequest
+        // handles create vs update uniqueness for `kode`.
+        $validated = $request->validated();
 
         $schoolPurchase = SchoolPurchase::findOrFail($id);
         $data = $request->except('gambar');
@@ -119,6 +97,27 @@ class SchoolPurchaseController extends Controller
         return view("sarpras.sekolah.damagedItems", compact("schoolPurchase"));
     }
 
+    /**
+     * Return JSON details for an item (used by AJAX on the damaged items modal).
+     */
+    public function getItemDetails($id)
+    {
+        $schoolPurchase = SchoolPurchase::find($id);
+
+        if (! $schoolPurchase) {
+            return response()->json(['status' => 'error', 'message' => 'Item not found'], 404);
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'data' => [
+                'id' => $schoolPurchase->id,
+                'nama_barang' => $schoolPurchase->nama_barang,
+                'jumlah_baik' => $schoolPurchase->jumlah_baik,
+            ],
+        ]);
+    }
+
     public function showForm()
     {
         $schoolPurchases = SchoolPurchase::all();
@@ -127,14 +126,23 @@ class SchoolPurchaseController extends Controller
 
     public function edit($id)
     {
-        $schoolPurchase = SchoolPurchase::findOrFail($id);
-        return view("sarpras.sekolah.edit", compact("schoolPurchase"));
+        try {
+            $schoolPurchase = SchoolPurchase::findOrFail($id);
+            return view('sarpras.sekolah.edit', compact('schoolPurchase'));
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error fetching data');
+        }
     }
 
     public function damaged(Request $request, $id)
     {
+        Log::info('Damaged items request:', [
+            'method' => $request->method(),
+            'data' => $request->all()
+        ]);
+        
         // Validasi input
-        $request->validate([
+        $validated = $request->validate([
             'jumlah_rusak' => 'required|integer|min:1',
             'keterangan' => 'required|string|max:255',
         ]);
@@ -142,20 +150,65 @@ class SchoolPurchaseController extends Controller
         // Temukan data pembelian sekolah
         $schoolPurchase = SchoolPurchase::findOrFail($id);
 
+        if ($request->method() === 'DELETE') {
+            // Jika method DELETE, kembalikan semua barang rusak menjadi baik
+            $schoolPurchase->jumlah_baik += $schoolPurchase->jumlah_rusak;
+            $schoolPurchase->jumlah_rusak = 0;
+            $schoolPurchase->keterangan = null;
+            $schoolPurchase->save();
+
+            return redirect('/sarpras/damaged-items-school')
+                ->with('success', 'Barang berhasil dipulihkan ke kondisi baik.');
+        }
+
+        // Untuk POST/PUT, proses perubahan status rusak
         // Pastikan jumlah rusak yang dimasukkan tidak melebihi jumlah baik yang tersedia
-        if ($request->jumlah_rusak > $schoolPurchase->jumlah_baik) {
+        if ($request->method() === 'POST' && $request->jumlah_rusak > $schoolPurchase->jumlah_baik) {
             return redirect()->back()->withErrors(['jumlah_rusak' => 'Jumlah rusak tidak boleh melebihi jumlah baik yang tersedia.']);
         }
 
-        // Kurangi jumlah baik dengan jumlah rusak yang dimasukkan
-        $schoolPurchase->jumlah_baik -= $request->jumlah_rusak;
-        $schoolPurchase->jumlah_rusak += $request->jumlah_rusak;
+        if ($request->method() === 'PUT') {
+            // Untuk edit, kembalikan dulu jumlah lama ke stok baik
+            $schoolPurchase->jumlah_baik += $schoolPurchase->jumlah_rusak;
+            // Lalu cek apakah jumlah baru valid
+            if ($request->jumlah_rusak > $schoolPurchase->jumlah_baik) {
+                return redirect()->back()->withErrors(['jumlah_rusak' => 'Jumlah rusak tidak boleh melebihi jumlah baik yang tersedia.']);
+            }
+        }
+
+        // Update jumlah baik/rusak
+        if ($request->method() === 'POST') {
+            $schoolPurchase->jumlah_baik -= $request->jumlah_rusak;
+            $schoolPurchase->jumlah_rusak += $request->jumlah_rusak;
+        } else if ($request->method() === 'PUT') {
+            $schoolPurchase->jumlah_baik -= $request->jumlah_rusak;
+            $schoolPurchase->jumlah_rusak = $request->jumlah_rusak;
+        }
+        
         $schoolPurchase->keterangan = $request->keterangan;
         $schoolPurchase->save();
 
-        return redirect('/sarpras/damaged-items-school')->with('success', 'Data barang rusak berhasil diperbarui.');
+        return redirect('/sarpras/damaged-items-school')
+            ->with('success', 'Data barang rusak berhasil ' . 
+                ($request->method() === 'PUT' ? 'diperbarui.' : 'ditambahkan.'));
     }
 
+    /**
+     * Restore damaged items back to good condition (called by DELETE route)
+     */
+    public function restoreDamaged($id)
+    {
+        $schoolPurchase = SchoolPurchase::findOrFail($id);
+
+        // Move all damaged back to jumlah_baik
+        $schoolPurchase->jumlah_baik += $schoolPurchase->jumlah_rusak;
+        $schoolPurchase->jumlah_rusak = 0;
+        $schoolPurchase->keterangan = null;
+        $schoolPurchase->save();
+
+        return redirect('/sarpras/damaged-items-school')
+            ->with('success', 'Barang berhasil dipulihkan ke kondisi baik.');
+    }
 
     public function destroy($id)
     {

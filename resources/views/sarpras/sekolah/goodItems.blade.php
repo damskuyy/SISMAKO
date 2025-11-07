@@ -123,7 +123,7 @@
                                         @endforeach
                                     @else
                                         <tr>
-                                            <td colspan="11" class="text-center">Tidak ada data</td>
+                                            <td colspan="11" class="text-center">Tidak ada data sarpras tersedia.</td>
                                         </tr>
                                     @endif
                                 </tbody>

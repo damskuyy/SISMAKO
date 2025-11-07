@@ -268,7 +268,7 @@
                                             <td>{{ $item->total_harga }}</td>
                                             <td>{{ $item->pembeli }}</td>
                                             <td>{{ $item->toko }}</td>
-                                            <td>{{ $item->deskripsi }}</td>
+                                            <td>{{ Str::limit($item->deskripsi, 10, '...') }}</td>
                                             <td>
                                                 <div class="btn-group">
                                                     <div class="col-6 col-sm-4 col-md-2 col-xl-auto me-2">
@@ -374,7 +374,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="11" class="text-center">Tidak ada data</td>
+                                            <td colspan="11" class="text-center">Tidak ada data sarpras yang tersedia.</td>
                                         </tr>
                                     @endforelse
                                 </tbody>
@@ -443,12 +443,19 @@
 
         document.addEventListener("DOMContentLoaded", function() {
             @if ($errors->any())
-                var myModalUpd = new bootstrap.Modal(document.getElementById('modal-update'));
-                myModalUpd.show();
-            @endif
-            @if ($errors->any())
-                var myModalNew = new bootstrap.Modal(document.getElementById('modal-report'));
-                myModalNew.show();
+                // Only show modal-report if it exists on this page (prevents JS errors when modal-update is absent)
+                var reportEl = document.getElementById('modal-report');
+                if (reportEl) {
+                    var myModalNew = new bootstrap.Modal(reportEl);
+                    myModalNew.show();
+                }
+
+                // If an update modal exists on this page, show it as well
+                var updateEl = document.getElementById('modal-update');
+                if (updateEl) {
+                    var myModalUpd = new bootstrap.Modal(updateEl);
+                    myModalUpd.show();
+                }
             @endif
         });
     </script>

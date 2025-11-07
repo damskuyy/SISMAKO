@@ -394,7 +394,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="11" class="text-center">Tidak ada data</td>
+                                            <td colspan="11" class="text-center">Tidak ada data sarpras yang tersedia.</td>
                                         </tr>
                                     @endforelse
                                 </tbody>
