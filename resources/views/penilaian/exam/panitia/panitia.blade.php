@@ -102,7 +102,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="15" class="text-center">Tidak ada Data</td>
+                            <td colspan="13" class="text-center">Tidak ada data panitia yang tersedia.</td>
                         </tr>
                         @endforelse
                     </tbody>

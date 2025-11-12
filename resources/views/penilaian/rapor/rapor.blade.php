@@ -42,19 +42,20 @@
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
-                        <tr>
-                            @foreach (['Tahun Ajaran', 'Kelas', 'Nama', 'PAI', 'PKN', 'B.Indo', 'MTK', 'Sejindo',
+                        <tr style="text-align: center">
+                            @foreach (['Tahun Ajaran', 'Semester', 'Kelas', 'Nama', 'PAI', 'PKN', 'B.Indo', 'MTK', 'Sejindo',
                             'B.Ingg', 'SBD', 'PJOK', 'Informatika', 'IPAS', 'DDPK', 'SisKom', 'KomJar', 'ProgDas', 'DDG',
-                            'IaaS', 'PaaS', 'SaaS', 'SIoT', 'SKJ', 'PKK', '', '', ''] as $header)
+                            'IaaS', 'PaaS', 'SaaS', 'SIoT', 'SKJ', 'PKK', '', 'Aksi', ''] as $header)
                             <th>{{ $header }}</th>
                             @endforeach
                         </tr>
                     </thead>
                     <tbody>
                         @forelse ($rapor as $item)
-                        <tr>
+                        <tr style="text-align: center">
                             @foreach ([
                             $item->tahun_ajaran,
+                            $item->semester,
                             $item->kelas,
                             $item->nama,
                             $item->muatan_nasional['pai']['nilai'] ?? 'N/A',
@@ -99,7 +100,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="28" class="text-center">Tidak ada Data</td>
+                            <td colspan="28" class="text-center">Tidak ada data nilai yang tersedia.</td>
                         </tr>
                         @endforelse
                     </tbody>
@@ -133,7 +134,7 @@
                             <path d="M12 16h.01"></path>
                         </svg>
                         <h3>Are you sure?</h3>
-                        <div class="text-secondary">Do you really want to remove this file? This action cannot be undone.</div>
+                        <div class="text-secondary">Apakah kamu yakin ingin menghapus data nilai ini? data akan dihapus secara permanen.</div>
                     </div>
                     <div class="modal-footer">
                         <div class="w-100">

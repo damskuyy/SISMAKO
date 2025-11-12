@@ -1,3 +1,6 @@
+@import url('https://fonts.cdnfonts.com/css/ica-rubrik-black');
+@import url('https://fonts.cdnfonts.com/css/poppins');
+
 /* CreatedBy Page Styles */
 .createdby-page {
     min-height: 100vh;
@@ -74,11 +77,12 @@
 
 .createdby-grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 350px);
-    gap: 25px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
     padding: 20px;
-    justify-content: center;
     margin: 0 auto;
+    max-width: 1400px;
+    align-items: stretch; /* ensures grid items stretch to same height */
 }
 
 .createdby-grid-container:last-child {
@@ -89,8 +93,11 @@
     perspective: 1000px;
     cursor: pointer;
     width: 100%;
-    max-width: 380px;
-    margin: 0 auto;
+    opacity: 0;
+    animation: cardEntry 0.6s ease-out forwards;
+    display: flex; /* make the grid item a flex container so inner can stretch to full height */
+    transition: transform 0.35s ease-out;
+    will-change: transform, opacity;
 }
 
 .createdby-card-inner {
@@ -102,11 +109,31 @@
     align-items: center;
     gap: 20px;
     transform-style: preserve-3d;
-    transition: transform 0.5s;
+    transition: all 0.3s ease-out;
+    position: relative;
+    width: 100%;
+    will-change: transform;
+    height: 100%; /* fill parent so all cards are same height */
+    /* subtle floating animation; each card will get varying values via CSS variables */
+    animation: float var(--float-duration, 4s) ease-in-out infinite alternate;
+}
+
+.createdby-card:hover {
+    transform: translateY(-10px); /* hover the whole card (no conflict with inner float animation) */
 }
 
 .createdby-card:hover .createdby-card-inner {
-    transform: translateY(-5px) rotateX(5deg);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+/* Floating keyframes: use CSS variables to vary distance, horizontal offset and rotation */
+@keyframes float {
+    from {
+        transform: translateY(0px) translateX(0px) rotateZ(0deg);
+    }
+    to {
+        transform: translateY(calc(-1 * var(--float-distance, 8px))) translateX(var(--float-x, 4px)) rotateZ(var(--float-rotate, 1deg));
+    }
 }
 
 .createdby-image-wrapper {
@@ -150,6 +177,17 @@
 }
 
 /* Animations */
+@keyframes cardEntry {
+    from {
+        opacity: 0;
+        transform: translateY(60px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;

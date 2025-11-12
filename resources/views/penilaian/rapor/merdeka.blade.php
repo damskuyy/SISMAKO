@@ -646,7 +646,7 @@
                             </tr>
                         @else
                             <tr>
-                                <td colspan="3">Tidak ada prestasi yang tersedia</td>
+                                <td colspan="3">-</td>
                             </tr>
                         @endif
                     </tbody>

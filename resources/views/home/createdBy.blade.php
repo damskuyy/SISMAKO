@@ -28,14 +28,22 @@
                 ['name' => 'Hafith Muhammad Fauzan', 'role' => 'Angkatan II SMK TI BAZMA', 'img' => 'https://wallpapercave.com/uwpt/uwp4911565.jpeg'],
                 ['name' => 'Syahban Syahputra', 'role' => 'Angkatan II SMK TI BAZMA', 'img' => 'https://wallpapercave.com/uwp/uwp4911573.jpeg'],
                 ['name' => 'Hanif Gibran Syidiq', 'role' => 'Angkatan II SMK TI BAZMA', 'img' => 'https://wallpapercave.com/uwpt/uwp4911564.jpeg'],
-                ['name' => 'Damar Nugroho Utomo', 'role' => 'Backend Developer', 'img' => 'https://wallpapercave.com/uwp/uwp4887476.jpeg'],
+                ['name' => 'Damar Nugroho Utomo', 'role' => 'Backend Developer', 'img' => 'https://wallpapercave.com/uwpt/uwp4913182.jpeg'],
                 ['name' => 'Rizki Zikrillah', 'role' => 'Frontend Developer', 'img' => 'https://wallpapercave.com/uwp/uwp4887508.jpeg'],
             ];
         @endphp
         
         <div class="createdby-grid-container">
             @foreach ($data as $index => $person)
-                <div class="createdby-card" style="animation-delay: {{ $index * 0.1 }}s">
+                @php
+                    // entrance delay (staggered), and float-variation variables per card
+                    $delay = ($index % 3) * 0.15 + floor($index / 3) * 0.1;
+                    $floatDuration = 3 + ($index % 4) * 0.5; // 3s - 4.5s
+                    $floatDistance = 6 + ($index % 3) * 2; // 6px - 10px
+                    $floatX = ($index % 5 - 2) * 2; // -4px .. 4px
+                    $floatRotate = ($index % 3 - 1); // -1 .. 1 deg
+                @endphp
+                <div class="createdby-card" style="animation-delay: {{ $delay }}s; --float-duration: {{ $floatDuration }}s; --float-distance: {{ $floatDistance }}px; --float-x: {{ $floatX }}px; --float-rotate: {{ $floatRotate }}deg;">
                     <div class="createdby-card-inner">
                         <div class="createdby-image-wrapper">
                             <img src="{{ $person['img'] }}" alt="{{ $person['name'] }}" class="createdby-img">

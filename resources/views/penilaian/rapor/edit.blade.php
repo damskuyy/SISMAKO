@@ -40,16 +40,16 @@
                                             <label class="form-label">Kelas</label>
                                             <select class="form-control form-select" name="kelas" required>
                                                 <option value="">Pilih Kelas</option>
-                                                <option value="X" {{ old('kelas', $rapor->kelas) == 'X' ? 'selected' :
+                                                <option value="X-SIJA" {{ old('kelas', $rapor->kelas) == 'X-SIJA' ? 'selected' :
                                                     '' }}>X
                                                 </option>
-                                                <option value="XI" {{ old('kelas', $rapor->kelas) == 'XI' ? 'selected' :
+                                                <option value="XI-SIJA" {{ old('kelas', $rapor->kelas) == 'XI-SIJA' ? 'selected' :
                                                     '' }}>XI
                                                 </option>
-                                                <option value="XII" {{ old('kelas', $rapor->kelas) == 'XII' ? 'selected'
+                                                <option value="XII-SIJA" {{ old('kelas', $rapor->kelas) == 'XII-SIJA' ? 'selected'
                                                     : '' }}>XII
                                                 </option>
-                                                <option value="XIII" {{ old('kelas', $rapor->kelas) == 'XIII' ?
+                                                <option value="XIII-SIJA" {{ old('kelas', $rapor->kelas) == 'XIII-SIJA' ?
                                                     'selected' : '' }}>XIII
                                                 </option>
                                             </select>

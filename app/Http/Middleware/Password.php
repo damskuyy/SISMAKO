@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
 class Password
@@ -18,7 +19,6 @@ class Password
     {
         $protectedRoutes = [
             'dashboard',
-            'penilaian',
             'administrasi',
             'finance',
             'sarpras',
@@ -27,13 +27,6 @@ class Password
             'patroli.asrama.index',
             'lab.index',
             'ortu.edit',
-            'rapor',
-            'rpts',
-            'rasrama',
-            'pat',
-            'pts',
-            'pas',
-            'panitia',
             'pkl',
             // 'average',
             // 'average.create',
@@ -373,8 +366,16 @@ class Password
             // 'kunjungan',
 
         ];
+        
+        // === COMPLETELY SKIP PASSWORD CHECKS FOR PENILAIAN ROUTES ===
+        if (str_contains($request->path(), 'penilaian')) {
+            Log::info('Skipping password check - penilaian path detected', ['path' => $request->path()]);
+            return $next($request);
+        }
+        
         $currentRouteName = Route::currentRouteName();
         $currentRouteUri = Route::current()->uri();
+        $currentUriWithSlash = '/' . $currentRouteUri;
 
         if (!in_array($currentRouteName, $protectedRoutes)) {
             $request->session()->forget('pin');
@@ -382,9 +383,10 @@ class Password
             $pin = $request->session()->get('pin');
 
             if (!$pin) {
-                return redirect()->route('pin', ['redirect_url' => '/' . $currentRouteUri])->with('error', 'Please enter your PIN to access this URL.');
+                return redirect()->route('pin', ['redirect_url' => $currentUriWithSlash])->with('error', 'Please enter your PIN to access this URL.');
             }
         }
+
         return $next($request);
     }
 }

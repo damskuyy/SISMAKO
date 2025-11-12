@@ -56,11 +56,26 @@
                                     </div>
                                     <div class="col-sm-6 col-md-4">
                                         <div class="mb-3">
+                                            <label class="form-label">Kelas</label>
+                                            <select class="form-control form-select" name="kelas" required>
+                                                <option value="">Pilih Kelas</option>
+                                                <option value="X" {{ old('kelas', $rasrama->kelas) == 'X' ? 'selected' : '' }}>X</option>
+                                                <option value="XI" {{ old('kelas', $rasrama->kelas) == 'XI' ? 'selected' : '' }}>XI</option>
+                                                <option value="XII" {{ old('kelas', $rasrama->kelas) == 'XII' ? 'selected' : '' }}>XII</option>
+                                                <option value="XIII" {{ old('kelas', $rasrama->kelas) == 'XIII' ? 'selected' : '' }}>XIII</option>
+                                            </select>
+                                            @error('kelas')
+                                            <div class="text-danger mt-2"> {{ $message }} </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-4">
+                                        <div class="mb-3">
                                             <label class="form-label">Nama Siswa</label>
                                             <input type='text' class="form-control" placeholder="Masukan Nama"
-                                                name="siswa_id" value="{{ old('siswa_id', $rasrama->siswa_id) }}"
+                                                name="nama" value="{{ old('nama', $rasrama->nama) }}"
                                                 required>
-                                            @error('siswa_id')
+                                            @error('nama')
                                             <div class="text-danger mt-2"> {{ $message }} </div>
                                             @enderror
                                         </div>
@@ -309,40 +324,44 @@
                                             ] as $label => $name)
                                             <tr>
                                                 <td>{{ $label }}</td>
+                                                @php
+                                                    // Try multiple key variants to be resilient with stored data casing
+                                                    $entry = $ubudiyyah[$name] ?? $ubudiyyah[strtolower($name)] ?? ($ubudiyyah[ucfirst(strtolower($name))] ?? []);
+                                                @endphp
                                                 <td>
                                                     <input type="number" name="ubudiyyah[{{ $name }}][hadir]"
                                                         id="{{ $name }}_hadir" class="form-control"
-                                                        value="{{ old('ubudiyyah.' . $name . '.hadir', $ubudiyyah[$name]['hadir'] ?? '') }}"
+                                                        value="{{ old('ubudiyyah.' . $name . '.hadir', $entry['hadir'] ?? '') }}"
                                                         placeholder="Hadir">
                                                 </td>
                                                 <td>
                                                     <input type="number" name="ubudiyyah[{{ $name }}][total]"
                                                         id="{{ $name }}_total" class="form-control"
-                                                        value="{{ old('ubudiyyah.' . $name . '.total', $ubudiyyah[$name]['total'] ?? '') }}"
+                                                        value="{{ old('ubudiyyah.' . $name . '.total', $entry['total'] ?? '') }}"
                                                         placeholder="Total">
                                                 </td>
                                                 <td>
                                                     <select name="ubudiyyah[{{ $name }}][jenis]" id="{{ $name }}_jenis"
                                                         class="form-select">
                                                         <option value="">Pilih Jenis</option>
-                                                        <option value="Praktek" {{ (isset($rasrama->
-                                                            ubudiyyah[$name]['jenis']) &&
-                                                            $rasrama->ubudiyyah[$name]['jenis'] == 'Praktek') ?
-                                                            'selected' : '' }}>
+                                                        <option value="Praktek" {{ old('ubudiyyah.' . $name . '.jenis', $entry['jenis'] ?? '') == 'Praktek' ? 'selected' : '' }}>
                                                             Praktek
                                                         </option>
-                                                        <option value="Teori" {{ (isset($rasrama->
-                                                            ubudiyyah[$name]['jenis']) &&
-                                                            $rasrama->ubudiyyah[$name]['jenis'] == 'Teori') ? 'selected'
-                                                            : '' }}>
+                                                        <option value="Teori" {{ old('ubudiyyah.' . $name . '.jenis', $entry['jenis'] ?? '') == 'Teori' ? 'selected' : '' }}>
                                                             Teori
                                                         </option>
                                                     </select>
                                                 </td>
                                                 <td>
-                                                    <textarea name="ubudiyyah[{{ $name }}][deskripsi]"
+                                                    @if (in_array($name, ['Subuh', 'Dzuhur', 'Ashar', 'Maghrib', 'Isya', 'dhuha', 'imam', 'muadzin']))
+                                                    <textarea name="ubudiyyah[{{ $name }}][deskripsi_sholat]"
                                                         class="form-control" rows="1"
-                                                        placeholder="Deskripsi">{{ $rasrama->ubudiyyah[$name]['deskripsi'] ?? old('ubudiyyah.' . $name . '.deskripsi') }}</textarea>
+                                                        placeholder="Deskripsi Sholat">{{ old('ubudiyyah.' . $name . '.deskripsi_sholat', $entry['deskripsi_sholat'] ?? $entry['deskripsi'] ?? '') }}</textarea>
+                                                    @else
+                                                    <textarea name="ubudiyyah[{{ $name }}][deskripsi_kegiatan]"
+                                                        class="form-control" rows="1"
+                                                        placeholder="Deskripsi Kegiatan">{{ old('ubudiyyah.' . $name . '.deskripsi_kegiatan', $entry['deskripsi_kegiatan'] ?? $entry['deskripsi'] ?? '') }}</textarea>
+                                                    @endif
                                                 </td>
                                             </tr>
                                             @endforeach

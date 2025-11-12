@@ -24,16 +24,21 @@ class rasramaRequest extends FormRequest
     {
         return [
             'tahun_ajaran' => 'required|string|size:9',
-            // 'kelas' => 'required|string|max:5',
-            'siswa_id' => 'required|string|max:40', // memastikan siswa_id ada di tabel siswa
+            'kelas' => 'required|string|max:50',
+            'nama' => 'required|string|max:100',
             'semester' => 'required|string|max:10',
-            'nik' => 'required|string|max:50',
+            'nik' => 'nullable|string|max:50',
             'released' => 'nullable|string',
             'wname' => 'nullable|string|max:100',
             'keterangan' => 'nullable|string|max:18',
             'tahfidz' => 'nullable|array',
             'tahsin' => 'nullable|array',
-            'ubudiyyah' => 'nullable|array', // memastikan ubudiyyah_id ada di tabel jamaah
+            'ubudiyyah' => 'nullable|array',
+            'ubudiyyah.*.hadir' => 'nullable|integer',
+            'ubudiyyah.*.total' => 'nullable|integer',
+            'ubudiyyah.*.jenis' => 'nullable|string',
+            'ubudiyyah.*.deskripsi_sholat' => 'nullable|string',
+            'ubudiyyah.*.deskripsi_kegiatan' => 'nullable|string',
             'amaliyyah' => 'nullable|array',
             'mapel' => 'nullable|array',
             'data_siswa' => 'nullable|array',

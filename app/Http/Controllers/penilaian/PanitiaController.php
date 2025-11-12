@@ -176,7 +176,6 @@ class PanitiaController extends Controller
             'sk_panitia',
             'tatib_pengawas',
             'tatib_peserta',
-            'keterangan',
             'surat_pemberitahuan_guru',
             'surat_pemberitahuan_ortu',
             'jadwal',
@@ -184,56 +183,60 @@ class PanitiaController extends Controller
             'denah_duduk',
             'daftar_nilai',
             'tanda_terima_dan_penerimaan_soal',
-            'kehadiran_panitia'
+            'kehadiran_panitia',
+            'keterangan'
         ];
 
-        // Create a temporary file to store the zip
-        $zipFileName = 'panitia_files_' . $panitia->mapel . '.zip';
-        $zipFilePath = storage_path('app/temp/' . $zipFileName);
+        // Create a temporary file to store the zip (unique name to avoid collisions)
+        $zipFileName = 'panitia_files_' . preg_replace('/[^A-Za-z0-9_-]/', '_', $panitia->mapel ?? 'export') . '_' . time() . '.zip';
+        $tempDir = storage_path('app/temp');
+        $zipFilePath = $tempDir . DIRECTORY_SEPARATOR . $zipFileName;
 
         // Ensure the temp directory exists
-        if (!Storage::exists('temp')) {
-            Storage::makeDirectory('temp');
+        if (!is_dir($tempDir)) {
+            mkdir($tempDir, 0755, true);
         }
 
-        // Initialize zip archive
         $zip = new ZipArchive;
-        if ($zip->open($zipFilePath, ZipArchive::CREATE | ZipArchive::OVERWRITE) === TRUE) {
-            foreach ($directories as $dir) {
-                if ($panitia->$dir) {
-                    $dirPath = public_path('storage/' . $panitia->$dir);
-                    if (is_dir($dirPath)) {
-                        $this->addDirectoryToZip($zip, $dirPath, $dir);
-                    } elseif (is_file($dirPath)) {
-                        $zip->addFile($dirPath, $dir . '/' . basename($dirPath));
-                    }
+        if ($zip->open($zipFilePath, ZipArchive::CREATE | ZipArchive::OVERWRITE) !== TRUE) {
+            return back()->with('error', 'Failed to create temporary zip file');
+        }
+
+        $fileCount = 0;
+        foreach ($directories as $dir) {
+            $dbValue = $panitia->$dir;
+            if (!$dbValue) {
+                continue;
+            }
+
+            // Files are stored on the 'public' disk (storage/app/public/...)
+            if (Storage::disk('public')->exists($dbValue)) {
+                $filePath = Storage::disk('public')->path($dbValue);
+                if (is_file($filePath)) {
+                    $zip->addFile($filePath, $dir . '/' . basename($filePath));
+                    $fileCount++;
+                }
+            } else {
+                // also try the public/storage path (if symlink exists)
+                $publicPath = public_path('storage/' . $dbValue);
+                if (is_file($publicPath)) {
+                    $zip->addFile($publicPath, $dir . '/' . basename($publicPath));
+                    $fileCount++;
                 }
             }
-            $zip->close();
-
-            // Download the created zip file
-            return response()->download($zipFilePath)->deleteFileAfterSend(true);
-        } else {
-            return back()->with('error', 'Failed to create zip file');
         }
-    }
 
-    private function addDirectoryToZip($zip, $dirPath, $zipPath)
-    {
-        $files = new RecursiveIteratorIterator(
-            new RecursiveDirectoryIterator($dirPath),
-            RecursiveIteratorIterator::LEAVES_ONLY
-        );
+        $zip->close();
 
-        foreach ($files as $name => $file) {
-            if (!$file->isDir()) {
-                // Get the relative path for the zip file
-                $filePath = $file->getRealPath();
-                $relativePath = $zipPath . '/' . substr($filePath, strlen($dirPath) + 1);
-
-                // Add file to the zip
-                $zip->addFile($filePath, $relativePath);
+        if ($fileCount === 0 || !file_exists($zipFilePath) || filesize($zipFilePath) === 0) {
+            // Clean up empty zip if created
+            if (file_exists($zipFilePath)) {
+                @unlink($zipFilePath);
             }
+            return back()->with('error', 'No files found to download. Ensure files were uploaded.');
         }
+
+        return response()->download($zipFilePath, $zipFileName)->deleteFileAfterSend(true);
     }
+
 }

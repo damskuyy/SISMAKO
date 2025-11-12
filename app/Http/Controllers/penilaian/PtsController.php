@@ -172,35 +172,56 @@ class PtsController extends Controller
             'daftar_nilai',
         ];
 
-        // Create a temporary file to store the zip
-        $zipFileName = 'pts_files_' . $pts->mapel . '.zip';
-        $zipFilePath = storage_path('app/temp/' . $zipFileName);
+        // Create a temporary file to store the zip (unique name to avoid collisions)
+        $zipFileName = 'pts_files_' . preg_replace('/[^A-Za-z0-9_-]/', '_', $pts->mapel) . '_' . time() . '.zip';
+        $tempDir = storage_path('app/temp');
+        $zipFilePath = $tempDir . DIRECTORY_SEPARATOR . $zipFileName;
 
         // Ensure the temp directory exists
-        if (!Storage::exists('temp')) {
-            Storage::makeDirectory('temp');
+        if (!is_dir($tempDir)) {
+            mkdir($tempDir, 0755, true);
         }
 
-        // Initialize zip archive
         $zip = new ZipArchive;
-        if ($zip->open($zipFilePath, ZipArchive::CREATE | ZipArchive::OVERWRITE) === TRUE) {
-            foreach ($directories as $dir) {
-                if ($pts->$dir) {
-                    $dirPath = public_path('storage/' . $pts->$dir);
-                    if (is_dir($dirPath)) {
-                        $this->addDirectoryToZip($zip, $dirPath, $dir);
-                    } elseif (is_file($dirPath)) {
-                        $zip->addFile($dirPath, $dir . '/' . basename($dirPath));
-                    }
+        if ($zip->open($zipFilePath, ZipArchive::CREATE | ZipArchive::OVERWRITE) !== TRUE) {
+            return back()->with('error', 'Failed to create temporary zip file');
+        }
+
+        $fileCount = 0;
+        foreach ($directories as $dir) {
+            $dbValue = $pts->$dir;
+            if (!$dbValue) {
+                continue;
+            }
+
+            // Files are stored on the 'public' disk (storage/app/public/...)
+            if (Storage::disk('public')->exists($dbValue)) {
+                $filePath = Storage::disk('public')->path($dbValue);
+                if (is_file($filePath)) {
+                    $zip->addFile($filePath, $dir . '/' . basename($filePath));
+                    $fileCount++;
+                }
+            } else {
+                // also try the public/storage path (if symlink exists)
+                $publicPath = public_path('storage/' . $dbValue);
+                if (is_file($publicPath)) {
+                    $zip->addFile($publicPath, $dir . '/' . basename($publicPath));
+                    $fileCount++;
                 }
             }
-            $zip->close();
-
-            // Download the created zip file
-            return response()->download($zipFilePath)->deleteFileAfterSend(true);
-        } else {
-            return back()->with('error', 'Failed to create zip file');
         }
+
+        $zip->close();
+
+        if ($fileCount === 0 || !file_exists($zipFilePath) || filesize($zipFilePath) === 0) {
+            // Clean up empty zip if created
+            if (file_exists($zipFilePath)) {
+                @unlink($zipFilePath);
+            }
+            return back()->with('error', 'No files found to download. Ensure files were uploaded.');
+        }
+
+        return response()->download($zipFilePath, $zipFileName)->deleteFileAfterSend(true);
     }
 
     private function addDirectoryToZip($zip, $dirPath, $zipPath)
@@ -221,4 +242,5 @@ class PtsController extends Controller
             }
         }
     }
-}
+    
+    }

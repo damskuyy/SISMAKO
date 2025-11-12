@@ -44,23 +44,22 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            @foreach (['Tahun Ajaran', 'Kelas', 'Semester', 'Nama', '', '', ''] as $header)
-                            <th>{{ $header }}</th>
-                            @endforeach
+                            <th>Tahun Ajaran</th>
+                            <th>Kelas</th>
+                            <th>Semester</th>
+                            <th>Nama</th>
+                            <th>Edit</th>
+                            <th>PDF</th>
+                            <th>Hapus</th>
                         </tr>
                     </thead>
-                    <tbody>
+                                        <tbody>
                         @forelse ($rasrama as $item)
                         <tr>
-                            @foreach ([
-                            $item->tahun_ajaran,
-                            $item->kelas,
-                            $item->semester,
-                            $item->siswa_id,
-                            $item->nama,
-                            ] as $value)
-                            <td>{{ $value }}</td>
-                            @endforeach
+                            <td>{{ $item->tahun_ajaran }}</td>
+                            <td>{{ $item->kelas }}</td>
+                            <td>{{ $item->semester }}</td>
+                            <td>{{ $item->nama }}</td>
                             <td>
                                 <a href="{{ route('rasrama.edit', $item->id) }}">
                                     <i class="fa-regular fa-pen-to-square text-white text-xl bg-yellow p-2 rounded"></i>
@@ -79,7 +78,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="6" class="text-center">Tidak ada Data</td>
+                            <td colspan="7" class="text-center">Tidak ada data rapor asrama yang tersedia.</td>
                         </tr>
                         @endforelse
                     </tbody>

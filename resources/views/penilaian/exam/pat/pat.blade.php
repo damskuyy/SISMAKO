@@ -134,7 +134,7 @@
                                 @empty
                                 <tr>
                                     <td colspan="19" class="text-center">
-                                        Tidak ada Data
+                                        Tidak ada data PAT yang tersedia.
                                     </td>
                                 </tr>
                                 @endforelse

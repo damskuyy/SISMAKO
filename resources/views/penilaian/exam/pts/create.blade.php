@@ -63,7 +63,7 @@
                             </div>
                         </div>
                         <div class="card-footer text-end">
-                            <button type="submit" class="btn btn-primary">Tambah</button>
+                            <button type="submit" class="btn btn-success">Tambah</button>
                         </div>
                     </form>
                 </div>

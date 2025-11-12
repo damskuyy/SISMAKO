@@ -70,6 +70,7 @@
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
+                                <th>No</th>
                                 <th>Tahun Ajaran</th>
                                 <th>Kelas</th>
                                 <th>Mapel</th>
@@ -79,9 +80,8 @@
                                 <th>Kehadiran Peserta</th>
                                 <th>Daftar Nilai</th>
                                 <th></th>
+                                <th>Aksi</th>
                                 <th></th>
-                                <th></th>
-                                </tr>
                             </thead>
                             <tbody>
                                 @php
@@ -89,6 +89,9 @@
                                 @endphp
                                 @forelse ($pts as $item)
                                 <tr>
+                                    <td>
+                                        {{ $item->id }}
+                                    </td>
                                     <td>
                                         {{ $item->tahun_ajaran }}
                                     </td>
@@ -134,7 +137,7 @@
                                 @empty
                                 <tr>
                                     <td colspan="19" class="text-center">
-                                        Tidak ada Data
+                                        Tidak ada data nilai PTS yang tersedia.
                                     </td>
                                 </tr>
                                 @endforelse

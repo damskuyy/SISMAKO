@@ -16,8 +16,8 @@ class rasrama extends Model
 
     protected $fillable = [
         'tahun_ajaran',
-        'siswa_id',
         'kelas',
+        'nama',
         'semester',
         'released',
         'wname',
@@ -31,6 +31,8 @@ class rasrama extends Model
         'data_siswa',
         'pengembangan_diri',
         'sertifikat',
+        'start_date',
+        'end_date',
     ];
     protected $casts = [
         'tahfidz' => 'array',

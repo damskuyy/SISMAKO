@@ -56,7 +56,8 @@
                                 <h2 class="card-title">{{ $card['title'] }}</h2>
                                 <p class="card-text">{{ $card['text'] }}</p>
                                 @foreach($card['links'] as $link)
-                                    <a href="{{ route('pin', ['redirect_url' => $link['url']]) }}" class="btn btn-primary me-2 mb-2">
+                                    {{-- Direct link to penilaian routes: bypass the PIN form for penilaian pages --}}
+                                    <a href="{{ url($link['url']) }}" class="btn btn-primary me-2 mb-2">
                                         {{ $link['label'] }}
                                     </a>
                                 @endforeach

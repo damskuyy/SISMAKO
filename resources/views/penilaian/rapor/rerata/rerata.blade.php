@@ -14,7 +14,7 @@
                             </a>
                         </div>
                         <div class="mb-4 col d-flex justify-content-end">
-                            <a href="#" class="btn btn-success mx-6" data-bs-toggle="modal"
+                            <a href="#" class="btn btn-success mx-2" data-bs-toggle="modal"
                                 data-bs-target="#chartModal">
                                 Grafik
                             </a>
@@ -69,7 +69,7 @@
                     <div class="table-responsive">
                         <table id="dataTable" class="table table-striped">
                             <thead>
-                                <tr>
+                                <tr style="text-align: center">
                                     <th>Tahun Ajaran</th>
                                     <th>Kelas</th>
                                     <th>Semester</th>
@@ -95,13 +95,13 @@
                                     <th>SKJ</th>
                                     <th>PKK</th>
                                     <th>Rerata Total</th>
-                                    <th></th>
+                                    <th>Aksi</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse ($averages as $item)
-                                <tr>
+                                <tr style="text-align: center">
                                     <td>{{ $item->tahun_ajaran }}</td>
                                     <td>{{ $item->kelas }}</td>
                                     <td>{{ $item->semester }}</td>
@@ -141,8 +141,8 @@
                                 </tr>
                                 @empty
                                 <tr>
-                                    <td colspan="27" class="text-center">
-                                        Tidak ada Data
+                                    <td colspan="24" class="text-center">
+                                        Tidak ada Data Rerata Nilai yang tersedia.
                                     </td>
                                 </tr>
                                 @endforelse
@@ -180,7 +180,7 @@
                         <path d="M12 16h.01"></path>
                     </svg>
                     <h3>Are you sure?</h3>
-                    <div class="text-secondary">Do you really want to remove this file? This action cannot be undone.</div>
+                    <div class="text-secondary">Apakah kamu yakin ingin menghapus data rerata nilai ini? data akan dihapus secara permanen.</div>
                 </div>
                 <div class="modal-footer">
                     <div class="w-100">

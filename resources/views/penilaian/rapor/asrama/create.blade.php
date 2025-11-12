@@ -7,7 +7,7 @@
             <div class="row row-cards">
                 <div class="col-12">
                     <div class="mb-4 col">
-                        <a href="/penilaian/rapor/asrama" class="btn btn-secondary">
+                        <a href="/penilaian/rasrama" class="btn btn-secondary">
                             Back
                         </a>
                     </div>
@@ -52,13 +52,14 @@
                                     <div class="col-sm-6 col-md-3">
                                         <div class="mb-3">
                                             <label class="form-label">Kelas</label>
-                                            <select class="form-control" id="kelas_id" name="kelas_id" required>
+                                            <select class="form-control form-select" name="kelas" required>
                                                 <option value="">Pilih Kelas</option>
-                                                <option value="X">X</option>
-                                                <option value="XI">XI</option>
-                                                <option value="XII">XII</option>
+                                                <option value="X" {{ old('kelas') == 'X' ? 'selected' : '' }}>X</option>
+                                                <option value="XI" {{ old('kelas') == 'XI' ? 'selected' : '' }}>XI</option>
+                                                <option value="XII" {{ old('kelas') == 'XII' ? 'selected' : '' }}>XII</option>
+                                                <option value="XIII" {{ old('kelas') == 'XIII' ? 'selected' : '' }}>XIII</option>
                                             </select>
-                                            @error('kelas_id')
+                                            @error('kelas')
                                             <div class="text-danger mt-2">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -66,10 +67,8 @@
                                     <div class="col-sm-6 col-md-3">
                                         <div class="mb-3">
                                             <label class="form-label">Nama Siswa</label>
-                                            <select class="form-control" id="siswa_id" name="siswa_id" required>
-                                                <option value="">Pilih Nama Siswa</option>
-                                            </select>
-                                            @error('siswa_id')
+                                            <input type="text" class="form-control" name="nama" value="{{ old('nama') }}" placeholder="Masukan Nama Siswa" required>
+                                            @error('nama')
                                             <div class="text-danger mt-2">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -302,25 +301,15 @@
                                             ] as $label => $name)
                                             <tr>
                                                 <td>{{ $label }}</td>
-                                                <td>
-                                                    @if (in_array($name, ['Subuh', 'Dzuhur', 'Ashar', 'Maghrib', 'Isya']))
-                                                        <input type="date" class="form-control" id="start_date_{{ $name }}" name="start_date" onchange="handleInputChange(this, 'start_date')">
-                                                    @elseif (!in_array($name, ['Subuh', 'Dzuhur', 'Ashar', 'Maghrib', 'Isya']))
-                                                        <input type="number" name="ubudiyyah[{{ $name }}][hadir]" id="{{ $name }}_hadir" class="form-control" value="{{ old('start_date.' . $name . '.hadir') }}" placeholder="Hadir" onchange="handleInputChange(this, 'start_date')">
-                                                    @else
-                                                        <input type="text" class="form-control" disabled placeholder="Tidak Tersedia">
-                                                    @endif
-                                                </td>
+                                                    <td>
+                                                        {{-- For all sholat entries (including Subuh/Dzuhur/Ashar/Maghrib/Isya) use numeric hadir input like Dhuha so it can be empty --}}
+                                                        <input type="number" name="ubudiyyah[{{ $name }}][hadir]" id="{{ $name }}_hadir" class="form-control" value="{{ old('ubudiyyah.' . $name . '.hadir') }}" placeholder="Hadir">
+                                                    </td>
 
-                                                <td>
-                                                    @if (in_array($name, ['Subuh', 'Dzuhur', 'Ashar', 'Maghrib', 'Isya']))
-                                                    <input type="date" class="form-control" id="end_date" name="end_date" onchange="handleInputChange(this, 'end_date')">
-                                                    @elseif (!in_array($name, ['Subuh', 'Dzuhur', 'Ashar', 'Maghrib', 'Isya']))
-                                                    <input type="number" name="ubudiyyah[{{ $name }}][total]" id="{{ $name }}_total" class="form-control" value="{{ old('end_date.' . $name . '.total') }}" placeholder="Total" onchange="handleInputChange(this, 'end_date')">
-                                                    @else
-                                                    <input type="text" class="form-control" disabled placeholder="Tidak Tersedia">
-                                                    @endif
-                                                </td>
+                                                    <td>
+                                                        {{-- Total --}}
+                                                        <input type="number" name="ubudiyyah[{{ $name }}][total]" id="{{ $name }}_total" class="form-control" value="{{ old('ubudiyyah.' . $name . '.total') }}" placeholder="Total">
+                                                    </td>
 
                                                 <td>
                                                     <select name="ubudiyyah[{{ $name }}][jenis]" id="{{ $name }}_jenis" class="form-control">
@@ -585,7 +574,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (['30', '29', '28'] as $level)
+                                        @foreach (['30', '29', '28', '27', '26'] as $level)
                                         <tr>
                                             <td rowspan="2">Juz {{ $level }}</td>
                                             <!-- Dropdown Sudah/Belum -->
@@ -673,56 +662,6 @@
         showStep(currentStep);
         initializeDatepickers();
     });
-
-</script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const kelasSelect = document.getElementById('kelas_id');
-        const namesSelect = document.getElementById('siswa_id');
-
-        if (kelasSelect && namesSelect) {
-            kelasSelect.addEventListener('change', function() {
-                const angkatan = this.value;
-
-                fetch(`/api/siswa/kelas?kelas=${angkatan}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log(data)
-                        data.forEach(siswa => {
-                            const option = document.createElement('option');
-                            console.log(siswa)
-                            option.value = siswa.id_siswa;
-                            option.textContent = siswa.siswa.nama;
-                            namesSelect.appendChild(option);
-                        });
-                    })
-                    .catch(error => console.error('Error fetching names:', error));
-            });
-        }
-    });
-
-</script>
-
-<script>
-    function handleInputChange(input, type) {
-        // Dapatkan semua input berdasarkan tipe (start_date atau end_date)
-        const allInputs = document.querySelectorAll(`input[name="${type}"]`);
-
-        // Jika input yang dipilih memiliki nilai, nonaktifkan semua input lainnya
-        if (input.value) {
-            allInputs.forEach(el => {
-                if (el !== input) {
-                    el.disabled = true;
-                }
-            });
-        } else {
-            // Jika input yang dipilih dikosongkan, aktifkan kembali semua input
-            allInputs.forEach(el => {
-                el.disabled = false;
-            });
-        }
-    }
 
 </script>
 @endsection

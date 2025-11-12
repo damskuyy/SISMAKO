@@ -8,99 +8,111 @@
 
     <style type="text/css">
         @Page {
-            margin-top: 0px;
-            margin-bottom: 0px;
-            margin-right: 0px;
-            margin-left: 0px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-right: 15px;
+            margin-left: 15px;
+            size: A4;
         }
 
         body {
-            font-family: arial, sans-serif;
+            font-family: 'Times New Roman', Times, serif;
             margin: 0;
-            padding: 20px;
+            padding: 10px;
             font-size: 12px;
-            margin-left: auto;
-            margin-right: auto;
+            line-height: 1.5;
         }
 
         .section-1,
         .section-2,
         .section-3,
         .section-4 {
-            font-size: 14px
+            font-size: 12px;
         }
 
         .section-5,
         .section-6,
         .section-7,
         .section-8 {
-            font-size: 10px
+            font-size: 11px;
         }
 
         .header {
             text-align: center;
-            margin: 20px;
+            margin: 10px 0 15px 0;
+            padding: 0;
         }
 
         .header img {
-            width: 110%;
+            width: 90px;
+            height: auto;
+            margin-bottom: 5px;
         }
 
         .header h2 {
-            margin: 0;
+            margin: 2px 0;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .header h3 {
+            margin: 2px 0;
+            font-size: 14px;
+            font-weight: bold;
         }
 
         table.d-none {
             border: none;
             width: 100%;
             border-collapse: collapse;
-            /* hilangkan jarak antar sel */
+            margin-bottom: 10px;
         }
 
         .d-none td {
             text-align: left;
             vertical-align: top;
-            padding: 2px;
-            /* kurangi padding antar sel */
+            padding: 2px 5px;
+            font-size: 12px;
         }
 
         .label,
         .long-label {
             display: inline-block;
-            font-weight: bold;
+            font-weight: normal;
             vertical-align: top;
             margin: 0;
             padding: 0;
-            /* hilangkan padding */
         }
 
         .label {
-            width: 50px;
+            width: auto;
+            min-width: 60px;
         }
 
         .long-label {
-            width: 100px;
+            width: auto;
+            min-width: 100px;
         }
 
         .value {
             display: inline-block;
-            font-weight: bold;
+            font-weight: normal;
             margin: 0;
             padding: 0;
-            /* hilangkan padding */
         }
 
         .right,
         .left {
-            font-size: 13px;
+            font-size: 12px;
         }
 
         .right {
-            width: 55%;
+            width: 50%;
+            padding-right: 20px;
         }
 
         .left {
-            width: 45%;
+            width: 50%;
         }
 
         .label,
@@ -109,24 +121,38 @@
             font-size: 12px;
         }
 
-        .number,
-        .type,
-        .score,
-        .attendance,
-        {
-        width: 5%
+        .number {
+            width: 4%;
+            text-align: center;
+        }
+
+        .type {
+            width: 5%;
+            text-align: center;
+        }
+
+        .score {
+            width: 6%;
+            text-align: center;
+        }
+
+        .attendance {
+            width: 5%;
+            text-align: center;
         }
 
         .mapel,
         .description {
-            width: 21%;
+            width: 20%;
+            text-align: left;
         }
 
         .table,
         .certificate-table {
             width: 100%;
             border-collapse: collapse;
-            /* margin-top: 10px; */
+            margin: 5px 0;
+            font-size: 11px;
         }
 
         .table,
@@ -135,41 +161,44 @@
         .certificate-table,
         .certificate-table th,
         .certificate-table td {
-            border: 1px solid black;
+            border: 0.5px solid #333;
         }
 
         .small-text {
-            font-size: 12px;
+            font-size: 11px;
             text-align: left !important;
         }
 
         .blue-text {
-            background-color: #cfecfa;
+            background-color: #e8f4f8;
         }
 
         .certificate-table th,
         .certificate-table td,
         .table th,
         .table td {
-            padding: 6px;
+            padding: 4px 3px;
             text-align: center;
             vertical-align: middle;
+            font-size: 11px;
         }
 
         .certificate-table {
             width: 100%;
-            margin-top: -1px;
+            margin-top: 5px;
         }
 
         .table th {
-            background-color: #cfecfa;
+            background-color: #d4e9f7;
+            font-weight: bold;
         }
 
         .subject {
             text-align: left;
-            padding-left: 5px;
+            padding-left: 8px;
             font-weight: bold;
-            background-color: #f0f0f0;
+            background-color: #e8e8e8;
+            font-size: 11px;
         }
 
         .no-border {
@@ -179,45 +208,54 @@
         .category-title {
             font-weight: bold;
             text-align: left;
-            padding-left: 5px;
-            background-color: #f7f7f7;
+            padding-left: 8px;
+            background-color: #f0f0f0;
+            font-size: 11px;
         }
 
         .check td img {
-            width: 20px;
+            width: 16px;
         }
 
         .signature {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            margin-top: 30px;
         }
 
         .signature td {
             text-align: center;
             vertical-align: top;
-            font-size: 12px
+            font-size: 10px;
+            padding: 5px;
+            width: 17%;
         }
 
         .location-date {
             text-align: right;
-            margin-top: 20px margin-bottom: 20px;
-            font-size: 12px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            font-size: 11px;
         }
 
         .signature-title {
-            font-size: 12px;
-            margin-bottom: 60px;
+            font-size: 10px;
+            margin-bottom: 55px;
         }
 
         .name {
-            font-size: 12px;
+            font-size: 10px;
             text-decoration: underline;
+            font-weight: bold;
         }
 
         .info {
-            font-size: 12px;
-            margin-top: 5px;
+            font-size: 10px;
+            margin-top: 3px;
+        }
+
+        .info-label {
+            font-weight: bold;
         }
     </style>
 </head>
@@ -225,30 +263,25 @@
 <body>
 
     <div class="header">
-        <img src="img\Kop.png" alt="Kop Surat">
+        <img src="dist/img/logo/Logo.png" alt="Logo Sekolah">
         <h2>Laporan Hasil Belajar Asrama</h2>
-        <h2>SMK TI BAZMA</h2>
+        <h3>SMK TI BAZMA</h3>
     </div>
     <table class="d-none">
         <tr>
             <td class="right">
-                <h2 class="label"></h2>
-                <h2 class="label">Nama</h2>
-                <h2 class="value">: {{ $rasrama->siswa->nama }}</h2>
+                <strong class="label">Nama</strong>
+                <span class="value">: {{ $rasrama->nama }}</span>
                 <br>
-                <h2 class="label"></h2>
-                <h2 class="label">Kelas</h2>
-                <h2 class="value">: {{ $rasrama->siswa->dataKelas[0]->kelas }}</h2>
+                <strong class="label">Kelas</strong>
+                <span class="value">: {{ $rasrama->kelas }}</span>
             </td>
-            <td class="center"></td>
             <td class="left">
-                <h2 class="long-label"></h2>
-                <h2 class="long-label">Semester</h2>
-                <h2 class="value">: {{ $rasrama->semester }}</h2>
+                <strong class="long-label">Semester</strong>
+                <span class="value">: {{ $rasrama->semester }}</span>
                 <br>
-                <h2 class="long-label"></h2>
-                <h2 class="long-label">Tahun Ajaran</h2>
-                <h2 class="value">: {{ $rasrama->tahun_ajaran }}</h2>
+                <strong class="long-label">Tahun Ajaran</strong>
+                <span class="value">: {{ $rasrama->tahun_ajaran }}</span>
             </td>
         </tr>
     </table>
@@ -390,115 +423,38 @@
             @endphp
 
             @php
-                // Daftar sholat wajib
-                $sholatWajib = ['Subuh', 'Dzuhur', 'Ashar', 'Maghrib', 'Isya'];
-
-                // Daftar ibadah lainnya
-                $ibadahLainnya = ['dhuha', 'imam', 'muadzin', 'khutbah', 'kultum', 'murojaah'];
+                $aspekubudiyyah = [
+                    'A. Sholat Subuh' => 'Subuh',
+                    'B. Sholat Dzuhur' => 'Dzuhur',
+                    'C. Sholat Ashar' => 'Ashar',
+                    'D. Sholat Maghrib' => 'Maghrib',
+                    'E. Sholat Isya' => 'Isya',
+                    'F. Sholat Dhuha' => 'dhuha',
+                    'G. Imam' => 'imam',
+                    'H. Muadzin' => 'muadzin',
+                    'I. Khutbah' => 'khutbah',
+                    'J. Kultum' => 'kultum',
+                    'K. Murojaah' => 'murojaah',
+                ];
             @endphp
 
-            <!-- Menampilkan Sholat Wajib -->
-            @foreach ($sholatWajib as $index => $sholat)
+            @foreach ($aspekubudiyyah as $label => $key)
+                @php
+                    // tolerant key lookup: try original, lowercase, and ucfirst(lowercase)
+                    $entry = $rasrama->ubudiyyah[$key] ?? ($rasrama->ubudiyyah[strtolower($key)] ?? ($rasrama->ubudiyyah[ucfirst(strtolower($key))] ?? []));
+                @endphp
                 <tr class="section-3">
-                    @php
-                        $alphabet = chr(65 + $index); // Konversi index ke huruf (A, B, C, ...)
-                        $totalSholatPerDay = $data['totalPrayers'] / 5;
-                        $jenisSholat = $rasrama->ubudiyyah[$sholat]['jenis'] ?? null;
-                        $deskripsiSholat = $rasrama->ubudiyyah[$sholat]['deskripsi_sholat'] ?? '-';
-                        $deskripsiKegiatan = $rasrama->ubudiyyah[$sholat]['deskripsi_kegiatan'] ?? '-';
-                    @endphp
-                    <td class="small-text">{{ $alphabet }}. {{ ucfirst($sholat) }}</td>
-
-                    <!-- Menampilkan Predikat untuk Setiap Siswa -->
-                    @foreach ($data['studentDetails'] as $idSiswa => $jamaah)
-                        @php
-                            $attendance = $jamaah['attendance'][$sholat] ?? [
-                                'Hadir' => 0,
-                                'Sakit' => 0,
-                                'Izin' => 0,
-                                'Alpha' => 0,
-                            ];
-                            $hadir = $attendance['Hadir'];
-                            $percentage = calculatepercentage($hadir, $totalSholatPerDay);
-                            $predikat = getpredikat($percentage);
-                        @endphp
-                        <td>{{ $predikat }}</td>
-                    @endforeach
-
-                    <!-- Menampilkan Jenis Sholat -->
+                    <td class="small-text">{{ $label }}</td>
+                    <td>{{ $entry['predikat'] ?? '-' }}</td>
                     <td>
-                        {{ $jenisSholat === 'Teori' ? 'T' : ($jenisSholat === 'Praktek' ? 'P' : '-') }}
+                        {{ ($entry['jenis'] ?? '') === 'Teori' ? 'T' : ((($entry['jenis'] ?? '') === 'Praktek') ? 'P' : '-') }}
                     </td>
-
-                    <!-- Menampilkan Statistik Kehadiran -->
-                    @foreach (['Alpha', 'Izin', 'Sakit', 'Hadir'] as $status)
-                        @foreach ($data['studentDetails'] as $idSiswa => $jamaah)
-                            <td>{{ $jamaah['attendance'][$sholat][$status] ?? 0 }}</td>
-                        @endforeach
-                    @endforeach
-
-                    <!-- Menampilkan Total dan Deskripsi -->
-                    <td>{{ $totalSholatPerDay }}</td>
-                    @if ($loop->first)
-                        <td colspan="2" rowspan="5">
-                            {{ $deskripsiSholat }}
-                        </td>
-                    @endif
-                </tr>
-            @endforeach
-
-
-            <!-- Menampilkan Ibadah Lainnya -->
-            @foreach ($ibadahLainnya as $index => $ibadah)
-                <tr class="section-3">
-                    @php
-                        $alphabet = chr(65 + count($sholatWajib) + $index); // Huruf lanjutan setelah sholat wajib
-                    @endphp
-                    <td class="small-text">{{ $alphabet }}. {{ ucfirst($ibadah) }}</td>
-
-                    @foreach ($data['studentDetails'] as $idSiswa => $jamaah)
-                        @php
-                            $hadir = $rasrama->ubudiyyah[$ibadah]['hadir'] ?? 0; // Data hadir diambil dari `ubudiyyah`
-                            $total = $rasrama->ubudiyyah[$ibadah]['total'] ?? 0; // Asumsi total sholat
-
-                            // Hitung persentase
-                            $percentage = calculatepercentage($hadir, $total);
-
-                            // Dapatkan predikat
-                            $predikat = getpredikat($percentage);
-                        @endphp
-                        <td>{{ $predikat }}</td> <!-- Menampilkan predikat berdasarkan kehadiran -->
-                    @endforeach
-
-                    <td>
-                        {{ $rasrama->ubudiyyah[$ibadah]['jenis'] === 'Teori' ? 'T' : ($rasrama->ubudiyyah[$ibadah]['jenis'] === 'Praktek' ? 'P' : '-') }}
-                    </td>
-
-                    @foreach ($data['studentDetails'] as $idSiswa => $jamaah)
-                        <td>{{ $rasrama->ubudiyyah[$ibadah]['alpha'] ?? 0 }}</td> <!-- Jumlah Alpha -->
-                    @endforeach
-
-                    @foreach ($data['studentDetails'] as $idSiswa => $jamaah)
-                        <td>{{ $rasrama->ubudiyyah[$ibadah]['izin'] ?? 0 }}</td> <!-- Jumlah Izin -->
-                    @endforeach
-
-                    @foreach ($data['studentDetails'] as $idSiswa => $jamaah)
-                        <td>{{ $rasrama->ubudiyyah[$ibadah]['sakit'] ?? 0 }}</td> <!-- Jumlah Sakit -->
-                    @endforeach
-
-                    @foreach ($data['studentDetails'] as $idSiswa => $jamaah)
-                        <td>{{ $rasrama->ubudiyyah[$ibadah]['hadir'] ?? 0 }}</td> <!-- Jumlah Hadir -->
-                    @endforeach
-
-                    @foreach ($data['studentDetails'] as $idSiswa => $jamaah)
-                        <td>{{ $rasrama->ubudiyyah[$ibadah]['total'] ?? 0 }}</td> <!-- Jumlah Hadir -->
-                    @endforeach
-
-                    @if ($loop->first)
-                        <td colspan="2" rowspan="6">
-                            {{ $deskripsiKegiatan }}
-                        </td>
-                    @endif
+                    <td class="blue-text">{{ $entry['alpha'] ?? '-' }}</td>
+                    <td class="blue-text">{{ $entry['izin'] ?? '-' }}</td>
+                    <td class="blue-text">{{ $entry['sakit'] ?? '-' }}</td>
+                    <td class="blue-text">{{ $entry['hadir'] ?? '-' }}</td>
+                    <td class="blue-text">{{ $entry['total'] ?? '-' }}</td>
+                    <td colspan="2">{{ $entry['deskripsi_sholat'] ?? $entry['deskripsi_kegiatan'] ?? $entry['deskripsi'] ?? '-' }}</td>
                 </tr>
             @endforeach
 
@@ -573,30 +529,6 @@
                 </tr>
             @endforeach
 
-            <!-- informasi siswa -->
-            @php
-                $datasiswa = [
-                    ['label' => 'Tinggi Badan', 'key' => 'tb'],
-                    ['label' => 'Berat Badan', 'key' => 'bb'],
-                    ['label' => 'Parfum', 'key' => 'parfum'],
-                    ['label' => 'Reward/Juara', 'key' => 'juara'],
-                    ['label' => 'Punishment', 'key' => 'punishment'],
-                    ['label' => 'Jumlah Poin Pelanggaran', 'key' => 'poin'],
-                ];
-            @endphp
-
-            <tr class="section-6">
-                <td rowspan="{{ count($datasiswa) + 1 }}">13</td>
-                <td class="subject" colspan="10">Informasi Siswa</td>
-            </tr>
-
-            @foreach ($datasiswa as $item)
-                <tr class="section-6">
-                    <td class="small-text">{{ $item['label'] }}</td>
-                    <td colspan="9">{{ $rasrama->data_siswa[$item['key']]['deskripsi'] ?? '-' }}</td>
-                </tr>
-            @endforeach
-
             <!-- pengembangan diri -->
             @php
                 $pengembangandiri = $rasrama->pengembangan_diri; // ambil data pengembangan diri
@@ -618,6 +550,30 @@
                     <td class="blue-text"></td>
                     <td class="blue-text"></td>
                     <td colspan="2"></td>
+                </tr>
+            @endforeach
+
+            <!-- informasi siswa -->
+            @php
+                $datasiswa = [
+                    ['label' => 'Tinggi Badan', 'key' => 'tb'],
+                    ['label' => 'Berat Badan', 'key' => 'bb'],
+                    ['label' => 'Parfum', 'key' => 'parfum'],
+                    ['label' => 'Reward/Juara', 'key' => 'juara'],
+                    ['label' => 'Punishment', 'key' => 'punishment'],
+                    ['label' => 'Jumlah Poin Pelanggaran', 'key' => 'poin'],
+                ];
+            @endphp
+
+            <tr class="section-6">
+                <td rowspan="{{ count($datasiswa) + 1 }}">13</td>
+                <td class="subject" colspan="10">Informasi Siswa</td>
+            </tr>
+
+            @foreach ($datasiswa as $item)
+                <tr class="section-6">
+                    <td class="small-text">{{ $item['label'] }}</td>
+                    <td colspan="9">{{ $rasrama->data_siswa[$item['key']]['deskripsi'] ?? '-' }}</td>
                 </tr>
             @endforeach
         </tbody>
@@ -723,61 +679,57 @@
 
     </table>
 
-    <table style="float: right; text-align: left; margin-top: 20px;">
+    <table style="width: 100%; margin-top: 20px; margin-bottom: 30px;">
         <tr>
-            <td style="padding: 5px;"><strong>Dikeluarkan di</strong></td>
-            <td style="padding: 5px;">: Bogor</td>
-        </tr>
-        <tr>
-            <td style="padding: 5px;"><strong>Tanggal</strong></td>
-            <td style="padding: 5px;">: {{ \Carbon\Carbon::parse($rasrama->released)->translatedFormat('d F Y') }}
+            <td style="text-align: right; padding-right: 20px;">
+                <table style="text-align: right; border-collapse: collapse;">
+                    <tr>
+                        <td style="font-weight: bold; font-size: 12px; padding: 5px 10px 5px 0;">Dikeluarkan di</td>
+                        <td style="font-size: 12px;">: Bogor</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; font-size: 12px; padding: 5px 10px 5px 0;">Tanggal</td>
+                        <td style="font-size: 12px; padding: 5px 0;">: {{ \Carbon\Carbon::parse($rasrama->released)->translatedFormat('d F Y') }}</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; font-size: 12px; padding: 5px 10px 5px 0; vertical-align: top;">Keterangan</td>
+                        <td style="font-size: 12px; padding: 5px 0; text-align: left;">: {{ $rasrama->keterangan }}</td>
+                    </tr>
+                </table>
             </td>
-        </tr>
-        <tr>
-            <td style="padding: 5px;"><strong>Keterangan</strong></td>
-            <td style="padding: 5px;">: {{ $rasrama->keterangan }}</td>
         </tr>
     </table>
 
-    <table class="signature" style="float: right; text-align: left; margin-top: 150px; clear: both; margin-left: 0;">
+    <table class="signature" style="width: 100%; margin-top: 80px; border-collapse: collapse;">
         <tr>
-            <td>Mengetahui,</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td style="width: 25%; text-align: center; font-size: 12px; font-weight: bold; padding: 10px 0;">Mengetahui,</td>
+            <td style="width: 25%;"></td>
+            <td style="width: 25%;"></td>
+            <td style="width: 25%; text-align: center; font-size: 12px; font-weight: bold; padding: 10px 0;">Wali Asrama</td>
         </tr>
         <tr>
-            <td class="right-signature">Orang Tua/Wali,</td>
-            <td class="center-signature"></td>
-            <td class="center-signature"></td>
-            <td class="center-signature"></td>
-            <td class="center-signature"></td>
-            <td class="left-signature">Wali Asrama</td>
+            <td style="width: 25%; text-align: center; font-size: 12px; padding: 5px 0;">Orang Tua/Wali</td>
+            <td style="width: 25%;"></td>
+            <td style="width: 25%;"></td>
+            <td style="width: 25%;"></td>
         </tr>
         <tr>
-            <td><br><br><br><br><br><br></td>
-            <td><br><br><br><br><br><br></td>
-            <td><br><br><br><br><br><br></td>
-            <td><br><br><br><br><br><br></td>
-            <td><br><br><br><br><br><br></td>
+            <td style="width: 25%; height: 60px; vertical-align: bottom; text-align: center; border-bottom: 1px solid #000; font-size: 12px;">&nbsp;</td>
+            <td style="width: 25%;"></td>
+            <td style="width: 25%;"></td>
+            <td style="width: 25%; height: 60px; vertical-align: bottom; text-align: center; border-bottom: 1px solid #000; font-size: 12px;">&nbsp;</td>
         </tr>
         <tr>
-            <td>________________</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td class="name">{{ $rasrama->wname }}</td>
+            <td style="width: 25%; padding-top: 8px; text-align: center; font-size: 12px;">________________</td>
+            <td style="width: 25%;"></td>
+            <td style="width: 25%;"></td>
+            <td style="width: 25%; padding-top: 8px; text-align: center; font-size: 12px; font-weight: bold;">{{ $rasrama->wname }}</td>
         </tr>
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>NIK. {{ $rasrama->nik }}</td>
+            <td style="width: 25%; padding-top: 3px; text-align: center; font-size: 12px;"></td>
+            <td style="width: 25%;"></td>
+            <td style="width: 25%;"></td>
+            <td style="width: 25%; padding-top: 3px; text-align: center; font-size: 12px;">NIK. {{ $rasrama->nik }}</td>
         </tr>
     </table>
 

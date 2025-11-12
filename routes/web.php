@@ -63,6 +63,7 @@ use App\Http\Controllers\korespondensi\SuratPeringatanController;
 use App\Http\Controllers\database\PklAdministrasiSekolahController;
 use App\Http\Controllers\ProgresController;
 
+// PROGRES SISWA
 Route::get('/progres-siswa', function () {
     return view('progres');
 });
@@ -71,8 +72,119 @@ Route::post('/progres-siswa/hasil', [ProgresController::class, 'hasilProgres'])-
 Route::get('/progres-siswa/hasil', [ProgresController::class, 'hasilProgres'])->name('progres.hasil');
 Route::post('/progres-siswa/hasil', [ProgresController::class, 'hasilProgres']);
 
+// PENILAIAN Routes (without password protection)
+Route::prefix('penilaian')->group(function() {
+    Route::view('/', 'home.penilaian')->name('penilaian');
+    Route::get('/rapor', [RaporController::class, 'index'])->name('rapor');
+    Route::get('/rpts', [RptsController::class, 'index'])->name('rpts');
+    Route::get('/rasrama', [rasramaController::class, 'index'])->name('rasrama');
+    Route::get('/pat', [PatController::class, 'index'])->name('pat');
+    Route::get('/pts', [PtsController::class, 'index'])->name('pts');
+    Route::get('/pas', [PasController::class, 'index'])->name('pas');
+    Route::get('/panitia', [PanitiaController::class, 'index'])->name('panitia');
+
+    // All other penilaian routes
+    Route::controller(AverageController::class)->group(function () {
+        Route::get('/rapor/rerata', 'index')->name('average');
+        Route::get('/rapor/rerata/create', 'create')->name('average.create');
+        Route::post('/rapor/rerata/store', 'store')->name('average.perform');
+        Route::get('/rapor/rerata/edit/{id}', 'edit')->name('average.edit');
+        Route::post('/rapor/rerata/update/{id}', 'update')->name('average.update');
+        Route::delete('/rapor/rerata/delete/{id}', 'destroy')->name('average.destroy');
+    });
+
+    Route::controller(RaporController::class)->group(function () {
+        Route::get('/rapor/create', 'create')->name('rapor.create');
+        Route::post('/rapor/store', 'store')->name('rapor.perform');
+        Route::get('/rapor/edit/{id}', 'edit')->name('rapor.edit');
+        Route::put('/rapor/update/{id}', 'update')->name('rapor.update');
+        Route::delete('/rapor/delete/{id}', 'destroy')->name('rapor.delete');
+        Route::get('/rapor/pdf/{id}', 'pdf')->name('rapor.pdf');
+    });
+
+    Route::controller(RptsController::class)->group(function () {
+        Route::get('/rpts/create', 'create')->name('rpts.create');
+        Route::post('/rpts/store', 'store')->name('rpts.perform');
+        Route::get('/rpts/edit/{id}', 'edit')->name('rpts.edit');
+        Route::put('/rpts/update/{id}', 'update')->name('rpts.update');
+        Route::delete('/rpts/delete/{id}', 'destroy')->name('rpts.delete');
+        Route::get('/rpts/pdf/{id}', 'pdf')->name('rpts.pdf');
+    });
+
+    Route::controller(rasramaController::class)->group(function () {
+        Route::get('/rapor/asrama', 'index')->name('rasrama');
+        Route::get('/rapor/asrama/create', 'create')->name('rasrama.create');
+        Route::post('/rapor/asrama/store', 'store')->name('rasrama.perform');
+        Route::get('/rapor/asrama/edit/{id}', 'edit')->name('rasrama.edit');
+        Route::put('/rapor/asrama/update/{id}', 'update')->name('rasrama.update');
+        Route::delete('/rapor/asrama/delete/{id}', 'destroy')->name('rasrama.delete');
+        Route::get('/rapor/asrama/pdf/{id}', 'pdf')->name('rasrama.pdf');
+    });
+
+    Route::controller(PasController::class)->group(function () {
+        Route::get('/pas/create', 'create')->name('pas.create');
+        Route::post('/pas/store', 'store')->name('pas.perform');
+        Route::get('/pas/edit/{id}', 'edit')->name('pas.edit');
+        Route::put('/pas/update/{id}', 'update')->name('pas.update');
+        Route::delete('/pas/delete/{id}', 'destroy')->name('pas.delete');
+        Route::get('/pas/download/{id}', 'download')->name('pas.download');
+    });
+
+    Route::controller(PatController::class)->group(function () {
+        Route::get('/pat/create', 'create')->name('pat.create');
+        Route::post('/pat/store', 'store')->name('pat.perform');
+        Route::get('/pat/edit/{id}', 'edit')->name('pat.edit');
+        Route::put('/pat/update/{id}', 'update')->name('pat.update');
+        Route::delete('/pat/delete/{id}', 'destroy')->name('pat.delete');
+        Route::get('/pat/download/{id}', 'download')->name('pat.download');
+    });
+
+    Route::controller(PtsController::class)->group(function () {
+        Route::get('/pts/create', 'create')->name('pts.create');
+        Route::post('/pts/store', 'store')->name('pts.perform');
+        Route::get('/pts/edit/{id}', 'edit')->name('pts.edit');
+        Route::put('/pts/update/{id}', 'update')->name('pts.update');
+        Route::delete('/pts/delete/{id}', 'destroy')->name('pts.delete');
+        Route::get('/pts/download/{id}', 'download')->name('pts.download');
+    });
+    
+        // TESTING ROUTE - REMOVE AFTER DEBUGGING
+        Route::get('/test-pts/{id}', function($id) {
+            $pts = \App\Models\penilaian\pas::findOrFail($id);
+            return response()->json([
+                'id' => $pts->id,
+                'tahun_ajaran' => $pts->tahun_ajaran,
+                'kelas' => $pts->kelas,
+                'mapel' => $pts->mapel,
+                'kisi_kisi' => $pts->kisi_kisi,
+                'soal' => $pts->soal,
+                'jawaban' => $pts->jawaban,
+                'kehadiran' => $pts->kehadiran,
+                'daftar_nilai' => $pts->daftar_nilai,
+                'type' => $pts->type,
+                'paths_exist' => [
+                    'kisi_kisi_path' => $pts->kisi_kisi ? public_path('storage/' . $pts->kisi_kisi) : null,
+                    'kisi_kisi_exists' => $pts->kisi_kisi ? file_exists(public_path('storage/' . $pts->kisi_kisi)) : false,
+                    'soal_path' => $pts->soal ? public_path('storage/' . $pts->soal) : null,
+                    'soal_exists' => $pts->soal ? file_exists(public_path('storage/' . $pts->soal)) : false,
+                ]
+            ]);
+        });
+
+    Route::controller(PanitiaController::class)->group(function () {
+        Route::get('/panitia/create', 'create')->name('panitia.create');
+        Route::post('/panitia/store', 'store')->name('panitia.perform');
+        Route::get('/panitia/edit/{id}', 'edit')->name('panitia.edit');
+        Route::put('/panitia/update/{id}', 'update')->name('panitia.update');
+        Route::delete('/panitia/delete/{id}', 'destroy')->name('panitia.delete');
+        Route::get('/panitia/download/{id}', 'download')->name('panitia.download');
+    });
+});
+
 Route::middleware('password')->group(function () {
 });
+
+// SEKOLAH KEASRAMAAN
 Route::view('sekolah-keasramaan', 'home.keasramaan')->name('keasramaan');
 Route::view('sekolah-keasramaan/al-quran', 'keasramaan.quran.quran')->name('quran');
 Route::view('sekolah-keasramaan/akademik', 'keasramaan.akademik.akademik')->name('akademik');
@@ -80,13 +192,13 @@ Route::view('sekolah-keasramaan/jurnal-asrama', 'keasramaan.jurnal.jurnal')->nam
 Route::view('sekolah-keasramaan/kunjungan', 'keasramaan.kunjungan.kunjungan')->name('kunjungan');
 Route::view('created-by', 'home.createdBy')->name('created-by');
 
+// WhatsApp API Route
 Route::get('/api/send-whatsapp', [WhatsAppController::class, 'sendMessage']);
 
-
+// MAIN ROUTES
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('database', [DatabaseDashboard::class, 'index'])->name('dashboard');
 Route::get('/korespondensi', [indexController::class, 'index'])->name('inbox.index');
-Route::view('penilaian', 'home.penilaian')->name('penilaian');
 Route::view('administrasi', 'home.administrasiKeguruan')->name('administrasi');
 Route::view('finance', 'home.finance')->name('finance');
 Route::view('sarpras', 'home.sarpras')->name('sarpras');
@@ -98,90 +210,10 @@ Route::put('/change-password', [App\Http\Controllers\PasswordController::class, 
 Route::get('/jamaah', [App\Http\Controllers\keasramaan\JamaahSiswaController::class, 'index'])->name('jamaah.index');
 Route::get('/patroli/asrama', [App\Http\Controllers\keasramaan\PatroliAsramaController::class, 'index'])->name('patroli.asrama.index');
 Route::get('/sekolah-keasramaan/akses-lab', [App\Http\Controllers\keasramaan\LabController::class, 'index'])->name('lab.index');
-Route::get('penilaian/rapor', [RaporController::class, 'index'])->name('rapor');
-Route::get('penilaian/rpts', [RaporController::class, 'index'])->name('rpts');
-Route::get('penilaian/rasrama', [RaporController::class, 'index'])->name('rasrama');
-Route::get('penilaian/pat', [RaporController::class, 'index'])->name('pat');
-Route::get('penilaian/pts', [RaporController::class, 'index'])->name('pts');
-Route::get('penilaian/pas', [RaporController::class, 'index'])->name('pas');
-Route::get('penilaian/panitia', [RaporController::class, 'index'])->name('panitia');
 Route::get('/sekolah-keasramaan/kunjungan/alumniOrtuTamu/edit/{id}', [KunjunganController::class, 'editOrtuTamuAlumni'])->name('ortu.edit');
 
 
-// Penilaian Controller Routes
-Route::controller(AverageController::class)->group(function () {
-    Route::get('/penilaian/rapor/rerata', 'index')->name('average');
-    Route::get('/penilaian/rapor/rerata/create', 'create')->name('average.create');
-    Route::post('/penilaian/rapor/rerata/store', 'store')->name('average.perform');
-    Route::get('/penilaian/rapor/rerata/edit/{id}', 'edit')->name('average.edit');
-    Route::post('/penilaian/rapor/rerata/update/{id}', 'update')->name('average.update');
-    Route::delete('/penilaian/rapor/rerata/delete/{id}', 'destroy')->name('average.destroy');
-});
-Route::controller(RaporController::class)->group(function () {
-
-    Route::get('/penilaian/rapor/create', 'create')->name('rapor.create');
-    Route::post('/penilaian/rapor/store', 'store')->name('rapor.perform');
-    Route::get('/penilaian/rapor/edit/{id}', 'edit')->name('rapor.edit');
-    Route::put('/penilaian/rapor/update/{id}', 'update')->name('rapor.update');
-    Route::delete('/penilaian/rapor/delete/{id}', 'destroy')->name('rapor.delete');
-    Route::get('/penilaian/rapor/pdf/{id}', 'pdf')->name('rapor.pdf');
-});
-Route::controller(RptsController::class)->group(function () {
-    Route::get('/penilaian/rpts/create', 'create')->name('rpts.create');
-    Route::post('/penilaian/rpts/store', 'store')->name('rpts.perform');
-    Route::get('/penilaian/rpts/edit/{id}', 'edit')->name('rpts.edit');
-    Route::put('/penilaian/rpts/update/{id}', 'update')->name('rpts.update');
-    Route::delete('/penilaian/rpts/delete/{id}', 'destroy')->name('rpts.delete');
-    Route::get('/penilaian/rpts/pdf/{id}', 'pdf')->name('rpts.pdf');
-});
-
-Route::controller(rasramaController::class)->group(function () {
-    Route::get('/penilaian/rapor/asrama/create', 'create')->name('rasrama.create');
-    Route::post('/penilaian/rapor/asrama/store', 'store')->name('rasrama.perform');
-    Route::get('/penilaian/rapor/asrama/edit/{id}', 'edit')->name('rasrama.edit');
-    Route::put('/penilaian/rapor/asrama/update/{id}', 'update')->name('rasrama.update');
-    Route::delete('/penilaian/rapor/asrama/delete/{id}', 'destroy')->name('rasrama.delete');
-    Route::get('/penilaian/rapor/asrama/pdf/{id}', 'pdf')->name('rasrama.pdf');
-});
-
-Route::controller(PasController::class)->group(function () {
-    Route::get('/penilaian/pas/create', 'create')->name('pas.create');
-    Route::post('/penilaian/pas/store', 'store')->name('pas.perform');
-    Route::get('/penilaian/pas/edit/{id}', 'edit')->name('pas.edit');
-    Route::put('/penilaian/pas/update/{id}', 'update')->name('pas.update');
-    Route::delete('/penilaian/pas/delete/{id}', 'destroy')->name('pas.delete');
-    Route::get('/penilaian/pas/download/{id}', 'download')->name('pas.download');
-});
-
-Route::controller(PatController::class)->group(function () {
-    Route::get('/penilaian/pat/create', 'create')->name('pat.create');
-    Route::post('/penilaian/pat/store', 'store')->name('pat.perform');
-    Route::get('/penilaian/pat/edit/{id}', 'edit')->name('pat.edit');
-    Route::put('/penilaian/pat/update/{id}', 'update')->name('pat.update');
-    Route::delete('/penilaian/pat/delete/{id}', 'destroy')->name('pat.delete');
-    Route::get('/penilaian/pat/download/{id}', 'download')->name('pat.download');
-});
-
-Route::controller(PtsController::class)->group(function () {
-    Route::get('/penilaian/pts/create', 'create')->name('pts.create');
-    Route::post('/penilaian/pts/store', 'store')->name('pts.perform');
-    Route::get('/penilaian/pts/edit/{id}', 'edit')->name('pts.edit');
-    Route::put('/penilaian/pts/update/{id}', 'update')->name('pts.update');
-    Route::delete('/penilaian/pts/delete/{id}', 'destroy')->name('pts.delete');
-    Route::get('/penilaian/pts/download/{id}', 'download')->name('pts.download');
-});
-
-Route::controller(PanitiaController::class)->group(function () {
-    Route::get('/penilaian/panitia/create', 'create')->name('panitia.create');
-    Route::post('/penilaian/panitia/store', 'store')->name('panitia.perform');
-    Route::get('/penilaian/panitia/edit/{id}', 'edit')->name('panitia.edit');
-    Route::put('/penilaian/panitia/update/{id}', 'update')->name('panitia.update');
-    Route::delete('/penilaian/panitia/delete/{id}', 'destroy')->name('panitia.delete');
-    Route::get('/penilaian/panitia/download/{id}', 'download')->name('panitia.download');
-});
-
-
-// Sarpras
+// SARPRAS
 Route::controller(SchoolPurchaseController::class)->group(function () {
     // Damaged items routes
     Route::get('/sarpras/damaged-items-school', 'damagedItems')->name('damaged-items-school');
@@ -227,7 +259,8 @@ Route::controller(DormPurchaseController::class)->group(function () {
 
 Route::get('sarpras/zip-file', [SchoolPurchaseController::class, 'zip']);
 
-// Database
+
+// DATABASE Controller Routes
 Route::controller(PklAdministrasiSekolahController::class)->group(function () {
     Route::get('pkl/adm-sekolah', 'index')->name('pkl.sekolah.index');
     Route::get('pkl/adm-sekolah/create', 'create')->name('pkl.sekolah.create');
@@ -351,10 +384,7 @@ Route::controller(PunishmentController::class)->group(function () {
 Route::get('/kelas/export', [DataKelasController::class, 'exportPdf'])->name('kelas.export');
 
 
-
-
-
-// keasramaan
+// KEASRAMAAN Controller Routes
 Route::controller(JamaahSiswaController::class)->group(function () {
     Route::get('/jamaah/create', 'create')->name('jamaah.create');
     Route::post('/jamaah/create/data', 'store')->name('jamaah.store');
@@ -514,7 +544,7 @@ Route::get('/progres-siswa/{nisn}', [ProgresSiswaController::class, 'index'])->n
 Route::get('/api/progress/data/{nisn}', [ProgresSiswaController::class, 'getData']);
 
 
-// korespondensi
+// KORESPONDENSI Controller Routes
 Route::get('/pdf/{model}', [GeneratePdfController::class, 'generatepdf'])->name('pdf');
 
 Route::controller(GuruController::class)->group(function () {
@@ -575,7 +605,7 @@ Route::controller(SuratPengajuanController::class)->group(function () {
     Route::delete('/pengajuan/delete/{id}', 'destroy')->name('pengajuan.destroy');
 });
 
-// Administrasi
+// ADMINISTRASI KEGURUAN Controller Routes
 // Routes for Mapel
 Route::prefix('administrasi-keguruan/mapel')->group(function () {
     Route::get('/', [MapelController::class, 'index'])->name('mapel.index');
@@ -677,4 +707,3 @@ Route::prefix('administrasi-keguruan/supervisi')->group(function () {
     Route::delete('/{id}', [SupervisiController::class, 'destroy'])->name('supervisi.destroy');
 });
 
-// tambahkan (jika belum ada)

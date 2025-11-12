@@ -331,7 +331,7 @@
                                         <div class="mb-3">
                                             <label class="form-label">Total Kehadiran</label>
                                             <input type="number" name="kehadiran" id="izin" class="form-control"
-                                                value="{{ $rpts->kehadiran }}" required>
+                                                value="{{ $rpts->kehadiran }}">
                                         </div>
                                     </div>
                                     <!-- Izin -->
@@ -339,7 +339,7 @@
                                         <div class="mb-3">
                                             <label class="form-label">Izin</label>
                                             <input type="number" name="izin" id="izin" class="form-control"
-                                                value="{{ $rpts->izin }}" required>
+                                                value="{{ $rpts->izin }}">
                                         </div>
                                     </div>
                                     <!-- Sakit -->
@@ -347,7 +347,7 @@
                                         <div class="mb-3">
                                             <label class="form-label">Sakit</label>
                                             <input type="number" name="sakit" id="sakit" class="form-control"
-                                                value="{{ $rpts->sakit }}" required>
+                                                value="{{ $rpts->sakit }}">
                                         </div>
                                     </div>
                                     <!-- Alpha -->
@@ -355,7 +355,7 @@
                                         <div class="mb-3">
                                             <label class="form-label">Alpha</label>
                                             <input type="number" name="alpha" id="alpha" class="form-control"
-                                                value="{{ $rpts->alpha }}" required>
+                                                value="{{ $rpts->alpha }}">
                                         </div>
                                     </div>
                                 </div>
@@ -388,68 +388,73 @@
 </div>
 <script>
     function initializeDatepickers() {
-            var datepickers = document.querySelectorAll('[id^="datepicker-icon-"]');
-            datepickers.forEach(function(datepicker) {
-                new Litepicker({
-                    element: datepicker,
-                    format: 'DD MMMM YYYY', // Format tanggal
-                    buttonText: {
-                        previousMonth: `<svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                <path d="M15 6l-6 6l6 6" /></svg>`,
-                        nextMonth: `<svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                <path d="M9 6l6 6l-6 6" /></svg>`,
-                    },
-                    locale: {
-                        months: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus',
-                            'September', 'Oktober', 'November', 'Desember'
-                        ],
-                        weekdays: ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'],
-                    }
-                });
+        var datepickers = document.querySelectorAll('[id^="datepicker-icon-"]');
+        datepickers.forEach(function(datepicker) {
+            new Litepicker({
+                element: datepicker,
+                format: 'DD MMMM YYYY',
+                buttonText: {
+                    previousMonth: `<svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 6l-6 6l6 6" /></svg>`,
+                    nextMonth: `<svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>`,
+                },
+                locale: {
+                    months: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
+                    weekdays: ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'],
+                }
             });
-        }
+        });
+    }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const steps = ['step1', 'step2', 'step3', 'step4', 'step5', 'step6', 'step7', 'step8', 'step9'];
-            let currentStep = 0;
+    document.addEventListener('DOMContentLoaded', function() {
+        const steps = ['step1', 'step2', 'step3', 'step4', 'step5', 'step6', 'step7', 'step8', 'step9'];
+        let currentStep = 0;
 
-            const nextButton = document.getElementById('nextButton');
-            const prevButton = document.getElementById('prevButton');
-            const submitButton = document.getElementById('submitButton');
+        const nextButton = document.getElementById('nextButton');
+        const prevButton = document.getElementById('prevButton');
+        const submitButton = document.getElementById('submitButton');
 
-            const toggleVisibility = (element, condition) => {
-                element.style.display = condition ? 'none' : 'inline-block';
-            };
+        const toggleVisibility = (element, condition) => {
+            if (!element) return;
+            element.style.display = condition ? 'none' : 'inline-block';
+        };
 
-            const showStep = (step) => {
-                steps.forEach((id, index) => {
-                    document.getElementById(id).classList.toggle('d-none', index !== step);
-                });
-                toggleVisibility(prevButton, step === 0);
-                toggleVisibility(nextButton, step === steps.length - 1);
-                submitButton.classList.toggle('d-none', step !== steps.length - 1);
-            };
+        const showStep = (step) => {
+            let foundStep = false;
+            steps.forEach((id, index) => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.classList.toggle('d-none', index !== step);
+                    if (index === step) foundStep = true;
+                }
+            });
+            toggleVisibility(prevButton, step === 0);
+            toggleVisibility(nextButton, step === steps.length - 1);
+            // Always show submit if last step or if step not found
+            if (submitButton) {
+                submitButton.classList.toggle('d-none', !(step === steps.length - 1 || !foundStep));
+            }
+        };
 
+        if (nextButton) {
             nextButton.addEventListener('click', function() {
                 if (currentStep < steps.length - 1) {
                     currentStep++;
                     showStep(currentStep);
                 }
             });
+        }
 
+        if (prevButton) {
             prevButton.addEventListener('click', function() {
                 if (currentStep > 0) {
                     currentStep--;
                     showStep(currentStep);
                 }
             });
+        }
 
-            showStep(currentStep);
-            initializeDatepickers();
-        });
+        showStep(currentStep);
+        initializeDatepickers();
+    });
 </script>
 @endsection
