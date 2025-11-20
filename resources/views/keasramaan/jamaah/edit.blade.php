@@ -4,6 +4,16 @@
     @include('database.inc.form')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-lg-4">
+                <a href="{{ route('jamaah.index') }}" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left"></i> Back
+                </a>
+            </div>
+        </div>
+    </div>
+
     <div class="container mt-4">
         <div class="card">
             <form id="jamaahForm" method="POST"
@@ -14,16 +24,16 @@
 
                 <input type="hidden" id="kelasInput" name="kelas" value="{{ $kelas }}">
 
-                <div class="container">
+                <div class="container mt-4">
                     <div class="row">
                         <div class="col-12">
                             <label for="sholat">Sholat</label>
                             <select id="sholat" class="form-select" style="width: 100%;" name="sholat">
-                                <option value="subuh" {{ $sholat == 'subuh' ? 'selected' : '' }}>Subuh</option>
-                                <option value="dzuhur" {{ $sholat == 'dzuhur' ? 'selected' : '' }}>Dzuhur</option>
-                                <option value="ashar" {{ $sholat == 'ashar' ? 'selected' : '' }}>Ashar</option>
-                                <option value="maghrib" {{ $sholat == 'maghrib' ? 'selected' : '' }}>Maghrib</option>
-                                <option value="isya" {{ $sholat == 'isya' ? 'selected' : '' }}>Isya</option>
+                                <option value="Subuh" {{ old('sholat') == 'Subuh' ? 'selected' : '' }}>Subuh</option>
+                                <option value="Dzuhur" {{ old('sholat') == 'Dzuhur' ? 'selected' : '' }}>Dzuhur</option>
+                                <option value="Ashar" {{ old('sholat') == 'Ashar' ? 'selected' : '' }}>Ashar</option>
+                                <option value="Maghrib" {{ old('sholat') == 'Maghrib' ? 'selected' : '' }}>Maghrib</option>
+                                <option value="Isya" {{ old('sholat') == 'Isya' ? 'selected' : '' }}>Isya</option>
                             </select>
                         </div>
                     </div>
@@ -74,7 +84,7 @@
                     </div>
                 </div>
 
-                <div class="text-end mt-3">
+                <div class="card-footer text-end mt-3">
                     <button type="submit" class="btn btn-primary">Update</button>
                 </div>
             </form>

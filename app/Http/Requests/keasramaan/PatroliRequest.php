@@ -25,7 +25,8 @@ class PatroliRequest extends FormRequest
             'tanggal' => 'required|date',
             'area' => 'required|string|max:100',
             'status_patroli' => 'required',
-            'dokumentasi' => 'file|max:2048'
+            'nama_patroli' => 'required|string|max:100',
+            'dokumentasi' => 'nullable|file|max:2048'
         ];
     }
 }

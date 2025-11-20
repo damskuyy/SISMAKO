@@ -7,7 +7,7 @@
                 <div class="row row-cards">
                     <div class="col-12">
                         <div class="mb-4 col">
-                            <a href="/sekolah-keasramaan/akademik/pelatihan" class="btn btn-secondary">
+                            <a href="{{ route('lab.index')}}" class="btn btn-secondary">
                                 Back
                             </a>
                         </div>

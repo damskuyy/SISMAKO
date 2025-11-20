@@ -47,7 +47,7 @@
                             'url' => '/jamaah',
                             'img' =>
                                 'https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/Icons%2Fwindows.gif?alt=media&token=059162c4-00d0-43b1-912d-f896a92b4b1e',
-                            'title' => 'Jamaaah',
+                            'title' => 'Jamaah',
                             'color' => 'card-custom',
                         ],
                         [
@@ -90,7 +90,7 @@
                             'img' =>
                                 'https://firebasestorage.googleapis.com/v0/b/sismako.appspot.com/o/Kunjungan%2Fkunjungan.gif?alt=media&token=0720e2eb-1d81-4f22-8953-0173e678d3dc',
                             'title' => 'Kunjungan',
-                            'color' => 'card-custom-green',
+                            'color' => 'card-custom-red',
                         ],
                         [
                             'url' => '/sekolah-keasramaan/catatan-grooming',

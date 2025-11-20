@@ -26,8 +26,9 @@ class JamaahRequest extends FormRequest
             'status.*' => 'in:-,Hadir,Sakit,Alpha,Izin',
             'nama_siswa' => 'required|array',
             'nama_siswa.*' => 'string|max:75',
-            'sholat' => 'required|string|in:subuh,dzuhur,ashar,maghrib,isya',
-            'path_dokumentasi' => 'file|max:2048',
+            'sholat' => 'required|string|in:Subuh,Dzuhur,Ashar,Maghrib,Isya',
+            'kelas' => 'required|string',
+            'path_dokumentasi' => 'nullable|file|max:2048',
         ];
     }
 }

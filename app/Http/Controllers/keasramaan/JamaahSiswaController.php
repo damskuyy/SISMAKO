@@ -209,7 +209,7 @@ class JamaahSiswaController extends Controller
     public function destroy($id)
     {
         // Find the DokumentasiJamaahSiswa entry
-        $dokumen = DokumentasiJamaahSiswa::find($id);
+        $dokumen = DokumentasiJamaahSiswa::findOrFail($id);
 
         if (!$dokumen) {
             return redirect()->route('jamaah.index')

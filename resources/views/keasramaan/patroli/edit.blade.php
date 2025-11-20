@@ -8,51 +8,48 @@
             @csrf
             @method('PUT')
             <div class="row">
-                <p>{{ $patroliAsrama->status_patroli }}</p>
+                <div class="col-md-6">
+                    <label class="form-label">Nama Petugas / Tim</label>
+                    <input type="text" class="form-control" name="nama_patroli" value="{{ old('nama_patroli', $patroliAsrama->nama_patroli) }}" placeholder="Nama petugas atau tim patroli">
+                    @error('nama_patroli')
+                        <div class="text-danger mt-2">{{ $message }}</div>
+                    @enderror
+                </div>
 
-                <div class="col-lg-4">
-                    <div class="mb-3">
-                        <label class="form-label">Jenis Patroli</label>
-                        <select class="form-select" name="status_patroli" id="mutasi">
-                            <option value="{{$patroliAsrama->status_patroli}}">{{$patroliAsrama->status_patroli}}</option>
-                            <option value="Kebersihan" {{ $patroliAsrama->status_patroli == 'Kebersihan' ? 'selected' : '' }}>Kebersihan</option>
-                            <option value="Keamanan" {{ $patroliAsrama->status_patroli == 'Keamanan' ? 'selected' : '' }}>Keamanan</option>
-                            <option value="Kamar Asrama" {{ $patroliAsrama->status_patroli == 'Kamar Asrama' ? 'selected' : '' }}>Kamar Asrama</option>
-                        </select>
-                        @error('status_patroli')
-                            <div class="text-danger mt-2">{{ $message }}</div>
-                        @enderror
-                    </div>
+                <div class="col-md-6">
+                    <label class="form-label">Jenis Patroli</label>
+                    <select class="form-select" name="status_patroli" id="mutasi">
+                        <option value="Kebersihan" {{ $patroliAsrama->status_patroli == 'Kebersihan' ? 'selected' : '' }}>Kebersihan</option>
+                        <option value="Keamanan" {{ $patroliAsrama->status_patroli == 'Keamanan' ? 'selected' : '' }}>Keamanan</option>
+                        <option value="Kamar Asrama" {{ $patroliAsrama->status_patroli == 'Kamar Asrama' ? 'selected' : '' }}>Kamar Asrama</option>
+                    </select>
+                    @error('status_patroli')
+                        <div class="text-danger mt-2">{{ $message }}</div>
+                    @enderror
                 </div>
-                
-                <div class="col-lg-4">
-                    <div class="mb-3">
-                        <label class="form-label">Area Tempat</label>
-                        <input type="text" class="form-control" name="area" value="{{ old('area', $patroliAsrama->area) }}">
-                        @error('area')
-                            <div class="text-danger mt-2">{{ $message }}</div>
-                        @enderror
-                    </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Area Tempat</label>
+                    <input type="text" class="form-control" name="area" value="{{ old('area', $patroliAsrama->area) }}">
+                    @error('area')
+                        <div class="text-danger mt-2">{{ $message }}</div>
+                    @enderror
                 </div>
-                
-                <div class="col-lg-4">
-                    <div class="mb-3">
-                        <label class="form-label">Tanggal</label>
-                        <input type="date" class="form-control" name="tanggal" value="{{ old('tanggal', $patroliAsrama->tanggal) }}">
-                        @error('tanggal')
-                            <div class="text-danger mt-2">{{ $message }}</div>
-                        @enderror
-                    </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Tanggal</label>
+                    <input type="date" class="form-control" name="tanggal" value="{{ old('tanggal', $patroliAsrama->tanggal) }}">
+                    @error('tanggal')
+                        <div class="text-danger mt-2">{{ $message }}</div>
+                    @enderror
                 </div>
-                
-                <div class="col-lg-12">
-                    <div class="mb-3">
-                        <label class="form-label">Dokumentasi</label>
-                        <input type="file" class="form-control" name="dokumentasi">
-                        @error('dokumentasi')
-                            <div class="text-danger mt-2">{{ $message }}</div>
-                        @enderror
-                    </div>
+
+                <div class="col-12">
+                    <label class="form-label">Dokumentasi</label>
+                    <input type="file" class="form-control" name="dokumentasi">
+                    @error('dokumentasi')
+                        <div class="text-danger mt-2">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
             <div class="mt-3">

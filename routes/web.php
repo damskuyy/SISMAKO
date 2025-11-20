@@ -206,6 +206,41 @@ Route::view('pkl', '.database.database.pkl.pkl')->name('pkl');
 Route::get('/pin', [App\Http\Controllers\PasswordController::class, 'index'])->name('pin');
 Route::get('/change-password-sismako', [App\Http\Controllers\PasswordController::class, 'editPw'])->name('pw.edit');
 Route::post('/pin', [App\Http\Controllers\PasswordController::class, 'checkPw'])->name('checkPw');
+
+// Finance routes
+use App\Http\Controllers\Finance\PengajuanController;
+use App\Http\Controllers\Finance\PemasukanController;
+use App\Http\Controllers\Finance\PengeluaranController;
+
+Route::controller(PengajuanController::class)->group(function(){
+    Route::get('/finance/pengajuan', 'index')->name('finance.pengajuan.index');
+    Route::get('/finance/pengajuan/create', 'create')->name('finance.pengajuan.create');
+    Route::post('/finance/pengajuan', 'store')->name('finance.pengajuan.store');
+    Route::get('/finance/pengajuan/{id}/edit', 'edit')->name('finance.pengajuan.edit');
+    Route::put('/finance/pengajuan/{id}', 'update')->name('finance.pengajuan.update');
+    Route::delete('/finance/pengajuan/{id}', 'destroy')->name('finance.pengajuan.destroy');
+    Route::get('/finance/pengajuan/export-pdf', 'exportPdf')->name('finance.pengajuan.export');
+});
+
+Route::controller(PemasukanController::class)->group(function(){
+    Route::get('/finance/pemasukan', 'index')->name('finance.pemasukan.index');
+    Route::get('/finance/pemasukan/create', 'create')->name('finance.pemasukan.create');
+    Route::post('/finance/pemasukan', 'store')->name('finance.pemasukan.store');
+    Route::get('/finance/pemasukan/{id}/edit', 'edit')->name('finance.pemasukan.edit');
+    Route::put('/finance/pemasukan/{id}', 'update')->name('finance.pemasukan.update');
+    Route::delete('/finance/pemasukan/{id}', 'destroy')->name('finance.pemasukan.destroy');
+    Route::get('/finance/pemasukan/export-pdf', 'exportPdf')->name('finance.pemasukan.export');
+});
+
+Route::controller(PengeluaranController::class)->group(function(){
+    Route::get('/finance/pengeluaran', 'index')->name('finance.pengeluaran.index');
+    Route::get('/finance/pengeluaran/create', 'create')->name('finance.pengeluaran.create');
+    Route::post('/finance/pengeluaran', 'store')->name('finance.pengeluaran.store');
+    Route::get('/finance/pengeluaran/{id}/edit', 'edit')->name('finance.pengeluaran.edit');
+    Route::put('/finance/pengeluaran/{id}', 'update')->name('finance.pengeluaran.update');
+    Route::delete('/finance/pengeluaran/{id}', 'destroy')->name('finance.pengeluaran.destroy');
+    Route::get('/finance/pengeluaran/export-pdf', 'exportPdf')->name('finance.pengeluaran.export');
+});
 Route::put('/change-password', [App\Http\Controllers\PasswordController::class, 'updatePassword'])->name('password.update');
 Route::get('/jamaah', [App\Http\Controllers\keasramaan\JamaahSiswaController::class, 'index'])->name('jamaah.index');
 Route::get('/patroli/asrama', [App\Http\Controllers\keasramaan\PatroliAsramaController::class, 'index'])->name('patroli.asrama.index');
@@ -403,7 +438,7 @@ Route::controller(PatroliAsramaController::class)->group(function () {
     Route::get('/patroli/asrama/{id}/edit', [PatroliAsramaController::class, 'edit'])->name('patroli.asrama.edit');
     Route::post('/patroli/asrama/create/data', 'store')->name('patroli.asrama.store');
     Route::put('/patroli/asrama/{id}', [PatroliAsramaController::class, 'update'])->name('patroli.asrama.update');
-    Route::delete('/patroli/delete/{id}', 'destroy')->name('patroli.asrama.destroy');
+    Route::delete('/patroli/delete/{patroliAsrama}', 'destroy')->name('patroli.asrama.destroy');
     Route::get('/patroli/export-pdf', 'exportPdf')->name('patroli.asrama.export');
 });
 

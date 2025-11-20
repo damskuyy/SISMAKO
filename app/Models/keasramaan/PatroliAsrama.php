@@ -15,6 +15,7 @@ class PatroliAsrama extends Model
     protected $fillable = [
         'tanggal',
         'area',
+        'nama_patroli',
         'dokumentasi',
         'status_patroli',
     ];

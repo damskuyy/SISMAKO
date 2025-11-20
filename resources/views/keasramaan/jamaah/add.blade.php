@@ -5,6 +5,16 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-lg-4">
+                <a href="{{ route('jamaah.index') }}" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left"></i> Back
+                </a>
+            </div>
+        </div>
+    </div>
+
     <div class="container mt-4">
         <div class="card">
             <div class="container mt-2 mb-2">
@@ -26,13 +36,17 @@
                     <div class="row">
                         <div class="col-12">
                             <label for="sholat">Sholat</label>
-                            <select id="sholat" class="form-select" style="width: 100%;" name="sholat">
-                                <option value="subuh">Subuh</option>
-                                <option value="dzuhur">Dzuhur</option>
-                                <option value="ashar">Ashar</option>
-                                <option value="maghrib">Maghrib</option>
-                                <option value="isya">Isya</option>
+                            <select id="sholat" class="form-select @error('sholat') is-invalid @enderror" style="width: 100%;" name="sholat">
+                                <option value="">-- Pilih Sholat --</option>
+                                <option value="Subuh" {{ old('sholat') == 'Subuh' ? 'selected' : '' }}>Subuh</option>
+                                <option value="Dzuhur" {{ old('sholat') == 'Dzuhur' ? 'selected' : '' }}>Dzuhur</option>
+                                <option value="Ashar" {{ old('sholat') == 'Ashar' ? 'selected' : '' }}>Ashar</option>
+                                <option value="Maghrib" {{ old('sholat') == 'Maghrib' ? 'selected' : '' }}>Maghrib</option>
+                                <option value="Isya" {{ old('sholat') == 'Isya' ? 'selected' : '' }}>Isya</option>
                             </select>
+                            @error('sholat')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -81,7 +95,7 @@
                     </div>
                 </div>
 
-                <div class="text-end mt-3">
+                <div class="card-footer text-end mt-3">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>

@@ -11,9 +11,6 @@
                             <a href="/sekolah-keasramaan" class="btn btn-secondary">
                                 Back
                             </a>
-
-                        </div>
-                        <div class="mb-4 col d-flex justify-content-end">
                             <a href="{{ route('lab.create') }}" class="btn btn-primary">
                                 Tambah
                             </a>
@@ -77,7 +74,7 @@
                                 <th>Keterangan</th>
                                 <th>Start</th>
                                 <th>End</th>
-                                <th></th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>

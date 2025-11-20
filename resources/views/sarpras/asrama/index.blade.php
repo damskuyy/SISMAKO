@@ -290,7 +290,7 @@
                                                 {{ $item->deskripsi }}
                                             </td>
                                             <td>
-                                                <div class="btn-group"">
+                                                <div class="btn-group">
                                                     <div class="col-6 col-sm-4 col-md-2 col-xl-auto me-2">
                                                         <a href="{{ route('dorm-purchases.edit', $item->id) }}"
                                                             class="btn w-100 btn-icon btn-success">

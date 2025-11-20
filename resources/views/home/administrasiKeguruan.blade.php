@@ -48,7 +48,7 @@
             ['url' => 'administrasi-keguruan/osis', 'img' =>
             'https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/Icons%2Fstudent-unscreen.gif?alt=media&token=e3239e62-4101-43f0-81bf-0711ae9dd0c2',
             'title' => 'OSIS SMK', 'bg' => 'bg-blue'],
-            ['url' => 'administrasi-keguruan/perpustakaan', 'img' =>
+            ['url' => 'administrasi-keguruan/perpustakaan', 'img' =>  
             'https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/Icons%2Fshelves-unscreen.gif?alt=media&token=bc6d23b4-812f-4a50-bca2-6c3527f47acf',
             'title' => 'Library', 'bg' => 'bg-blue'],
             ['url' => 'administrasi-keguruan/walas', 'img' =>
