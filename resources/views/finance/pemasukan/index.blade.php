@@ -20,7 +20,7 @@
         </form>
         <div class="table-responsive">
         <table class="table table-striped table-hover align-middle">
-            <thead><tr><th>No</th><th>Tanggal</th><th>Jenis</th><th>Nama</th><th>Asal</th><th>Nominal</th><th>Actions</th></tr></thead>
+            <thead><tr><th>No</th><th>Tanggal</th><th>Jenis</th><th>Deskripsi</th><th>Dari</th><th>Nominal</th><th>Actions</th></tr></thead>
             <tbody>
                 @forelse($pemasukans as $p)
                     <tr>
@@ -78,12 +78,12 @@
                                 @error('jenis') <div class="text-danger small">{{ $message }}</div> @enderror
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label">Nama</label>
+                                <label class="form-label">Deskripsi</label>
                                 <input type="text" name="nama" class="form-control" value="{{ old('nama') }}">
                                 @error('nama') <div class="text-danger small">{{ $message }}</div> @enderror
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label">Asal</label>
+                                <label class="form-label">Dari</label>
                                 <input type="text" name="asal" class="form-control" value="{{ old('asal') }}">
                                 @error('asal') <div class="text-danger small">{{ $message }}</div> @enderror
                             </div>
@@ -131,12 +131,12 @@
                                 @error('jenis') <div class="text-danger small">{{ $message }}</div> @enderror
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label">Nama</label>
+                                <label class="form-label">Deskripsi</label>
                                 <input type="text" name="nama" id="edit-nama" class="form-control">
                                 @error('nama') <div class="text-danger small">{{ $message }}</div> @enderror
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label">Asal</label>
+                                <label class="form-label">Dari</label>
                                 <input type="text" name="asal" id="edit-asal" class="form-control">
                                 @error('asal') <div class="text-danger small">{{ $message }}</div> @enderror
                             </div>

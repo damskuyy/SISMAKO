@@ -2,24 +2,164 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Pengeluaran PDF</title>
-    <style>body{font-family: DejaVu Sans, sans-serif;} table{width:100%;border-collapse:collapse} td,th{border:1px solid #ccc;padding:6px}</style>
+    <title>Laporan Pengeluaran</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'DejaVu Sans', Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 100%;
+            padding: 20px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #e74c3c;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+        .header-left h1 {
+            font-size: 24px;
+            color: #e74c3c;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .header-left p {
+            font-size: 12px;
+            color: #666;
+        }
+        .header-right {
+            text-align: right;
+            font-size: 11px;
+            color: #666;
+        }
+        .header-right p {
+            margin-bottom: 3px;
+        }
+        .info-box {
+            background-color: #fadbd8;
+            border-left: 4px solid #e74c3c;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .info-box p {
+            font-size: 12px;
+            color: #555;
+            margin-bottom: 3px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        thead {
+            background: linear-gradient(135deg, #e74c3c 0%, #ec7063 100%);
+        }
+        th {
+            color: #000000;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 12px;
+            border: 1px solid #e74c3c;
+        }
+        td {
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            font-size: 11px;
+        }
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .text-right {
+            text-align: right;
+        }
+        .nominal {
+            font-weight: 600;
+            color: #e74c3c;
+        }
+        .footer {
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            font-size: 10px;
+            color: #999;
+        }
+        .total-row {
+            background-color: #f5e6e3;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+    </style>
 </head>
 <body>
-    <h3>Daftar Pengeluaran</h3>
-    <table>
-        <thead><tr><th>No</th><th>Tanggal</th><th>Jenis</th><th>Nama</th><th>Nominal</th></tr></thead>
-        <tbody>
-            @foreach($pengeluarans as $p)
+    <div class="container">
+        <div class="header">
+            <div class="header-left">
+                <h1>LAPORAN PENGELUARAN</h1>
+                <p>SMK TI BAZMA</p>
+            </div>
+            <div class="header-right">
+                <p><strong>Tanggal Cetak:</strong> {{ now()->format('d M Y H:i') }}</p>
+                <p><strong>Total Record:</strong> {{ count($pengeluarans) }}</p>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <p><strong>Periode:</strong> {{ now()->format('F Y') }}</p>
+            <p><strong>Status:</strong> Laporan Resmi</p>
+        </div>
+
+        <table>
+            <thead>
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $p->tanggal_pengeluaran->format('d-m-Y') }}</td>
-                    <td>{{ $p->jenis }}</td>
-                    <td>{{ $p->nama }}</td>
-                    <td>{{ number_format($p->nominal,0,',','.') }}</td>
+                    <th style="width:5%">No</th>
+                    <th style="width:15%">Tanggal</th>
+                    <th style="width:15%">Jenis</th>
+                    <th style="width:40%">Deskripsi</th>
+                    <th style="width:15%; text-align:right">Nominal</th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @forelse($pengeluarans as $p)
+                    <tr>
+                        <td class="text-center">{{ $loop->iteration }}</td>
+                        <td>{{ $p->tanggal_pengeluaran->format('d-m-Y') }}</td>
+                        <td>{{ $p->jenis }}</td>
+                        <td>{{ $p->nama }}</td>
+                        <td class="text-right nominal">Rp {{ number_format($p->nominal,0,',','.') }}</td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="5" class="text-center">Tidak ada data pengeluaran</td>
+                    </tr>
+                @endforelse
+                @if(count($pengeluarans) > 0)
+                    <tr class="total-row">
+                        <td colspan="4" class="text-right">TOTAL PENGELUARAN:</td>
+                        <td class="text-right">Rp {{ number_format($pengeluarans->sum('nominal'),0,',','.') }}</td>
+                    </tr>
+                @endif
+            </tbody>
+        </table>
+
+        <div class="footer">
+            <p>Dokumen ini adalah laporan resmi dan telah diverifikasi oleh sistem.</p>
+            <p>Dicetak pada {{ now()->format('d F Y H:i:s') }}</p>
+        </div>
+    </div>
 </body>
 </html>

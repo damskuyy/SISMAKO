@@ -20,7 +20,7 @@
         </form>
         <div class="table-responsive">
         <table class="table table-striped table-hover align-middle">
-            <thead><tr><th>No</th><th>Tanggal</th><th>Jenis</th><th>Nama</th><th>Nominal</th><th>Actions</th></tr></thead>
+            <thead><tr><th>No</th><th>Tanggal</th><th>Jenis</th><th>Deskripsi</th><th>Nominal</th><th>Actions</th></tr></thead>
             <tbody>
                 @forelse($pengeluarans as $p)
                     <tr>
@@ -75,7 +75,7 @@
                                 <input type="text" name="jenis" class="form-control" required>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label">Nama / Deskripsi</label>
+                                <label class="form-label">Deskripsi</label>
                                 <input type="text" name="nama" class="form-control" required value="{{ old('nama') }}">
                                 @error('nama') <div class="text-danger small">{{ $message }}</div> @enderror
                             </div>
@@ -122,7 +122,7 @@
                                 <input type="text" name="jenis" id="edit-pengeluaran-jenis" class="form-control" required>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label">Nama / Deskripsi</label>
+                                <label class="form-label">Deskripsi</label>
                                 <input type="text" name="nama" id="edit-pengeluaran-nama" class="form-control" required>
                                 @error('nama') <div class="text-danger small">{{ $message }}</div> @enderror
                             </div>

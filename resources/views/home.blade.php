@@ -116,9 +116,8 @@
                     @foreach ($cards as $card)
                         <div class="col-12 col-sm-6 col-md-4 text-center">
                             @php
-                                // For the Penilaian card we want to go straight to the penilaian page
-                                // (no PIN). Other cards still go through the PIN route where used.
-                                $href = $card['url'] === '/penilaian' ? url($card['url']) : route('pin', ['redirect_url' => $card['url']]);
+                                // Always route through the PIN form so protected pages require password input.
+                                $href = route('pin', ['redirect_url' => $card['url']]);
                             @endphp
 
                             <a href="{{ $href }}" class="text-decoration-none">

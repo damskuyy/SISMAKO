@@ -154,9 +154,24 @@
                     <div class="card-body d-flex" style="gap: 25px">
                         <div class="content-body-1" style="width: 35%">
                             <img src="https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/Icons%2Ftraining-unscreen.gif?alt=media&token=dd862696-345f-49af-bc58-112a58b02026" alt="" class="img-icons">
-                            <h2>Guru</h2>
+                            <h2>Tendik</h2>
                         </div>
-                        <div class="content-body-2 d-flex" style="gap: 20px; width: 100%">
+                        <div class="content-body-2 d-flex justify-content-center align-items-center"
+                            style="gap: 20px; width: 100%">
+                            <div class="content-body-2-1">
+                                <div class="content-body-2-3">
+                                    <h2 class="text-center">Data Tenaga Pendidik SMK TI Bazma</h2>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- <div class="content-body-2 d-flex justify-content-center align-items-center"
+                            style="gap: 20px; width: 100%">
+                            <div class="content-body-2-1">
+                                <h3 class="text-center">Tendik Aktif :</h3>
+                                <h2 class="text-center"> {{ $totalGuruAktif }} Tendik</h2>
+                            </div>
+                        </div> --}}
+                        {{-- <div class="content-body-2 d-flex" style="gap: 20px; width: 100%">
                             <div class="content-body-2-1" style="width: 50%">
                                 <h3 class="text-center">Active</h3>
                                 <h1 class="text-center">{{ $totalGuruAktif }}</h1>
@@ -165,7 +180,7 @@
                                 <h3 class="text-center">Off</h3>
                                 <h1 class="text-center">{{ $totalGuruTidakAktif }}</h1>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -176,7 +191,22 @@
                             <img src="https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/Icons%2Fstudent.gif?alt=media&token=c79b09d9-bc3e-4a2f-853e-0c8e8efdd32f" alt="" class="img-icons">
                             <h2>Siswa</h2>
                         </div>
-                        <div class="content-body-2 d-flex" style="gap: 20px; width: 100%">
+                        <div class="content-body-2 d-flex justify-content-center align-items-center"
+                            style="gap: 20px; width: 100%">
+                            <div class="content-body-2-1">
+                                <div class="content-body-2-3">
+                                    <h2 class="text-center">Data Siswa SMK TI Bazma</h2>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- <div class="content-body-2 d-flex justify-content-center align-items-center"
+                            style="gap: 20px; width: 100%">
+                            <div class="content-body-2-1">
+                                <h3 class="text-center">Siswa Aktif :</h2>
+                                <h2 class="text-center"> {{ $totalSiswaAktif }} Siswa</h2>
+                            </div>
+                        </div> --}}
+                        {{-- <div class="content-body-2 d-flex" style="gap: 20px; width: 100%">
                             <div class="content-body-2-1" style="width: 50%">
                                 <h3 class="text-center">Active</h3>
                                 <h1 class="text-center">{{ $totalSiswaAktif }}</h1>
@@ -185,7 +215,7 @@
                                 <h3 class="text-center">Off</h3>
                                 <h1 class="text-center">{{ $totalSiswaTidakAktif }}</h1>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -229,9 +259,24 @@
                     <div class="card-body d-flex" style="gap: 25px">
                         <div class="content-body-1">
                             <img src="https://firebasestorage.googleapis.com/v0/b/explorefireb4se.appspot.com/o/Icons%2Fprofessor.gif?alt=media&token=7fe89df6-94d3-4db7-86a5-c865cf2fb1ac" alt="" class="img-icons">
-                            <h2 class="">Tendik</h2>
+                            <h2 class="">Staff</h2>
                         </div>
                         <div class="content-body-2 d-flex justify-content-center align-items-center"
+                            style="gap: 20px; width: 100%">
+                            <div class="content-body-2-1">
+                                <div class="content-body-2-3">
+                                    <h2 class="text-center">Data Staff SMK TI Bazma</h2>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- <div class="content-body-2 d-flex justify-content-center align-items-center"
+                            style="gap: 20px; width: 100%">
+                            <div class="content-body-2-1">
+                                <h2 class="text-center">Staff Aktif :</h2>
+                                <h2 class="text-center"> {{ $totalTendikAktif }} Staff</h2>
+                            </div>
+                        </div> --}}
+                        {{-- <div class="content-body-2 d-flex justify-content-center align-items-center"
                             style="gap: 20px; width: 100%">
                             <div class="content-body-2 d-flex" style="gap: 20px; width: 100%">
                                 <div class="content-body-2-1" style="width: 50%">
@@ -243,7 +288,7 @@
                                     <h1 class="text-center ">{{ $totalTendikTidakAktif }}</h1>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -274,9 +319,17 @@
                         <div class="content-body-2 d-flex justify-content-center align-items-center"
                             style="gap: 20px; width: 100%">
                             <div class="content-body-2-1">
-                                <h2 class="text-center">Data Kelulusan {{ $totalKelulusanSiswa }}</h2>
+                                <div class="content-body-2-3">
+                                    <h2 class="text-center">Data Kelulusan Siswa SMK TI Bazma</h2>
+                                </div>
                             </div>
                         </div>
+                        {{-- <div class="content-body-2 d-flex justify-content-center align-items-center"
+                            style="gap: 20px; width: 100%">
+                            <div class="content-body-2-1">
+                                <h2 class="text-center">Data Kelulusan {{ $totalKelulusanSiswa }}</h2>
+                            </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -291,7 +344,9 @@
                         <div class="content-body-2 d-flex justify-content-center align-items-center"
                             style="gap: 20px; width: 100%">
                             <div class="content-body-2-1">
-                                <h2 class="text-center">Data PKL</h2>
+                                <div class="content-body-2-3">
+                                    <h2 class="text-center">Data Siswa Praktek Kerja Lapangan</h2>
+                                </div>
                             </div>
                         </div>
                     </div>

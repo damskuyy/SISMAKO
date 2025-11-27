@@ -367,17 +367,13 @@ class Password
 
         ];
         
-        // === COMPLETELY SKIP PASSWORD CHECKS FOR PENILAIAN ROUTES ===
-        if (str_contains($request->path(), 'penilaian')) {
-            Log::info('Skipping password check - penilaian path detected', ['path' => $request->path()]);
-            return $next($request);
-        }
-        
         $currentRouteName = Route::currentRouteName();
         $currentRouteUri = Route::current()->uri();
         $currentUriWithSlash = '/' . $currentRouteUri;
 
-        if (!in_array($currentRouteName, $protectedRoutes)) {
+        // Require PIN for routes listed in $protectedRoutes OR any path that contains 'penilaian'.
+        // If the current route is neither protected nor a penilaian path, clear any stored PIN.
+        if (!in_array($currentRouteName, $protectedRoutes) && !str_contains($request->path(), 'penilaian')) {
             $request->session()->forget('pin');
         } else {
             $pin = $request->session()->get('pin');

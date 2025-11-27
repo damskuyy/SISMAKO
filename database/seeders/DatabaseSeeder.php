@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             ['url' => '/database', 'password' => '140721'],
             ['url' => '/korespondensi', 'password' => '140721'],
             ['url' => '/administrasi', 'password' => '140721'],
+            ['url' => '/penilaian', 'password' => '140721'],
             ['url' => '/sarpras', 'password' => '140721'],
             ['url' => '/finance', 'password' => '140721'],
             ['url' => '/pkg', 'password' => '140721'],

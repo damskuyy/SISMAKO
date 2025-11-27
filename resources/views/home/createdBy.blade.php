@@ -28,8 +28,8 @@
                 ['name' => 'Hafith Muhammad Fauzan', 'role' => 'Angkatan II SMK TI BAZMA', 'img' => 'https://wallpapercave.com/uwpt/uwp4911565.jpeg'],
                 ['name' => 'Syahban Syahputra', 'role' => 'Angkatan II SMK TI BAZMA', 'img' => 'https://wallpapercave.com/uwp/uwp4911573.jpeg'],
                 ['name' => 'Hanif Gibran Syidiq', 'role' => 'Angkatan II SMK TI BAZMA', 'img' => 'https://wallpapercave.com/uwpt/uwp4911564.jpeg'],
-                ['name' => 'Damar Nugroho Utomo', 'role' => 'Backend Developer', 'img' => 'https://wallpapercave.com/uwpt/uwp4913182.jpeg'],
-                ['name' => 'Rizki Zikrillah', 'role' => 'Frontend Developer', 'img' => 'https://wallpapercave.com/uwp/uwp4887508.jpeg'],
+                ['name' => 'Damar Nugroho Utomo', 'role' => 'Angkatan XXIV SMKN 1 Cibinong', 'img' => 'https://wallpapercave.com/uwpt/uwp4913182.jpeg'],
+                ['name' => 'Rizki Zikrillah', 'role' => 'Angkatan XXIV SMKN 1 Cibinon', 'img' => 'https://wallpapercave.com/uwpt/uwp4930345.jpeg'],
             ];
         @endphp
         

@@ -115,7 +115,10 @@
     will-change: transform;
     height: 100%; /* fill parent so all cards are same height */
     /* subtle floating animation; each card will get varying values via CSS variables */
-    animation: float var(--float-duration, 4s) ease-in-out infinite alternate;
+    animation: float var(--float-duration, 4s) ease-in-out infinite alternate,
+               glowPulse var(--glow-duration, 3s) ease-in-out infinite,
+               pulseBg var(--pulse-duration, 4s) ease-in-out infinite;
+    border: 2px solid transparent;
 }
 
 .createdby-card:hover {
@@ -123,16 +126,57 @@
 }
 
 .createdby-card:hover .createdby-card-inner {
-    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2),
+                0 0 30px rgba(52,152,219,0.4);
+    animation: pulseBg var(--pulse-duration, 4s) ease-in-out infinite, borderGlow 2s ease-in-out infinite;
+    border-color: #3498db;
 }
 
-/* Floating keyframes: use CSS variables to vary distance, horizontal offset and rotation */
-@keyframes float {
+/* Shimmer Effect */
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+/* Border Glow Animation */
+@keyframes borderGlow {
+    0% {
+        border-color: #3498db;
+        box-shadow: 0 0 5px rgba(49, 152, 220, 0.5);
+    }
+    50% {
+        border-color: #DC0000;
+        box-shadow: 0 0 20px rgba(202, 25, 25, 0.8);
+    }
+    100% {
+        border-color: #73AF6F;
+        box-shadow: 0 0 5px rgba(52, 219, 108, 0.5);
+    }
+}
+
+/* Pulse Background Animation */
+@keyframes pulseBg {
+    0%, 100% {
+        background-color: #fff;
+    }
+    50% {
+        background-color: #f0f8ff;
+    }
+}
+
+/* Blur In Animation */
+@keyframes blurIn {
     from {
-        transform: translateY(0px) translateX(0px) rotateZ(0deg);
+        filter: blur(10px);
+        opacity: 0;
     }
     to {
-        transform: translateY(calc(-1 * var(--float-distance, 8px))) translateX(var(--float-x, 4px)) rotateZ(var(--float-rotate, 1deg));
+        filter: blur(0px);
+        opacity: 1;
     }
 }
 

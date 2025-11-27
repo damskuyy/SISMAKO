@@ -72,8 +72,8 @@ Route::post('/progres-siswa/hasil', [ProgresController::class, 'hasilProgres'])-
 Route::get('/progres-siswa/hasil', [ProgresController::class, 'hasilProgres'])->name('progres.hasil');
 Route::post('/progres-siswa/hasil', [ProgresController::class, 'hasilProgres']);
 
-// PENILAIAN Routes (without password protection)
-Route::prefix('penilaian')->group(function() {
+// PENILAIAN Routes (require password protection)
+Route::prefix('penilaian')->middleware('password')->group(function() {
     Route::view('/', 'home.penilaian')->name('penilaian');
     Route::get('/rapor', [RaporController::class, 'index'])->name('rapor');
     Route::get('/rpts', [RptsController::class, 'index'])->name('rpts');
@@ -211,6 +211,7 @@ Route::post('/pin', [App\Http\Controllers\PasswordController::class, 'checkPw'])
 use App\Http\Controllers\Finance\PengajuanController;
 use App\Http\Controllers\Finance\PemasukanController;
 use App\Http\Controllers\Finance\PengeluaranController;
+use App\Http\Controllers\PkgController;
 
 Route::controller(PengajuanController::class)->group(function(){
     Route::get('/finance/pengajuan', 'index')->name('finance.pengajuan.index');
@@ -240,6 +241,17 @@ Route::controller(PengeluaranController::class)->group(function(){
     Route::put('/finance/pengeluaran/{id}', 'update')->name('finance.pengeluaran.update');
     Route::delete('/finance/pengeluaran/{id}', 'destroy')->name('finance.pengeluaran.destroy');
     Route::get('/finance/pengeluaran/export-pdf', 'exportPdf')->name('finance.pengeluaran.export');
+});
+// PKG routes
+Route::controller(PkgController::class)->group(function(){
+    Route::get('/pkg', 'index')->name('pkg.index');
+    Route::get('/pkg/create', 'create')->name('pkg.create');
+    Route::post('/pkg', 'store')->name('pkg.store');
+    Route::get('/pkg/{id}/edit', 'edit')->name('pkg.edit');
+    Route::put('/pkg/{id}', 'update')->name('pkg.update');
+    Route::delete('/pkg/{id}', 'destroy')->name('pkg.destroy');
+        Route::get('/pkg/export-pdf', 'exportPdf')->name('pkg.export');
+        Route::get('/pkg/{id}/export-pdf', 'exportSinglePdf')->name('pkg.exportSingle');
 });
 Route::put('/change-password', [App\Http\Controllers\PasswordController::class, 'updatePassword'])->name('password.update');
 Route::get('/jamaah', [App\Http\Controllers\keasramaan\JamaahSiswaController::class, 'index'])->name('jamaah.index');
